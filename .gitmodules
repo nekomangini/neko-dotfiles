@@ -1,3 +1,6 @@
 [submodule "nekovim"]
 	path = nekovim
 	url = https://github.com/nekomangini/nekovim
+[submodule "neknekvim"]
+	path = neknekvim
+	url = https://github.com/nekomangini/neknekvim
