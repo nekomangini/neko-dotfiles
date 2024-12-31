@@ -1,0 +1,55 @@
+# Dart and Flutter configuration
+[[language]]
+name = "dart"
+scope = "source.dart"
+injection-regex = "dart"
+file-types = ["dart"]
+shebangs = ["dart"]
+roots = ["pubspec.yaml", "pubspec.yml"]
+comment-token = "//"
+language-servers = ["dart-lsp"]
+indent = { tab-width = 2, unit = "  " }
+
+[language-server.dart-lsp]
+command = "dart"
+args = ["language-server", "--client-id", "helix"]
+
+[language-server.dart-lsp.config]
+enableSnippets = true
+renameFilesWithClasses = "always"
+completeFunctionCalls = true
+showTodos = true
+format = true
+
+# Rust configuration
+[[language]]
+name = "rust"
+scope = "source.rust"
+file-types = ["rs"]
+roots = ["Cargo.toml"]
+language-servers = ["rust-analyzer"]
+indent = { tab-width = 4, unit = "    " }
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+# command = "$HOME/.cargo/bin/rust-analyzer"
+args = []
+environment = { "RUST_LOG" = "error" }
+
+# Optional rust-analyzer specific config
+[language-server.rust-analyzer.config]
+cargo = { allFeatures = true }
+completion = { postfix = { enable = true }, snippets = { enable = true } }
+checkOnSave = { command = "clippy" }                                       # Enables clippy checks on save
+
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
+# Godot
+[language-server.godot]
+command = "nc"
+args = ["127.0.0.1", "6005"]
+
+[[language]]
+name = "gdscript"
+language-servers = ["godot"]

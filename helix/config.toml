@@ -1,0 +1,26 @@
+# theme = "heisenberg"
+# theme = "catppuccin_frappe"
+# theme = "kanagawa"
+# theme = "gruvbox"
+theme = "base16_transparent" # transparent background
+# theme = "curzon"
+# theme = "starlight"
+# theme = "noctis"
+# theme = "term16_dark"
+# theme = "material_deep_ocean"
+# theme = "github_dark_dimmed"
+
+[editor]
+line-number = "relative"
+bufferline = "multiple"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.insert]
+j = { k = "normal_mode" }
+
+[editor.lsp]
+display-inlay-hints = true
