@@ -1,18 +1,24 @@
+# greeting
+# function fish_greeting
+#     random choice "Hello!" Hi uwu Nekomangini
+# end
+
 ############################
 ####### alias ##############
 ############################
 alias hx='helix'
 alias ..='cd ..'
 #### eza alias
-alias ls='eza -l --header --icons'
+# alias ls='eza -l --header --icons'
 # git
 # alias ls='eza -l --git --git-repos --header --icons'
 # tree view
-# alias ls='eza --tree --level=2 --git --git-repos --header --icons'
+alias ls='eza --tree --level=2 --git --git-repos --header --icons'
 alias lf='ranger'
 # alias avim='NVIM_APPNAME="avim" nvim'
 # nk is the alias and nekovim is the folder name
 alias nk='NVIM_APPNAME="nekovim" nvim'
+alias av='NVIM_APPNAME="astronvim" nvim'
 
 # alias for neovide
 # alias nv='~/Downloads/neovide.AppImage'
@@ -23,6 +29,11 @@ end
 function lvide
     nohup ~/.config/lvim/lvim-nvide.sh >/dev/null 2>&1 & disown
 end
+
+function nekovide
+    nohup ~/.config/nekovim/nekovim-neovide.sh >/dev/null 2>&1 & disown
+end
+
 
 
 
@@ -39,7 +50,7 @@ zoxide init fish | source
 ############################
 # set -x PATH $HOME/.local/bin/bash-scripts $PATH
 set -U fish_user_paths $fish_user_paths ~/.local/bin/bash-scripts
-alias tmux-ses='tmux-sessionizer.sh'
+alias nmix='nekomux.sh'
 
 ############################
 ########### fzf ############
@@ -134,6 +145,63 @@ set -gx PATH $HOME/.cabal/bin /home/nekomangini/.ghcup/bin $PATH # ghcup-env
 # doom emacs
 set -x PATH $HOME/.emacs.d/bin/ $PATH
 
+# ada: alire(ada package manager)
+# set -x PATH /home/nekomangini/ada_language_server/ $PATH
+set -x PATH /home/nekomangini/alr-2.0.2-bin-x86_64-linux/bin $PATH
+set -x PATH /home/nekomangini/.local/share/alire/toolchains/gprbuild_22.0.1_24dfc1b5/bin $PATH
+
+# fortls
+set -x PATH /home/nekomangini/.local/bin/fortls $PATH
+
+# skia
+# set -gx PATH (pwd)/depot_tools $PATH
+# set -gx PATH /home/nekomangini/deps/skia/third_party/externals/emsdk $PATH
+# set -gx PATH /home/nekomangini/deps/skia/third_party/externals/emsdk/node/14.18.2_64bit/bin $PATH
+# set -gx PATH /home/nekomangini/deps/skia/third_party/externals/emsdk/upstream/emscripten $PATH
+# set -x SKIA_DIR /run/media/nekomangini/D/skia/
+# set -x SKIA_LIBRARY_DIR /run/media/nekomangini/D/skia/out/Release/
+# set -x SKIA_LIBRARY skia
+# set -x SKIA_DIR /run/media/nekomangini/D/skia/
+# set -x SKIA_LIBRARY_DIR /run/media/nekomangini/D/skia/out/Release/
+# set -x SKIA_LIBRARY /run/media/nekomangini/D/skia/out/Release/libskia.a
+# set -x SKIA_LIBRARY /run/media/nekomangini/D/skia/out/Release/libskia.a
+# set -Ux fish_user_paths /run/media/nekomangini/D/skia/third_party/externals/emsdk $fish_user_paths
+# set -Ux fish_user_paths /run/media/nekomangini/D/skia/third_party/externals/emsdk/upstream/emscripten $fish_user_paths
+# cmake -G Ninja \
+#       -DLAF_BACKEND=skia \
+#       -DSKIA_DIR=/run/media/nekomangini/D/skia \
+#       -DSKIA_LIBRARY=/run/media/nekomangini/D/skia/out/Release/libskia.a \
+#       -DSKIA_LIBRARY_DIR=/run/media/nekomangini/D/skia/out/Release \
+#       ..
+# cmake -G Ninja \
+#       -DLAF_BACKEND=skia \
+#       -DSKIA_DIR=/run/media/nekomangini/D/skia \
+#       -DSKIA_LIBRARY=/run/media/nekomangini/D/skia/out/Release/libskia.a \
+#       -DSKIA_LIBRARY_DIR=/run/media/nekomangini/D/skia/out/Release \
+#       -DUSE_SHARED_FMT=OFF ..
+
+# There is a compatibility issues with sdkman in fish shell
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# set -x SDKMAN_DIR $HOME/.sdkman
+# if test -s "$HOME/.sdkman/bin/sdkman-init.fish"
+#     source $HOME/.sdkman/bin/sdkman-init.fish
+# end
+
+# using bass
+# set -x SDKMAN_DIR "$HOME/.sdkman"
+# test -s "$HOME/.sdkman/bin/sdkman-init.sh"; and bass source "$HOME/.sdkman/bin/sdkman-init.sh"
+#
+# set -x SDKMAN_DIR "$HOME/.sdkman"
+# if test -s "$HOME/.sdkman/bin/sdkman-init.sh"
+#     # Directly set PATH and other environment variables
+#     set -x PATH $HOME/.sdkman/candidates/*/current/bin $PATH
+#     
+#     # Load SDKMAN functions
+#     function sdk
+#         bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk $argv"
+#     end
+# end
+
 set -x SDKMAN_DIR "$HOME/.sdkman"
 if test -s "$HOME/.sdkman/bin/sdkman-init.sh"
     # Parse and set environment variables from sdkman-init.sh
@@ -162,5 +230,5 @@ end
 #   - the correct directories to the PATH
 #   - auto-completion for the opam binary
 # This section can be safely removed at any time if needed.
-test -r '/home/nekomangini/.opam/opam-init/init.fish' && source '/home/nekomangini/.opam/opam-init/init.fish' > /dev/null 2> /dev/null; or true
+# test -r '/home/nekomangini/.opam/opam-init/init.fish' && source '/home/nekomangini/.opam/opam-init/init.fish' >/dev/null 2>/dev/null; or true
 # END opam configuration
