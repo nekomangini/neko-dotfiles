@@ -1,4 +1,5 @@
 # neko-dotfiles
-  
+
 ## Screenshot
-![screenshot](https://github.com/nekomangini/neko-dotfiles/blob/main/screenshots/screenshot_2024-12-20_16-48-03.png)
+
+![screenshot](https://github.com/nekomangini/neko-dotfiles/blob/main/screenshots/screenshot_2025-02-07_10-21-53.png)
