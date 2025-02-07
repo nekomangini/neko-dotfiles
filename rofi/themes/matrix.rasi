@@ -1,0 +1,157 @@
+/*******************************************************
+ * ROFI Hulk-Inspired Colorscheme
+ *******************************************************/
+* {
+    /* Foreground Colors */
+    foreground:                  rgba ( 135, 215, 135, 100% ); /* Softer matrix green */
+    normal-foreground:           @foreground;
+    active-foreground:           rgba ( 95, 255, 135, 100% ); /* Brighter active green */
+    urgent-foreground:           rgba ( 255, 95, 95, 100% ); /* Slightly softer urgent red */
+    alternate-normal-foreground: @foreground;
+    alternate-urgent-foreground: @urgent-foreground;
+    alternate-active-foreground: @active-foreground;
+    
+    /* Background Colors */
+    background:                  rgba ( 20, 40, 20, 80% ); /* Deeper, more opaque green-black */
+    normal-background:           rgba ( 25, 35, 25, 0% ); /* Very subtle dark green-black */
+    active-background:           rgba ( 35, 55, 35, 30% ); /* More pronounced active background */
+    urgent-background:           rgba ( 50, 20, 20, 25% ); /* Muted dark red background */
+    alternate-normal-background: rgba ( 30, 50, 30, 0% ); /* Soft alternate background */
+    alternate-urgent-background: rgba ( 65, 35, 35, 40% ); /* Slightly brighter urgent bg */
+    alternate-active-background: rgba ( 35, 55, 35, 45% ); /* More visible active bg */
+    
+    /* Selection Colors */
+    selected-normal-foreground:  rgba ( 240, 255, 240, 100% ); /* Soft white with green tint */
+    selected-normal-background:  rgba ( 23, 130, 34, 95% ); /* Slightly deeper green highlight */
+    selected-active-foreground:  rgba ( 250, 255, 250, 100% ); /* Bright off-white */
+    selected-active-background:  rgba ( 31, 108, 48, 100% ); /* Slightly muted active green */
+    selected-urgent-foreground:  rgba ( 255, 240, 240, 100% ); /* Soft white with red tint */
+    selected-urgent-background:  rgba ( 180, 40, 40, 100% ); /* Slightly muted red */
+    
+    /* Accent and Utility Colors */
+    red:                         rgba ( 255, 95, 95, 100% ); /* Softer accent red */
+    blue:                        rgba ( 85, 120, 245, 100% ); /* Slightly muted blue */
+    border-color:                rgba ( 72, 169, 64, 85% );   /* Soft, slightly muted green border */
+    separatorcolor:              rgba ( 72, 169, 64, 1% );    /* Extremely subtle separator */
+    
+    /* Miscellaneous */
+    lightbg:                     rgba ( 40, 60, 40, 35% );    /* Lighter background variant */
+    lightfg:                     rgba ( 120, 180, 120, 75% ); /* Soft light foreground accent */
+    background-color:            rgba ( 0, 0, 0, 0% );        /* Transparent base */
+}
+
+
+window {
+    background-color: @background;
+    border:           1;
+    padding:          5;
+}
+mainbox {
+    border:  0;
+    padding: 0;
+}
+message {
+    border:       2px 0px 0px ;
+    border-color: @separatorcolor;
+    padding:      1px ;
+}
+textbox {
+    text-color: @foreground;
+}
+listview {
+    fixed-height: 0;
+    border:       2px 0px 0px ;
+    border-color: @separatorcolor;
+    spacing:      2px ;
+    scrollbar:    true;
+    padding:      2px 0px 0px ;
+}
+element {
+    border:  0;
+    padding: 1px ;
+}
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-color: @normal-foreground;
+    handle-width: 8px ;
+    padding:      0;
+}
+mode-switcher {
+    border:       2px 0px 0px ;
+    border-color: @separatorcolor;
+}
+button {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+inputbar {
+    spacing:    0;
+    text-color: @normal-foreground;
+    padding:    1px ;
+}
+case-indicator {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+entry {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+prompt {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em ;
+    text-color: @normal-foreground;
+}
