@@ -1,0 +1,9 @@
+# nord theme
+nord_color_one                  =   "#8fbcbb"
+nord_color_two                  =   "#88c0d0"
+nord_color_three                =   "#81a1c1"
+nord_color_four                 =   "#5e81ac"
+nord_color_five                 =   "#4c566a"
+nord_text                       =   "#2e3440"
+nord_status                     =   "#ebcb8b"
+nord_color_custom               =   "#414559"
