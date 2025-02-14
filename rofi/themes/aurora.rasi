@@ -1,0 +1,156 @@
+/*******************************************************
+ * ROFI Aurora Colorscheme
+ *******************************************************/
+* {
+    /* Port Gore Colors */
+    foreground:                  rgba ( 220, 220, 220, 100% ); /* Base text color */
+    normal-foreground:           @foreground;
+    active-foreground:           rgba ( 78, 172, 184, 100% ); /* Fountain Blue */
+    urgent-foreground:           rgba ( 170, 147, 183, 100% ); /* Amethyst Smoke */
+    alternate-normal-foreground: @foreground;
+    alternate-urgent-foreground: @urgent-foreground;
+    alternate-active-foreground: @active-foreground;
+
+    /* Background Colors */
+    background:                  rgba ( 24, 27, 65, 95% );     /* Port Gore */
+    normal-background:           rgba ( 24, 27, 65, 20% );     /* Transparent Port Gore */
+    active-background:           rgba ( 78, 172, 184, 20% );   /* Fountain Blue bg */
+    urgent-background:           rgba ( 170, 147, 183, 20% );  /* Amethyst Smoke bg */
+    alternate-normal-background: rgba ( 35, 39, 77, 20% );     /* Lighter Port Gore */
+    alternate-urgent-background: rgba ( 170, 147, 183, 30% );  /* Amethyst Smoke bg alt */
+    alternate-active-background: rgba ( 78, 172, 184, 30% );   /* Fountain Blue bg alt */
+
+    /* Selection Colors */
+    selected-normal-foreground:  rgba ( 24, 27, 65, 100% );    /* Port Gore */
+    selected-normal-background:  rgba ( 78, 172, 184, 100% );  /* Fountain Blue */
+    selected-active-foreground:  rgba ( 24, 27, 65, 100% );    /* Port Gore */
+    selected-active-background:  rgba ( 101, 135, 184, 100% ); /* Waikawa Gray */
+    selected-urgent-foreground:  rgba ( 24, 27, 65, 100% );    /* Port Gore */
+    selected-urgent-background:  rgba ( 170, 147, 183, 100% ); /* Amethyst Smoke */
+
+    /* Accent and Utility Colors */
+    red:                         rgba ( 170, 147, 183, 100% ); /* Amethyst Smoke */
+    blue:                        rgba ( 78, 172, 184, 100% );  /* Fountain Blue */
+    border-color:               rgba ( 101, 135, 184, 20% );  /* Waikawa Gray */
+    separatorcolor:             rgba ( 101, 135, 184, 30% );  /* Waikawa Gray */
+
+    /* Miscellaneous */
+    lightbg:                    rgba ( 101, 135, 184, 40% );  /* Waikawa Gray */
+    lightfg:                    rgba ( 220, 220, 220, 70% );  /* Light text */
+    background-color:           rgba ( 0, 0, 0, 0% );         /* Transparent */
+}
+
+window {
+    background-color: @background;
+    border:           1;
+    padding:          5;
+}
+mainbox {
+    border:  0;
+    padding: 0;
+}
+message {
+    border:       2px 0px 0px;
+    border-color: @separatorcolor;
+    padding:      1px;
+}
+textbox {
+    text-color: @foreground;
+}
+listview {
+    fixed-height: 0;
+    border:       2px 0px 0px;
+    border-color: @separatorcolor;
+    spacing:      2px;
+    scrollbar:    true;
+    padding:      2px 0px 0px;
+}
+element {
+    border:  0;
+    padding: 1px;
+}
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+scrollbar {
+    width:        4px;
+    border:       0;
+    handle-color: @normal-foreground;
+    handle-width: 8px;
+    padding:      0;
+}
+mode-switcher {
+    border:       2px 0px 0px;
+    border-color: @separatorcolor;
+}
+button {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+inputbar {
+    spacing:    0;
+    text-color: @normal-foreground;
+    padding:    1px;
+}
+case-indicator {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+entry {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+prompt {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em;
+    text-color: @normal-foreground;
+}
