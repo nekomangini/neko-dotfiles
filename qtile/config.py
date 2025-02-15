@@ -83,15 +83,16 @@ keys = [
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
-    Key(
-        [mod, "shift"],
-        "Return",
-        lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-    ),
+    # Key(
+    #     [mod, "shift"],
+    #     "Return",
+    #     lazy.layout.toggle_split(),
+    #     desc="Toggle between split and unsplit sides of stack",
+    # ),
     # Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod, "shift"], "space", lazy.prev_layout(), desc="Toggle between layouts"),
 
     # Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Key([mod], "Tab", lazy.screen.next_group(), desc="Toggle between groups"),
@@ -119,7 +120,8 @@ keys = [
         [mod],
         "d",
         lazy.spawn(
-            "rofi -modi drun -show drun \ -config ~/.config/rofi/rofidmenu.rasi"
+            # "rofi -modi drun -show drun \ -config ~/.config/rofi/rofidmenu.rasi"
+            "rofi -modi drun -show drun"
         ),
     ),
     # launch terminal
@@ -127,17 +129,17 @@ keys = [
     Key(
         [mod],
         "Return",
-        lazy.group["2"].toscreen(toggle=False),
+        lazy.group["1"].toscreen(toggle=False),
         lazy.spawn(terminal),
         desc="Launch terminal",
     ),
-    # file manager
+    # emacs
     Key(
         [mod],
         "e",
         lazy.group["3"].toscreen(toggle=False),
-        lazy.spawn("emacs"),
-        desc="Launch Emacs",
+        lazy.spawn("emacsclient -c -a 'emacs'"),
+        desc="Launch Emacs client",
     ),
     # browser
     Key(
@@ -147,14 +149,29 @@ keys = [
         lazy.spawn("vivaldi-stable"),
         desc="Launch vivaldi browser",
     ),
+    # ranger
     Key(
         [mod],
         "n",
-        lazy.group["0"].toscreen(toggle=False),
-        lazy.spawn("dolphin"),
+        lazy.group["1"].toscreen(toggle=False),
+        lazy.spawn("wezterm cli spawn  -- ranger"),
         desc="Launch File Manager",
     ),
-    # screen shot
+    Key(
+        [mod, "shift"],
+        "n",
+        lazy.group["1"].toscreen(toggle=False),
+        lazy.spawn("wezterm cli spawn --new-window -- ranger"),
+        desc="Launch File Manager",
+    ),
+    Key(
+        [mod],
+        "g",
+        lazy.group["1"].toscreen(toggle=False),
+        lazy.spawn("wezterm cli spawn -- lazygit"),
+        desc="Launch File Manager",
+    ),
+    # screenshot
     # using absolute path
     Key(
         [],
@@ -163,14 +180,11 @@ keys = [
         desc="Printscreen",
     ),
     # exit-menu
-    # Key(
-        # [mod, "control"],
-        # "p",
-        # lazy.spawn(".config/qtile/scripts/powermenu.sh"),
-        # desc="Launch PowerMenu",
-    # ),
+    Key(
+        [mod, "control"], "p", lazy.spawn(".config/qtile/scripts/powermenu.sh"), desc="Launch PowerMenu",
+    ),
     # lock
-    Key([mod, "shift"], "p", lazy.spawn("i3lock"), desc="LockScreen"),
+    # Key([mod, "shift"], "p", lazy.spawn("i3lock"), desc="LockScreen"),
     # Volume control
     # using script
     Key(
@@ -213,23 +227,25 @@ keys = [
 ]
 
 group_names = [
-    ("1", {"layout": "max",    "label": "I" ,   "matches": [Match(wm_class="qutebrowser")]             }),
-    ("1", {"layout": "max",    "label": "I" ,   "matches": [Match(wm_class="krita")]                   }),
-    ("1", {"layout": "max",    "label": "I" ,   "matches": [Match(wm_class="Blender")]                 }),
-    ("1", {"layout": "max",    "label": "I" ,   "matches": [Match(wm_class="libresprite")]             }),
-    ("1", {"layout": "max",    "label": "I" ,   "matches": [Match(wm_class="Godot")]                   }),
-    ("1", {"layout": "max",    "label": "I" ,   "matches": [Match(wm_class="Houdini FX")]              }),
-    ("1", {"layout": "max",    "label": "I" ,   "matches": [Match(wm_class="com.defold.editor.Start")] }),
-    ("1", {"layout": "max",    "label": "I" ,   "matches": [Match(wm_class="firefox")]                 }),
-    ("2", {"layout": "max",    "label": "II",   "matches": [Match(wm_class="Alacritty")]               }),
-    ("3", {"layout": "max",    "label": "III",  "matches": [Match(wm_class="Emacs")]                   }),
-    ("4", {"layout": "max",    "label": "IV",   "matches": [Match(wm_class="obsidian")]                }),
-    ("5", {"layout": "columns","label": "V",    "matches": [Match(wm_class="logseq")]                  }),
-    ("6", {"layout": "max",    "label": "VI",   "matches": [Match(wm_class="jetbrains-studio")]        }),
-    ("7", {"layout": "max",    "label": "VII",  "matches": [Match(wm_class="gimp-2.10")]               }),
-    ("8", {"layout": "columns","label": "VIII", "matches": [Match(wm_class="gwenview")]                }),
-    ("9", {"layout": "max",    "label": "IX",   "matches": [Match(wm_class="vivaldi-stable")]          }),
-    ("0", {"layout": "max",    "label": "X",    "matches": [Match(wm_class="dolphin")]                 }),
+    ("1", {"layout": "MonadTall",  "label": "I",    "matches": [Match(wm_class="Wezterm")]                 }),
+    ("1", {"layout": "max",        "label": "I",    "matches": [Match(wm_class="jetbrains-studio")]        }),
+    ("2", {"layout": "columns",    "label": "II" ,  "matches": [Match(wm_class="firefox")]                 }),
+    ("2", {"layout": "columns",    "label": "I" ,   "matches": [Match(wm_class="qutebrowser")]             }),
+    ("2", {"layout": "columns",    "label": "II",   "matches": [Match(wm_class="vivaldi-stable")]          }),
+    ("3", {"layout": "max",        "label": "III",  "matches": [Match(wm_class="Emacs")]                   }),
+    ("3", {"layout": "max",        "label": "III",  "matches": [Match(wm_class="obsidian")]                }),
+    ("4", {"layout": "max",        "label": "IV",   "matches": [Match(wm_class="AppFlowy")]                }),
+    ("5", {"layout": "columns",    "label": "V",    "matches": [Match(wm_class="gwenview")]                }),
+    ("5", {"layout": "columns",    "label": "X",    "matches": [Match(wm_class="dolphin")]                 }),
+    ("6", {"layout": "columns",    "label": "VI",   "matches": [Match(wm_class="logseq")]                  }),
+    ("6", {"layout": "columns",    "label": "VI",   "matches": [Match(wm_class="Joplin")]                  }),
+    ("7", {"layout": "max",        "label": "VII",  "matches": [Match(wm_class="gimp-2.10")]               }),
+    ("7", {"layout": "max",        "label": "VI" ,  "matches": [Match(wm_class="krita")]                   }),
+    ("7", {"layout": "max",        "label": "VI" ,  "matches": [Match(wm_class="libresprite")]             }),
+    ("8", {"layout": "max",        "label": "VIII", "matches": [Match(wm_class="Blender")]                 }),
+    ("9", {"layout": "max",        "label": "IX",   "matches": [Match(wm_class="Houdini FX")]              }),
+    ("0", {"layout": "max",        "label": "X" ,   "matches": [Match(wm_class="Godot")]                   }),
+    ("0", {"layout": "max",        "label": "X" ,   "matches": [Match(wm_class="com.defold.editor.Start")] }),
 ]
 
 # Create groups with labels
@@ -266,16 +282,16 @@ layouts = [
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
+    layout.MonadTall(**current_theme['layout_theme']),
+    layout.MonadWide(**current_theme['layout_theme']),
     # layout.RatioTile(),
-    # layout.Tile(),
+    # layout.Tile(**current_theme['layout_theme']),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
-    # layout.MonadTall(**layout_theme),  # For terminal
-    layout.Max(**current_theme['layout_theme']),  # For coding in Android Studio
-    layout.Columns(**current_theme['layout_theme']),  # For image editing and file manager
+    # layout.MonadTall(**current_theme['layout_theme']),  # For terminal
+    layout.Max(**current_theme['layout_theme']),        # For coding in Android Studio
+    layout.Columns(**current_theme['layout_theme']),    # For image editing and file manager
 ]
 
 # Define widget defaults using current theme
