@@ -48,13 +48,13 @@ import subprocess
 from typing import List  # noqa: F401
 
 from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 
 # from libqtile.utils import guess_terminal
 
-# from qtile_extras import widget
-# from qtile_extras.widget.decorations import PowerLineDecoration, BorderDecoration
+from qtile_extras import widget
+from qtile_extras.widget.decorations import PowerLineDecoration, BorderDecoration
 # import custom config
 from custom_colors import *
 from utils.volume_notification import show_volume_notification
@@ -84,21 +84,34 @@ terminal = "wezterm"
 # fonts
 mono_fur_font_bold   = "MonofurNerdFont Bold"
 mono_fur_font        = "MonofurNerdFont"
-jetbarins_font       = "JetBrainsMono Nerd Font Propo Light"
+jetbrains_font_propo = "JetBrainsMono Nerd Font Propo Light"
+jetbrains_font_nl    = "JetBrainsMonoNL Nerd Font"
+jetbrains_font_bold  = "JetBrainsMono Nerd Bold"
 terminess_font       = "Terminess Nerd Font Mono"
-jetbarins_bold_font  = "JetBrainsMono Nerd Bold"
-small_ft             = 16
+notosans_tagalog     = "Noto Sans Tagalog"
+caskaydia_font       = "CaskaydiaMono Nerd Font,CaskaydiaMono NF:style=Bold"
+small_ft             = 14
 
 # qtile extras
-# powerline_border_status = {
-#     "decorations": [BorderDecoration(
-#         colour = kanagawa_statusline2,
-#         # colour = catppuccin_color_blue,
-#         border_width = [0, 0, 3, 0],                                            # Underlined style
-#         padding_x = 5,
-#         padding_y = None,
-#     )]
-# }
+powerline_border_status = {
+    "decorations": [BorderDecoration(
+        colour = current_theme['widget_theme']['this_current_screen_border'],  # using your theme color
+        border_width = [0, 0, 3, 0],  # Underlined style
+        padding_x = 5,
+        padding_y = None,
+        group = False,
+    )]
+}
+
+# Define widget defaults using current theme
+widget_defaults = dict(
+    font=jetbrains_font_nl,
+    # font=notosans_tagalog,
+    fontsize=small_ft,
+    foreground=current_theme['widget_theme']['foreground'],
+    background=current_theme['widget_theme']['background'],
+)
+extension_defaults = widget_defaults.copy()
 
 #+end_src
 
@@ -128,11 +141,12 @@ keys = [
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key(
-        [mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"
-    ),
+    Key([mod, "control"], "l", lazy.layout.grow_right(),desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "control"], "k", lazy.layout.grow_up(),   desc="Grow window up"),
+    # https://github.com/qtile/qtile/discussions/3736
+    Key([mod, "control"], "bracketleft", lazy.layout.shrink(), desc="Shrink window"),
+    Key([mod, "control"], "bracketright", lazy.layout.grow(), desc="Grow window"),
     # Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -200,31 +214,52 @@ keys = [
     Key(
         [mod],
         "b",
-        lazy.group["9"].toscreen(toggle=False),
+        lazy.group["2"].toscreen(toggle=False),
         lazy.spawn("vivaldi-stable"),
         desc="Launch vivaldi browser",
     ),
     # ranger
+    # Key(
+    #     [mod],
+    #     "n",
+    #     lazy.group["1"].toscreen(toggle=False),
+    #     lazy.spawn("wezterm cli spawn  -- ranger"),
+    #     desc="Launch File Manager",
+    # ),
+    # Key(
+    #     [mod, "shift"],
+    #     "n",
+    #     lazy.group["1"].toscreen(toggle=False),
+    #     lazy.spawn("wezterm cli spawn --new-window -- ranger"),
+    #     desc="Launch File Manager",
+    # ),
+    # # git
     Key(
-        [mod],
-        "n",
+        [mod, "shift"],
+        "g",
         lazy.group["1"].toscreen(toggle=False),
-        lazy.spawn("wezterm cli spawn  -- ranger"),
+        lazy.spawn("wezterm cli spawn -- lazygit"),
         desc="Launch File Manager",
     ),
     Key(
         [mod, "shift"],
         "n",
         lazy.group["1"].toscreen(toggle=False),
-        lazy.spawn("wezterm cli spawn --new-window -- ranger"),
+        lazy.spawn("wezterm cli spawn  -- ranger"),
         desc="Launch File Manager",
+    ),
+    ### ScratchPad ###
+    Key(
+        [mod],
+        "n",
+        lazy.group["scratchpad"].dropdown_toggle("ranger"),
+        desc="Toggle Ranger dropdown"
     ),
     Key(
         [mod],
         "g",
-        lazy.group["1"].toscreen(toggle=False),
-        lazy.spawn("wezterm cli spawn -- lazygit"),
-        desc="Launch File Manager",
+        lazy.group["scratchpad"].dropdown_toggle("lazygit"),
+        desc="Toggle Lazygit dropdown"
     ),
     # screenshot
     # using absolute path
@@ -236,7 +271,18 @@ keys = [
     ),
     # exit-menu
     Key(
-        [mod, "control"], "p", lazy.spawn(".config/qtile/scripts/powermenu.sh"), desc="Launch PowerMenu",
+        [mod], "p", lazy.spawn(".config/qtile/scripts/powermenu.sh"), desc="Launch PowerMenu",
+    ),
+    # switch windows
+    Key(
+        # [mod], "w", lazy.spawn("rofi -theme sidebar -show window"), desc="Select Window",
+        [mod], "w", lazy.spawn("rofi -show window"), desc="Select Window",
+    ),
+    # Wallpaper changer
+    Key(
+        [mod, "shift"], "w",
+        lazy.spawn("bash -c 'PREVIEW=true rofi -theme fullscreen-preview -show filebrowser -filebrowser-command \"feh --bg-scale\" -filebrowser-directory ~/Pictures/wallpapers'"),
+        desc="Change wallpaper with rofi"
     ),
     # lock
     # Key([mod, "shift"], "p", lazy.spawn("i3lock"), desc="LockScreen"),
@@ -285,26 +331,27 @@ keys = [
 * GROUPS
 #+begin_src python
 
+# Used https://kuyabai.com/?q=ang+gwapo+ko+po+talaga
 group_names = [
-    ("1", {"layout": "MonadTall",  "label": "I",    "matches": [Match(wm_class="Wezterm")]                 }),
-    ("1", {"layout": "max",        "label": "I",    "matches": [Match(wm_class="jetbrains-studio")]        }),
-    ("2", {"layout": "columns",    "label": "II" ,  "matches": [Match(wm_class="firefox")]                 }),
-    ("2", {"layout": "columns",    "label": "I" ,   "matches": [Match(wm_class="qutebrowser")]             }),
-    ("2", {"layout": "columns",    "label": "II",   "matches": [Match(wm_class="vivaldi-stable")]          }),
-    ("3", {"layout": "max",        "label": "III",  "matches": [Match(wm_class="Emacs")]                   }),
-    ("3", {"layout": "max",        "label": "III",  "matches": [Match(wm_class="obsidian")]                }),
-    ("4", {"layout": "max",        "label": "IV",   "matches": [Match(wm_class="AppFlowy")]                }),
-    ("5", {"layout": "columns",    "label": "V",    "matches": [Match(wm_class="gwenview")]                }),
-    ("5", {"layout": "columns",    "label": "X",    "matches": [Match(wm_class="dolphin")]                 }),
-    ("6", {"layout": "columns",    "label": "VI",   "matches": [Match(wm_class="logseq")]                  }),
-    ("6", {"layout": "columns",    "label": "VI",   "matches": [Match(wm_class="Joplin")]                  }),
-    ("7", {"layout": "max",        "label": "VII",  "matches": [Match(wm_class="gimp-2.10")]               }),
-    ("7", {"layout": "max",        "label": "VI" ,  "matches": [Match(wm_class="krita")]                   }),
-    ("7", {"layout": "max",        "label": "VI" ,  "matches": [Match(wm_class="libresprite")]             }),
-    ("8", {"layout": "max",        "label": "VIII", "matches": [Match(wm_class="Blender")]                 }),
-    ("9", {"layout": "max",        "label": "IX",   "matches": [Match(wm_class="Houdini FX")]              }),
-    ("0", {"layout": "max",        "label": "X" ,   "matches": [Match(wm_class="Godot")]                   }),
-    ("0", {"layout": "max",        "label": "X" ,   "matches": [Match(wm_class="com.defold.editor.Start")] }),
+    ("1", {"layout": "MonadWide",  "label": "ᜀ",    "matches": [Match(wm_class="Wezterm")]                 }),
+    ("1", {"layout": "max",        "label": "ᜀ",    "matches": [Match(wm_class="jetbrains-studio")]        }),
+    ("2", {"layout": "MonadTall",  "label": "ᜅ᜔",    "matches": [Match(wm_class="firefox")]                 }),
+    ("2", {"layout": "MonadTall",  "label": "ᜅ᜔",    "matches": [Match(wm_class="qutebrowser")]             }),
+    ("2", {"layout": "MonadTall",  "label": "ᜅ᜔",    "matches": [Match(wm_class="vivaldi-stable")]          }),
+    ("3", {"layout": "max",        "label": "ᜄ᜔",    "matches": [Match(wm_class="Emacs")]                   }),
+    ("3", {"layout": "max",        "label": "ᜄ᜔",    "matches": [Match(wm_class="obsidian")]                }),
+    ("4", {"layout": "max",        "label": "ᜏ",    "matches": [Match(wm_class="AppFlowy")]                }),
+    ("5", {"layout": "MonadTall",  "label": "ᜉᜓ",    "matches": [Match(wm_class="gwenview")]                }),
+    ("5", {"layout": "MonadTall",  "label": "ᜉᜓ",    "matches": [Match(wm_class="dolphin")]                 }),
+    ("6", {"layout": "MonadTall",  "label": "ᜃᜓ",    "matches": [Match(wm_class="logseq")]                  }),
+    ("6", {"layout": "MonadTall",  "label": "ᜃᜓ",    "matches": [Match(wm_class="Joplin")]                  }),
+    ("7", {"layout": "max",        "label": "ᜉᜓ",    "matches": [Match(wm_class="gimp-2.10")]               }),
+    ("7", {"layout": "max",        "label": "ᜉᜓ" ,   "matches": [Match(wm_class="krita")]                   }),
+    ("7", {"layout": "max",        "label": "ᜉᜓ" ,   "matches": [Match(wm_class="libresprite")]             }),
+    ("8", {"layout": "max",        "label": "ᜆ",    "matches": [Match(wm_class="Blender")]                 }),
+    ("9", {"layout": "max",        "label": "ᜎ",    "matches": [Match(wm_class="Houdini FX")]              }),
+    ("0", {"layout": "max",        "label": "ᜄ" ,   "matches": [Match(wm_class="Godot")]                   }),
+    ("0", {"layout": "max",        "label": "ᜄ" ,   "matches": [Match(wm_class="com.defold.editor.Start")] }),
 ]
 
 # Create groups with labels
@@ -312,8 +359,44 @@ groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
 
 # Create groups from the group_names list
-groups = [Group(name, **kwargs) for name, kwargs in group_names]
+# groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
+# Add ScratchPad for dropdowns
+groups.append(
+    ScratchPad("scratchpad", [
+        DropDown(
+            "ranger",
+            terminal + " -e ranger",  # Using your terminal variable
+            opacity=0.9,
+            height=0.7,
+            width=0.7,
+            x=0.15,
+            y=0.15,
+            on_focus_lost_hide=True  # Changed to True for traditional behavior
+        ),
+        # the terminal + " cli spawn -- ranger" doesn't work, use terminl + " -e ranger" instead
+        # DropDown(
+            # "ranger_new",
+            # terminal + " cli spawn -- ranger",
+            # opacity=0.9,
+            # height=0.7,
+            # width=0.7,
+            # x=0.15,
+            # y=0.15,
+            # on_focus_lost_hide=True
+        # ),
+        DropDown(
+            "lazygit",
+            terminal + " -e lazygit",
+            opacity=0.9,
+            height=0.7,
+            width=0.7,
+            x=0.15,
+            y=0.15,
+            on_focus_lost_hide=True
+        ),
+    ])
+)
 
 # Create key bindings for groups
 for name, kwargs in group_names:
@@ -339,46 +422,41 @@ for name, kwargs in group_names:
 #+begin_src python
 
 layouts = [
-    # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    # layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(**current_theme['layout_theme']),
-    layout.MonadWide(**current_theme['layout_theme']),
+    # layout.Stack(**current_theme['layout_theme']),
     # layout.RatioTile(),
     # layout.Tile(**current_theme['layout_theme']),
-    # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
-    # layout.MonadTall(**current_theme['layout_theme']),  # For terminal
-    layout.Max(**current_theme['layout_theme']),        # For coding in Android Studio
-    layout.Columns(**current_theme['layout_theme']),    # For image editing and file manager
+    layout.MonadTall(
+        **current_theme['layout_theme'],
+        change_ratio = 0.07
+    ),
+    layout.TreeTab(**current_theme['layout_theme']),
+    layout.MonadWide(**current_theme['layout_theme']),
+    layout.Max(**current_theme['layout_theme']),
+    layout.Columns(**current_theme['layout_theme']),
 ]
 
 #+end_src
 
+#+RESULTS:
+
 * SCREENS
 #+begin_src python
-
-# Define widget defaults using current theme
-widget_defaults = dict(
-    font=terminess_font,
-    fontsize=small_ft,
-    foreground=current_theme['widget_theme']['foreground'],
-    background=current_theme['widget_theme']['background'],
-)
-extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
         top=bar.Bar(
             [
                 widget.GroupBox(
-                    **widget_defaults,
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
                     highlight_method='block',
-                    padding=3,
+                    padding=5,
                     rounded=False,
                     spacing=5,
                     disable_drag=True,
@@ -387,38 +465,62 @@ screens = [
                     block_highlight_text_color=current_theme['widget_theme']['block_highlight_text_color'],
                     this_current_screen_border=current_theme['widget_theme']['this_current_screen_border'],
                 ),
-                widget.Spacer(length=50),
+                #widget.Spacer(length=30),
                 widget.WindowName(
-                    **widget_defaults,
+                    ,**widget_defaults,
                     max_chars=90,
                     #parse_text=lambda text: text.split(" - ")[-1] if " - " in text else text,
-                ),
+                 ),
+                # widget.TaskList(
+                #     ,**widget_defaults,
+                #     ,**powerline_border_status,
+                #     stretched=False,
+                # ),
                 widget.Volume(
-                    **widget_defaults,
-                    fmt="󰕾  {} ",
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
+                    fmt=" 󰕾  {} ",
                 ),
                 widget.CPU(
-                    **widget_defaults,
-                    format="CPU: {freq_current}GHz {load_percent}% ",
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
+                    format="󰻠 {freq_current}GHz {load_percent}% ",
                 ),
                 widget.ThermalSensor(
-                    **widget_defaults,
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
                     padding=0,
                     update_interval=1,
-                    format="Temp: {temp:.0f}{unit} ",
+                    format="  {temp:.0f}{unit} ",
                 ),
                 widget.Memory(
-                    **widget_defaults,
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
                     padding=5,
-                    format="Mem: {MemUsed:.0f}{mm} ",
+                    format="󰍛 {MemUsed:.0f}{mm} ",
                 ),
                 widget.Clock(
-                    **widget_defaults,
-                    format="%a %m-%d-%Y %I:%M %p ",
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
+                    format=" %a %m-%d-%Y %I:%M %p ",
                 ),
-                widget.CurrentLayoutIcon(padding=3),
+                widget.Sep(
+                    padding=20,
+                ),
+                widget.CurrentLayoutIcon(
+                    padding=3,
+                    scale=0.5,
+                ),
+                #widget.Spacer(length=4),
+                widget.QuickExit(
+                    **widget_defaults,
+                    #fontsize = 25,
+                    default_text = "",
+                    countdown_format='{}',
+                ),
+                widget.Spacer(length=5),
             ],
-            25,
+            28,
             opacity=current_theme['widget_theme']['panel_opacity'],
             background=current_theme['widget_theme']['background'],
         ),
