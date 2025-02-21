@@ -21,7 +21,6 @@ current_theme = theme_manager.get_current_theme()
 
 @hook.subscribe.startup_once
 def autostart():
-    # home = os.path.expanduser("~/.config/qtile/scripts/autostart.sh")
     home = os.path.expanduser("~/.config/qtile/scripts/autostart.sh")
     subprocess.Popen([home])
 
@@ -55,7 +54,6 @@ powerline_border_status = {
 # Define widget defaults using current theme
 widget_defaults = dict(
     font=jetbrains_font_nl,
-    # font=notosans_tagalog,
     fontsize=small_ft,
     foreground=current_theme['widget_theme']['foreground'],
     background=current_theme['widget_theme']['background'],
@@ -163,22 +161,7 @@ keys = [
         lazy.spawn("vivaldi-stable"),
         desc="Launch vivaldi browser",
     ),
-    # ranger
-    # Key(
-    #     [mod],
-    #     "n",
-    #     lazy.group["1"].toscreen(toggle=False),
-    #     lazy.spawn("wezterm cli spawn  -- ranger"),
-    #     desc="Launch File Manager",
-    # ),
-    # Key(
-    #     [mod, "shift"],
-    #     "n",
-    #     lazy.group["1"].toscreen(toggle=False),
-    #     lazy.spawn("wezterm cli spawn --new-window -- ranger"),
-    #     desc="Launch File Manager",
-    # ),
-    # # git
+    # git
     Key(
         [mod, "shift"],
         "g",
@@ -229,8 +212,6 @@ keys = [
         lazy.spawn("bash -c 'PREVIEW=true rofi -theme fullscreen-preview -show filebrowser -filebrowser-command \"feh --bg-scale\" -filebrowser-directory ~/Pictures/wallpapers'"),
         desc="Change wallpaper with rofi"
     ),
-    # lock
-    # Key([mod, "shift"], "p", lazy.spawn("i3lock"), desc="LockScreen"),
     # Volume control
     # using script
     Key(
@@ -254,22 +235,6 @@ keys = [
         # lazy.function(show_volume_notification),
         desc="Mute volume",
     ),
-    # using dunstify
-    # Key([], "XF86AudioRaiseVolume",
-    #     lazy.spawn("amixer set Master 1%+ && volume=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }') && dunstify -t 2000 'Volume' \"$volume%\""),
-    #     desc="Increase volume"
-    # ),
-    # Key([], "XF86AudioLowerVolume",
-    #     lazy.spawn("amixer set Master 1%- && volume=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }') && dunstify -t 2000 'Volume' \"$volume%\""),
-    #     desc="Decrease volume"
-    # ),
-    # Key([], "XF86AudioMute",
-    #     lazy.spawn("amixer set Master toggle && volume=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }') && dunstify -t 2000 'Volume' \"$volume%\""),
-    #     desc="Mute volume"
-    # ),
-    # Focus the last window (similar to bspc node -f last)
-    # Key(["mod4"], "Tab", lazy.group.prev_window(), desc="Focus last window"),
-    # Key(["mod4"], "Tab", lazy.group.prev_window(), desc="Focus last window"),
 ]
 
 # Used https://kuyabai.com/?q=ang+gwapo+ko+po+talaga
@@ -315,17 +280,6 @@ groups.append(
             y=0.15,
             on_focus_lost_hide=True  # Changed to True for traditional behavior
         ),
-        # the terminal + " cli spawn -- ranger" doesn't work, use terminl + " -e ranger" instead
-        # DropDown(
-            # "ranger_new",
-            # terminal + " cli spawn -- ranger",
-            # opacity=0.9,
-            # height=0.7,
-            # width=0.7,
-            # x=0.15,
-            # y=0.15,
-            # on_focus_lost_hide=True
-        # ),
         DropDown(
             "lazygit",
             terminal + " -e lazygit",
@@ -395,17 +349,11 @@ screens = [
                     block_highlight_text_color=current_theme['widget_theme']['block_highlight_text_color'],
                     this_current_screen_border=current_theme['widget_theme']['this_current_screen_border'],
                 ),
-                #widget.Spacer(length=30),
                 widget.WindowName(
                     **widget_defaults,
                     max_chars=90,
                     #parse_text=lambda text: text.split(" - ")[-1] if " - " in text else text,
                  ),
-                # widget.TaskList(
-                #     ,**widget_defaults,
-                #     ,**powerline_border_status,
-                #     stretched=False,
-                # ),
                 widget.Volume(
                     **widget_defaults,
                     **powerline_border_status,
