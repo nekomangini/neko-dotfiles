@@ -1,0 +1,65 @@
+#+TITLE: Setup for Qtile
+#+author: Carlo
+
+* Table of contents :toc:
+- [[#qtile-setup-1][Qtile setup #1]]
+  - [[#groups][groups]]
+  - [[#layout][layout]]
+  - [[#keybind][keybind]]
+- [[#current-qtile-setup][Current Qtile setup]]
+  - [[#groups-1][groups]]
+  - [[#layout-1][layout]]
+  - [[#workflow][workflow]]
+
+* Qtile setup #1
+** groups
+1-qutebrowser
+2-terminal(for dev)
+3-emacs
+4-obsidian
+5-logseq/joplin
+6-android studio
+7-gimp
+8-imageviewer(gwenview)
+9-vivaldi browser
+0-file manager
+
+** layout
+(this imitates minimize/maximize)
+- max
+- columns
+
+** keybind
+- switch layout(this imitates awesomeWM layout toggler)
+  super + space
+  super + shift + space
+- switch group(imitates bspwm switcher)
+  super + Tab
+- reset window sizes
+  super + n
+* Current Qtile setup
+** groups
+1-terminal(wezterm/ranger)/android studio/
+2-qutebrowser/firefox/vivaldi browser
+3-emacs/obsidian
+4-appflowy
+5-file manager(dolphin)/imageviewer(gwenview)/okular
+6-logseq/joplin/gimp
+7-krita/libresprite
+8-blender
+9-houdini
+0-godot/defold
+** layout
+*** Developer layouts
+**** monadtall/monadwide = terminal
+**** max                 = android studio/appflowy
+****                     = emacs/firefox/qutebrowser
+**** monadtall           = vivaldi browser
+** workflow
+*** Developer workflow
+**** vim/neovim/helix/kakoune
+***** =option 1= pkms(emacs) -> todo(appflowy/anytype) -> dev environment(vim/terminal/android ide) -> browser?
+***** =in use= dev environment(android ide/terminal) -> browser -> pkms(emacs/obsidian/logseq/okular) -> todo(appflowy/anytype) -> file browser/picture view
+**** emacs
+*** 3d/2d workflow
+**** =option 1=

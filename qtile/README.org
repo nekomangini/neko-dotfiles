@@ -77,7 +77,6 @@ def autostart():
 #+begin_src python
 mod = "mod4"
 
-# terminal = guess_terminal()
 terminal = "wezterm"
 
 # fonts
@@ -116,60 +115,81 @@ extension_defaults = widget_defaults.copy()
 * KEYBINDS
 #+begin_src python
 keys = [
-    # A list of available commands that can be bound to keys can be found
-    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
     Key(
-        [mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"
+        [mod, "shift"],
+        "h",
+        lazy.layout.shuffle_left().when(layout=["monadtall", "monadwide", "columns"]),
+        lazy.layout.move_left().when(layout=["treetab"]),
+        desc="Move window to the left"
     ),
     Key(
         [mod, "shift"],
         "l",
-        lazy.layout.shuffle_right(),
+        lazy.layout.shuffle_right().when(layout=["monadtall", "monadwide", "columns"]),
+        lazy.layout.move_right().when(layout=["treetab"]),
         desc="Move window to the right",
     ),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(),desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(),   desc="Grow window up"),
-    # https://github.com/qtile/qtile/discussions/3736
-    Key([mod, "control"], "bracketleft", lazy.layout.shrink(), desc="Shrink window"),
-    Key([mod, "control"], "bracketright", lazy.layout.grow(), desc="Grow window"),
-    # Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    # Key(
-    #     [mod, "shift"],
-    #     "Return",
-    #     lazy.layout.toggle_split(),
-    #     desc="Toggle between split and unsplit sides of stack",
-    # ),
-    # Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key(
+        [mod, "shift"],
+        "j",
+        lazy.layout.shuffle_down().when(layout=["monadtall", "monadwide", "columns"]),
+        lazy.layout.move_down().when(layout="treetab"),
+        desc="Move window down"
+    ),
+    Key(
+        [mod, "shift"],
+        "k",
+        lazy.layout.shuffle_up().when(layout=["monadtall", "monadwide", "columns"]),
+        lazy.layout.move_up().when(layout="treetab"),
+        desc="Move window up"
+    ),
+    Key(
+        [mod, "control"],
+        "h",
+        lazy.layout.grow_left().when(layout="columns"),
+        lazy.layout.shrink().when(layout=["monadtall", "monadwide"]),
+        desc="Grow window to the left/Shrink window"),
+    Key(
+        [mod, "control"],
+        "l",
+        lazy.layout.grow_right().when(layout="columns"),
+        lazy.layout.grow().when(layout=["monadtall", "monadwide"]),
+        desc="Grow window to the right/Grow window"
+    ),
+    Key(
+        [mod, "control"],
+        "j",
+        lazy.layout.grow_down().when(layout="columns"),
+        lazy.layout.section_down().when(layout="treetab"),
+        desc="Grow window down"
+    ),
+    Key(
+        [mod, "control"],
+        "k",
+        lazy.layout.grow_up().when(layout="columns"),
+        lazy.layout.section_up().when(layout="treetab"),
+        desc="Grow window up"
+    ),
+    # treetab
+    Key(
+        [mod, "shift"],
+        "a",
+        lazy.layout.add_section("New Section"),
+        desc="Add a new section to TreeTab layout"
+    ),
     # Toggle between different layouts as defined below
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "space", lazy.prev_layout(), desc="Toggle between layouts"),
 
-    # Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
-    # Key([mod], "Tab", lazy.screen.next_group(), desc="Toggle between groups"),
-    # Key([mod, "shift"], "Tab", lazy.screen.prev_group()),
     Key([mod], "o", lazy.screen.next_group(), desc="Go to next group"),
     Key([mod], "i", lazy.screen.prev_group(), desc="Go to previous group"),
     Key([mod], "Tab",  lazy.screen.toggle_group(), desc="Move to the last visited group"),
 
-    # Minimize layout
-    # Key(["mod"], "Tab", lazy.window.toggle_minimize()),  # Switch to previous window
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -182,17 +202,34 @@ keys = [
         lazy.window.toggle_fullscreen(),
         desc="Toggle fullscreen on the focused window",
     ),
+    Key(
+        [mod],
+        "m",
+        lazy.window.toggle_maximize().when(layout=["monadtall", "monadwide", "columns"]),
+        desc="Grow the currently focused client to the max size",
+    ),
+    Key(
+        [mod],
+        "n",
+        lazy.layout.normalize().when(layout="columns"),
+        lazy.layout.reset().when(layout=["monadtall", "monadwide"]),
+        desc="Reset all window sizes",
+    ),
+    Key(
+        [mod],
+        "t",
+        lazy.window.toggle_floating(),
+        desc="Toggle floating on the focused window",
+    ),
     # launch rofi
     Key(
         [mod],
         "d",
         lazy.spawn(
-            # "rofi -modi drun -show drun \ -config ~/.config/rofi/rofidmenu.rasi"
             "rofi -modi drun -show drun"
         ),
     ),
     # launch terminal
-    # Key([mod], "Return", lazy.group["vim"].toscreen(),  lazy.spawn(terminal), desc="Launch terminal"),
     Key(
         [mod],
         "Return",
@@ -216,6 +253,13 @@ keys = [
         lazy.spawn("vivaldi-stable"),
         desc="Launch vivaldi browser",
     ),
+    Key(
+        [mod],
+        "z",
+        lazy.group["1"].toscreen(toggle=False),
+        lazy.spawn("/home/nekomangini/zen/zen"),
+        desc="Launch zen browser",
+    ),
     # git
     Key(
         [mod, "shift"],
@@ -234,18 +278,17 @@ keys = [
     ### ScratchPad ###
     Key(
         [mod],
-        "n",
-        lazy.group["scratchpad"].dropdown_toggle("ranger"),
-        desc="Toggle Ranger dropdown"
-    ),
-    Key(
-        [mod],
         "g",
         lazy.group["scratchpad"].dropdown_toggle("lazygit"),
         desc="Toggle Lazygit dropdown"
     ),
+    Key(
+        [mod, "shift"],
+        "Return",
+        lazy.group["scratchpad"].dropdown_toggle("lunarvim"),
+        desc="Toggle Lazygit dropdown"
+    ),
     # screenshot
-    # using absolute path
     Key(
         [],
         "Print",
@@ -258,14 +301,13 @@ keys = [
     ),
     # switch windows
     Key(
-        # [mod], "w", lazy.spawn("rofi -theme sidebar -show window"), desc="Select Window",
         [mod], "w", lazy.spawn("rofi -show window"), desc="Select Window",
     ),
     # Wallpaper changer
     Key(
         [mod, "shift"], "w",
-        lazy.spawn("bash -c 'PREVIEW=true rofi -theme fullscreen-preview -show filebrowser -filebrowser-command \"feh --bg-scale\" -filebrowser-directory ~/Pictures/wallpapers'"),
-        desc="Change wallpaper with rofi"
+        lazy.group["scratchpad"].dropdown_toggle("wallpaperchanger"),
+        desc="Change wallpaper with yazi"
     ),
     # Volume control
     # using script
@@ -273,21 +315,18 @@ keys = [
         [],
         "XF86AudioRaiseVolume",
         lazy.spawn("amixer set Master 1%+"),
-        # lazy.function(show_volume_notification),
         desc="Increase volume",
     ),
     Key(
         [],
         "XF86AudioLowerVolume",
         lazy.spawn("amixer set Master 1%-"),
-        # lazy.function(show_volume_notification),
         desc="Decrease volume",
     ),
     Key(
         [],
         "XF86AudioMute",
         lazy.spawn("amixer set Master toggle"),
-        # lazy.function(show_volume_notification),
         desc="Mute volume",
     ),
 ]
@@ -298,25 +337,40 @@ keys = [
 
 # Used https://kuyabai.com/?q=ang+gwapo+ko+po+talaga
 group_names = [
-    ("1", {"layout": "MonadWide",  "label": "ᜀ",    "matches": [Match(wm_class="Wezterm")]                 }),
-    ("1", {"layout": "max",        "label": "ᜀ",    "matches": [Match(wm_class="jetbrains-studio")]        }),
-    ("2", {"layout": "MonadTall",  "label": "ᜅ᜔",    "matches": [Match(wm_class="firefox")]                 }),
-    ("2", {"layout": "MonadTall",  "label": "ᜅ᜔",    "matches": [Match(wm_class="qutebrowser")]             }),
-    ("2", {"layout": "MonadTall",  "label": "ᜅ᜔",    "matches": [Match(wm_class="vivaldi-stable")]          }),
-    ("3", {"layout": "max",        "label": "ᜄ᜔",    "matches": [Match(wm_class="Emacs")]                   }),
-    ("3", {"layout": "max",        "label": "ᜄ᜔",    "matches": [Match(wm_class="obsidian")]                }),
-    ("4", {"layout": "max",        "label": "ᜏ",    "matches": [Match(wm_class="AppFlowy")]                }),
-    ("5", {"layout": "MonadTall",  "label": "ᜉᜓ",    "matches": [Match(wm_class="gwenview")]                }),
-    ("5", {"layout": "MonadTall",  "label": "ᜉᜓ",    "matches": [Match(wm_class="dolphin")]                 }),
-    ("6", {"layout": "MonadTall",  "label": "ᜃᜓ",    "matches": [Match(wm_class="logseq")]                  }),
-    ("6", {"layout": "MonadTall",  "label": "ᜃᜓ",    "matches": [Match(wm_class="Joplin")]                  }),
-    ("7", {"layout": "max",        "label": "ᜉᜓ",    "matches": [Match(wm_class="gimp-2.10")]               }),
-    ("7", {"layout": "max",        "label": "ᜉᜓ" ,   "matches": [Match(wm_class="krita")]                   }),
-    ("7", {"layout": "max",        "label": "ᜉᜓ" ,   "matches": [Match(wm_class="libresprite")]             }),
-    ("8", {"layout": "max",        "label": "ᜆ",    "matches": [Match(wm_class="Blender")]                 }),
-    ("9", {"layout": "max",        "label": "ᜎ",    "matches": [Match(wm_class="Houdini FX")]              }),
-    ("0", {"layout": "max",        "label": "ᜄ" ,   "matches": [Match(wm_class="Godot")]                   }),
-    ("0", {"layout": "max",        "label": "ᜄ" ,   "matches": [Match(wm_class="com.defold.editor.Start")] }),
+    ("1", {"layout": "treetab", "label": "ᜀ", "matches": [
+        Match(wm_class="Wezterm"),
+        Match(wm_class="jetbrains-studio"),
+        Match(wm_class="obsidian"),
+        Match(wm_class="zen"),
+    ]}),
+    ("2", {"layout": "monadtall", "label": "ᜅ᜔", "matches": [
+        Match(wm_class="firefox"),
+        Match(wm_class="qutebrowser"),
+        Match(wm_class="vivaldi-stable")
+    ]}),
+    ("3", {"layout": "max", "label": "ᜄ᜔", "matches": [
+        Match(wm_class="Emacs"),
+    ]}),
+    ("4", {"layout": "max", "label": "ᜏ", "matches": [Match(wm_class="AppFlowy")]}),
+    ("5", {"layout": "monadtall", "label": "ᜉᜓ", "matches": [
+        Match(wm_class="gwenview"),
+        Match(wm_class="dolphin")
+    ]}),
+    ("6", {"layout": "monadtall", "label": "ᜃᜓ", "matches": [
+        Match(wm_class="logseq"),
+        Match(wm_class="Joplin")
+    ]}),
+    ("7", {"layout": "max", "label": "ᜉᜓ", "matches": [
+        Match(wm_class="gimp-2.10"),
+        Match(wm_class="krita"),
+        Match(wm_class="libresprite")
+    ]}),
+    ("8", {"layout": "max", "label": "ᜆ", "matches": [Match(wm_class="Blender")]}),
+    ("9", {"layout": "max", "label": "ᜎ", "matches": [Match(wm_class="Houdini FX")]}),
+    ("0", {"layout": "max", "label": "ᜄ", "matches": [
+        Match(wm_class="Godot"),
+        Match(wm_class="com.defold.editor.Start")
+    ]}),
 ]
 
 # Create groups with labels
@@ -342,6 +396,26 @@ groups.append(
         DropDown(
             "lazygit",
             terminal + " -e lazygit",
+            opacity=0.9,
+            height=0.7,
+            width=0.7,
+            x=0.15,
+            y=0.15,
+            on_focus_lost_hide=True
+        ),
+        DropDown(
+            "lunarvim",
+            terminal + " -e bash -c 'cd /run/media/nekomangini/D/scratchpad-files/ && lvim'",
+            opacity=0.9,
+            height=0.7,
+            width=0.7,
+            x=0.15,
+            y=0.15,
+            on_focus_lost_hide=True
+        ),
+        DropDown(
+            "wallpaperchanger",
+            terminal + " -e sh -c '~/.config/qtile/scripts/wallpaper-changer.sh'",
             opacity=0.9,
             height=0.7,
             width=0.7,
@@ -385,6 +459,10 @@ layouts = [
     # layout.Tile(**current_theme['layout_theme']),
     # layout.VerticalTile(),
     # layout.Zoomy(),
+    layout.TreeTab(
+        **current_theme['layout_theme'],
+        sections = ["neovim", "file manager", "browser"],
+    ),
     layout.MonadTall(
         **current_theme['layout_theme'],
         change_ratio = 0.07
@@ -407,8 +485,8 @@ screens = [
         top=bar.Bar(
             [
                 widget.GroupBox(
-                    ,**widget_defaults,
-                    ,**powerline_border_status,
+                    **widget_defaults,
+                    **powerline_border_status,
                     highlight_method='block',
                     padding=5,
                     rounded=False,
@@ -420,36 +498,36 @@ screens = [
                     this_current_screen_border=current_theme['widget_theme']['this_current_screen_border'],
                 ),
                 widget.WindowName(
-                    ,**widget_defaults,
+                    **widget_defaults,
                     max_chars=90,
                     #parse_text=lambda text: text.split(" - ")[-1] if " - " in text else text,
                  ),
                 widget.Volume(
-                    ,**widget_defaults,
-                    ,**powerline_border_status,
+                    **widget_defaults,
+                    **powerline_border_status,
                     fmt=" 󰕾  {} ",
                 ),
                 widget.CPU(
-                    ,**widget_defaults,
-                    ,**powerline_border_status,
+                    **widget_defaults,
+                    **powerline_border_status,
                     format="󰻠 {freq_current}GHz {load_percent}% ",
                 ),
                 widget.ThermalSensor(
-                    ,**widget_defaults,
-                    ,**powerline_border_status,
+                    **widget_defaults,
+                    **powerline_border_status,
                     padding=0,
                     update_interval=1,
                     format="  {temp:.0f}{unit} ",
                 ),
                 widget.Memory(
-                    ,**widget_defaults,
-                    ,**powerline_border_status,
+                    **widget_defaults,
+                    **powerline_border_status,
                     padding=5,
                     format="󰍛 {MemUsed:.0f}{mm} ",
                 ),
                 widget.Clock(
-                    ,**widget_defaults,
-                    ,**powerline_border_status,
+                    **widget_defaults,
+                    **powerline_border_status,
                     format=" %a %m-%d-%Y %I:%M %p ",
                 ),
                 widget.Sep(
