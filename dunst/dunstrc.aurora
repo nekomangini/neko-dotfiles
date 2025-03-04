@@ -1,21 +1,22 @@
-# Cheshirecat Dunst Theme
+# aurora
+
 [global]
     # Appearance
     font = Monospace 10
-    format = "<b>%s</b>\n%b"  
+    format = "<b>%s</b>\n%b"
     alignment = center
     vertical_alignment = center
     width = 300
-    height = (0, 100)  
-    offset = (10, 50)  
+    height = (0, 100)  # Updated: Dynamic height up to 100px (old behavior)
+    offset = (10, 50)  # Updated: New tuple syntax for offset (10px right, 50px down)
     origin = top-right
     transparency = 10
     frame_width = 2
-    frame_color = "#BFE984"  
+    frame_color = "#1793D1"
     separator_color = frame
     corner_radius = 5
-    background = "#0F1E26"   
-    foreground = "#D6D69E"   
+    background = "#2E3440"
+    foreground = "#D8DEE9"
 
     # Behavior
     timeout = 5
@@ -52,17 +53,17 @@
     mouse_right_click = close_all
 
 [urgency_low]
-    background = "#0F1E26"   
-    foreground = "#9BB078"   
+    background = "#2E3440"
+    foreground = "#D8DEE9"
     timeout = 5
 
 [urgency_normal]
-    background = "#0F1E26"   
-    foreground = "#D6D69E"   
+    background = "#2E3440"
+    foreground = "#D8DEE9"
     timeout = 10
 
 [urgency_critical]
-    background = "#E0B596"   
-    foreground = "#0F1E26"   
-    frame_color = "#E0B596"  
-    timeout = 0              
+    background = "#BF616A"
+    foreground = "#D8DEE9"
+    frame_color = "#BF616A"
+    timeout = 0   timeout = 0

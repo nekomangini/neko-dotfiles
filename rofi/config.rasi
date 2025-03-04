@@ -1,1 +1,4 @@
- @theme "themes/matrix.rasi"
+@theme "themes/cheshirecat.rasi"
+configuration {
+    modi: [window, drun, run, ssh, filebrowser];
+}

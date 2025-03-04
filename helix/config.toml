@@ -1,11 +1,15 @@
-# theme = "heisenberg"
+theme = "ayu_dark"
+# theme = "curzon"
 # theme = "catppuccin_frappe"
 # theme = "kanagawa"
+# theme = "ao"
 # theme = "gruvbox"
-theme = "base16_transparent" # transparent background
-# theme = "curzon"
+# theme = "base16_transparent" # transparent background
+# theme = "heisenberg" # blinking comments because of wezterm
+# theme = "onedark"
 # theme = "starlight"
 # theme = "noctis"
+# theme = "rose_pine_moon"
 # theme = "term16_dark"
 # theme = "material_deep_ocean"
 # theme = "github_dark_dimmed"
@@ -13,14 +17,31 @@ theme = "base16_transparent" # transparent background
 [editor]
 line-number = "relative"
 bufferline = "multiple"
+# Minimum severity to show a diagnostic after the end of a line:
+end-of-line-diagnostics = "hint" # helix 25-01
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
 
+# helix 25-01
+[editor.inline-diagnostics]
+# Minimum severity to show a diagnostic on the primary cursor's line.
+# Note that `cursor-line` diagnostics are hidden in insert mode.
+cursor-line = "error"
+# Minimum severity to show a diagnostic on other lines:
+# other-lines = "error"
+
 [keys.insert]
 j = { k = "normal_mode" }
+
+[keys.normal."space"]
+
+q = ":quit"
+
+# overwrite space-w(C-w is the alternative keybind)
+w = ":write"
 
 [editor.lsp]
 display-inlay-hints = true

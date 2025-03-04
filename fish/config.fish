@@ -10,12 +10,11 @@ alias ..='cd ..'
 # tree view
 alias ls='eza --tree --level=2 --git --git-repos --header --icons'
 alias lf='ranger'
-# alias avim='NVIM_APPNAME="avim" nvim'
-# nk is the alias and nekovim is the folder name
 alias nk='NVIM_APPNAME="nekovim" nvim'
 alias av='NVIM_APPNAME="astronvim" nvim'
 
 # alias for neovide
+# TODO:
 function nvide
     nohup ~/Downloads/neovide.AppImage >/dev/null 2>&1 & disown
 end
@@ -30,27 +29,24 @@ end
 
 
 
-
 ############################
 ######### zoxide ###########
 ############################
 # Initialize zoxide
 zoxide init fish | source
-# Change to the home directory on startup
-# cd ~
+
 
 ############################
 ###### bash-scripts #######
 ############################
-# set -x PATH $HOME/.local/bin/bash-scripts $PATH
 set -U fish_user_paths $fish_user_paths ~/.local/bin/bash-scripts
 alias nmix='nekomux.sh'
+
 
 ############################
 ########### fzf ############
 ############################
 alias nf='nk (fzf --preview "cat {}" --height 70%)'
-
 
 
 ############################
@@ -76,14 +72,10 @@ set -x PATH $PATH /opt/flutter/bin
 # ruby path
 set -gx GEM_HOME $HOME/.gem/ruby/3.3.0
 fish_add_path $HOME/.gem/ruby/3.3.0/bin
-# alias for jekyll
 alias jekyll='jekyll.ruby3.3'
-# alias for ruby on rails
 alias rails='bundle exec rails' # alias rails='rails.ruby3.3'
 
-# ghcup
-set -x PATH $HOME/.cabal/bin $HOME/.ghcup/bin $PATH
-
+# julia
 # !! Contents within this block are managed by juliaup !!
 switch (string match -r '.*:/home/nekomangini/.juliaup/bin:.*' $PATH)
     case "*"
@@ -96,15 +88,14 @@ switch (string match -r '.*:/home/nekomangini/.juliaup/bin:.*' $PATH)
 end
 
 # nim
-# export PATH=/home/nekomangini/.nimble/bin:$PATH
 set -gx PATH /home/nekomangini/.nimble/bin $PATH
 
 # source_bash_env
+# TODO:
 set -Ux fish_user_paths $HOME/.cargo/bin $fish_user_paths
 
 # zed text editor
 set -x PATH $HOME/.local/bin $PATH
-
 
 # scala
 set -gx PATH $HOME/.local/share/coursier/bin $PATH
@@ -119,11 +110,14 @@ set -x PATH $PATH /usr/local/go/bin/
 # set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /root/.ghcup/bin $PATH # ghcup-env 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
 set -gx PATH $HOME/.cabal/bin /home/nekomangini/.ghcup/bin $PATH # ghcup-env
+# haskell/ghcup
+set -x PATH $HOME/.cabal/bin $HOME/.ghcup/bin $PATH
 
 
 # doom emacs
 set -x PATH $HOME/.emacs.d/bin/ $PATH
 
+# TODO:
 # ada: alire(ada package manager)
 set -x PATH /home/nekomangini/alr-2.0.2-bin-x86_64-linux/bin $PATH
 set -x PATH /home/nekomangini/.local/share/alire/toolchains/gprbuild_22.0.1_24dfc1b5/bin $PATH
