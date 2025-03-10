@@ -1,157 +1,97 @@
-/*******************************************************
- * ROFI Bloodmoon Colorscheme
- *******************************************************/
+/* ROFI SQUARED THEME USING THE BLOODMOON PALETTE */
+/* Adapted from Newman Sanchez's Squared Everforest Theme */
+/* Colors from Bloodmoon Colorscheme */
+
 * {
-    /* Bloodmoon Colors */
-    foreground:                  rgba ( 188, 166, 188, 100% ); /* BCA6BC light purple-gray text */
-    normal-foreground:           @foreground;
-    active-foreground:           rgba ( 144, 93, 140, 100% );  /* 905D8C muted purple */
-    urgent-foreground:           rgba ( 148, 27, 75, 100% );   /* 941B4B maroon */
-    alternate-normal-foreground: @foreground;
-    alternate-urgent-foreground: @urgent-foreground;
-    alternate-active-foreground: @active-foreground;
+    font:   "FiraCode Nerd Font Medium 12";
 
-    /* Background Colors */
-    background:                  rgba ( 0, 0, 0, 95% );        /* 000000 black */
-    normal-background:           rgba ( 0, 0, 0, 20% );        /* transparent black */
-    active-background:           rgba ( 144, 93, 140, 20% );   /* 905D8C muted purple bg */
-    urgent-background:           rgba ( 148, 27, 75, 20% );    /* 941B4B maroon bg */
-    alternate-normal-background: rgba ( 49, 23, 54, 20% );     /* 311736 purple-gray */
-    alternate-urgent-background: rgba ( 148, 27, 75, 30% );    /* 941B4B maroon alt */
-    alternate-active-background: rgba ( 144, 93, 140, 30% );   /* 905D8C muted purple alt */
+    bg0:     #000000; /* Black, main background */
+    bg1:     #311736; /* Purple-gray, secondary background */
+    fg0:     #BCA6BC; /* Light purple-gray, general text */
 
-    /* Selection Colors */
-    selected-normal-foreground:  rgba ( 0, 0, 0, 100% );      /* 000000 black */
-    selected-normal-background:  rgba ( 144, 93, 140, 100% );  /* 905D8C muted purple */
-    selected-active-foreground:  rgba ( 0, 0, 0, 100% );      /* 000000 black */
-    selected-active-background:  rgba ( 188, 166, 188, 100% ); /* BCA6BC light purple-gray */
-    selected-urgent-foreground:  rgba ( 0, 0, 0, 100% );      /* 000000 black */
-    selected-urgent-background:  rgba ( 78, 26, 61, 100% );    /* 4E1A3D dark maroon */
+    accent-color:     #905D8C; /* Muted purple, active elements */
+    urgent-color:     #941B4B; /* Maroon, urgent elements */
 
-    /* Accent and Utility Colors */
-    red:                         rgba ( 148, 27, 75, 100% );  /* 941B4B maroon */
-    blue:                        rgba ( 90, 61, 94, 100% );   /* 5A3D5E grayish purple */
-    border-color:                rgba ( 35, 18, 40, 20% );    /* 231228 dark purple-gray */
-    separatorcolor:              rgba ( 35, 18, 40, 30% );    /* 231228 dark purple-gray */
+    background-color:   transparent;
+    text-color:         @fg0;
 
-    /* Miscellaneous */
-    lightbg:                     rgba ( 49, 23, 54, 40% );    /* 311736 purple-gray */
-    lightfg:                     rgba ( 188, 166, 188, 70% ); /* BCA6BC lighter */
-    background-color:            rgba ( 0, 0, 0, 0% );        /* transparent */
+    margin:     0;
+    padding:    0;
+    spacing:    0;
 }
 
 window {
-    background-color: @background;
-    border:           1;
-    padding:          5;
+    location:   center;
+    width:      480;
+
+    background-color:   @bg0;
 }
-mainbox {
-    border:  0;
-    padding: 0;
-}
-message {
-    border:       2px 0px 0px;
-    border-color: @separatorcolor;
-    padding:      1px;
-}
-textbox {
-    text-color: @foreground;
-}
-listview {
-    columns:      1;
-    fixed-height: 0;
-    border:       2px 0px 0px;
-    border-color: @separatorcolor;
-    spacing:      10px;
-    scrollbar:    false;
-    padding:      5px 0px 0px;
-}
-element {
-    border:  0;
-    padding: 1px;
-}
-element-text {
-    background-color: inherit;
-    text-color:       inherit;
-}
-element.normal.normal {
-    background-color: @normal-background;
-    text-color:       @normal-foreground;
-}
-element.normal.urgent {
-    background-color: @urgent-background;
-    text-color:       @urgent-foreground;
-}
-element.normal.active {
-    background-color: @active-background;
-    text-color:       @active-foreground;
-}
-element.selected.normal {
-    background-color: @selected-normal-background;
-    text-color:       @selected-normal-foreground;
-}
-element.selected.urgent {
-    background-color: @selected-urgent-background;
-    text-color:       @selected-urgent-foreground;
-}
-element.selected.active {
-    background-color: @selected-active-background;
-    text-color:       @selected-active-foreground;
-}
-element.alternate.normal {
-    background-color: @alternate-normal-background;
-    text-color:       @alternate-normal-foreground;
-}
-element.alternate.urgent {
-    background-color: @alternate-urgent-background;
-    text-color:       @alternate-urgent-foreground;
-}
-element.alternate.active {
-    background-color: @alternate-active-background;
-    text-color:       @alternate-active-foreground;
-}
-scrollbar {
-    width:        4px;
-    border:       0;
-    handle-color: @normal-foreground;
-    handle-width: 8px;
-    padding:      0;
-}
-mode-switcher {
-    border:       2px 0px 0px;
-    border-color: @separatorcolor;
-}
-button {
-    spacing:    0;
-    text-color: @normal-foreground;
-}
-button.selected {
-    background-color: @selected-normal-background;
-    text-color:       @selected-normal-foreground;
-}
+
 inputbar {
-    spacing:    0;
-    text-color: @normal-foreground;
-    padding:    1px;
+    spacing:    8px;
+    padding:    8px;
+
+    background-color:   @bg1;
 }
-case-indicator {
-    spacing:    0;
-    text-color: @normal-foreground;
+
+prompt, entry, element-icon, element-text {
+    vertical-align: 0.5;
 }
-entry {
-    spacing:    0;
-    text-color: @normal-foreground;
-}
+
 prompt {
-    spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @accent-color;
 }
-inputbar {
-    children:   [ prompt, textbox-prompt-colon, entry, case-indicator ];
+
+textbox {
+    padding:            8px;
+    background-color:   @bg1;
 }
-textbox-prompt-colon {
-    expand:     false;
-    str:        ":";
-    margin:     0px 0.3em 0em 0em;
-    text-color: @normal-foreground;
+
+listview {
+    padding:    4px 0;
+    lines:      8;
+    columns:    1;
+
+    fixed-height:   false;
+}
+
+element {
+    padding:    8px;
+    spacing:    8px;
+}
+
+element normal normal {
+    text-color: @fg0;
+}
+
+element normal urgent {
+    text-color: @urgent-color;
+}
+
+element normal active {
+    text-color: @accent-color;
+}
+
+element alternate active {
+    text-color: @accent-color;
+}
+
+element selected {
+    text-color: @bg0;
+}
+
+element selected normal, element selected active {
+    background-color:   @accent-color;
+}
+
+element selected urgent {
+    background-color:   @urgent-color;
+}
+
+element-icon {
+    size:   0.8em;
+}
+
+element-text {
+    text-color: inherit;
 }

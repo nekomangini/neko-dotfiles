@@ -1,16 +1,16 @@
-/* ROFI SQUARED THEME USING THE CHESHIRECAT PALETTE */
+/* ROFI SQUARED THEME USING THE NEON-PUNK PALETTE */
 /* Adapted from Newman Sanchez's Squared Everforest Theme */
-/* Colors from Cheshirecat Colorscheme */
+/* Colors from Neon-punk-Inspired Colorscheme */
 
 * {
     font:   "FiraCode Nerd Font Medium 12";
 
-    bg0:     #0F1E26; /* Rich black, main background */
-    bg1:     #7B7760; /* Reseda green, secondary background */
-    fg0:     #D6D69E; /* Vanilla, general text */
+    bg0:     #2E1553; /* Valhalla deep purple, main background */
+    bg1:     #7348BF; /* Fuchsia blue, secondary background */
+    fg0:     #E6E6FF; /* Icy blue-white, general text */
 
-    accent-color:     #C1E178; /* Mindaro-2, active elements */
-    urgent-color:     #E0B596; /* Desert sand, urgent elements */
+    accent-color:     #7348BF; /* Fuchsia blue, active elements */
+    urgent-color:     #D13AD2; /* Amethyst, urgent elements */
 
     background-color:   transparent;
     text-color:         @fg0;
@@ -31,7 +31,7 @@ inputbar {
     spacing:    8px;
     padding:    8px;
 
-    background-color:   @bg1;
+    background-color:   @bg0;
 }
 
 prompt, entry, element-icon, element-text {

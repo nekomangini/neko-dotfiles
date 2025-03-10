@@ -1,156 +1,97 @@
-/*******************************************************
- * ROFI Gruvbox Colorscheme
- *******************************************************/
+/* ROFI SQUARED THEME USING THE GRUVBOX PALETTE */
+/* Adapted from Newman Sanchez's Squared Everforest Theme */
+/* Colors from Gruvbox Dark Colorscheme */
+
 * {
-    /* Gruvbox Dark Colors */
-    foreground:                  rgba ( 235, 219, 178, 100% ); /* fg2 */
-    normal-foreground:           @foreground;
-    active-foreground:           rgba ( 152, 151, 26, 100% );  /* bright_yellow */
-    urgent-foreground:           rgba ( 204, 36, 29, 100% );   /* bright_red */
-    alternate-normal-foreground: @foreground;
-    alternate-urgent-foreground: @urgent-foreground;
-    alternate-active-foreground: @active-foreground;
+    font:   "FiraCode Nerd Font Medium 12";
 
-    /* Background Colors */
-    background:                  rgba ( 40, 40, 40, 95% );     /* bg0 */
-    normal-background:           rgba ( 40, 40, 40, 20% );     /* transparent bg */
-    active-background:           rgba ( 152, 151, 26, 20% );   /* yellow bg */
-    urgent-background:           rgba ( 204, 36, 29, 20% );    /* red bg */
-    alternate-normal-background: rgba ( 60, 56, 54, 20% );     /* bg1 */
-    alternate-urgent-background: rgba ( 204, 36, 29, 30% );    /* red bg alt */
-    alternate-active-background: rgba ( 152, 151, 26, 30% );   /* yellow bg alt */
+    bg0:     #282828; /* bg0, main background */
+    bg1:     #3C3836; /* bg1, secondary background */
+    fg0:     #EBDBB2; /* fg2, general text */
 
-    /* Selection Colors */
-    selected-normal-foreground:  rgba ( 40, 40, 40, 100% );   /* bg0 */
-    selected-normal-background:  rgba ( 215, 153, 33, 100% ); /* #d79921 */
-    selected-active-foreground:  rgba ( 40, 40, 40, 100% );   /* bg0 */
-    selected-active-background:  rgba ( 250, 189, 47, 100% );  /* bright_yellow */
-    selected-urgent-foreground:  rgba ( 40, 40, 40, 100% );   /* bg0 */
-    selected-urgent-background:  rgba ( 251, 73, 52, 100% );   /* bright_red */
+    accent-color:     #98971A; /* bright_yellow, active elements */
+    urgent-color:     #CC241D; /* bright_red, urgent elements */
 
-    /* Accent and Utility Colors */
-    red:                         rgba ( 204, 36, 29, 100% );   /* bright_red */
-    blue:                        rgba ( 69, 133, 136, 100% );  /* bright_blue */
-    border-color:                rgba ( 168, 153, 132, 20% );  /* fg4 */
-    separatorcolor:              rgba ( 168, 153, 132, 30% );  /* fg4 */
+    background-color:   transparent;
+    text-color:         @fg0;
 
-    /* Miscellaneous */
-    lightbg:                     rgba ( 168, 153, 132, 40% );  /* fg4 */
-    lightfg:                     rgba ( 235, 219, 178, 70% );  /* fg2 */
-    background-color:            rgba ( 0, 0, 0, 0% );         /* transparent */
+    margin:     0;
+    padding:    0;
+    spacing:    0;
 }
 
 window {
-    background-color: @background;
-    border:           1;
-    padding:          5;
+    location:   center;
+    width:      480;
+
+    background-color:   @bg0;
 }
-mainbox {
-    border:  0;
-    padding: 0;
-}
-message {
-    border:       2px 0px 0px;
-    border-color: @separatorcolor;
-    padding:      1px;
-}
-textbox {
-    text-color: @foreground;
-}
-listview {
-    fixed-height: 0;
-    border:       2px 0px 0px;
-    border-color: @separatorcolor;
-    spacing:      2px;
-    scrollbar:    true;
-    padding:      2px 0px 0px;
-}
-element {
-    border:  0;
-    padding: 1px;
-}
-element-text {
-    background-color: inherit;
-    text-color:       inherit;
-}
-element.normal.normal {
-    background-color: @normal-background;
-    text-color:       @normal-foreground;
-}
-element.normal.urgent {
-    background-color: @urgent-background;
-    text-color:       @urgent-foreground;
-}
-element.normal.active {
-    background-color: @active-background;
-    text-color:       @active-foreground;
-}
-element.selected.normal {
-    background-color: @selected-normal-background;
-    text-color:       @selected-normal-foreground;
-}
-element.selected.urgent {
-    background-color: @selected-urgent-background;
-    text-color:       @selected-urgent-foreground;
-}
-element.selected.active {
-    background-color: @selected-active-background;
-    text-color:       @selected-active-foreground;
-}
-element.alternate.normal {
-    background-color: @alternate-normal-background;
-    text-color:       @alternate-normal-foreground;
-}
-element.alternate.urgent {
-    background-color: @alternate-urgent-background;
-    text-color:       @alternate-urgent-foreground;
-}
-element.alternate.active {
-    background-color: @alternate-active-background;
-    text-color:       @alternate-active-foreground;
-}
-scrollbar {
-    width:        4px;
-    border:       0;
-    handle-color: @normal-foreground;
-    handle-width: 8px;
-    padding:      0;
-}
-mode-switcher {
-    border:       2px 0px 0px;
-    border-color: @separatorcolor;
-}
-button {
-    spacing:    0;
-    text-color: @normal-foreground;
-}
-button.selected {
-    background-color: @selected-normal-background;
-    text-color:       @selected-normal-foreground;
-}
+
 inputbar {
-    spacing:    0;
-    text-color: @normal-foreground;
-    padding:    1px;
+    spacing:    8px;
+    padding:    8px;
+
+    background-color:   @bg1;
 }
-case-indicator {
-    spacing:    0;
-    text-color: @normal-foreground;
+
+prompt, entry, element-icon, element-text {
+    vertical-align: 0.5;
 }
-entry {
-    spacing:    0;
-    text-color: @normal-foreground;
-}
+
 prompt {
-    spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @accent-color;
 }
-inputbar {
-    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+
+textbox {
+    padding:            8px;
+    background-color:   @bg1;
 }
-textbox-prompt-colon {
-    expand:     false;
-    str:        ":";
-    margin:     0px 0.3em 0em 0em;
-    text-color: @normal-foreground;
+
+listview {
+    padding:    4px 0;
+    lines:      8;
+    columns:    1;
+
+    fixed-height:   false;
+}
+
+element {
+    padding:    8px;
+    spacing:    8px;
+}
+
+element normal normal {
+    text-color: @fg0;
+}
+
+element normal urgent {
+    text-color: @urgent-color;
+}
+
+element normal active {
+    text-color: @accent-color;
+}
+
+element alternate active {
+    text-color: @accent-color;
+}
+
+element selected {
+    text-color: @bg0;
+}
+
+element selected normal, element selected active {
+    background-color:   @accent-color;
+}
+
+element selected urgent {
+    background-color:   @urgent-color;
+}
+
+element-icon {
+    size:   0.8em;
+}
+
+element-text {
+    text-color: inherit;
 }
