@@ -1,5 +1,5 @@
 #+TITLE: Qtile Config
-#+AUTHOR: Carlo
+#+AUTHOR: Encar Salazar
 #+DESCRIPTION: Rewriting qtile config using org-mode
 #+PROPERTY: header-args :tangle config.py
 
