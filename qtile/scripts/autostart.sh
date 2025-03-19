@@ -4,7 +4,7 @@ picom &
 dunst &
 nitrogen --restore &
 
-if ! pgrep -  "emacs --daemon" >/dev/null; then
+if ! pgrep -f "emacs --daemon" >/dev/null; then
     emacs --daemon &
     sleep 1.6
     notify-send "Emacs daemon running" -u normal
