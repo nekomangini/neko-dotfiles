@@ -1,16 +1,16 @@
-/* ROFI SQUARED THEME USING THE GRUVBOX PALETTE */
+/* ROFI SQUARED THEME USING THE ITACHI UCHIHA PALETTE */
 /* Adapted from Newman Sanchez's Squared Everforest Theme */
-/* Colors from Gruvbox Dark Colorscheme */
+/* Colors from Itachi Uchiha Qtile Colorscheme */
 
 * {
     font:   "FiraCode Nerd Font Medium 12";
 
-    bg0:     #282828; /* bg0, main background */
-    bg1:     #3C3836; /* bg1, secondary background */
-    fg0:     #EBDBB2; /* fg2, general text */
+    bg0:     #1A1A1A; /* itachi_bar: Deep gray-black, main background */
+    bg1:     #0F0F14; /* itachi_border_bg: Near-black, secondary background */
+    fg0:     #D9D9D9; /* itachi_text: Soft off-white, general text */
 
-    accent-color:     #98971A; /* bright_yellow, active elements */
-    urgent-color:     #CC241D; /* bright_red, urgent elements */
+    accent-color:     #A6192E; /* itachi_border_active: Deep Sharingan red, active elements */
+    urgent-color:     #C8102E; /* itachi_urgent: Vivid Sharingan red, urgent elements */
 
     background-color:   transparent;
     text-color:         @fg0;
@@ -24,7 +24,6 @@ window {
     location:   center;
     width:      1080;
     height:     800;
-
 
     background-color:   @bg0;
 }
