@@ -1,5 +1,5 @@
 #+TITLE: Qtile Config
-#+AUTHOR: Encar Salazar
+#+AUTHOR: Carlo
 #+DESCRIPTION: Rewriting qtile config using org-mode
 #+PROPERTY: header-args :tangle config.py
 
@@ -14,31 +14,33 @@
 - [[#screens][SCREENS]]
 
 * Qtile Info
-Copyright (c) 2010 Aldo Cortesi
-Copyright (c) 2010, 2014 dequis
-Copyright (c) 2012 Randall Ma
-Copyright (c) 2012-2014 Tycho Andersen
-Copyright (c) 2012 Craig Barnes
-Copyright (c) 2013 horsik
-Copyright (c) 2013 Tao Sauvage
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+#+begin_src python
+# Copyright (c) 2010 Aldo Cortesi
+# Copyright (c) 2010, 2014 dequis
+# Copyright (c) 2012 Randall Ma
+# Copyright (c) 2012-2014 Tycho Andersen
+# Copyright (c) 2012 Craig Barnes
+# Copyright (c) 2013 horsik
+# Copyright (c) 2013 Tao Sauvage
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#+end_src
 
 * IMPORTS
 #+begin_src python
@@ -77,7 +79,10 @@ def autostart():
 #+begin_src python
 mod = "mod4"
 
+# terminal = guess_terminal()
 terminal = "wezterm"
+# doom = "emacsclient -c -a 'emacs'"
+doom = "sh -c 'emacsclient -c -a \"emacs\"'"
 
 # fonts
 mono_fur_font_bold   = "MonofurNerdFont Bold"
@@ -115,11 +120,14 @@ extension_defaults = widget_defaults.copy()
 * KEYBINDS
 #+begin_src python
 keys = [
+    # A list of available commands that can be bound to keys can be found
+    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+    # Move windows for monadtall, monadwide, columns and treetab
     Key(
         [mod, "shift"],
         "h",
@@ -148,6 +156,8 @@ keys = [
         lazy.layout.move_up().when(layout="treetab"),
         desc="Move window up"
     ),
+    # Grow windows for columns,monadtall,monadwide. Move section for treetab
+    # https://github.com/qtile/qtile/discussions/3736
     Key(
         [mod, "control"],
         "h",
@@ -182,10 +192,23 @@ keys = [
         lazy.layout.add_section("New Section"),
         desc="Add a new section to TreeTab layout"
     ),
+    # Toggle between split and unsplit sides of stack.
+    # Split = all windows displayed
+    # Unsplit = 1 window displayed, like Max layout, but still with
+    # multiple stack panes
+    # Key(
+    #     [mod, "shift"],
+    #     "Return",
+    #     lazy.layout.toggle_split(),
+    #     desc="Toggle between split and unsplit sides of stack",
+    # ),
     # Toggle between different layouts as defined below
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "space", lazy.prev_layout(), desc="Toggle between layouts"),
 
+    # Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
+    # Key([mod], "Tab", lazy.screen.next_group(), desc="Toggle between groups"),
+    # Key([mod, "shift"], "Tab", lazy.screen.prev_group()),
     Key([mod], "o", lazy.screen.next_group(), desc="Go to next group"),
     Key([mod], "i", lazy.screen.prev_group(), desc="Go to previous group"),
     Key([mod], "Tab",  lazy.screen.toggle_group(), desc="Move to the last visited group"),
@@ -195,7 +218,9 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     # if there is a prompt widget, activate this line of code
     # Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-    # toggle fullscreen
+    ############ Window toggles #############
+    # Minimize layout
+    # Key(["mod"], "Tab", lazy.window.toggle_minimize()),  # Switch to previous window
     Key(
         [mod],
         "f",
@@ -226,10 +251,12 @@ keys = [
         [mod],
         "d",
         lazy.spawn(
+            # "rofi -modi drun -show drun \ -config ~/.config/rofi/rofidmenu.rasi"
             "rofi -modi drun -show drun"
         ),
     ),
     # launch terminal
+    # Key([mod], "Return", lazy.group["vim"].toscreen(),  lazy.spawn(terminal), desc="Launch terminal"),
     Key(
         [mod],
         "Return",
@@ -242,7 +269,8 @@ keys = [
         [mod],
         "e",
         lazy.group["3"].toscreen(toggle=False),
-        lazy.spawn("emacsclient -c -a 'emacs'"),
+        # lazy.spawn("emacsclient -c -a 'emacs'"),
+        lazy.spawn(doom),
         desc="Launch Emacs client",
     ),
     # browser
@@ -256,11 +284,26 @@ keys = [
     Key(
         [mod],
         "z",
-        lazy.group["1"].toscreen(toggle=False),
+        lazy.group["2"].toscreen(toggle=False),
         lazy.spawn("/home/nekomangini/zen/zen"),
         desc="Launch zen browser",
     ),
-    # git
+    # ranger
+    # Key(
+    #     [mod],
+    #     "n",
+    #     lazy.group["1"].toscreen(toggle=False),
+    #     lazy.spawn("wezterm cli spawn  -- ranger"),
+    #     desc="Launch File Manager",
+    # ),
+    # Key(
+    #     [mod, "shift"],
+    #     "n",
+    #     lazy.group["1"].toscreen(toggle=False),
+    #     lazy.spawn("wezterm cli spawn --new-window -- ranger"),
+    #     desc="Launch File Manager",
+    # ),
+    # # git
     Key(
         [mod, "shift"],
         "g",
@@ -272,10 +315,23 @@ keys = [
         [mod, "shift"],
         "n",
         lazy.group["1"].toscreen(toggle=False),
-        lazy.spawn("wezterm cli spawn  -- ranger"),
+        lazy.group["scratchpad"].dropdown_toggle("ranger"),
+        # lazy.spawn("wezterm cli spawn  -- ranger"),
         desc="Launch File Manager",
     ),
     ### ScratchPad ###
+    # Key(
+    #     [mod],
+    #     "n",
+    #     lazy.group["scratchpad"].dropdown_toggle("ranger"),
+    #     desc="Toggle Ranger dropdown"
+    # ),
+    Key(
+        [mod],
+        "s",
+        lazy.spawn(".config/qtile/scripts/keybind.sh"),
+        desc="Show Qtile keybindings"
+    ),
     Key(
         [mod],
         "g",
@@ -289,6 +345,7 @@ keys = [
         desc="Toggle Lazygit dropdown"
     ),
     # screenshot
+    # using absolute path
     Key(
         [],
         "Print",
@@ -301,34 +358,61 @@ keys = [
     ),
     # switch windows
     Key(
+        # [mod], "w", lazy.spawn("rofi -theme sidebar -show window"), desc="Select Window",
         [mod], "w", lazy.spawn("rofi -show window"), desc="Select Window",
     ),
     # Wallpaper changer
+    # Key(
+    #     [mod, "shift"], "w",
+    #     lazy.spawn("bash -c 'PREVIEW=true rofi -theme fullscreen-preview -show filebrowser -filebrowser-command \"feh --bg-scale\" -filebrowser-directory ~/Pictures/wallpapers'"),
+    #     desc="Change wallpaper with rofi"
+    # ),
     Key(
         [mod, "shift"], "w",
         lazy.group["scratchpad"].dropdown_toggle("wallpaperchanger"),
         desc="Change wallpaper with yazi"
     ),
+    # lock
+    # Key([mod, "shift"], "p", lazy.spawn("i3lock"), desc="LockScreen"),
     # Volume control
     # using script
     Key(
         [],
         "XF86AudioRaiseVolume",
         lazy.spawn("amixer set Master 1%+"),
+        # lazy.function(show_volume_notification),
         desc="Increase volume",
     ),
     Key(
         [],
         "XF86AudioLowerVolume",
         lazy.spawn("amixer set Master 1%-"),
+        # lazy.function(show_volume_notification),
         desc="Decrease volume",
     ),
     Key(
         [],
         "XF86AudioMute",
         lazy.spawn("amixer set Master toggle"),
+        # lazy.function(show_volume_notification),
         desc="Mute volume",
     ),
+    # using dunstify
+    # Key([], "XF86AudioRaiseVolume",
+    #     lazy.spawn("amixer set Master 1%+ && volume=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }') && dunstify -t 2000 'Volume' \"$volume%\""),
+    #     desc="Increase volume"
+    # ),
+    # Key([], "XF86AudioLowerVolume",
+    #     lazy.spawn("amixer set Master 1%- && volume=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }') && dunstify -t 2000 'Volume' \"$volume%\""),
+    #     desc="Decrease volume"
+    # ),
+    # Key([], "XF86AudioMute",
+    #     lazy.spawn("amixer set Master toggle && volume=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }') && dunstify -t 2000 'Volume' \"$volume%\""),
+    #     desc="Mute volume"
+    # ),
+    # Focus the last window (similar to bspc node -f last)
+    # Key(["mod4"], "Tab", lazy.group.prev_window(), desc="Focus last window"),
+    # Key(["mod4"], "Tab", lazy.group.prev_window(), desc="Focus last window"),
 ]
 #+end_src
 
@@ -393,6 +477,17 @@ groups.append(
             y=0.15,
             on_focus_lost_hide=True  # Changed to True for traditional behavior
         ),
+        # the terminal + " cli spawn -- ranger" doesn't work, use terminal + " -e ranger" instead
+        # DropDown(
+            # "ranger_new",
+            # terminal + " cli spawn -- ranger",
+            # opacity=0.9,
+            # height=0.7,
+            # width=0.7,
+            # x=0.15,
+            # y=0.15,
+            # on_focus_lost_hide=True
+        # ),
         DropDown(
             "lazygit",
             terminal + " -e lazygit",
@@ -416,6 +511,16 @@ groups.append(
         DropDown(
             "wallpaperchanger",
             terminal + " -e sh -c '~/.config/qtile/scripts/wallpaper-changer.sh'",
+            opacity=0.9,
+            height=0.7,
+            width=0.7,
+            x=0.15,
+            y=0.15,
+            on_focus_lost_hide=True
+        ),
+        DropDown(
+            "keybinds",
+            terminal + "-e sh -c '~/.config/qtile/scripts/keybind.sh",
             opacity=0.9,
             height=0.7,
             width=0.7,
@@ -461,21 +566,17 @@ layouts = [
     # layout.Zoomy(),
     layout.TreeTab(
         **current_theme['layout_theme'],
-        sections = ["neovim", "file manager", "browser"],
+        sections = ["neovim", "file manager", "editor"],
     ),
     layout.MonadTall(
         **current_theme['layout_theme'],
         change_ratio = 0.07
     ),
-    layout.TreeTab(**current_theme['layout_theme']),
     layout.MonadWide(**current_theme['layout_theme']),
     layout.Max(**current_theme['layout_theme']),
     layout.Columns(**current_theme['layout_theme']),
 ]
-
 #+end_src
-
-#+RESULTS:
 
 * SCREENS
 #+begin_src python
@@ -485,8 +586,8 @@ screens = [
         top=bar.Bar(
             [
                 widget.GroupBox(
-                    **widget_defaults,
-                    **powerline_border_status,
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
                     highlight_method='block',
                     padding=5,
                     rounded=False,
@@ -497,37 +598,43 @@ screens = [
                     block_highlight_text_color=current_theme['widget_theme']['block_highlight_text_color'],
                     this_current_screen_border=current_theme['widget_theme']['this_current_screen_border'],
                 ),
+                #widget.Spacer(length=30),
                 widget.WindowName(
-                    **widget_defaults,
+                    ,**widget_defaults,
                     max_chars=90,
                     #parse_text=lambda text: text.split(" - ")[-1] if " - " in text else text,
                  ),
+                # widget.TaskList(
+                #     ,**widget_defaults,
+                #     ,**powerline_border_status,
+                #     stretched=False,
+                # ),
                 widget.Volume(
-                    **widget_defaults,
-                    **powerline_border_status,
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
                     fmt=" 󰕾  {} ",
                 ),
                 widget.CPU(
-                    **widget_defaults,
-                    **powerline_border_status,
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
                     format="󰻠 {freq_current}GHz {load_percent}% ",
                 ),
                 widget.ThermalSensor(
-                    **widget_defaults,
-                    **powerline_border_status,
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
                     padding=0,
                     update_interval=1,
                     format="  {temp:.0f}{unit} ",
                 ),
                 widget.Memory(
-                    **widget_defaults,
-                    **powerline_border_status,
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
                     padding=5,
                     format="󰍛 {MemUsed:.0f}{mm} ",
                 ),
                 widget.Clock(
-                    **widget_defaults,
-                    **powerline_border_status,
+                    ,**widget_defaults,
+                    ,**powerline_border_status,
                     format=" %a %m-%d-%Y %I:%M %p ",
                 ),
                 widget.Sep(
@@ -539,14 +646,14 @@ screens = [
                 ),
                 #widget.Spacer(length=4),
                 widget.QuickExit(
-                    **widget_defaults,
-                    #fontsize = 25,
+                    ,**widget_defaults,
                     default_text = "",
                     countdown_format='{}',
                 ),
                 widget.Spacer(length=5),
             ],
             28,
+            # margin=10,
             opacity=current_theme['widget_theme']['panel_opacity'],
             background=current_theme['widget_theme']['background'],
         ),
@@ -573,6 +680,9 @@ follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(
+    border_focus=current_theme['layout_theme']['border_focus'],
+    border_normal=current_theme['layout_theme']['border_normal'],
+    border_width=current_theme['layout_theme']['border_width'],
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         ,*layout.Floating.default_float_rules,
