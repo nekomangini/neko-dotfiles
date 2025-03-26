@@ -51,11 +51,9 @@ def autostart():
     subprocess.Popen([home])
 
 mod = "mod4"
-
-# terminal = guess_terminal()
-terminal = "wezterm"
-# doom = "emacsclient -c -a 'emacs'"
 doom = "sh -c 'emacsclient -c -a \"emacs\"'"
+
+terminal = "wezterm"
 
 # fonts
 mono_fur_font_bold   = "MonofurNerdFont Bold"
@@ -89,8 +87,6 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 keys = [
-    # A list of available commands that can be bound to keys can be found
-    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -161,23 +157,10 @@ keys = [
         lazy.layout.add_section("New Section"),
         desc="Add a new section to TreeTab layout"
     ),
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    # Key(
-    #     [mod, "shift"],
-    #     "Return",
-    #     lazy.layout.toggle_split(),
-    #     desc="Toggle between split and unsplit sides of stack",
-    # ),
     # Toggle between different layouts as defined below
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "space", lazy.prev_layout(), desc="Toggle between layouts"),
 
-    # Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
-    # Key([mod], "Tab", lazy.screen.next_group(), desc="Toggle between groups"),
-    # Key([mod, "shift"], "Tab", lazy.screen.prev_group()),
     Key([mod], "o", lazy.screen.next_group(), desc="Go to next group"),
     Key([mod], "i", lazy.screen.prev_group(), desc="Go to previous group"),
     Key([mod], "Tab",  lazy.screen.toggle_group(), desc="Move to the last visited group"),
@@ -187,9 +170,6 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     # if there is a prompt widget, activate this line of code
     # Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-    ############ Window toggles #############
-    # Minimize layout
-    # Key(["mod"], "Tab", lazy.window.toggle_minimize()),  # Switch to previous window
     Key(
         [mod],
         "f",
@@ -220,12 +200,10 @@ keys = [
         [mod],
         "d",
         lazy.spawn(
-            # "rofi -modi drun -show drun \ -config ~/.config/rofi/rofidmenu.rasi"
             "rofi -modi drun -show drun"
         ),
     ),
     # launch terminal
-    # Key([mod], "Return", lazy.group["vim"].toscreen(),  lazy.spawn(terminal), desc="Launch terminal"),
     Key(
         [mod],
         "Return",
@@ -238,7 +216,6 @@ keys = [
         [mod],
         "e",
         lazy.group["3"].toscreen(toggle=False),
-        # lazy.spawn("emacsclient -c -a 'emacs'"),
         lazy.spawn(doom),
         desc="Launch Emacs client",
     ),
@@ -257,21 +234,6 @@ keys = [
         lazy.spawn("/home/nekomangini/zen/zen"),
         desc="Launch zen browser",
     ),
-    # ranger
-    # Key(
-    #     [mod],
-    #     "n",
-    #     lazy.group["1"].toscreen(toggle=False),
-    #     lazy.spawn("wezterm cli spawn  -- ranger"),
-    #     desc="Launch File Manager",
-    # ),
-    # Key(
-    #     [mod, "shift"],
-    #     "n",
-    #     lazy.group["1"].toscreen(toggle=False),
-    #     lazy.spawn("wezterm cli spawn --new-window -- ranger"),
-    #     desc="Launch File Manager",
-    # ),
     # # git
     Key(
         [mod, "shift"],
@@ -289,12 +251,6 @@ keys = [
         desc="Launch File Manager",
     ),
     ### ScratchPad ###
-    # Key(
-    #     [mod],
-    #     "n",
-    #     lazy.group["scratchpad"].dropdown_toggle("ranger"),
-    #     desc="Toggle Ranger dropdown"
-    # ),
     Key(
         [mod],
         "s",
@@ -331,18 +287,11 @@ keys = [
         [mod], "w", lazy.spawn("rofi -show window"), desc="Select Window",
     ),
     # Wallpaper changer
-    # Key(
-    #     [mod, "shift"], "w",
-    #     lazy.spawn("bash -c 'PREVIEW=true rofi -theme fullscreen-preview -show filebrowser -filebrowser-command \"feh --bg-scale\" -filebrowser-directory ~/Pictures/wallpapers'"),
-    #     desc="Change wallpaper with rofi"
-    # ),
     Key(
         [mod, "shift"], "w",
         lazy.group["scratchpad"].dropdown_toggle("wallpaperchanger"),
         desc="Change wallpaper with yazi"
     ),
-    # lock
-    # Key([mod, "shift"], "p", lazy.spawn("i3lock"), desc="LockScreen"),
     # Volume control
     # using script
     Key(
@@ -366,22 +315,6 @@ keys = [
         # lazy.function(show_volume_notification),
         desc="Mute volume",
     ),
-    # using dunstify
-    # Key([], "XF86AudioRaiseVolume",
-    #     lazy.spawn("amixer set Master 1%+ && volume=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }') && dunstify -t 2000 'Volume' \"$volume%\""),
-    #     desc="Increase volume"
-    # ),
-    # Key([], "XF86AudioLowerVolume",
-    #     lazy.spawn("amixer set Master 1%- && volume=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }') && dunstify -t 2000 'Volume' \"$volume%\""),
-    #     desc="Decrease volume"
-    # ),
-    # Key([], "XF86AudioMute",
-    #     lazy.spawn("amixer set Master toggle && volume=$(amixer sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }') && dunstify -t 2000 'Volume' \"$volume%\""),
-    #     desc="Mute volume"
-    # ),
-    # Focus the last window (similar to bspc node -f last)
-    # Key(["mod4"], "Tab", lazy.group.prev_window(), desc="Focus last window"),
-    # Key(["mod4"], "Tab", lazy.group.prev_window(), desc="Focus last window"),
 ]
 
 # Used https://kuyabai.com/?q=ang+gwapo+ko+po+talaga
@@ -442,17 +375,6 @@ groups.append(
             y=0.15,
             on_focus_lost_hide=True  # Changed to True for traditional behavior
         ),
-        # the terminal + " cli spawn -- ranger" doesn't work, use terminal + " -e ranger" instead
-        # DropDown(
-            # "ranger_new",
-            # terminal + " cli spawn -- ranger",
-            # opacity=0.9,
-            # height=0.7,
-            # width=0.7,
-            # x=0.15,
-            # y=0.15,
-            # on_focus_lost_hide=True
-        # ),
         DropDown(
             "lazygit",
             terminal + " -e lazygit",
