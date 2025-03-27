@@ -14,7 +14,7 @@ options=(
 selected=$(printf "%s\n" "${options[@]}" | rofi -dmenu \
     -i \
     -p "Select" \
-    -theme-str 'window {width: 200px;}' \
+    -theme-str 'window {width: 200px; height: 260px;}' \
     -theme-str 'listview {lines: 6;}' \
     -theme-str 'mainbox {children: [ "inputbar", "listview" ];}')
 

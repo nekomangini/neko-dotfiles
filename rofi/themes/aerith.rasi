@@ -1,16 +1,16 @@
-/* ROFI SQUARED THEME USING THE CHESHIRECAT PALETTE */
-/* Adapted from Newman Sanchez's Squared Everforest Theme */
-/* Colors from Cheshirecat Colorscheme */
+/* ROFI SQUARED THEME USING THE CHATHAMS BLUE PALETTE */
+/* Adapted from the itachi.rasi reference theme */
+/* Colors: Chathams Blue, Jungle Mist, Shakespeare, Pelorous */
 
 * {
     font:   "FiraCode Nerd Font Medium 12";
 
-    bg0:     #0F1E26; /* Rich black, main background */
-    bg1:     #7B7760; /* Reseda green, secondary background */
-    fg0:     #D6D69E; /* Vanilla, general text */
+    bg0:     #15536b; /* Chathams Blue: Deep blue, main background */
+    bg1:     #afc7d0; /* Jungle Mist: Light bluish-gray, secondary background */
+    fg0:     #ffffff; /* White: General text (for contrast against dark bg) */
 
-    accent-color:     #C1E178; /* Mindaro-2, active elements */
-    urgent-color:     #E0B596; /* Desert sand, urgent elements */
+    accent-color:     #45a4c1; /* Pelorous: Bright cyan-blue, active elements */
+    urgent-color:     #56bfd1; /* Shakespeare: Vibrant teal, urgent elements */
 
     background-color:   transparent;
     text-color:         @fg0;

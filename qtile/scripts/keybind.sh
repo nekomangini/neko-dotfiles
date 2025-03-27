@@ -77,4 +77,5 @@ EOF
 
 # Display the cheat sheet using rofi with increased width and two columns.
 echo "$KEYBINDINGS" | rofi -dmenu -p "Qtile Keybindings:" \
-  -theme-str 'inputbar { enabled: false; }'
+  -theme-str 'inputbar { enabled: false; }' \
+  -theme-str 'window {width: 1080px; height: 800px;}'
