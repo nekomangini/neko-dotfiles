@@ -12,21 +12,11 @@ alias ls='eza --tree --level=2 --git --git-repos --header --icons'
 alias lf='ranger'
 alias nk='NVIM_APPNAME="nekovim" nvim'
 alias av='NVIM_APPNAME="astronvim" nvim'
-
 # alias for neovide
-# TODO:
-function nvide
-    nohup ~/Downloads/neovide.AppImage >/dev/null 2>&1 & disown
-end
-
+alias nekovide='NVIM_APPNAME="nekovim" neovide'
 function lvide
     nohup ~/.config/lvim/lvim-nvide.sh >/dev/null 2>&1 & disown
 end
-
-function nekovide
-    nohup ~/.config/nekovim/nekovim-neovide.sh >/dev/null 2>&1 & disown
-end
-
 
 
 ############################
@@ -125,6 +115,11 @@ set -x PATH /home/nekomangini/.local/share/alire/toolchains/gprbuild_22.0.1_24df
 # fortls
 set -x PATH /home/nekomangini/.local/bin/fortls $PATH
 
+# android sdk
+set -x ANDROID_HOME /home/nekomangini/Android/Sdk
+set -x ANDROID_SDK_ROOT /home/nekomangini/Android/Sdk
+set -x PATH $PATH $ANDROID_HOME/tools $ANDROID_HOME/platform-tools
+
 set -x SDKMAN_DIR "$HOME/.sdkman"
 if test -s "$HOME/.sdkman/bin/sdkman-init.sh"
     # Parse and set environment variables from sdkman-init.sh
@@ -146,12 +141,3 @@ if test -s "$HOME/.sdkman/bin/sdkman-init.sh"
         set -gx JAVA_HOME (dirname (dirname (which java)))
     end
 end
-
-
-# BEGIN opam configuration
-# This is useful if you're using opam as it adds:
-#   - the correct directories to the PATH
-#   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
-# test -r '/home/nekomangini/.opam/opam-init/init.fish' && source '/home/nekomangini/.opam/opam-init/init.fish' >/dev/null 2>/dev/null; or true
-# END opam configuration
