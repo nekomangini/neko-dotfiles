@@ -13,7 +13,7 @@ alias lf='ranger'
 alias nk='NVIM_APPNAME="nekovim" nvim'
 alias av='NVIM_APPNAME="astronvim" nvim'
 # alias for neovide
-alias nekovide='NVIM_APPNAME="nekovim" neovide'
+alias nv='NVIM_APPNAME="nekovim" neovide'
 function lvide
     nohup ~/.config/lvim/lvim-nvide.sh >/dev/null 2>&1 & disown
 end

@@ -356,19 +356,22 @@ keys = [
 group_names = [
     ("1", {"layout": "treetab", "label": "ᜀ", "matches": [
         Match(wm_class="Wezterm"),
-        Match(wm_class="jetbrains-studio"),
-        Match(wm_class="obsidian"),
-        Match(wm_class="zen"),
     ]}),
     ("2", {"layout": "monadtall", "label": "ᜅ᜔", "matches": [
-        Match(wm_class="firefox"),
+        Match(wm_class="zen"),
         Match(wm_class="qutebrowser"),
         Match(wm_class="vivaldi-stable")
     ]}),
     ("3", {"layout": "max", "label": "ᜄ᜔", "matches": [
         Match(wm_class="Emacs"),
+        Match(wm_class="AppFlowy"),
+        Match(wm_class="obsidian"),
     ]}),
-    ("4", {"layout": "max", "label": "ᜏ", "matches": [Match(wm_class="AppFlowy")]}),
+    ("4", {"layout": "max", "label": "ᜏ", "matches": [
+        Match(wm_class="jetbrains-studio"),
+        Match(wm_class="jetbrains-idea-ce"),
+        Match(wm_class="jetbrains-pycharm-ce")
+    ]}),
     ("5", {"layout": "monadtall", "label": "ᜉᜓ", "matches": [
         Match(wm_class="gwenview"),
         Match(wm_class="dolphin")
@@ -389,6 +392,7 @@ group_names = [
         Match(wm_class="com.defold.editor.Start")
     ]}),
 ]
+
 
 # Create groups with labels
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
