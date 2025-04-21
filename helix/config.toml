@@ -1,18 +1,21 @@
-theme = "ayu_dark"
-# theme = "curzon"
-# theme = "catppuccin_frappe"
-# theme = "kanagawa"
 # theme = "ao"
-# theme = "gruvbox"
+# theme = "ayu_dark"
+# theme = "ayu_evolve"
 # theme = "base16_transparent" # transparent background
-# theme = "heisenberg" # blinking comments because of wezterm
-# theme = "onedark"
-# theme = "starlight"
-# theme = "noctis"
-# theme = "rose_pine_moon"
-# theme = "term16_dark"
-# theme = "material_deep_ocean"
+# theme = "catppuccin_frappe"
+# theme = "curzon"
 # theme = "github_dark_dimmed"
+# theme = "gruvbox"
+# theme = "gruvbox_dark_hard"
+# theme = "heisenberg" # blinking comments because of wezterm
+# theme = "kanagawa"
+# theme = "material_deep_ocean"
+# theme = "noctis"
+# theme = "onedark"
+# theme = "rose_pine_moon"
+# theme = "starlight"
+# theme = "term16_dark"
+theme = "tokyonight_moon"
 
 [editor]
 line-number = "relative"
