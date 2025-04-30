@@ -2,7 +2,7 @@
 import json
 import os
 from typing import Dict, Any
-from . import aurora, kanagawa, nord, catppuccin, neonpunk, gruvbox, bloodmoon, cheshirecat, evaasuka
+from . import aurora, kanagawa, nord, catppuccin, neonpunk, gruvbox, bloodmoon, cheshirecat, evaasuka, pywal
 
 class ThemeManager:
     def __init__(self):
@@ -248,6 +248,33 @@ class ThemeManager:
                     'urgent': evaasuka.evaasuka_urgent,
                     "this_current_screen_border": evaasuka.evaasuka_border_active,
                     "block_highlight_text_color": evaasuka.evaasuka_border_bg,
+                    "panel_opacity": 0.8,
+                },
+            },
+            'pywal': {
+                "layout_theme": {
+                    "border_width": 3,
+                    'margin': 12,
+                    "border_focus": pywal.pywal_border_active,      
+                    "border_normal": pywal.pywal_border_inactive,   
+                    # TreeTab-specific settings
+                    "active_bg": pywal.pywal_border_active,         
+                    "active_fg": pywal.pywal_text,                  
+                    "inactive_bg": pywal.pywal_inactive_window,     
+                    "inactive_fg": pywal.pywal_text,                
+                    "urgent_bg": pywal.pywal_urgent,                
+                    "urgent_fg": pywal.pywal_bar,                   
+                    "bg_color": pywal.pywal_bar,                    
+                    "section_fg": pywal.pywal_active_window,        
+                },
+                "widget_theme": {
+                    "background": pywal.pywal_bar,                  
+                    "foreground": pywal.pywal_text,                 
+                    "active": pywal.pywal_active_window,            
+                    "inactive": pywal.pywal_inactive_window,        
+                    'urgent': pywal.pywal_urgent,                   
+                    "this_current_screen_border": pywal.pywal_border_active,  
+                    "block_highlight_text_color": pywal.pywal_border_bg,      
                     "panel_opacity": 0.8,
                 },
             },

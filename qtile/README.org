@@ -7,6 +7,7 @@
 - [[#qtile-info][Qtile Info]]
 - [[#imports][IMPORTS]]
 - [[#autostart][AUTOSTART]]
+- [[#pywal16][Pywal16]]
 - [[#default-setttings][DEFAULT SETTTINGS]]
 - [[#keybinds][KEYBINDS]]
 - [[#groups][GROUPS]]
@@ -75,6 +76,23 @@ def autostart():
     subprocess.Popen([home])
 #+end_src
 
+* Pywal16
+#+begin_src python
+import json
+from themes.pywal_colors import colors, load_colors
+
+@hook.subscribe.setgroup
+def reload_pywal_colors():
+    with open(os.path.expanduser('~/.config/qtile/current_theme.json'), 'r') as f:
+        if json.load(f)['theme'] == 'pywal':
+            load_colors('/home/nekomangini/.cache/wal/colors')
+            lazy.reload_config()
+
+@hook.subscribe.startup_once
+def start_once():
+    import subprocess
+    subprocess.call([os.path.expanduser("wal"), "-R"])
+#+end_src
 * DEFAULT SETTTINGS
 #+begin_src python
 mod = "mod4"
