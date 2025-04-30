@@ -50,6 +50,21 @@ def autostart():
     home = os.path.expanduser("~/.config/qtile/scripts/autostart.sh")
     subprocess.Popen([home])
 
+import json
+from themes.pywal_colors import colors, load_colors
+
+@hook.subscribe.setgroup
+def reload_pywal_colors():
+    with open(os.path.expanduser('~/.config/qtile/current_theme.json'), 'r') as f:
+        if json.load(f)['theme'] == 'pywal':
+            load_colors('/home/nekomangini/.cache/wal/colors')
+            lazy.reload_config()
+
+@hook.subscribe.startup_once
+def start_once():
+    import subprocess
+    subprocess.call([os.path.expanduser("wal"), "-R"])
+
 mod = "mod4"
 doom = "sh -c 'emacsclient -c -a \"emacs\"'"
 
