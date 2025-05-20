@@ -13,4 +13,4 @@
 
 ### Hyprland
 
-![screenshot](https://github.com/nekomangini/neko-dotfiles/blob/main/screenshots/screenshots/2025-05-20-164435_hyprshot.png)
+![screenshot](https://github.com/nekomangini/neko-dotfiles/blob/main/screenshots/2025-05-20-164435_hyprshot.png)
