@@ -212,7 +212,7 @@ keys = [
 
     Key([mod], "o", lazy.screen.next_group(), desc="Go to next group"),
     Key([mod], "i", lazy.screen.prev_group(), desc="Go to previous group"),
-    Key([mod], "Tab",  lazy.screen.toggle_group(), desc="Move to the last visited group"),
+    Key([mod], "backslash",  lazy.screen.toggle_group(), desc="Move to the last visited group"),
 
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
@@ -374,21 +374,24 @@ keys = [
 group_names = [
     ("1", {"layout": "treetab", "label": "ᜀ", "matches": [
         Match(wm_class="Wezterm"),
+        Match(wm_class="dev.zed.Zed"),
+        Match(wm_class="code"),
+        Match(wm_class="jetbrains-studio"),
+        Match(wm_class="jetbrains-idea-ce"),
+        Match(wm_class="jetbrains-pycharm-ce")
     ]}),
     ("2", {"layout": "monadtall", "label": "ᜅ᜔", "matches": [
         Match(wm_class="zen"),
         Match(wm_class="qutebrowser"),
         Match(wm_class="vivaldi-stable")
+        Match(wm_class="brave"),
     ]}),
     ("3", {"layout": "max", "label": "ᜄ᜔", "matches": [
         Match(wm_class="Emacs"),
-        Match(wm_class="AppFlowy"),
         Match(wm_class="obsidian"),
     ]}),
     ("4", {"layout": "max", "label": "ᜏ", "matches": [
-        Match(wm_class="jetbrains-studio"),
-        Match(wm_class="jetbrains-idea-ce"),
-        Match(wm_class="jetbrains-pycharm-ce")
+        Match(wm_class="AppFlowy"),
     ]}),
     ("5", {"layout": "monadtall", "label": "ᜉᜓ", "matches": [
         Match(wm_class="gwenview"),
@@ -399,7 +402,7 @@ group_names = [
         Match(wm_class="Joplin")
     ]}),
     ("7", {"layout": "max", "label": "ᜉᜓ", "matches": [
-        Match(wm_class="gimp-2.10"),
+        Match(wm_class="gimp-3.00"),
         Match(wm_class="krita"),
         Match(wm_class="libresprite")
     ]}),
