@@ -3,6 +3,7 @@
 ############################
 alias hx='helix'
 alias ..='cd ..'
+alias ff='fastfetch'
 #### eza alias
 # alias ls='eza -l --header --icons'
 # git
@@ -18,13 +19,11 @@ function lvide
     nohup ~/.config/lvim/lvim-nvide.sh >/dev/null 2>&1 & disown
 end
 
-
 ############################
 ######### zoxide ###########
 ############################
 # Initialize zoxide
 zoxide init fish | source
-
 
 ############################
 ###### bash-scripts #######
@@ -32,12 +31,10 @@ zoxide init fish | source
 set -U fish_user_paths $fish_user_paths ~/.local/bin/bash-scripts
 alias nmix='nekomux.sh'
 
-
 ############################
 ########### fzf ############
 ############################
 alias nf='nk (fzf --preview "cat {}" --height 70%)'
-
 
 ############################
 ######### theme ############
@@ -102,7 +99,6 @@ set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
 set -gx PATH $HOME/.cabal/bin /home/nekomangini/.ghcup/bin $PATH # ghcup-env
 # haskell/ghcup
 set -x PATH $HOME/.cabal/bin $HOME/.ghcup/bin $PATH
-
 
 # doom emacs
 set -x PATH $HOME/.emacs.d/bin/ $PATH

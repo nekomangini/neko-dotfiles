@@ -1,4 +1,4 @@
-function nknav
+function nn
     set -l DIRECTORIES \
         /run/media/nekomangini/D/Programming/neko-gitjournal/ \
         /run/media/nekomangini/D/Programming/Projects/front-end-projects/ \
