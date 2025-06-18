@@ -45,8 +45,10 @@
 
 * IMPORTS
 #+begin_src python
-import os, psutil
+import os, json # psutil
 import subprocess
+import json
+from themes.pywal_colors import load_colors # colors,
 
 from typing import List  # noqa: F401
 
@@ -57,7 +59,7 @@ from libqtile.lazy import lazy
 # from libqtile.utils import guess_terminal
 
 from qtile_extras import widget
-from qtile_extras.widget.decorations import PowerLineDecoration, BorderDecoration
+from qtile_extras.widget.decorations import PowerLineDecoration, BorderDecoration, RectDecoration
 # import custom config
 from custom_colors import *
 from utils.volume_notification import show_volume_notification
@@ -66,7 +68,6 @@ from themes.theme_manager import ThemeManager
 theme_manager = ThemeManager()
 current_theme = theme_manager.get_current_theme()
 #+end_src
-
 * AUTOSTART
 autostart script
 #+begin_src python
@@ -75,12 +76,8 @@ def autostart():
     home = os.path.expanduser("~/.config/qtile/scripts/autostart.sh")
     subprocess.Popen([home])
 #+end_src
-
 * Pywal16
 #+begin_src python
-import json
-from themes.pywal_colors import colors, load_colors
-
 @hook.subscribe.setgroup
 def reload_pywal_colors():
     with open(os.path.expanduser('~/.config/qtile/current_theme.json'), 'r') as f:
@@ -96,9 +93,10 @@ def start_once():
 * DEFAULT SETTTINGS
 #+begin_src python
 mod = "mod4"
-doom = "sh -c 'emacsclient -c -a \"emacs\"'"
 
 terminal = "wezterm"
+terminal_tmux = "wezterm start -- tmux new-session -A -s main"
+doom = "sh -c 'emacsclient -c -a \"emacs\"'"
 
 # fonts
 mono_fur_font_bold   = "MonofurNerdFont Bold"
@@ -112,7 +110,7 @@ caskaydia_font       = "CaskaydiaMono Nerd Font,CaskaydiaMono NF:style=Bold"
 small_ft             = 14
 
 # qtile extras
-powerline_border_status = {
+border_decor = {
     "decorations": [BorderDecoration(
         colour = current_theme['widget_theme']['this_current_screen_border'],  # using your theme color
         border_width = [0, 0, 3, 0],  # Underlined style
@@ -120,6 +118,34 @@ powerline_border_status = {
         padding_y = None,
         group = False,
     )]
+}
+
+powerline_forward_slash = {
+    "decorations": [PowerLineDecoration(
+            colour=current_theme['widget_theme']['this_current_screen_border'],
+            path="forward_slash",
+            size=10,
+        )
+    ]
+}
+powerline_back_slash = {
+    "decorations": [PowerLineDecoration(
+            colour=current_theme['widget_theme']['this_current_screen_border'],
+            path="back_slash",
+            size=10,
+        )
+    ]
+}
+
+underline_decor = {
+    "decorations": [
+        RectDecoration(
+            colour=current_theme['widget_theme']['this_current_screen_border'],
+            radius=0,
+            group=True,
+            filled=False,
+        )
+    ]
 }
 
 # Define widget defaults using current theme
@@ -136,6 +162,12 @@ extension_defaults = widget_defaults.copy()
 * KEYBINDS
 #+begin_src python
 keys = [
+    # A list of available commands that can be bound to keys can be found
+    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
+
+    # Hide qtile bar
+    Key([mod], "x", lazy.hide_show_bar(), desc="Toggle qtile bar"),
+
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
@@ -206,19 +238,35 @@ keys = [
         lazy.layout.add_section("New Section"),
         desc="Add a new section to TreeTab layout"
     ),
+    # Toggle between split and unsplit sides of stack.
+    # Split = all windows displayed
+    # Unsplit = 1 window displayed, like Max layout, but still with
+    # multiple stack panes
+    # Key(
+    #     [mod, "shift"],
+    #     "Return",
+    #     lazy.layout.toggle_split(),
+    #     desc="Toggle between split and unsplit sides of stack",
+    # ),
     # Toggle between different layouts as defined below
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "space", lazy.prev_layout(), desc="Toggle between layouts"),
 
+    # Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
+    # Key([mod], "Tab", lazy.screen.next_group(), desc="Toggle between groups"),
+    # Key([mod, "shift"], "Tab", lazy.screen.prev_group()),
     Key([mod], "o", lazy.screen.next_group(), desc="Go to next group"),
     Key([mod], "i", lazy.screen.prev_group(), desc="Go to previous group"),
     Key([mod], "backslash",  lazy.screen.toggle_group(), desc="Move to the last visited group"),
+    Key([mod], "tab", lazy.screen.toggle_group(), desc="Move to the last visited group"),
 
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     # if there is a prompt widget, activate this line of code
     # Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    # Minimize layout
+    # Key(["mod"], "Tab", lazy.window.toggle_minimize()),  # Switch to previous window
     Key(
         [mod],
         "f",
@@ -249,15 +297,25 @@ keys = [
         [mod],
         "d",
         lazy.spawn(
-            "rofi -modi drun -show drun"
+            # "rofi -modi drun -show drun \ -config ~/.config/rofi/rofidmenu.rasi"
+            # "rofi -modi drun -show drun"
+            "rofi -modi drun -show drun -theme-str 'listview {scrollbar: false;}'"
         ),
     ),
     # launch terminal
+    # Key([mod], "Return", lazy.group["vim"].toscreen(),  lazy.spawn(terminal), desc="Launch terminal"),
     Key(
         [mod],
         "Return",
         lazy.group["1"].toscreen(toggle=False),
         lazy.spawn(terminal),
+        desc="Launch terminal",
+    ),
+    Key(
+        [mod, "control"],
+        "Return",
+        lazy.group["1"].toscreen(toggle=False),
+        lazy.spawn(terminal_tmux),
         desc="Launch terminal",
     ),
     # emacs
@@ -268,22 +326,19 @@ keys = [
         lazy.spawn(doom),
         desc="Launch Emacs client",
     ),
-    # browser
     Key(
         [mod],
         "b",
-        lazy.group["2"].toscreen(toggle=False),
-        lazy.spawn("vivaldi-stable"),
-        desc="Launch vivaldi browser",
+        lazy.spawn(".config/qtile/scripts/select-browser.sh"),
+        desc="Launch browser selector",
     ),
+    # pkms applications
     Key(
         [mod],
-        "z",
-        lazy.group["2"].toscreen(toggle=False),
-        lazy.spawn("/home/nekomangini/zen/zen"),
-        desc="Launch zen browser",
+        "a",
+        lazy.spawn(".config/qtile/scripts/select-pkms.sh"),
+        desc="Launch pkms applications selector",
     ),
-    # # git
     Key(
         [mod, "shift"],
         "g",
@@ -333,14 +388,22 @@ keys = [
     # switch windows
     Key(
         # [mod], "w", lazy.spawn("rofi -theme sidebar -show window"), desc="Select Window",
-        [mod], "w", lazy.spawn("rofi -show window"), desc="Select Window",
+        [mod], "w", lazy.spawn("rofi -show window run -theme-str 'listview {scrollbar: false;}'"), desc="Select Window",
+        # [mod], "w", lazy.spawn("rofi -show window"), desc="Select Window",
     ),
     # Wallpaper changer
+    # Key(
+    #     [mod, "shift"], "w",
+    #     lazy.spawn("bash -c 'PREVIEW=true rofi -theme fullscreen-preview -show filebrowser -filebrowser-command \"feh --bg-scale\" -filebrowser-directory ~/Pictures/wallpapers'"),
+    #     desc="Change wallpaper with rofi"
+    # ),
     Key(
         [mod, "shift"], "w",
         lazy.group["scratchpad"].dropdown_toggle("wallpaperchanger"),
         desc="Change wallpaper with yazi"
     ),
+    # lock
+    # Key([mod, "shift"], "p", lazy.spawn("i3lock"), desc="LockScreen"),
     # Volume control
     # using script
     Key(
@@ -378,12 +441,13 @@ group_names = [
         Match(wm_class="code"),
         Match(wm_class="jetbrains-studio"),
         Match(wm_class="jetbrains-idea-ce"),
-        Match(wm_class="jetbrains-pycharm-ce")
+        Match(wm_class="jetbrains-pycharm-ce"),
+        Match(wm_class="jetbrains-clion"),
     ]}),
     ("2", {"layout": "monadtall", "label": "ᜅ᜔", "matches": [
         Match(wm_class="zen"),
         Match(wm_class="qutebrowser"),
-        Match(wm_class="vivaldi-stable")
+        Match(wm_class="vivaldi-stable"),
         Match(wm_class="brave"),
     ]}),
     ("3", {"layout": "max", "label": "ᜄ᜔", "matches": [
@@ -397,23 +461,22 @@ group_names = [
         Match(wm_class="gwenview"),
         Match(wm_class="dolphin")
     ]}),
-    ("6", {"layout": "monadtall", "label": "ᜃᜓ", "matches": [
-        Match(wm_class="logseq"),
-        Match(wm_class="Joplin")
-    ]}),
-    ("7", {"layout": "max", "label": "ᜉᜓ", "matches": [
-        Match(wm_class="gimp-3.00"),
+    ("6", {"layout": "max", "label": "ᜉᜓ", "matches": [
+        Match(wm_class="gimp-3.0"),
         Match(wm_class="krita"),
         Match(wm_class="libresprite")
     ]}),
+    ("7", {"layout": "monadtall", "label": "ᜃᜓ", "matches": [
+        Match(wm_class="logseq"),
+        Match(wm_class="Joplin")
+    ]}),
     ("8", {"layout": "max", "label": "ᜆ", "matches": [Match(wm_class="Blender")]}),
     ("9", {"layout": "max", "label": "ᜎ", "matches": [Match(wm_class="Houdini FX")]}),
-    ("0", {"layout": "max", "label": "ᜄ", "matches": [
+    ("0", {"layout": "treetab", "label": "ᜄ", "matches": [
         Match(wm_class="Godot"),
         Match(wm_class="com.defold.editor.Start")
     ]}),
 ]
-
 
 # Create groups with labels
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
@@ -503,25 +566,31 @@ for name, kwargs in group_names:
 
 layouts = [
     # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
     # layout.Bsp(),
+    # layout.Columns(**current_theme['layout_theme']),
     # layout.Matrix(),
-    # layout.Stack(**current_theme['layout_theme']),
+    # layout.MonadThreeCol(),
+    # layout.Plasma(),
     # layout.RatioTile(),
+    # layout.Slice(),
+    # layout.Spiral(),
+    # layout.Stack(**current_theme['layout_theme']),
+    # layout.Stack(num_stacks=2),
     # layout.Tile(**current_theme['layout_theme']),
     # layout.VerticalTile(),
     # layout.Zoomy(),
+    # layout.MonadWide(**current_theme['layout_theme']),
     layout.TreeTab(
         **current_theme['layout_theme'],
-        sections = ["neovim", "file manager", "editor"],
+        panel_width = 120,
+        place_right = True,
+        sections = ["terminal", "file manager", "editor"],
     ),
     layout.MonadTall(
         **current_theme['layout_theme'],
         change_ratio = 0.07
     ),
-    layout.MonadWide(**current_theme['layout_theme']),
     layout.Max(**current_theme['layout_theme']),
-    layout.Columns(**current_theme['layout_theme']),
 ]
 #+end_src
 
@@ -532,9 +601,11 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                # widget.CurrentLayout(
+                #     **widget_defaults,
+                # ),
                 widget.GroupBox(
                     **widget_defaults,
-                    **powerline_border_status,
                     highlight_method='block',
                     padding=5,
                     rounded=False,
@@ -544,44 +615,46 @@ screens = [
                     inactive=current_theme['widget_theme']['inactive'],
                     block_highlight_text_color=current_theme['widget_theme']['block_highlight_text_color'],
                     this_current_screen_border=current_theme['widget_theme']['this_current_screen_border'],
+                    **border_decor,
                 ),
                 #widget.Spacer(length=30),
                 widget.WindowName(
                     **widget_defaults,
                     max_chars=90,
+                    markup=False,
                     #parse_text=lambda text: text.split(" - ")[-1] if " - " in text else text,
                  ),
                 # widget.TaskList(
-                #     ,**widget_defaults,
-                #     ,**powerline_border_status,
+                #     **widget_defaults,
+                #     **powerline_border_status,
                 #     stretched=False,
                 # ),
                 widget.Volume(
                     **widget_defaults,
-                    **powerline_border_status,
+                    **border_decor,
                     fmt=" 󰕾  {} ",
                 ),
                 widget.CPU(
                     **widget_defaults,
-                    **powerline_border_status,
+                    **border_decor,
                     format="󰻠 {freq_current}GHz {load_percent}% ",
                 ),
                 widget.ThermalSensor(
                     **widget_defaults,
-                    **powerline_border_status,
+                    **border_decor,
                     padding=0,
                     update_interval=1,
                     format="  {temp:.0f}{unit} ",
                 ),
                 widget.Memory(
                     **widget_defaults,
-                    **powerline_border_status,
+                    **border_decor,
                     padding=5,
                     format="󰍛 {MemUsed:.0f}{mm} ",
                 ),
                 widget.Clock(
                     **widget_defaults,
-                    **powerline_border_status,
+                    **border_decor,
                     format=" %a %m-%d-%Y %I:%M %p ",
                 ),
                 widget.Sep(
