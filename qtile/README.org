@@ -96,7 +96,7 @@ mod = "mod4"
 
 terminal = "wezterm"
 terminal_tmux = "wezterm start -- tmux new-session -A -s main"
-doom = "sh -c 'emacsclient -c -a \"emacs\"'"
+doom = "emacsclient -c -s 'nekoserver'"
 
 # fonts
 mono_fur_font_bold   = "MonofurNerdFont Bold"
@@ -191,14 +191,14 @@ keys = [
     Key(
         [mod, "shift"],
         "j",
-        lazy.layout.shuffle_down().when(layout=["monadtall", "monadwide", "columns"]),
+        lazy.layout.shuffle_down().when(layout=["monadtall", "monadwide", "columns", "monadthreecol"]),
         lazy.layout.move_down().when(layout="treetab"),
         desc="Move window down"
     ),
     Key(
         [mod, "shift"],
         "k",
-        lazy.layout.shuffle_up().when(layout=["monadtall", "monadwide", "columns"]),
+        lazy.layout.shuffle_up().when(layout=["monadtall", "monadwide", "columns", "monadthreecol"]),
         lazy.layout.move_up().when(layout="treetab"),
         desc="Move window up"
     ),
@@ -276,7 +276,7 @@ keys = [
     Key(
         [mod],
         "m",
-        lazy.window.toggle_maximize().when(layout=["monadtall", "monadwide", "columns"]),
+        lazy.window.toggle_maximize().when(layout=["monadtall", "monadwide", "columns", "monadthreecol"]),
         desc="Grow the currently focused client to the max size",
     ),
     Key(
@@ -340,6 +340,12 @@ keys = [
         desc="Launch pkms applications selector",
     ),
     Key(
+        [mod],
+        "z",
+        lazy.spawn(".config/qtile/scripts/select-editor.sh"),
+        desc="Launch code editor selector",
+    ),
+    Key(
         [mod, "shift"],
         "g",
         lazy.group["1"].toscreen(toggle=False),
@@ -349,12 +355,9 @@ keys = [
     Key(
         [mod, "shift"],
         "n",
-        lazy.group["1"].toscreen(toggle=False),
-        lazy.group["scratchpad"].dropdown_toggle("ranger"),
-        # lazy.spawn("wezterm cli spawn  -- ranger"),
+        lazy.group["scratchpad"].dropdown_toggle("yazi"),
         desc="Launch File Manager",
     ),
-    ### ScratchPad ###
     Key(
         [mod],
         "s",
@@ -435,14 +438,8 @@ keys = [
 
 # Used https://kuyabai.com/?q=ang+gwapo+ko+po+talaga
 group_names = [
-    ("1", {"layout": "treetab", "label": "ᜀ", "matches": [
+    ("1", {"layout": "max", "label": "ᜀ", "matches": [
         Match(wm_class="Wezterm"),
-        Match(wm_class="dev.zed.Zed"),
-        Match(wm_class="code"),
-        Match(wm_class="jetbrains-studio"),
-        Match(wm_class="jetbrains-idea-ce"),
-        Match(wm_class="jetbrains-pycharm-ce"),
-        Match(wm_class="jetbrains-clion"),
     ]}),
     ("2", {"layout": "monadtall", "label": "ᜅ᜔", "matches": [
         Match(wm_class="zen"),
@@ -454,24 +451,37 @@ group_names = [
         Match(wm_class="Emacs"),
         Match(wm_class="obsidian"),
     ]}),
-    ("4", {"layout": "max", "label": "ᜏ", "matches": [
+    ("4", {"layout": "monadthreecol", "label": "ᜏ", "matches": [
+        Match(wm_class="ticktick"),
+        Match(wm_class="dev.zed.Zed"),
+        Match(wm_class="code"),
+        Match(wm_class="jetbrains-studio"),
+        Match(wm_class="jetbrains-idea-ce"),
+        Match(wm_class="jetbrains-pycharm-ce"),
+        Match(wm_class="jetbrains-clion"),
+        Match(wm_class="jetbrains-rustrover"),
+        Match(wm_class="jetbrains-rider"),
+    ]}),
+    ("5", {"layout": "max", "label": "ᜉᜓ", "matches": [
+        Match(wm_class="logseq"),
+        Match(wm_class="Joplin"),
         Match(wm_class="AppFlowy"),
     ]}),
-    ("5", {"layout": "monadtall", "label": "ᜉᜓ", "matches": [
+    ("6", {"layout": "monadtall", "label": "ᜉᜓ", "matches": [
         Match(wm_class="gwenview"),
         Match(wm_class="dolphin")
     ]}),
-    ("6", {"layout": "max", "label": "ᜉᜓ", "matches": [
+    ("7", {"layout": "max", "label": "ᜃᜓ", "matches": [
+        Match(wm_class="Blender")
+    ]}),
+    ("8", {"layout": "max", "label": "ᜆ", "matches": [
+        Match(wm_class="Houdini FX")
+    ]}),
+    ("9", {"layout": "max", "label": "ᜎ", "matches": [
         Match(wm_class="gimp-3.0"),
         Match(wm_class="krita"),
         Match(wm_class="libresprite")
     ]}),
-    ("7", {"layout": "monadtall", "label": "ᜃᜓ", "matches": [
-        Match(wm_class="logseq"),
-        Match(wm_class="Joplin")
-    ]}),
-    ("8", {"layout": "max", "label": "ᜆ", "matches": [Match(wm_class="Blender")]}),
-    ("9", {"layout": "max", "label": "ᜎ", "matches": [Match(wm_class="Houdini FX")]}),
     ("0", {"layout": "treetab", "label": "ᜄ", "matches": [
         Match(wm_class="Godot"),
         Match(wm_class="com.defold.editor.Start")
@@ -488,9 +498,19 @@ groups = [Group(name, **kwargs) for name, kwargs in group_names]
 # Add ScratchPad for dropdowns
 groups.append(
     ScratchPad("scratchpad", [
+        # DropDown(
+        #     "ranger",
+        #     terminal + " -e ranger",  # Using your terminal variable
+        #     opacity=0.9,
+        #     height=0.7,
+        #     width=0.7,
+        #     x=0.15,
+        #     y=0.15,
+        #     on_focus_lost_hide=True  # Changed to True for traditional behavior
+        # ),
         DropDown(
-            "ranger",
-            terminal + " -e ranger",  # Using your terminal variable
+            "yazi",
+            terminal + " -e yazi",  # Using your terminal variable
             opacity=0.9,
             height=0.7,
             width=0.7,
@@ -580,17 +600,21 @@ layouts = [
     # layout.VerticalTile(),
     # layout.Zoomy(),
     # layout.MonadWide(**current_theme['layout_theme']),
+    layout.Max(**current_theme['layout_theme']),
     layout.TreeTab(
         **current_theme['layout_theme'],
         panel_width = 120,
         place_right = True,
-        sections = ["terminal", "file manager", "editor"],
+        sections = ["Manager", "Ide"],
     ),
     layout.MonadTall(
         **current_theme['layout_theme'],
         change_ratio = 0.07
     ),
-    layout.Max(**current_theme['layout_theme']),
+    layout.MonadThreeCol(
+        **current_theme['layout_theme'],
+        ratio = 0.7,
+    ),
 ]
 #+end_src
 
