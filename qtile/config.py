@@ -341,7 +341,7 @@ keys = [
     Key(
         [mod, "shift"],
         "Return",
-        lazy.group["scratchpad"].dropdown_toggle("lunarvim"),
+        lazy.group["scratchpad"].dropdown_toggle("nekovim"),
         desc="Toggle Lazygit dropdown"
     ),
     # screenshot
@@ -493,13 +493,14 @@ groups.append(
             on_focus_lost_hide=True
         ),
         DropDown(
-            "lunarvim",
-            terminal + " -e bash -c 'cd /run/media/nekomangini/D/scratchpad-files/ && lvim'",
+            "nekovim",
+            # terminal + " -e bash -c 'cd /run/media/nekomangini/D/scratchpad-files/ && env NVIM_APPNAME=\"nekovim\" nvim'",
+            "bash -c 'cd /run/media/nekomangini/D/scratchpad-files/ && env NVIM_APPNAME=\"nekovim\" neovide'",
             opacity=0.9,
-            height=0.7,
-            width=0.7,
-            x=0.15,
-            y=0.15,
+            height=0.9,
+            width=0.9,
+            x=0.05,
+            y=0.05,
             on_focus_lost_hide=True
         ),
         DropDown(

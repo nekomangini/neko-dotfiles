@@ -6,6 +6,8 @@ options=(
   "joplin"
   "obsidian"
   "appflowy"
+  "ticktick"
+  "todoist"
 )
 
 # rofi selection
@@ -31,6 +33,12 @@ case "$selected" in
   ;;
 "appflowy")
   gtk-launch appflowy &
+  ;;
+"ticktick")
+  /home/nekomangini/Ticktick/ticktick.AppImage &
+  ;;
+"todoist")
+  /home/nekomangini/Todoist/Todoist-linux-9.17.0-x86_64-latest.AppImage &
   ;;
 *)
   echo "Invalid selection: $selected"
