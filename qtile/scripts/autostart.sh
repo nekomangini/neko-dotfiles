@@ -26,7 +26,7 @@ wezterm start -- tmux new-session -A -s main &
 
 # --- Task Management Tools ---
 sleep 1
-"${HOME}/Ticktick/ticktick-6.0.30-x86_64.AppImage" &
+"${HOME}/Ticktick/ticktick.AppImage" &
 gtk-launch appflowy &
 
 # --- Browser ---
@@ -41,6 +41,8 @@ emacs --daemon="nekoserver" &
 sleep 30 # Keep the final sleep, as some apps take a long time
 
 EMACS_SERVER_NAME="nekoserver"
+# IMPORTANT: Update the socket path to the correct location
+# Use $XDG_RUNTIME_DIR for /run/user/<UID> portability
 EMACS_SOCKET_PATH="$XDG_RUNTIME_DIR/emacs/${EMACS_SERVER_NAME}"
 
 # --- BEGIN DEBUG CHECKS (or combined IF) ---
@@ -81,6 +83,7 @@ CHECK_EMACS_SOCKET=$(
 echo "Emacs pgrep exit status: $PGREP_EMACS" >>"${HOME}/.local/share/qtile_autostart_debug.log"
 echo "Emacs socket check exit status: $CHECK_EMACS_SOCKET" >>"${HOME}/.local/share/qtile_autostart_debug.log"
 
+# --- IF STATEMENT ---
 if [ "$PGREP_WEZTERM" -eq 0 ] &&
   [ "$PGREP_TICKTICK" -eq 0 ] &&
   [ "$PGREP_APPFLOWY" -eq 0 ] &&
