@@ -62,7 +62,7 @@ F = "no_op"
 q = ":quit"
 
 [keys.normal.space.f]
-F = "file_picker_in_current_buffer_directory"
+F = "file_picker_in_current_directory"
 f = "file_picker"
 o = ":open ~/.config/helix/config.toml"
 s = ":write"
