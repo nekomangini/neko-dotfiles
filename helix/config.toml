@@ -4,9 +4,10 @@
 # theme = "base16_transparent" # transparent background
 # theme = "catppuccin_frappe"
 # theme = "curzon"
+# theme = "github_dark"
 # theme = "github_dark_dimmed"
 # theme = "gruvbox"
-# theme = "gruvbox_dark_hard"
+theme = "gruvbox_dark_hard"
 # theme = "heisenberg" # blinking comments because of wezterm
 # theme = "kanagawa"
 # theme = "material_deep_ocean"
@@ -15,7 +16,7 @@
 # theme = "rose_pine_moon"
 # theme = "starlight"
 # theme = "term16_dark"
-theme = "tokyonight_moon"
+# theme = "tokyonight_moon"
 
 [editor]
 line-number = "relative"
@@ -35,16 +36,35 @@ select = "underline"
 cursor-line = "error"
 # Minimum severity to show a diagnostic on other lines:
 # other-lines = "error"
+# Whitesponge helix video [Helix in 2025? MORE TIPS & TRICKS! [https://youtu.be/muF2A4HC3MI?si=kNX1r6SYBzjgZSpq]]
+[editor.lsp]
+display-inlay-hints = true
 
 [keys.insert]
 j = { k = "normal_mode" }
 
-[keys.normal."space"]
+# yazi
+[keys.normal]
+C-y = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]
 
+# lazygit
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+
+[keys.normal.space]
+# deletes keybind
+F = "no_op"
 q = ":quit"
 
+[keys.normal.space.f]
+F = "file_picker_in_current_buffer_directory"
+f = "file_picker"
+o = ":open ~/.config/helix/config.toml"
+s = ":write"
 # overwrite space-w(C-w is the alternative keybind)
-w = ":write"
-
-[editor.lsp]
-display-inlay-hints = true
+# w = ":write"
