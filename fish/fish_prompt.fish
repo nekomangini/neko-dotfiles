@@ -1,6 +1,4 @@
-# Harleen Theme. Made with <3.
-# code from https://github.com/aneveux/theme-harleen/blob/master/fish_prompt.fish
-
+# inspired from scorphish theme(https://github.com/oh-my-fish/theme-scorphish)
 function _git_branch_name
     echo (command git symbolic-ref HEAD 2> /dev/null | sed -e 's|^refs/heads/||')
 end
@@ -9,63 +7,103 @@ function _is_git_dirty
     echo (command git status -s --ignore-submodules=dirty 2> /dev/null)
 end
 
-function fish_prompt
-    # Retrieving status of last command
-    # Directly using it to set colors for displaying prompt symbols
-    test $status -ne 0
-    and set -l last_status_colors 666 aaa f02093
-    or set -l last_status_colors 666 aaa 03adf1
+function _git_ahead_count -a remote -a branch_name
+    echo (command git log $remote/$branch_name..HEAD 2> /dev/null | \
+    grep '^commit' | wc -l | tr -d ' ')
+end
 
-    # Defining some helper functions for playing with colors.
-    # Thanks to http://www.colourlovers.com/palette/4537580/lisa_frank_rainbow~ for the colors inspiration :)
-    set -l color_pink (set_color -o f02093)
-    set -l color_yellow (set_color -o fdf215)
-    set -l color_green (set_color -o abd543)
-    set -l color_blue (set_color -o 03adf1)
-    set -l color_purple (set_color -o a23095)
-    set -l color_dim (set_color -o c0c0c0)
-    set -l color_off (set_color -o normal)
-
-    # Defining symbols to use for information in Git repositories
-    set -l stashed "^"
-    set -l ahead "↑"
-    set -l behind "↓"
-    set -l diverged "⥄ "
-    set -l dirty "*"
-    set -l none ""
-
-    # output the prompt, left to right
-
-    # Add a newline before prompts
-    echo -e ""
-
-    # Display [venvname] if in a virtualenv
-    if set -q VIRTUAL_ENV
-        echo -n -s (set_color -b cyan black) '['(basename "$VIRTUAL_ENV") ']' $normal ' '
-    end
-
-    # Display the current directory name
-    set -l cwd (basename (prompt_pwd))
-    echo -n -s $color_blue "("$color_dim $cwd $color_blue")" $color_off " "
-
-    # Show git branch and dirty state
-    if [ (_git_branch_name) ]
-        set -l git_branch '('(_git_branch_name) ')'
-
-        if [ (_is_git_dirty) ]
-            set git_info $red $git_branch " ★ "
-        else
-            set git_info $green $git_branch
+function _git_dirty_remotes -a remote_color -a ahead_color
+    set current_branch (command git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    set current_ref (command git rev-parse HEAD 2> /dev/null)
+    for remote in (git remote | grep 'origin\|upstream')
+        set -l git_ahead_count (_git_ahead_count $remote $current_branch)
+        set remote_branch "refs/remotes/$remote/$current_branch"
+        set remote_ref (git for-each-ref --format='%(objectname)' $remote_branch)
+        if test "$remote_ref" != ''
+            if test "$remote_ref" != $current_ref
+                if [ $git_ahead_count != 0 ]
+                    echo -n "$remote_color!"
+                    echo -n "$ahead_color+$git_ahead_count$normal"
+                end
+            end
         end
-        echo -n -s '· ' $git_info $normal
+    end
+end
+
+function _prompt_git -a gray normal orange red yellow
+    test "$theme_display_git" = no; and return
+    set -l git_branch (_git_branch_name)
+    test -z $git_branch; and return
+    if test "$theme_display_git_dirty" = no
+        echo -n -s $gray '‹' $yellow $git_branch $gray '› '
+        return
+    end
+    set dirty_remotes (_git_dirty_remotes $red $orange)
+    if [ (_is_git_dirty) ]
+        echo -n -s $gray '‹' $yellow $git_branch $red '*' $dirty_remotes $gray '› '
+    else
+        echo -n -s $gray '‹' $yellow $git_branch $red $dirty_remotes $gray '› '
+    end
+end
+
+function _prompt_pwd
+    set -l cwd (basename (prompt_pwd))
+    echo -n -s $gray $blue $cwd $gray
+end
+
+function _prompt_status_arrows -a exit_code
+    if test $exit_code -ne 0
+        set arrow_colors red red red red # Red for errors
+    else
+        set arrow_colors green green green green # Green for success
+    end
+    for arrow_color in $arrow_colors
+        set_color $arrow_color
+        printf '»'
+    end
+end
+
+function fish_prompt
+    set -l exit_code $status
+    # Original colors (grayish for loading time)
+    set -l gray (set_color 640)
+    set -l red (set_color red)
+    set -l green (set_color green)
+    set -l yellow (set_color yellow)
+    set -l blue (set_color blue)
+    set -l normal (set_color normal)
+    set -l user_color (set_color green)
+    set -l sep_color (set_color yellow)
+
+    echo -n -s $user_color (whoami) $sep_color "@"
+
+    if test "$theme_display_pwd_on_second_line" != yes
+        _prompt_pwd
     end
 
-    # Finally display the prompt symbols
-    for color in $last_status_colors
-        echo -n (set_color $color)">"
+    printf '%s ⚡️ %0.3fs' $blue (math $CMD_DURATION / 1000)
+
+    if set -q NEKOMANGINI_GIT_INFO_ON_FIRST_LINE
+        set theme_display_git_on_first_line
     end
 
-    # Terminate with a nice prompt char
-    echo -n -s ' ⟩ ' $color_off
+    if set -q theme_display_git_on_first_line
+        _prompt_git $gray $normal $yellow $red $yellow
+    end
 
+    if test "$theme_display_pwd_on_second_line" = yes
+        printf $gray'\n‹'
+        _prompt_pwd
+        printf $gray'›'
+    end
+
+    printf '\n'
+
+    if not set -q theme_display_git_on_first_line
+        _prompt_git $gray $normal $yellow $red $yellow
+    end
+
+    _prompt_status_arrows $exit_code
+    printf ' '
+    set_color normal
 end
