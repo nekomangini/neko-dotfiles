@@ -27,7 +27,7 @@ function ndir
     /home/nekomangini/.config/nvim/                                                             \
     /home/nekomangini/.config/astronvim_v5/                                                     \
     /home/nekomangini/.local/bin/bash-scripts/                                                  \
-    /run/media/nekomangini/D/scratchpad-opensuse/
+    /run/media/nekomangini/D/scratchpad-opensuse/                                               \
     /run/media/nekomangini/D/obsidian-files/nekomangini/                                        \
 
   set -l SELECTED_DIR (printf "%s\n" $DIRECTORIES | fzf --height 40% --reverse --prompt="Select a directory: ")
