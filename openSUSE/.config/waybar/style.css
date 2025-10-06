@@ -1,0 +1,80 @@
+@import "/home/nekomangini/.cache/wal/colors-waybar.css";
+
+* {
+  font-family: "JetBrainsMono", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  border: none;
+}
+
+window#waybar {
+  background: @background;
+  border: 1px solid @color1;
+  color: @color1;
+  padding: 5px;
+  transition:
+    background-color 0.5s,
+    border 0.5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.3;
+}
+
+button {
+  border: none;
+  padding: 5px;
+  background: transparent;
+  color: @color2;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: @color2;
+}
+
+#workspaces button {
+  /* text color */
+  color: @color8;
+  border-radius: 3px;
+  /* padding: 5px 10px; */
+  margin: 5px 5px;
+}
+
+#workspaces button.active {
+  background-color: @color2;
+  color: @sakura-light;
+  font-weight: bold;
+}
+
+#workspaces button.focused {
+  background-color: @color3;
+  color: @white;
+}
+
+#workspaces button.urgent {
+  background-color: @color2;
+  color: @white;
+}
+
+#clock,
+#cpu,
+#memory,
+#pulseaudio,
+#custom-notification,
+#tray {
+  background-color: @color2;
+  color: @foreground;
+  /* color: @tray-bg; */
+  /* border-radius: 5px; */
+  padding: 3px 3px;
+  margin: 5px 5px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+#tray {
+  /* background-color: @tray-bg; */
+  /* border-radius: 5px; */
+  /* padding: 5px 10px; */
+  margin: 5px 5px;
+}

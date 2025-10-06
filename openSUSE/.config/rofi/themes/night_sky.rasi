@@ -1,0 +1,142 @@
+/* ROFI THEME USING THE ENGLISH VIOLET PALETTE */
+/* With colors inspired by polybar scheme */
+
+* {
+    font:               "FiraCode Nerd Font Medium 12";
+    bg0:                #152944; /* Oxford Blue, main background (dark) */
+    bg1:                #172E46; /* Prussian Blue, secondary background */
+    fg0:                #b0b8d1; /* Light text from polybar foreground */
+    fg1:                #8e94b8; /* Secondary text from polybar foreground-alt */
+    accent-color:       #3447C1; /* Violet Blue as primary accent */
+    urgent-color:       #d04a5d; /* Alert color from polybar */
+    active-color:       #293D99; /* Marian Blue as secondary accent */
+    selection-color:    #3D3347; /* English Violet for selections */
+    window-border:      #212433; /* Window color from polybar */
+    background-color:   transparent;
+    text-color:         @fg0;
+    margin:             0;
+    padding:            0;
+    spacing:            0;
+}
+
+window {
+    location:           center;
+    width:              480;
+    background-color:   @bg0;
+    border:             2px;
+    border-color:       @window-border;
+    border-radius:      3px;
+}
+
+inputbar {
+    spacing:            8px;
+    padding:            8px;
+    background-color:   @bg1;
+    border-radius:      2px;
+}
+
+prompt, entry, element-icon, element-text {
+    vertical-align:     0.5;
+}
+
+prompt {
+    text-color:         @accent-color;
+    font:               "FiraCode Nerd Font Bold 12";
+}
+
+entry {
+    text-color:         @fg0;
+    placeholder:        "Type here...";
+    placeholder-color:  @fg1;
+}
+
+textbox {
+    padding:            8px;
+    background-color:   @bg1;
+    text-color:         @fg0;
+}
+
+listview {
+    padding:            4px 0;
+    lines:              8;
+    columns:            1;
+    fixed-height:       false;
+    border:             1px 0 0 0;
+    border-color:       @bg1;
+}
+
+element {
+    padding:            8px;
+    spacing:            8px;
+    border-radius:      2px;
+}
+
+element normal normal {
+    text-color:         @fg0;
+}
+
+element normal urgent {
+    text-color:         @urgent-color;
+}
+
+element normal active {
+    text-color:         @active-color;
+}
+
+element selected {
+    text-color:         @fg0;
+    background-color:   @selection-color;
+}
+
+element selected normal {
+    text-color:         @fg0;
+    background-color:   @selection-color;
+}
+
+element selected urgent {
+    text-color:         @bg0;
+    background-color:   @urgent-color;
+}
+
+element selected active {
+    text-color:         @fg0;
+    background-color:   @active-color;
+}
+
+element alternate normal {
+    background-color:   @bg0;
+    text-color:         @fg0;
+}
+
+element alternate active {
+    text-color:         @active-color;
+}
+
+element-icon {
+    size:               0.8em;
+}
+
+element-text {
+    text-color:         inherit;
+}
+
+mode-switcher {
+    background-color:   @bg1;
+}
+
+button {
+    padding:            8px;
+    background-color:   @bg1;
+    text-color:         @fg1;
+}
+
+button selected {
+    background-color:   @accent-color;
+    text-color:         @fg0;
+}
+
+message {
+    padding:            8px;
+    background-color:   @bg1;
+    text-color:         @fg0;
+}

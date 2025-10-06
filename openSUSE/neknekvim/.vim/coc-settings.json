@@ -1,0 +1,26 @@
+{
+  "perl.navigator.enable": true,
+  "perl.navigator.serverPath": "/usr/local/lib/node_modules/perlnavigator-server/out/server.js",
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+      "initializationOptions": {
+         "cache": {
+           "directory": "/tmp/ccls"
+         } 
+      } 
+    }, 
+    "ocaml-lsp": {
+      "command": "opam",
+      "args": ["config", "exec", "--", "ocamllsp"],
+      "filetypes": ["ocaml", "reason"]
+    },
+    "fortran": {
+      "command": "fortls",
+      "filetypes": ["fortran", "f90"],
+      "rootPatterns": [".fortls", ".git/"] 
+    }, 
+  } 
+}

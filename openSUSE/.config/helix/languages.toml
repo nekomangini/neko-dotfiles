@@ -1,0 +1,318 @@
+# ---------------------------------------------------------------------------------
+# julia
+[[language]]
+name = "julia"
+file-types = ["jl"]
+# comment-token = "#"
+language-servers = ["julia"]
+
+# ---------------------------------------------------------------------------------
+# perl
+[[language]]
+name = "perl"
+scope = "source.perl"
+file-types = [
+  "pl",
+  "pm",
+  "t",
+  "psgi",
+  "raku",
+  "rakumod",
+  "rakutest",
+  "rakudoc",
+  "nqp",
+  "p6",
+  "pl6",
+  "pm6",
+]
+shebangs = ["perl"]
+comment-token = "#"
+language-servers = ["perlnavigator"]
+indent = { tab-width = 2, unit = "  " }
+
+[language-server.perlnavigator]
+command = "perlnavigator"
+args = ["/usr/bin/perlnavigator", "--stdio"]
+
+
+# ---------------------------------------------------------------------------------
+# Dart and Flutter configuration
+[[language]]
+name = "dart"
+scope = "source.dart"
+injection-regex = "dart"
+file-types = ["dart"]
+shebangs = ["dart"]
+roots = ["pubspec.yaml", "pubspec.yml"]
+language-servers = ["dart-lsp"]
+indent = { tab-width = 2, unit = "  " }
+
+[language-server.dart-lsp]
+command = "dart"
+args = ["language-server", "--client-id", "helix"]
+
+[language-server.dart-lsp.config]
+enableSnippets = true
+renameFilesWithClasses = "always"
+completeFunctionCalls = true
+showTodos = true
+format = true
+
+# ---------------------------------------------------------------------------------
+# Rust configuration
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
+[language-server.rust-analyzer.config.cargo]
+features = "all"
+
+# ---------------------------------------------------------------------------------
+# Godot
+[language-server.godot]
+command = "nc"
+args = ["127.0.0.1", "6005"]
+
+[[language]]
+name = "gdscript"
+language-servers = ["godot"]
+
+# ---------------------------------------------------------------------------------
+# ruby
+[[language]]
+name = "ruby"
+formatter = { command = "rubocop", args = [
+  "--stdin",
+  "foo.rb",
+  "-a",
+  "--stderr",
+  "--fail-level",
+  "fatal",
+] }
+
+[language-server.solargraph]
+command = "solargraph"
+args = ["stdio"]
+config = { diagnostics = true, formatting = false }
+
+# ---------------------------------------------------------------------------------
+# Php
+[[language]]
+name = "php"
+scope = "source.php"
+formatter = { command = "php-cs-fixer", args = [
+  "fix",
+  "--using-cache=no",
+  "--quiet",
+] }
+auto-format = true
+
+[language-server.intelephense]
+command = "intelephense"
+args = ["--stdio"]
+
+# ---------------------------------------------------------------------------------
+# go
+[[language]]
+name = "go"
+roots = ["go.work", "go.mod"]
+auto-format = true
+formatter = ["goimports"]
+comment-token = "//"
+language-servers = ["gopls", "golangci-lint-lsp"]
+
+[language-server.golangci-lint-lsp]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-lsp.config]
+command = [
+  "golangci-lint",
+  "run",
+  "--output.json.path",
+  "stdout",
+  "--issues-exit-code=1",
+]
+
+# ---------------------------------------------------------------------------------
+# HTML
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server"]
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+auto-format = false
+
+# ---------------------------------------------------------------------------------
+# CSS
+[[language]]
+name = "css"
+file-types = ["css", "less"]
+language-servers = ["vscode-css-language-server"]
+formatter = { command = 'prettier', args = ["--parser", "css"] }
+auto-format = false
+
+[language-server.vscode-css-language-server]
+command = "vscode-css-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-css-language-server.config]
+css = { validate = { enable = true } }
+scss = { validate = { enable = true } }
+less = { validate = { enable = true } }
+provideFormatter = true
+
+# ---------------------------------------------------------------------------------
+# SCSS
+[[language]]
+name = "scss"
+scope = "source.scss"
+injection-regex = "scss"
+file-types = ["scss"]
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = ["vscode-css-language-server"]
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+
+# ---------------------------------------------------------------------------------
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+format = { enable = true }
+nodePath = ""
+quiet = false
+rulesCustomizations = []
+run = "onType"
+validate = "on"
+experimental = {}
+problems = { shortenToSingleLine = false }
+
+[language-server.eslint.config.codeAction]
+disableRuleComment = { enable = true, location = "separateLine" }
+showDocumentation = { enable = false }
+
+# ---------------------------------------------------------------------------------
+# JAVASCRIPT
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server", "eslint"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+auto-format = true
+
+# TYPESCRIPT
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server", "eslint"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+auto-format = true
+
+# ---------------------------------------------------------------------------------
+# REACT
+[[language]]
+name = "tsx"
+language-servers = ["eslint"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = ["typescript-language-server", "eslint"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+auto-format = true
+
+# ---------------------------------------------------------------------------------
+# JSON
+[[language]]
+name = "json"
+formatter = { command = "prettier", args = ["--parser", "json"] }
+auto-format = true
+
+[language-server.vscode-json-language-server.config]
+json = { validate = { enable = true }, format = { enable = true } }
+provideFormatter = true
+
+# ---------------------------------------------------------------------------------
+# python
+[[language]]
+name = "python"
+language-servers = ["pylsp", "ruff"]
+formatter = { command = "ruff", args = [
+  "format",
+  "--stdin-filename",
+  "file.py",
+  "-",
+] }
+auto-format = true
+indent = { tab-width = 4, unit = "    " }
+
+[language-server.pylsp]
+command = "pylsp"
+
+[language-server.pylsp.config.pylsp.plugins]
+# Disable some plugins to avoid conflicts with ruff
+pycodestyle = { enabled = false }
+mccabe = { enabled = false }
+pyflakes = { enabled = false }
+flake8 = { enabled = false }
+# Keep useful plugins enabled
+jedi_completion = { enabled = true, include_params = true }
+jedi_hover = { enabled = true }
+jedi_references = { enabled = true }
+jedi_signature_help = { enabled = true }
+jedi_symbols = { enabled = true }
+rope_completion = { enabled = true }
+
+[language-server.ruff]
+command = "ruff"
+args = ["server", "--preview"]
+
+[language-server.ruff.config.settings]
+args = ["--config", "pyproject.toml"]
+
+[language-server.jedi]
+command = "jedi-language-server"
+
+[language-server.ty]
+command = "ty"
+args = ["server"]
+
+# ---------------------------------------------------------------------------------
+# Racket
+[[language]]
+name = "scheme"
+scope = "source.scheme"
+injection-regex = "scheme"
+file-types = ["ss", "scm", "rkt"]
+roots = []
+comment-token = ";"
+indent = { tab-width = 2, unit = "  " }
+
+language-servers = ["racket-langserver"]
+
+[language-server.racket-langserver]
+command = "racket"
+args = ["-l", "racket-langserver"]
+
+[[grammar]]
+name = "scheme"
+source = { git = "https://github.com/6cdh/tree-sitter-scheme", rev = "27fb77db05f890c2823b4bd751c6420378df146b" }
+
+### Disables syntax highlighting but still works
+# [[language]]
+# name = "racket"
+# scope = "source.rkt"
+# file-types = ["rkt"]
+# shebangs = ["racket"]
+# comment-token = ";"
+# grammar = "racket" # Or "scheme" as a fallback if 'racket' grammar causes issues
+# language-servers = ["racket-langserver"] # Explicitly specify the LSP
+
+# [language-server.racket-langserver]
+# command = "racket"
+# args = ["-l", "racket-langserver"]
+
+# [[grammar]]
+# name = "racket"
+# # Use the tree-sitter-racket grammar. It's often better than generic scheme.
+# # The 'rev' field ensures you get a specific version.
+# source = { git = "https://github.com/6cdh/tree-sitter-racket", rev = "27fb77db05f890c2823b4bd751c6420378df146b" }

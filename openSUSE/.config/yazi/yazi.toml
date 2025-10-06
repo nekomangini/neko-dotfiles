@@ -1,0 +1,6 @@
+[mgr]
+show_hidden = true
+
+# Use nvim(lazyvim) as the default editor
+[opener]
+edit = [{ run = 'nvim "$@"', block = true }]
