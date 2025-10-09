@@ -1,2 +1,0 @@
-# nekovim
-minimalist vim
