@@ -312,12 +312,13 @@
         rm -f -- "$tmp"
       end
 
+      # TODO:
       function ndir
           set -l DIRECTORIES \
+              "/home/nekomangini/neko-dotfiles" \
               "/run/media/nekomangini/D/Programming/android-projects/" \
               "/run/media/nekomangini/D/Programming/neko-gitjournal" \
               "/run/media/nekomangini/D/Programming/Projects" \
-              "/run/media/nekomangini/D/Programming/neko-dotfiles" \
               "/run/media/nekomangini/D/Programming/fedora-dotfiles" \
               "/run/media/nekomangini/D/Programming/blender-python" \
               "/run/media/nekomangini/D/Programming/scripts" \
