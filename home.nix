@@ -9,11 +9,36 @@
   programs.home-manager.enable = true;
 
   # Example configurations
-  # programs.git = {
-  #   enable = true;
-  #   userName = "nekomangini";
-  #   userEmail = "nekomangini.dev@gmail.com";
-  # };
+  programs.git = {
+    enable = true;
+
+    extraConfig = {
+      core.editor = "hx";
+    };
+  };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      os = {
+        editCommand = "hx";
+      };
+    };
+  };
+
+  programs.yazi = {
+    package = pkgs.yazi.override { _7zz = _7zz-rar; }; 
+
+    keymap = {
+      manager.prepend_keymap = [
+        {
+          on = [ "e" ];
+          run = "shell 'hx \"$@"' --block --confirm";
+          desc = "Edit with Helix";
+        }
+      ];
+    };
+  };
 
   programs.helix = {
     enable = true;
@@ -390,8 +415,6 @@
 
     neovide
     kakoune
-
-    (yazi.override { _7zz = _7zz-rar; })
 
     # CLI tools
     jq

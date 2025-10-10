@@ -135,7 +135,6 @@
 
     # System tools
     git
-    lazygit
     xdg-utils
     shared-mime-info
 
