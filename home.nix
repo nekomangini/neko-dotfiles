@@ -8,7 +8,6 @@
   # Let home-manager manage itself
   programs.home-manager.enable = true;
 
-  # Example configurations
   programs.git = {
     enable = true;
 
@@ -27,13 +26,13 @@
   };
 
   programs.yazi = {
-    package = pkgs.yazi.override { _7zz = _7zz-rar; }; 
+    package = pkgs.yazi.override { _7zz = pkgs._7zz-rar; }; 
 
     keymap = {
       manager.prepend_keymap = [
         {
           on = [ "e" ];
-          run = "shell 'hx \"$@"' --block --confirm";
+          run = ''shell "hx $@" --block --confirm'';
           desc = "Edit with Helix";
         }
       ];
