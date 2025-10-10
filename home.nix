@@ -8,6 +8,9 @@
   # Let home-manager manage itself
   programs.home-manager.enable = true;
 
+  # android
+  programs.adb.enable = true;
+  
   programs.git = {
     enable = true;
 
@@ -412,7 +415,6 @@
       emacsclient -nw -s nekoserver
     '')
 
-
     neovide
     kakoune
 
@@ -441,5 +443,13 @@
     joplin-desktop
     appflowy
     ticktick
+
+    # android
+    android-studio-full
+    clang
+    cmake
+    flutter
+    ninja
+    pkg-config
   ];
 }
