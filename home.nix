@@ -20,7 +20,7 @@
     enable = true;
     settings = {
       os = {
-        editCommand = "hx";
+        edit = "hx";
       };
     };
   };
