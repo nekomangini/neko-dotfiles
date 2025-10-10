@@ -8,9 +8,6 @@
   # Let home-manager manage itself
   programs.home-manager.enable = true;
 
-  # android
-  programs.adb.enable = true;
-  
   programs.git = {
     enable = true;
 
@@ -446,6 +443,7 @@
 
     # android
     android-studio-full
+    android-tools
     clang
     cmake
     flutter
