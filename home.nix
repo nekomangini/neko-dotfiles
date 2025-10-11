@@ -30,7 +30,7 @@
     package = pkgs.yazi.override { _7zz = pkgs._7zz-rar; }; 
 
     keymap = {
-      manager.prepend_keymap = [
+      mgr.prepend_keymap = [
         {
           on = [ "e" ];
           run = ''shell "hx $@" --block --confirm'';
@@ -441,11 +441,9 @@
     appflowy
     ticktick
 
-    # android
-    # clang
-    # cmake
-    # flutter
-    # ninja
-    # pkg-config
+    # nix
+    nil
+    nixd
+    nixfmt-rfc-style
   ];
 }
