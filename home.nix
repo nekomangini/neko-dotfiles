@@ -1,4 +1,4 @@
-{  pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -31,7 +31,7 @@
 
   programs.yazi = {
     enable = true;
-    package = pkgs.yazi.override { _7zz = pkgs._7zz-rar; }; 
+    package = pkgs.yazi.override { _7zz = pkgs._7zz-rar; };
 
     keymap = {
       mgr.prepend_keymap = [
@@ -43,122 +43,6 @@
       ];
     };
   };
-
-  # programs.helix = {
-  #   enable = true;
-  #   package = pkgs.helix;
-
-  #   settings = {
-  #     theme = "everforest_dark";
-  #     editor = {
-  #       line-number = "relative";
-  #       bufferline = "multiple";
-  #       end-of-line-diagnostics = "hint";
-  #       cursor-shape = {
-  #         insert = "bar";
-  #         normal = "block";
-  #         select = "underline";
-  #       };
-  #       lsp.display-inlay-hints = true;
-  #     };
-
-  #     keys = {
-  #       insert.j.k = "normal_mode";
-
-  #       normal = {
-  #         "C-g" = [
-  #           ":new"
-  #           ":insert-output lazygit"
-  #           ":buffer-close!"
-  #           ":redraw"
-  #         ];
-
-  #         "C-y" = [
-  #           ":sh rm -f /tmp/unique-file"
-  #           ":insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file"
-  #           ''
-  #           :insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty
-  #           ''
-  #           ":open %sh{cat /tmp/unique-file}"
-  #           ":redraw"
-  #         ];
-
-  #         "space" = {
-  #           F = "no_op";
-  #           q = ":quit";
-  #         };
-
-  #         space.f = {
-  #           F = "file_picker_in_current_directory";
-  #           b = "file_picker_in_current_buffer_directory";
-  #           f = "file_picker";
-  #           o = ":open ~/.config/helix/config.toml";
-  #           s = ":write";
-  #         };
-  #       };
-  #     };
-  #   };
-
-  #   languages = {
-  #     language = [
-  #       {
-  #         name = "html";
-  #         language-servers = [ "vscode-html-language-server" "emmet-ls" ];
-  #         auto-format = true;
-  #         indent = { tab-width = 2; unit = "  "; };
-  #       }
-  #       {
-  #         name = "css";
-  #         language-servers = [ "vscode-css-language-server" "emmet-ls" ];
-  #         auto-format = true;
-  #         indent = { tab-width = 2; unit = "  "; };
-  #       }
-  #       {
-  #         name = "javascript";
-  #         language-servers = [ "typescript-language-server" "emmet-ls" ];
-  #         auto-format = true;
-  #         indent = { tab-width = 2; unit = "  "; };
-  #       }
-  #       {
-  #         name = "typescript";
-  #         language-servers = [ "typescript-language-server" "emmet-ls" ];
-  #         auto-format = true;
-  #         indent = { tab-width = 2; unit = "  "; };
-  #       }
-  #       {
-  #         name = "jsx";
-  #         language-servers = [ "typescript-language-server" "emmet-ls" ];
-  #         auto-format = true;
-  #         indent = { tab-width = 2; unit = "  "; };
-  #       }
-  #       {
-  #         name = "tsx";
-  #         language-servers = [ "typescript-language-server" "emmet-ls" ];
-  #         auto-format = true;
-  #         indent = { tab-width = 2; unit = "  "; };
-  #       }
-  #     ];
-
-  #     language-server = {
-  #       vscode-html-language-server = {
-  #         command = "vscode-html-language-server";
-  #         args = [ "--stdio" ];
-  #       };
-  #       vscode-css-language-server = {
-  #         command = "vscode-css-language-server";
-  #         args = [ "--stdio" ];
-  #       };
-  #       "typescript-language-server" = {
-  #         command = "typescript-language-server";
-  #         args = [ "--stdio" ];
-  #       };
-  #       "emmet-ls" = {
-  #         command = "emmet-ls";
-  #         args = [ "--stdio" ];
-  #       };
-  #     };
-  #   };
-  # };
 
   programs.kitty = {
     enable = true;
@@ -383,11 +267,38 @@
     '')
     (writeShellScriptBin "sync-notes" ''
       #!/usr/bin/env bash
-      set -e
-      cd /run/media/nekomangini/D/emacs-save-files/emacs-org-sync || exit 1
+      # Use set -euo pipefail for maximum safety
+      set -euo pipefail
+
+      REPO_PATH="/run/media/nekomangini/D/emacs-save-files/emacs-org-sync"
+      COMMIT_MESSAGE="update notes $(date +%m-%d-%Y %H:%M:%S)"
+
+      # 1. Change directory and handle failure explicitly
+      if ! cd "$REPO_PATH"; then
+        echo "ERROR: Could not find or access repository at $REPO_PATH" >&2
+        exit 1
+      fi
+
+      # 2. Add all changes, regardless of where the script is run from
       git add .
-      git commit -m "update notes $(date +%m-%d-%Y)" || echo "Nothing to commit"
-      git push origin main
+
+      # 3. Attempt commit, capturing the output (quietly by default)
+      # The '-a' flag includes tracked files that have been modified and deleted.
+      # The '|| true' ensures the script doesn't exit if there are no changes to commit.
+      if ! git commit -m "$COMMIT_MESSAGE"; then
+        echo "INFO: No changes detected. Skipping commit."
+      else
+        echo "SUCCESS: Changes committed."
+      fi
+
+      # 4. Push changes to the remote
+      echo "INFO: Pushing changes to origin/main..."
+      if git push origin main; then
+        echo "SUCCESS: Notes synchronization complete!"
+      else
+        echo "ERROR: Git push failed. Please check your network or repository status." >&2
+        exit 1
+      fi
     '')
     (writeShellScriptBin "dev-notes" ''
       #!/usr/bin/env bash
