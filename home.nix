@@ -271,7 +271,7 @@
       set -euo pipefail
 
       REPO_PATH="/run/media/nekomangini/D/emacs-save-files/emacs-org-sync"
-      COMMIT_MESSAGE="update notes $(date +%m-%d-%Y %H:%M:%S)"
+      COMMIT_MESSAGE="update notes $(date +%m-%d-%Y)"
 
       # 1. Change directory and handle failure explicitly
       if ! cd "$REPO_PATH"; then
@@ -283,21 +283,18 @@
       git add .
 
       # 3. Attempt commit, capturing the output (quietly by default)
-      # The '-a' flag includes tracked files that have been modified and deleted.
-      # The '|| true' ensures the script doesn't exit if there are no changes to commit.
-      if ! git commit -m "$COMMIT_MESSAGE"; then
-        echo "INFO: No changes detected. Skipping commit."
-      else
+      # Commit changes (if any)
+      if git commit -m "$COMMIT_MESSAGE"; then
         echo "SUCCESS: Changes committed."
-      fi
-
-      # 4. Push changes to the remote
-      echo "INFO: Pushing changes to origin/main..."
-      if git push origin main; then
-        echo "SUCCESS: Notes synchronization complete!"
       else
-        echo "ERROR: Git push failed. Please check your network or repository status." >&2
-        exit 1
+        # Check if it's because there are no changes (exit code 1)
+        # or a real error (other exit codes)
+        if [ $? -eq 1 ]; then
+          echo "INFO: No changes detected. Skipping commit."
+        else
+          echo "ERROR: Git commit failed." >&2
+          exit 1
+        fi
       fi
     '')
     (writeShellScriptBin "dev-notes" ''
