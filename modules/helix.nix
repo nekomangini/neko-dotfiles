@@ -71,7 +71,13 @@
         { name = "jsx"; language-servers = [ "typescript-language-server" "emmet-ls" ]; auto-format = true; indent = { tab-width = 2; unit = "  "; }; }
         { name = "tsx"; language-servers = [ "typescript-language-server" "emmet-ls" ]; auto-format = true; indent = { tab-width = 2; unit = "  "; }; }
 
-        { name = "nix"; language-servers = [ "nix" "nixd" ]; formatter = "nixfmt-rfc-style"; auto-format = true; }
+        # { name = "nix"; language-servers = [ "nix" "nixd" ]; formatter = "nixfmt-rfc-style"; auto-format = true; }
+        { 
+          name = "nix";
+          language-servers = [ "nix" "nixd" ];
+          auto-format = true;
+          formatter = { command = "nixfmt-rfc-style"; };
+        }
       ];
 
       language-server = {
@@ -80,8 +86,8 @@
         "typescript-language-server" = { command = "typescript-language-server"; args = [ "--stdio" ]; };
         "emmet-ls" = { command = "emmet-ls"; args = [ "--stdio" ]; };
 
-        "nix" = { command = "nil"; };
         "nixd" = { command = "nixd"; };
+        # "nix" = { command = "nil"; };
       };
     };
   };
