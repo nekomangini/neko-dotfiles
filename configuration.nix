@@ -103,6 +103,9 @@
     ];
   };
 
+  # flatpak
+  services.flatpak.enable = true;
+
   # syncthing
   services.syncthing = {
     enable = true;
