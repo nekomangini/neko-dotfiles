@@ -442,10 +442,10 @@
     ticktick
 
     # android
-    clang
-    cmake
-    flutter
-    ninja
-    pkg-config
+    # clang
+    # cmake
+    # flutter
+    # ninja
+    # pkg-config
   ];
 }
