@@ -124,18 +124,6 @@
     shell = pkgs.fish;
   };
 
-  # android
-  programs.android = {
-    enable = true;
-    acceptLicenses = true;
-    package = {
-      platform-tools = true;
-      build-tools = [
-        "36.0.0"
-      ];
-    };
-  };
-
   # Enable fish shell
   programs.fish.enable = true;
 
@@ -148,7 +136,6 @@
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
-    android_sdk.accept_license = true;
   };
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
@@ -180,6 +167,7 @@
     leiningen
     clojure-lsp
     clj-kondo
+    jdk24
 
     nodejs_22
     typescript

@@ -442,8 +442,6 @@
     ticktick
 
     # android
-    android-studio-full
-    android-tools
     clang
     cmake
     flutter
