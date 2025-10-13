@@ -5,9 +5,20 @@
   # Helix Editor Configuration (Moved from home.nix)
   # -----------------------------------------------
 
-  programs.helix = {
+  programs.helix = with pkgs; {
     enable = true;
-    package = pkgs.helix;
+
+    extraPackages = [
+      bash-language-server
+      shfmt
+      nil
+      nixd
+      nixfmt-rfc-style
+      clojure-lsp
+      typescript-language-server
+      vscode-langservers-extracted
+      emmet-ls
+    ];
 
     settings = {
       theme = "everforest_dark";
@@ -64,32 +75,131 @@
 
     languages = {
       language = [
-        { name = "html"; language-servers = [ "vscode-html-language-server" "emmet-ls" ]; auto-format = true; indent = { tab-width = 2; unit = "  "; }; }
-        { name = "css"; language-servers = [ "vscode-css-language-server" "emmet-ls" ]; auto-format = true; indent = { tab-width = 2; unit = "  "; }; }
-        { name = "javascript"; language-servers = [ "typescript-language-server" "emmet-ls" ]; auto-format = true; indent = { tab-width = 2; unit = "  "; }; }
-        { name = "typescript"; language-servers = [ "typescript-language-server" "emmet-ls" ]; auto-format = true; indent = { tab-width = 2; unit = "  "; }; }
-        { name = "jsx"; language-servers = [ "typescript-language-server" "emmet-ls" ]; auto-format = true; indent = { tab-width = 2; unit = "  "; }; }
-        { name = "tsx"; language-servers = [ "typescript-language-server" "emmet-ls" ]; auto-format = true; indent = { tab-width = 2; unit = "  "; }; }
+        {
+          name = "html";
+          language-servers = [
+            "vscode-html-language-server"
+            "emmet-ls"
+          ];
+          auto-format = true;
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+        }
+        {
+          name = "css";
+          language-servers = [
+            "vscode-css-language-server"
+            "emmet-ls"
+          ];
+          auto-format = true;
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+        }
+        {
+          name = "javascript";
+          language-servers = [
+            "typescript-language-server"
+            "emmet-ls"
+          ];
+          auto-format = true;
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+        }
+        {
+          name = "typescript";
+          language-servers = [
+            "typescript-language-server"
+            "emmet-ls"
+          ];
+          auto-format = true;
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+        }
+        {
+          name = "jsx";
+          language-servers = [
+            "typescript-language-server"
+            "emmet-ls"
+          ];
+          auto-format = true;
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+        }
+        {
+          name = "tsx";
+          language-servers = [
+            "typescript-language-server"
+            "emmet-ls"
+          ];
+          auto-format = true;
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+        }
 
         # { name = "nix"; language-servers = [ "nix" "nixd" ]; formatter = "nixfmt-rfc-style"; auto-format = true; }
-        { 
+        {
           name = "nix";
-          language-servers = [ "nix" "nixd" ];
+          language-servers = [
+            "nix"
+            "nixd"
+          ];
           auto-format = true;
-          formatter = { command = "nixfmt-rfc-style"; };
+          formatter = {
+            command = "nixfmt-rfc-style";
+          };
+        }
+
+        {
+          name = "bash";
+          language-servers = [ "bash-language-server" ];
+          auto-format = true;
+          formatter = {
+            command = "shfmt";
+          };
         }
       ];
 
       language-server = {
-        vscode-html-language-server = { command = "vscode-html-language-server"; args = [ "--stdio" ]; };
-        vscode-css-language-server = { command = "vscode-css-language-server"; args = [ "--stdio" ]; };
-        "typescript-language-server" = { command = "typescript-language-server"; args = [ "--stdio" ]; };
-        "emmet-ls" = { command = "emmet-ls"; args = [ "--stdio" ]; };
+        vscode-html-language-server = {
+          command = "vscode-html-language-server";
+          args = [ "--stdio" ];
+        };
+        vscode-css-language-server = {
+          command = "vscode-css-language-server";
+          args = [ "--stdio" ];
+        };
+        "typescript-language-server" = {
+          command = "typescript-language-server";
+          args = [ "--stdio" ];
+        };
+        "emmet-ls" = {
+          command = "emmet-ls";
+          args = [ "--stdio" ];
+        };
 
-        "nixd" = { command = "nixd"; };
+        "nixd" = {
+          command = "nixd";
+        };
         # "nix" = { command = "nil"; };
+
+        "bash-language-server" = {
+          command = "bash-language-server";
+          args = [ "start" ];
+        };
+
       };
     };
   };
 }
-

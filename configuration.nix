@@ -5,11 +5,11 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./polkit-rules.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./polkit-rules.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -91,16 +91,17 @@
   nix.gc.automatic = true;
   nix.gc.dates = "daily";
   nix.gc.options = "--delete-older-than 10d";
-  
+
   # 3. Store Optimisation
   nix.settings.auto-optimise-store = true;
 
   # Enable qtile
   services.xserver.windowManager.qtile = {
     enable = true;
-    extraPackages = python3Packages: with python3Packages; [
-      qtile-extras
-    ];
+    extraPackages =
+      python3Packages: with python3Packages; [
+        qtile-extras
+      ];
   };
 
   # flatpak
@@ -119,10 +120,14 @@
   users.users.nekomangini = {
     isNormalUser = true;
     description = "encar salazar";
-    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "adbusers"
+    ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
     shell = pkgs.fish;
   };
@@ -142,12 +147,15 @@
   };
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
     polkit
     kdePackages.polkit-kde-agent-1
 
@@ -168,15 +176,11 @@
     # programming #
     clojure
     leiningen
-    clojure-lsp
     clj-kondo
     jdk24
 
     nodejs_22
     typescript
-    typescript-language-server
-    vscode-langservers-extracted
-    emmet-ls
     # end programming #
 
     # art #
@@ -196,7 +200,7 @@
     hyprshot
     waybar
     # end hyprland #
-    
+
   ];
 
   # Enable policykit
@@ -212,12 +216,12 @@
 
   # Set default applications for file types
   xdg.mime.defaultApplications = {
-    "image/png"  = "org.kde.gwenview.desktop";
+    "image/png" = "org.kde.gwenview.desktop";
     "image/jpeg" = "org.kde.gwenview.desktop";
-    "image/jpg"  = "org.kde.gwenview.desktop";
-    "image/gif"  = "org.kde.gwenview.desktop";
+    "image/jpg" = "org.kde.gwenview.desktop";
+    "image/gif" = "org.kde.gwenview.desktop";
     "image/webp" = "org.kde.gwenview.desktop";
-    "image/bmp"  = "org.kde.gwenview.desktop";
+    "image/bmp" = "org.kde.gwenview.desktop";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -253,7 +257,7 @@
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
 
@@ -262,7 +266,7 @@
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
     powerManagement.enable = false;
 
@@ -272,14 +276,14 @@
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     open = false;
 
     # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
