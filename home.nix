@@ -130,10 +130,5 @@
     joplin-desktop
     appflowy
     ticktick
-
-    # nix
-    nil
-    nixd
-    nixfmt-rfc-style
   ];
 }
