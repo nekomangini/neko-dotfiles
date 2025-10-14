@@ -5,6 +5,8 @@
     ./modules/helix.nix
     ./modules/fish.nix
     ./modules/git.nix
+    ./modules/kitty.nix
+    ./modules/yazi.nix
   ];
 
   home.username = "nekomangini";
@@ -13,27 +15,6 @@
 
   # Let home-manager manage itself
   programs.home-manager.enable = true;
-
-  programs.yazi = {
-    enable = true;
-    package = pkgs.yazi.override { _7zz = pkgs._7zz-rar; };
-
-    keymap = {
-      mgr.prepend_keymap = [
-        {
-          on = [ "e" ];
-          run = ''shell "hx $@" --block --confirm'';
-          desc = "Edit with Helix";
-        }
-      ];
-    };
-  };
-
-  programs.kitty = {
-    enable = true;
-    # Optional: Add any other settings (e.g., font, theme)
-    # font.size = 12.0;
-  };
 
   # User-specific packages
   home.packages = with pkgs; [
