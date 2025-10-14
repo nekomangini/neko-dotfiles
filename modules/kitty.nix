@@ -6,7 +6,10 @@
     enable = true;
     # Optional: Add any other settings (e.g., font, theme)
     # font.size = 12.0;
-    cursor_trail = 1;
+    settings = {
+      cursor_trail = 1;
+      cursor_trail_decay = "0.1 0.4";
+    };
   };
 
 }
