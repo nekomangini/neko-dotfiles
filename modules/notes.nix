@@ -14,11 +14,6 @@
       description = "Enable all note-taking apps and associated scripts.";
     };
 
-    packages = {
-      type = lib.types.listOf pkgs.lib.types.package;
-      default = [ ];
-      description = "List of note-taking packages and scripts.";
-    };
   };
 
   # Define the actual packages/scripts if enabled

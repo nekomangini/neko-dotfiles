@@ -16,6 +16,7 @@
 
   # Let home-manager manage itself
   programs.home-manager.enable = true;
+  notes.enable = true;
 
   # User-specific packages
   home.packages = with pkgs; [
