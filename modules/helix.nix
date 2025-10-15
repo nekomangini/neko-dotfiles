@@ -28,7 +28,7 @@
         end-of-line-diagnostics = "hint";
         cursor-shape = {
           insert = "bar";
-          normal = "block";
+          normal = "underline";
           select = "underline";
         };
         lsp.display-inlay-hints = true;
