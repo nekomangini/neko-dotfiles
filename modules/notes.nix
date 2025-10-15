@@ -1,24 +1,29 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   # Define a new attribute set to export note-related packages/scripts
-  options.config.notesPackages = {
+  options.notes = {
     enable = {
-      type = pkgs.lib.types.bool;
+      type = lib.types.bool;
       default = false;
       description = "Enable all note-taking apps and associated scripts.";
     };
 
     packages = {
-      type = pkgs.lib.types.listOf pkgs.lib.types.package;
+      type = lib.types.listOf pkgs.lib.types.package;
       default = [ ];
       description = "List of note-taking packages and scripts.";
     };
   };
 
   # Define the actual packages/scripts if enabled
-  config = pkgs.lib.mkIf config.notesPackages.enable {
-    notesPackages.packages = with pkgs; [
+  config = lib.mkIf config.notes.enable {
+    home.packages = with pkgs; [
       # Note-taking applications
       logseq
       obsidian
