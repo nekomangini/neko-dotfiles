@@ -4,12 +4,13 @@
   lib,
   ...
 }:
+with lib;
 
 {
   # Define a new attribute set to export note-related packages/scripts
   options.notes = {
     enable = {
-      type = lib.types.bool;
+      type = types.bool;
       default = false;
       description = "Enable all note-taking apps and associated scripts.";
     };
@@ -17,7 +18,7 @@
   };
 
   # Define the actual packages/scripts if enabled
-  config = lib.mkIf config.notes.enable {
+  config = mkIf config.notes.enable {
     home.packages = with pkgs; [
       # Note-taking applications
       logseq
