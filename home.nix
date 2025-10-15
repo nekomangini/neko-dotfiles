@@ -7,6 +7,7 @@
     ./modules/git.nix
     ./modules/kitty.nix
     ./modules/yazi.nix
+    ./modules/notes.nix
   ];
 
   home.username = "nekomangini";
@@ -19,65 +20,6 @@
   # User-specific packages
   home.packages = with pkgs; [
     # Scripts
-    (writeShellScriptBin "helix-joplin" ''
-      #!/usr/bin/env bash
-      COMMAND_ARRAY=("hx" "$@")
-      exec kitty tmux new-session -A -s joplin "''${COMMAND_ARRAY[@]}"
-    '')
-    (writeShellScriptBin "sync-notes" ''
-      #!/usr/bin/env bash
-      # Use set -euo pipefail for maximum safety
-      set -euo pipefail
-
-      REPO_PATH="/run/media/nekomangini/D/emacs-save-files/emacs-org-sync"
-      COMMIT_MESSAGE="update notes $(date +%m-%d-%Y)"
-
-      # 1. Change directory and handle failure explicitly
-      if ! cd "$REPO_PATH"; then
-        echo "ERROR: Could not find or access repository at $REPO_PATH" >&2
-        exit 1
-      fi
-
-      # 2. Add all changes, regardless of where the script is run from
-      git add .
-
-      # 3. Attempt commit, capturing the output (quietly by default)
-      # Commit changes (if any)
-      if git commit -m "$COMMIT_MESSAGE"; then
-        echo "SUCCESS: Changes committed."
-      else
-        # Check if it's because there are no changes (exit code 1)
-        # or a real error (other exit codes)
-        if [ $? -eq 1 ]; then
-          echo "INFO: No changes detected. Skipping commit."
-        else
-          echo "ERROR: Git commit failed." >&2
-          exit 1
-        fi
-      fi
-    '')
-    (writeShellScriptBin "dev-notes" ''
-      #!/usr/bin/env bash
-      DIR="/run/media/nekomangini/D/logseq-files/journals/"
-      FILENAME="$(date +%Y_%m_%d).org"
-      FULLPATH="$DIR/$FILENAME"
-
-      cat <<EOF >>"$FULLPATH"
-      * Learning [[ Topic ]]
-      ** Practiced:
-         - a
-      ** Key insight:
-         - a
-      ** Code snippet:
-         #+BEGIN_SRC
-         #+END_SRC
-      ** Apply to:
-         - a
-      ** Todo for tomorrow:
-         - a
-      EOF
-      emacsclient -c -s 'nekoserver' "$FULLPATH"
-    '')
     (writeShellScriptBin "et" ''
       #!/usr/bin/env bash
       emacsclient -nw -s nekoserver
@@ -104,12 +46,5 @@
     picom
     rofi
     feh
-
-    # notes
-    logseq
-    obsidian
-    joplin-desktop
-    appflowy
-    ticktick
   ];
 }
