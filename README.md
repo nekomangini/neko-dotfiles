@@ -3,5 +3,8 @@
 ## TODO
 
 - [ ] modularize NixOS
+- [ ] Docker
+  - [ ] Android Studio
+  - [ ] Flutter
 
 ## Screenshot
