@@ -7,6 +7,7 @@
     ./modules/git.nix
     ./modules/kitty.nix
     ./modules/yazi.nix
+    ./modules/notes.nix
   ];
 
   home.username = "nekomangini";
@@ -93,12 +94,5 @@
     picom
     rofi
     feh
-
-    # notes
-    logseq
-    obsidian
-    joplin-desktop
-    appflowy
-    ticktick
   ];
 }
