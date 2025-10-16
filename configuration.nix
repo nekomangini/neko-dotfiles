@@ -181,6 +181,8 @@
 
     nodejs_22
     typescript
+
+    rakudo
     # end programming #
 
     # art #
