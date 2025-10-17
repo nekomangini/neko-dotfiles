@@ -8,6 +8,7 @@
     ./modules/kitty.nix
     ./modules/yazi.nix
     ./modules/notes.nix
+    ./modules/scripts.nix
   ];
 
   home.username = "nekomangini";
