@@ -54,8 +54,9 @@
       EOF
       emacsclient -c -s 'nekoserver' "$FULLPATH"
     '')
-    (writeShellScriptBin "qlog" (
-      builtins.readFile /run/media/nekomangini/D/Programming/scripts/qlog.raku
-    ))
+    (writeShellScriptBin "qlog" ''
+      #!/usr/bin/env bash
+      exec /run/media/nekomangini/D/Programming/scripts/qlog.raku "$@"
+    '')
   ];
 }
