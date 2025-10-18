@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -9,6 +9,8 @@
     ./modules/yazi.nix
     ./modules/notes.nix
     ./modules/scripts.nix
+    ./modules/packages.nix
+    ./modules/desktop.nix
   ];
 
   home.username = "nekomangini";
@@ -17,29 +19,4 @@
 
   # Let home-manager manage itself
   programs.home-manager.enable = true;
-
-  # User-specific packages
-  home.packages = with pkgs; [
-    neovide
-    kakoune
-
-    # CLI tools
-    jq
-    poppler
-    fd
-    ripgrep
-    fzf
-    zoxide
-    resvg
-    xclip
-    wl-clipboard
-    eza
-    fastfetch
-
-    # X11/Window manager tools (qtile)
-    dunst
-    picom
-    rofi
-    feh
-  ];
 }
