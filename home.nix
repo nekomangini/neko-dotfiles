@@ -11,6 +11,7 @@
     ./modules/scripts.nix
     ./modules/packages.nix
     ./modules/desktop.nix
+    ./modules/emacs.nix
   ];
 
   home.username = "nekomangini";

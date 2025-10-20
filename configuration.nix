@@ -168,7 +168,7 @@
     shared-mime-info
 
     # doom emacs #
-    emacs-gtk
+    # emacs-gtk
     shellcheck
     pandoc
     # end doom emacs #
@@ -177,6 +177,7 @@
     clojure
     leiningen
     clj-kondo
+
     jdk24
 
     nodejs_22
