@@ -167,12 +167,6 @@
     xdg-utils
     shared-mime-info
 
-    # doom emacs #
-    # emacs-gtk
-    shellcheck
-    pandoc
-    # end doom emacs #
-
     # programming #
     clojure
     leiningen
