@@ -21,7 +21,7 @@
     ];
 
     settings = {
-      theme = "everforest_dark";
+      theme = "doom_acario_dark";
       editor = {
         line-number = "relative";
         bufferline = "multiple";
