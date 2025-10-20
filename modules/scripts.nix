@@ -4,7 +4,7 @@
     # Scripts
     (writeShellScriptBin "et" ''
       #!/usr/bin/env bash
-      emacsclient -nw -s nekoserver
+      emacsclient -nw -c
     '')
 
     (writeShellScriptBin "helix-joplin" ''
@@ -56,7 +56,7 @@
     '')
     (writeShellScriptBin "qlog" ''
       #!/usr/bin/env bash
-      exec /run/media/nekomangini/D/Programming/scripts/qlog.raku "$@"
+      exec /run/media/nekomangini/D/Programming/scripts/nlog.raku "$@"
     '')
   ];
 }
