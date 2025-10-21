@@ -18,27 +18,6 @@
     '')
     (writeShellScriptBin "dev-notes" ''
       #!/usr/bin/env bash
-      DIR="/run/media/nekomangini/D/logseq-files/journals/"
-      FILENAME="$(date +%Y_%m_%d).org"
-      FULLPATH="$DIR/$FILENAME"
-      cat <<EOF >>"$FULLPATH"
-      * Learning [[ Topic ]]
-      ** Practiced:
-        - a
-      ** Key insight:
-        - a
-      ** Code snippet:
-        #+BEGIN_SRC
-        #+END_SRC
-      ** Apply to:
-        - a
-      ** Todo for tomorrow:
-        - a
-      EOF
-      emacsclient -c -s 'nekoserver' "$FULLPATH"
-    '')
-    (writeShellScriptBin "dev-notes" ''
-      #!/usr/bin/env bash
       exec /run/media/nekomangini/D/Programming/scripts/nlog.raku "$@"
     '')
   ];
