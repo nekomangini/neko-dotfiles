@@ -181,31 +181,19 @@
         rm -f -- "$tmp"
       end
 
-      # TODO:
       function ndir
           set -l DIRECTORIES \
-              "/home/nekomangini/neko-dotfiles" \
-              "/run/media/nekomangini/D/Programming/android-projects/" \
-              "/run/media/nekomangini/D/Programming/neko-gitjournal" \
-              "/run/media/nekomangini/D/Programming/Projects" \
-              "/run/media/nekomangini/D/Programming/fedora-dotfiles" \
-              "/run/media/nekomangini/D/Programming/blender-python" \
-              "/run/media/nekomangini/D/Programming/scripts" \
-              "/run/media/nekomangini/D/Programming/git-practice" \
-              "/run/media/nekomangini/D/emacs-save-files/emacs-org-sync" \
-              "/run/media/nekomangini/D/Programming/programming-exercises" \
-              "/run/media/nekomangini/D/game-development/save-files" \
-              "/home/nekomangini/.config/nekovim" \
-              "/home/nekomangini/.config/nvim" \
-              "/home/nekomangini/.config/astronvim_v5" \
-              "/home/nekomangini/.local/bin/bash-scripts"
+              ~/neko-dotfiles \
+              /run/media/nekomangini/D/Programming/{android-projects,neko-gitjournal,Projects,fedora-dotfiles,blender-python,scripts,git-practice,programming-exercises} \
+              /run/media/nekomangini/D/emacs-save-files/emacs-org-sync \
+              /run/media/nekomangini/D/game-development/save-files \
+              ~/.config/{nekovim,nvim,astronvim_v5} \
+              ~/.local/bin/bash-scripts
 
           set -l SELECTED_DIR (printf "%s\n" $DIRECTORIES | fzf --height 40% --reverse --prompt="Select a directory: ")
+
           if test -n "$SELECTED_DIR"
-              cd "$SELECTED_DIR" || begin
-                  echo "Failed to navigate to $SELECTED_DIR"
-                  return 1
-              end
+              cd "$SELECTED_DIR" && echo "Changed to: $SELECTED_DIR" || echo "Failed to navigate to $SELECTED_DIR"
           else
               echo "No directory selected."
           end
