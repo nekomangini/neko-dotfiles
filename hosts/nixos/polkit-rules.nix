@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {

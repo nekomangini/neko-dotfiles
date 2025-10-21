@@ -14,24 +14,7 @@
     '')
     (writeShellScriptBin "sync-notes" ''
       #!/usr/bin/env bash
-      set -euo pipefail
-      REPO_PATH="/run/media/nekomangini/D/emacs-save-files/emacs-org-sync"
-      COMMIT_MESSAGE="update notes $(date +%m-%d-%Y)"
-      if ! cd "$REPO_PATH"; then
-        echo "ERROR: Could not find or access repository at $REPO_PATH" >&2
-        exit 1
-      fi
-      git add .
-      if git commit -m "$COMMIT_MESSAGE"; then
-        echo "SUCCESS: Changes committed."
-      else
-        if [ $? -eq 1 ]; then
-          echo "INFO: No changes detected. Skipping commit."
-        else
-          echo "ERROR: Git commit failed." >&2
-          exit 1
-        fi
-      fi
+      exec /run/media/nekomangini/D/Programming/scripts/sync-notes.raku "$@"
     '')
     (writeShellScriptBin "dev-notes" ''
       #!/usr/bin/env bash
@@ -54,7 +37,7 @@
       EOF
       emacsclient -c -s 'nekoserver' "$FULLPATH"
     '')
-    (writeShellScriptBin "qlog" ''
+    (writeShellScriptBin "dev-notes" ''
       #!/usr/bin/env bash
       exec /run/media/nekomangini/D/Programming/scripts/nlog.raku "$@"
     '')
