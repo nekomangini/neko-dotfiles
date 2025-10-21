@@ -158,7 +158,6 @@
     #  wget
     polkit
     kdePackages.polkit-kde-agent-1
-    hyprpaper
 
     brave
     vivaldi

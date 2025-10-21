@@ -1,11 +1,10 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
 
-    # Using your actual hyprland.conf configuration
     extraConfig = ''
       # MONITORS
       monitor=,preferred,auto,auto
@@ -20,6 +19,7 @@
       # AUTOSTART
       exec-once = waybar
       exec-once = /run/current-system/sw/libexec/polkit-kde-authentication-agent-1
+      exec-once = hyprpaper
 
       # ENVIRONMENT VARIABLES
       env = XCURSOR_SIZE,24

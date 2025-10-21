@@ -4,7 +4,6 @@
   programs.waybar = {
     enable = true;
 
-    # Your actual waybar configuration
     settings = {
       mainBar = {
         layer = "top";
@@ -110,7 +109,6 @@
       };
     };
 
-    # Your actual Rennala/Ranni themed style
     style = ''
       /* Rennala / Ranni the Witch - Redesigned Waybar (GTK3 Compatible) */
       * {
