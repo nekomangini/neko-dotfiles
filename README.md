@@ -6,6 +6,9 @@
 - [ ] Docker
   - [ ] Android Studio
   - [ ] Flutter
+- [ ] notification
+- [ ] rofi-wayland
+- [ ] kitty theme
 
 ## Screenshot
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣴⣶⣶⣶⣾⣿⣿⣿⣿⣶⣶⣶⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
