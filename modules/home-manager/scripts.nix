@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-  sync-notes-script = ../../scripts/sync-notes.raku;
-  nlog-script = ../../scripts/nlog.raku;
+  sync-notes-script = ../scripts/sync-notes.raku;
+  nlog-script = ../scripts/nlog.raku;
 in
 {
   home.packages = with pkgs; [
