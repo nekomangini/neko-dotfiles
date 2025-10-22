@@ -222,7 +222,7 @@
 
       # Screenshot
       bind = ,                    PRINT, exec, hyprshot -m output -m HDMI-A-1
-      bind = $mainMod SHIFT, PRINT, exec, hyprshot -m output -m DVI-D-1
+      bind = $shiftmainMod SHIFT, PRINT, exec, hyprshot -m output -m DVI-D-1
 
       # WINDOW RULES
       windowrule = suppressevent maximize, class:.*
@@ -252,6 +252,7 @@
       windowrule = maximize, class:^(Godot)$
       windowrule = maximize, class:^(libresprite)$
       windowrule = fullscreen, class:^(kitty)$
+      windowrule = fullscreen, class:^(blender)$
 
       # Workspace assignments
       windowrule = workspace 1,  class:kitty
