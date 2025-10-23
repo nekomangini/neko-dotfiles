@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -23,4 +23,9 @@
 
   # Let home-manager manage itself
   programs.home-manager.enable = true;
+
+  home.sessionVariables = {
+    EDITOR = "${pkgs.helix}/bin/hx";
+    VISUAL = "${pkgs.helix}/bin/hx";
+  };
 }
