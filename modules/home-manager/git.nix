@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
 
@@ -6,7 +6,7 @@
     enable = true;
 
     extraConfig = {
-      core.editor = "hx";
+      core.editor = "${pkgs.helix}/bin/hx";
     };
   };
 
@@ -14,7 +14,7 @@
     enable = true;
     settings = {
       os = {
-        edit = "hx";
+        edit = "${pkgs.helix}/bin/hx {{file}}";
       };
     };
   };
