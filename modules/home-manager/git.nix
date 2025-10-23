@@ -14,7 +14,7 @@
     enable = true;
     settings = {
       os = {
-        edit = "${pkgs.helix}/bin/hx {{file}}";
+        edit = "${pkgs.helix}/bin/hx";
       };
     };
   };
