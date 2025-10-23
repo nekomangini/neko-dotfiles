@@ -1,72 +1,96 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+
+let
+  projectDirs = {
+    home = [
+      "${config.home.homeDirectory}/neko-dotfiles"
+      "${config.home.homeDirectory}/.config/nekovim"
+      "${config.home.homeDirectory}/.config/nvim"
+      "${config.home.homeDirectory}/.config/astronvim_v5"
+    ];
+
+    external = lib.optionals (builtins.pathExists "/run/media/nekomangini/D") [
+      "/run/media/nekomangini/D/Programming/android-projects"
+      "/run/media/nekomangini/D/Programming/neko-gitjournal"
+      "/run/media/nekomangini/D/Programming/Projects"
+      "/run/media/nekomangini/D/Programming/fedora-dotfiles"
+      "/run/media/nekomangini/D/Programming/blender-python"
+      "/run/media/nekomangini/D/Programming/scripts"
+      "/run/media/nekomangini/D/Programming/git-practice"
+      "/run/media/nekomangini/D/Programming/programming-exercises"
+      "/run/media/nekomangini/D/emacs-save-files/emacs-org-sync"
+      "/run/media/nekomangini/D/game-development/save-files"
+    ];
+  };
+
+  allDirs = projectDirs.home ++ projectDirs.external;
+  dirList = lib.concatStringsSep "\\n" allDirs;
+in
 
 {
-
   programs.fish = {
     enable = true;
-    package = pkgs.fish;
 
     shellAliases = {
-      ls = "eza -l --header --icons";
-      lg = "lazygit";
+      ls = "${pkgs.eza}/bin/eza -l --header --icons";
+      lg = "${pkgs.lazygit}/bin/lazygit";
     };
-
-    shellInit = ''
-      # paths
-      set -gx EMACS_BIN_PATH $HOME/.config/emacs/bin
-      fish_add_path $HOME/.config/emacs/bin
-    '';
 
     interactiveShellInit = ''
       # --- Return the current Git branch name ---
       function _git_branch_name
-          if not git rev-parse --is-inside-work-tree >/dev/null 2>&1
+          if not ${pkgs.git}/bin/git rev-parse --is-inside-work-tree >/dev/null 2>&1
               return
           end
-          set branch (command git rev-parse --abbrev-ref HEAD 2>/dev/null)
+          set branch (${pkgs.git}/bin/git rev-parse --abbrev-ref HEAD 2>/dev/null)
           echo $branch
       end
 
       # --- Return if Git repo is dirty (has uncommitted changes) ---
       function _is_git_dirty
-          if not git rev-parse --is-inside-work-tree >/dev/null 2>&1
+          if not ${pkgs.git}/bin/git rev-parse --is-inside-work-tree >/dev/null 2>&1
               return
           end
-          set dirty (command git status -s --ignore-submodules=dirty 2>/dev/null)
+          set dirty (${pkgs.git}/bin/git status -s --ignore-submodules=dirty 2>/dev/null)
           echo $dirty
       end
 
       # --- Return number of commits ahead of remote ---
       function _git_ahead_count
-          if not git rev-parse --is-inside-work-tree >/dev/null 2>&1
+          if not ${pkgs.git}/bin/git rev-parse --is-inside-work-tree >/dev/null 2>&1
               return
           end
           set remote $argv[1]
           set branch_name $argv[2]
-          set count (command git log $remote/$branch_name..HEAD 2>/dev/null | grep '^commit' | wc -l | tr -d ' ')
+          set count (${pkgs.git}/bin/git log $remote/$branch_name..HEAD 2>/dev/null | grep '^commit' | wc -l | tr -d ' ')
           echo $count
       end
 
       # --- Check remote differences and display colored symbols ---
       function _git_dirty_remotes
-          if not git rev-parse --is-inside-work-tree >/dev/null 2>&1
+          if not ${pkgs.git}/bin/git rev-parse --is-inside-work-tree >/dev/null 2>&1
               return
           end
 
           set remote_color $argv[1]
           set ahead_color $argv[2]
-          set current_branch (command git rev-parse --abbrev-ref HEAD 2>/dev/null)
-          set current_ref (command git rev-parse HEAD 2>/dev/null)
+          set current_branch (${pkgs.git}/bin/git rev-parse --abbrev-ref HEAD 2>/dev/null)
+          set current_ref (${pkgs.git}/bin/git rev-parse HEAD 2>/dev/null)
 
           # Skip if detached HEAD
           if test "$current_branch" = "HEAD"
               return
           end
 
-          for remote in (git remote | grep -E 'origin|upstream')
+          for remote in (${pkgs.git}/bin/git remote | grep -E 'origin|upstream')
               set git_ahead_count (_git_ahead_count $remote $current_branch)
               set remote_branch "refs/remotes/$remote/$current_branch"
-              set remote_ref (git for-each-ref --format='%(objectname)' $remote_branch)
+              set remote_ref (${pkgs.git}/bin/git for-each-ref --format='%(objectname)' $remote_branch)
 
               if test -n "$remote_ref"
                   if test "$remote_ref" != "$current_ref"
@@ -130,9 +154,6 @@
           set -l blue (set_color blue)
           set -l normal (set_color normal)
 
-          # # Newline before prompt
-          # printf '\n'
-
           # Show user@host and directory
           set_color green
           echo -n (whoami)
@@ -169,28 +190,34 @@
       end
 
       # zoxide
-      zoxide init fish | source
+      ${pkgs.zoxide}/bin/zoxide init fish | source
 
       # yazi
       function y
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
-        yazi $argv --cwd-file="$tmp"
+        ${pkgs.yazi}/bin/yazi $argv --cwd-file="$tmp"
         if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
             builtin cd -- "$cwd"
         end
         rm -f -- "$tmp"
       end
 
+      # ndir - directory jumper
       function ndir
-          set -l DIRECTORIES \
-              ~/neko-dotfiles \
-              /run/media/nekomangini/D/Programming/{android-projects,neko-gitjournal,Projects,fedora-dotfiles,blender-python,scripts,git-practice,programming-exercises} \
-              /run/media/nekomangini/D/emacs-save-files/emacs-org-sync \
-              /run/media/nekomangini/D/game-development/save-files \
-              ~/.config/{nekovim,nvim,astronvim_v5} \
-              ~/.local/bin/bash-scripts
+          set -l DIRECTORIES ${dirList}
+          
+          # Filter to only existing directories
+          set -l EXISTING_DIRS
+          for dir in $DIRECTORIES
+              test -d "$dir" && set -a EXISTING_DIRS "$dir"
+          end
+          
+          if test (count $EXISTING_DIRS) -eq 0
+              echo "No directories available. Check if paths exist." >&2
+              return 1
+          end
 
-          set -l SELECTED_DIR (printf "%s\n" $DIRECTORIES | fzf --height 40% --reverse --prompt="Select a directory: ")
+          set -l SELECTED_DIR (printf "%s\n" $EXISTING_DIRS | ${pkgs.fzf}/bin/fzf --height 40% --reverse --prompt="Select a directory: ")
 
           if test -n "$SELECTED_DIR"
               cd "$SELECTED_DIR" && echo "Changed to: $SELECTED_DIR" || echo "Failed to navigate to $SELECTED_DIR"
@@ -199,5 +226,21 @@
           end
       end
     '';
+  };
+
+  # Declare all dependencies
+  home.packages = with pkgs; [
+    eza
+    fzf
+    zoxide
+  ];
+
+  # Proper PATH management
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.config/emacs/bin"
+  ];
+
+  home.sessionVariables = {
+    EMACS_BIN_PATH = "${config.home.homeDirectory}/.config/emacs/bin";
   };
 }
