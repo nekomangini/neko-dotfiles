@@ -281,7 +281,7 @@
       # Multi-monitor setup
       workspace = 1,  monitor:DVI-D-1
       workspace = 2,  monitor:HDMI-A-1
-      workspace = 3,  monitor:HDMI-A-1
+      workspace = 3,  monitor:DVI-D-1
       workspace = 4,  monitor:HDMI-A-1
       workspace = 5,  monitor:DVI-D-1
       workspace = 6,  monitor:DVI-D-1
