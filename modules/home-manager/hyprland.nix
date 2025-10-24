@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   wayland.windowManager.hyprland = {
@@ -297,8 +297,7 @@
   };
 
   # Install Hyprland-related packages
-  # home.packages = with pkgs; [
-  #   wofi
-  #   hyprshot
-  # ];
+  home.packages = with pkgs; [
+    walker
+  ];
 }
