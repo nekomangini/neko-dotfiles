@@ -9,6 +9,7 @@
     shellAliases = {
       ls = "eza -l --header --icons";
       lg = "lazygit";
+      ff = "fastfetch";
     };
 
     shellInit = ''
