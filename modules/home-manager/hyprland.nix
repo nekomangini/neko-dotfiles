@@ -14,7 +14,8 @@
       $tmux = kitty -e tmux new-session -A -s main
       $fileManager = dolphin
       $doom = emacsclient -c
-      $menu = wofi --show drun
+      # $menu = wofi --show drun
+      $menu = walker
 
       # AUTOSTART
       exec-once = waybar
@@ -297,7 +298,7 @@
   };
 
   # Install Hyprland-related packages
-  home.packages = with pkgs; [
-    walker
-  ];
+  # home.packages = with pkgs; [
+  #   walker
+  # ];
 }
