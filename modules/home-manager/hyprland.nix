@@ -253,6 +253,7 @@
       windowrule = maximize, class:^(libresprite)$
       windowrule = fullscreen, class:^(kitty)$
       windowrule = fullscreen, class:^(blender)$
+      windowrule = fullscreen, class:^(Emacs)$
 
       # Workspace assignments
       # monitor 22'
@@ -260,16 +261,16 @@
       windowrule = workspace 4,  class:brave-browser
       windowrule = workspace 5,  class:ticktick
       windowrule = workspace 5,  class:AppFlowy
-      windowrule = workspace 5,  class:obsidian
       windowrule = workspace 5,  class:Logseq
       windowrule = workspace 5,  class:Joplin
       windowrule = workspace 6,  class:org.kde.gwenview
       windowrule = workspace 6,  class:org.kde.dolphin
-      # monitor 34'
+      # monitor 32'
       windowrule = workspace 2,  class:kitty
       windowrule = workspace 3,  class:Emacs
       windowrule = workspace 3,  class:dev.zed.Zed
       windowrule = workspace 4,  class:org.kde.okular
+      windowrule = workspace 4,  class:obsidian
       windowrule = workspace 7,  class:blender
       windowrule = workspace 8,  class:Houdini FX
       windowrule = workspace 9,  class:gimp-3.0
