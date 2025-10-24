@@ -5,33 +5,6 @@
   ...
 }:
 
-let
-  projectDirs = {
-    home = [
-      "${config.home.homeDirectory}/neko-dotfiles"
-      "${config.home.homeDirectory}/.config/nekovim"
-      "${config.home.homeDirectory}/.config/nvim"
-      "${config.home.homeDirectory}/.config/astronvim_v5"
-    ];
-
-    external = lib.optionals (builtins.pathExists "/run/media/nekomangini/D") [
-      "/run/media/nekomangini/D/Programming/android-projects"
-      "/run/media/nekomangini/D/Programming/neko-gitjournal"
-      "/run/media/nekomangini/D/Programming/Projects"
-      "/run/media/nekomangini/D/Programming/fedora-dotfiles"
-      "/run/media/nekomangini/D/Programming/blender-python"
-      "/run/media/nekomangini/D/Programming/scripts"
-      "/run/media/nekomangini/D/Programming/git-practice"
-      "/run/media/nekomangini/D/Programming/programming-exercises"
-      "/run/media/nekomangini/D/emacs-save-files/emacs-org-sync"
-      "/run/media/nekomangini/D/game-development/save-files"
-    ];
-  };
-
-  allDirs = projectDirs.home ++ projectDirs.external;
-  dirList = lib.concatStringsSep "\\n" allDirs;
-in
-
 {
   programs.fish = {
     enable = true;
@@ -39,6 +12,7 @@ in
     shellAliases = {
       ls = "${pkgs.eza}/bin/eza -l --header --icons";
       lg = "${pkgs.lazygit}/bin/lazygit";
+      ff = "${pkgs.fastfetch}/bin/fastfetch"
     };
 
     interactiveShellInit = ''
@@ -229,11 +203,11 @@ in
   };
 
   # Declare all dependencies
-  home.packages = with pkgs; [
-    eza
-    fzf
-    zoxide
-  ];
+  # home.packages = with pkgs; [
+  #   eza
+  #   fzf
+  #   zoxide
+  # ];
 
   # Proper PATH management
   home.sessionPath = [
