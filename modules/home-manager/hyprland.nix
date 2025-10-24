@@ -257,6 +257,7 @@
       # Workspace assignments
       # monitor 22'
       windowrule = workspace 1,  class:vivaldi-stable
+      windowrule = workspace 4,  class:brave-browser
       windowrule = workspace 5,  class:ticktick
       windowrule = workspace 5,  class:AppFlowy
       windowrule = workspace 5,  class:obsidian
@@ -267,9 +268,8 @@
       # monitor 34'
       windowrule = workspace 2,  class:kitty
       windowrule = workspace 3,  class:Emacs
-      windowrule = workspace 4,  class:brave-browser
+      windowrule = workspace 3,  class:dev.zed.Zed
       windowrule = workspace 4,  class:org.kde.okular
-      windowrule = workspace 4,  class:dev.zed.Zed
       windowrule = workspace 7,  class:blender
       windowrule = workspace 8,  class:Houdini FX
       windowrule = workspace 9,  class:gimp-3.0
@@ -281,8 +281,8 @@
       # Multi-monitor setup
       workspace = 1,  monitor:DVI-D-1
       workspace = 2,  monitor:HDMI-A-1
-      workspace = 3,  monitor:DVI-D-1
-      workspace = 4,  monitor:HDMI-A-1
+      workspace = 3,  monitor:HDMI-A-1
+      workspace = 4,  monitor:DVI-D-1
       workspace = 5,  monitor:DVI-D-1
       workspace = 6,  monitor:DVI-D-1
       workspace = 7,  monitor:HDMI-A-1
