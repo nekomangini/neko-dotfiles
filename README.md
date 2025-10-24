@@ -7,7 +7,7 @@
   - [ ] Android Studio
   - [ ] Flutter
 - [ ] notification
-- [ ] rofi-wayland
+- [X] rofi-wayland
 - [ ] kitty theme
 
 ## Screenshot
