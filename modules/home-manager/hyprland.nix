@@ -255,18 +255,8 @@
       windowrule = fullscreen, class:^(blender)$
 
       # Workspace assignments
-      windowrule = workspace 1,  class:kitty
-      windowrule = workspace 2,  class:zen
-      windowrule = workspace 2,  class:org.qutebrowser.qutebrowser
-      windowrule = workspace 2,  class:vivaldi-stable
-      windowrule = workspace 3,  class:Emacs
-      windowrule = workspace 4,  class:brave-browser
-      windowrule = workspace 4,  class:org.kde.okular
-      windowrule = workspace 4,  class:dev.zed.Zed
-      windowrule = workspace 4,  class:jetbrains-clion
-      windowrule = workspace 4,  class:jetbrains-idea-ce
-      windowrule = workspace 4,  class:jetbrains-pycharm-ce
-      windowrule = workspace 4,  class:jetbrains-studio
+      # monitor 22'
+      windowrule = workspace 1,  class:vivaldi-stable
       windowrule = workspace 5,  class:ticktick
       windowrule = workspace 5,  class:AppFlowy
       windowrule = workspace 5,  class:obsidian
@@ -274,6 +264,12 @@
       windowrule = workspace 5,  class:Joplin
       windowrule = workspace 6,  class:org.kde.gwenview
       windowrule = workspace 6,  class:org.kde.dolphin
+      # monitor 34'
+      windowrule = workspace 2,  class:kitty
+      windowrule = workspace 3,  class:Emacs
+      windowrule = workspace 4,  class:brave-browser
+      windowrule = workspace 4,  class:org.kde.okular
+      windowrule = workspace 4,  class:dev.zed.Zed
       windowrule = workspace 7,  class:blender
       windowrule = workspace 8,  class:Houdini FX
       windowrule = workspace 9,  class:gimp-3.0
@@ -286,8 +282,8 @@
       workspace = 1,  monitor:DVI-D-1
       workspace = 2,  monitor:HDMI-A-1
       workspace = 3,  monitor:HDMI-A-1
-      workspace = 4,  monitor:DVI-D-1
-      workspace = 5,  monitor:HDMI-A-1
+      workspace = 4,  monitor:HDMI-A-1
+      workspace = 5,  monitor:DVI-D-1
       workspace = 6,  monitor:DVI-D-1
       workspace = 7,  monitor:HDMI-A-1
       workspace = 8,  monitor:HDMI-A-1

@@ -7,21 +7,15 @@
 
     settings = {
       main = {
-        font = "FiraCode Nerd Font:size=11";
-
+        font = "FiraCode Nerd Font:size=16";
         icon-theme = "Papirus-Dark";
-
         horizontal-pad = 10;
         vertical-pad = 10;
-        inner-pad = 6;
-
+        inner-pad = 5;
         line-height = 20;
         lines = 10;
-
         use-bold = true;
-
-        width = 40;
-
+        width = 50;
         terminal = "${pkgs.kitty}/bin/kitty";
       };
 
@@ -30,7 +24,6 @@
         radius = 8;
       };
 
-      # Renna/Ranni colors - exact match from waybar theme
       colors = {
         background = "0A0C1CEB";
         text = "E0EBFFFF";
