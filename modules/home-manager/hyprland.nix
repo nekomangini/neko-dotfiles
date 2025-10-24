@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   wayland.windowManager.hyprland = {
@@ -14,7 +14,7 @@
       $tmux = kitty -e tmux new-session -A -s main
       $fileManager = dolphin
       $doom = emacsclient -c
-      $menu = wofi --show drun
+      $menu = fuzzel
 
       # AUTOSTART
       exec-once = waybar
@@ -295,9 +295,4 @@
       workspace = 10, monitor:HDMI-A-1
     '';
   };
-
-  # Install Hyprland-related packages
-  # home.packages = with pkgs; [
-  #   walker
-  # ];
 }

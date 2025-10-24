@@ -136,10 +136,7 @@
   programs.fish.enable = true;
 
   # Enable hyprland
-  # programs.hyprland.enable = true;
-
-  # Install firefox.
-  # programs.firefox.enable = true;
+  programs.hyprland.enable = true;
 
   # Allow unfree packages
   nixpkgs.config = {
@@ -193,9 +190,8 @@
     tmux
 
     # hyprland #
-    wofi
     hyprshot
-    waybar
+    # waybar
     # end hyprland #
 
   ];
