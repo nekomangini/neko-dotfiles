@@ -14,8 +14,7 @@
       $tmux = kitty -e tmux new-session -A -s main
       $fileManager = dolphin
       $doom = emacsclient -c
-      # $menu = wofi --show drun
-      $menu = walker
+      $menu = wofi --show drun
 
       # AUTOSTART
       exec-once = waybar
