@@ -7,7 +7,7 @@
 
     settings = {
       main = {
-        font = "FiraCode Nerd Font:size=16";
+        font = "FiraCode Nerd Font:size=10";
         icon-theme = "Papirus-Dark";
         horizontal-pad = 10;
         vertical-pad = 10;
