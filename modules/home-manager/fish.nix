@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }:
 
@@ -12,7 +11,7 @@
     shellAliases = {
       ls = "${pkgs.eza}/bin/eza -l --header --icons";
       lg = "${pkgs.lazygit}/bin/lazygit";
-      ff = "${pkgs.fastfetch}/bin/fastfetch"
+      ff = "${pkgs.fastfetch}/bin/fastfetch";
     };
 
     interactiveShellInit = ''
@@ -178,8 +177,14 @@
 
       # ndir - directory jumper
       function ndir
-          set -l DIRECTORIES ${dirList}
-          
+        set -l DIRECTORIES \
+                      ~/neko-dotfiles \
+                      /run/media/nekomangini/D/Programming/{android-projects,neko-gitjournal,Projects,fedora-dotfiles,blender-python,scripts,git-practice,programming-exercises} \
+                      /run/media/nekomangini/D/emacs-save-files/emacs-org-sync \
+                      /run/media/nekomangini/D/game-development/save-files \
+                      ~/.config/{nekovim,nvim,astronvim_v5} \
+                      ~/.local/bin/bash-scripts
+
           # Filter to only existing directories
           set -l EXISTING_DIRS
           for dir in $DIRECTORIES
