@@ -16,6 +16,7 @@
     ../modules/home-manager/hyprpaper.nix
     ../modules/home-manager/waybar.nix
     ../modules/home-manager/fuzzel.nix
+    ../modules/home-manager/hyprlock.nix
   ];
 
   home.username = "nekomangini";
