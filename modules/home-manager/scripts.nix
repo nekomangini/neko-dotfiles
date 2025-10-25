@@ -30,5 +30,13 @@ in
         exec ${rakudo}/bin/raku ${nlog-script} "$@"
       '';
     })
+
+    (writeShellApplication {
+      name = "powermenu";
+      runtimeInputs = [ rakudo ];
+      text = ''
+        ${rakudo}/bin/raku ${../scripts/powermenu.raku}
+      '';
+    })
   ];
 }
