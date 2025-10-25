@@ -12,7 +12,7 @@
     ../modules/home-manager/packages.nix
     ../modules/home-manager/desktop.nix
     ../modules/home-manager/emacs.nix
-    ../modules/home-manager/hyprland.nix
+    ../modules/home-manager/hyprland
     ../modules/home-manager/hyprpaper.nix
     ../modules/home-manager/waybar.nix
     ../modules/home-manager/fuzzel.nix
