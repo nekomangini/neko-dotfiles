@@ -15,7 +15,7 @@
     # KEYBINDINGS
 
     # Window management
-    bind = $mainMod, P,            pseudo,
+    bind = $mainMod, X,            pseudo,
     bind = $mainMod, T,            togglesplit,
     bind = $mainMod, V,            togglefloating,
     bind = $mainMod, Q,            killactive,
@@ -27,6 +27,7 @@
     bind = $mainMod  CTRL, RETURN, exec, $tmux
     bind = $mainMod, D, exec,      $menu
     bind = $mainMod, E, exec,      $doom
+    bind = $mainMod, P, exec,      powermenu
 
     # Move focus with mainMod + hjkl
     bind = $mainMod, h, movefocus, l
