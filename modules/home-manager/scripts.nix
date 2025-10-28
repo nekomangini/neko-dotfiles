@@ -38,5 +38,13 @@ in
         ${rakudo}/bin/raku ${../scripts/powermenu.raku}
       '';
     })
+
+    (writeShellApplication {
+      name = "hf";
+      runtimeInputs = [ rakudo ];
+      text = ''
+        ${rakudo}/bin/raku ${../scripts/helix-fzf.raku}
+      '';
+    })
   ];
 }
