@@ -35,7 +35,7 @@
 
     # Workspace assignments
     # monitor 22' (DVI-D-1)
-    windowrule = workspace 1,  class:vivaldi-stable
+    windowrule = workspace 2,  class:vivaldi-stable
     windowrule = workspace 4,  class:brave-browser
     windowrule = workspace 5,  class:ticktick
     windowrule = workspace 5,  class:AppFlowy
@@ -45,7 +45,7 @@
     windowrule = workspace 6,  class:org.kde.dolphin
 
     # monitor 32' (HDMI-A-1)
-    windowrule = workspace 2,  class:kitty
+    windowrule = workspace 1,  class:kitty
     windowrule = workspace 3,  class:Emacs
     windowrule = workspace 3,  class:dev.zed.Zed
     windowrule = workspace 4,  class:org.kde.okular
@@ -59,8 +59,8 @@
     windowrule = workspace 10, class:com.defold.editor.Start
 
     # Multi-monitor setup
-    workspace = 1,  monitor:DVI-D-1
-    workspace = 2,  monitor:HDMI-A-1
+    workspace = 1,  monitor:HDMI-A-1
+    workspace = 2,  monitor:DVI-D-1
     workspace = 3,  monitor:HDMI-A-1
     workspace = 4,  monitor:DVI-D-1
     workspace = 5,  monitor:DVI-D-1
