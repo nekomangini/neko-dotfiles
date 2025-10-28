@@ -14,7 +14,7 @@
     ../modules/home-manager/emacs.nix
     ../modules/home-manager/hyprland
     ../modules/home-manager/hyprpaper.nix
-    ../modules/home-manager/waybar.nix
+    ../modules/home-manager/waybar
     ../modules/home-manager/fuzzel.nix
     ../modules/home-manager/hyprlock.nix
   ];
