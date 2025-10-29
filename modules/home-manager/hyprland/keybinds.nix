@@ -101,6 +101,9 @@
     bind = $mainMod, COMMA,  focusmonitor, DVI-D-1
     bind = $mainMod, PERIOD, focusmonitor, HDMI-A-1
 
+    # Swap workspaces between monitors
+    bind = $mainMod CTRL, PERIOD, swapactiveworkspaces, DVI-D-1 HDMI-A-1
+
     # Multimedia keys
     bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+
     bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
