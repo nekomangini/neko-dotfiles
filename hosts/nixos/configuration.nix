@@ -15,6 +15,19 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # ydotools
+  # Load uinput kernel module
+  boot.kernelModules = [ "uinput" ];
+
+  # Create udev rule for uinput permissions
+  services.udev.extraRules = ''
+    KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+  '';
+
+  # Create uinput group
+  users.groups.uinput = { };
+  # ydotools
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -124,6 +137,8 @@
       "networkmanager"
       "wheel"
       "adbusers"
+      "input"
+      "uinput"
     ];
     packages = with pkgs; [
       kdePackages.kate

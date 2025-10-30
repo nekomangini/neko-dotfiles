@@ -221,5 +221,5 @@
 
   home.sessionVariables = {
     EMACS_BIN_PATH = "${config.home.homeDirectory}/.config/emacs/bin";
-  };
+ };
 }
