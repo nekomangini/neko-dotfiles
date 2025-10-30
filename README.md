@@ -8,7 +8,7 @@
   - [ ] Flutter
 - [ ] notification
 - [X] rofi-wayland
-- [ ] kitty theme
+- [X] kitty theme
 
 ## Screenshot
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣴⣶⣶⣶⣾⣿⣿⣿⣿⣶⣶⣶⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
