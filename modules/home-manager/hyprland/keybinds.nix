@@ -93,6 +93,22 @@
     bindm = $mainMod, mouse:272, movewindow
     bindm = $mainMod, mouse:273, resizewindow
 
+    # Mouse mode with Super + Alt + hjkl
+    binde = $mainMod ALT, h, exec, ydotool mousemove -- -20 0   # Left
+    binde = $mainMod ALT, j, exec, ydotool mousemove -- 0 20    # Down
+    binde = $mainMod ALT, k, exec, ydotool mousemove -- 0 -20   # Up
+    binde = $mainMod ALT, l, exec, ydotool mousemove -- 20 0    # Right
+
+    bind  = $mainMod ALT, SPACE, exec, ydotool click 0xC0       # Left click
+    bind  = $mainMod ALT, RETURN, exec, ydotool click 0xC1      # Right click
+
+
+    # Diagonal directions
+    binde = $mainMod ALT, u, exec, ydotool mousemove -- -40 -40  # Up-Left
+    binde = $mainMod ALT, i, exec, ydotool mousemove -- 40 -40   # Up-Right
+    binde = $mainMod ALT, n, exec, ydotool mousemove -- -40 40   # Down-Left
+    binde = $mainMod ALT, m, exec, ydotool mousemove -- 40 40    # Down-Right
+
     # Move window to monitor
     bind = $mainMod SHIFT, COMMA,  movewindow, mon:DVI-D-1
     bind = $mainMod SHIFT, PERIOD, movewindow, mon:HDMI-A-1
