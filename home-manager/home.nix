@@ -5,7 +5,7 @@
     ../modules/home-manager/helix.nix
     ../modules/home-manager/fish.nix
     ../modules/home-manager/git.nix
-    ../modules/home-manager/kitty.nix
+    ../modules/home-manager/kitty
     ../modules/home-manager/yazi.nix
     ../modules/home-manager/notes.nix
     ../modules/home-manager/scripts.nix
