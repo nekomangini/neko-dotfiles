@@ -4,8 +4,8 @@
 
 - [ ] modularize NixOS
 - [ ] Docker
-  - [ ] Android Studio
-  - [ ] Flutter
+- [X] Android Studio
+- [ ] Flutter
 - [ ] notification
 - [X] rofi-wayland
 - [ ] kitty theme
