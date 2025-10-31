@@ -18,6 +18,7 @@
     ../modules/home-manager/fuzzel.nix
     ../modules/home-manager/hyprlock.nix
     ../modules/home-manager/ydotool.nix
+    ../modules/home-manager/android.nix
   ];
 
   home.username = "nekomangini";
