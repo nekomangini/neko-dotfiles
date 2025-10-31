@@ -3,7 +3,7 @@
 {
   imports = [
     ../modules/home-manager/helix.nix
-    ../modules/home-manager/fish.nix
+    ../modules/home-manager/fish
     ../modules/home-manager/git.nix
     ../modules/home-manager/kitty
     ../modules/home-manager/yazi.nix
