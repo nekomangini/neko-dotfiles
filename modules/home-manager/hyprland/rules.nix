@@ -25,6 +25,7 @@
     windowrule = opaque, noblur, class:^(Houdini FX)$
     windowrule = opaque, noblur, class:^(Godot)$
     windowrule = opaque, noblur, class:^(com.defold.editor.Start)$
+    windowrule = opaque, noblur, class:^(jetbrains-studio)$
 
     # Window behavior
     windowrule = maximize, class:^(Godot)$
@@ -32,24 +33,27 @@
     windowrule = fullscreen, class:^(kitty)$
     windowrule = fullscreen, class:^(blender)$
     windowrule = fullscreen, class:^(Emacs)$
+    windowrule = fullscreen, class:^(jetbrains-studio)$
 
     # Workspace assignments
-    # monitor 22' (DVI-D-1)
-    windowrule = workspace 1,  class:vivaldi-stable
+    # monitor 19' (DVI-D-1)
+    windowrule = workspace 1,  class:kitty
     windowrule = workspace 4,  class:brave-browser
-    windowrule = workspace 5,  class:ticktick
-    windowrule = workspace 5,  class:AppFlowy
-    windowrule = workspace 5,  class:Logseq
-    windowrule = workspace 5,  class:Joplin
+    windowrule = workspace 4,  class:org.kde.okular
     windowrule = workspace 6,  class:org.kde.gwenview
     windowrule = workspace 6,  class:org.kde.dolphin
 
-    # monitor 32' (HDMI-A-1)
-    windowrule = workspace 2,  class:kitty
+
+    # monitor 22' (HDMI-A-1)
+    windowrule = workspace 2,  class:vivaldi-stable
     windowrule = workspace 3,  class:Emacs
     windowrule = workspace 3,  class:dev.zed.Zed
-    windowrule = workspace 4,  class:org.kde.okular
-    windowrule = workspace 4,  class:obsidian
+    windowrule = workspace 3,  class:jetbrains-studio
+    windowrule = workspace 5,  class:ticktick
+    windowrule = workspace 5,  class:AppFlowy
+    windowrule = workspace 5,  class:obsidian
+    windowrule = workspace 5,  class:Logseq
+    windowrule = workspace 5,  class:Joplin
     windowrule = workspace 7,  class:blender
     windowrule = workspace 8,  class:Houdini FX
     windowrule = workspace 9,  class:gimp-3.0
@@ -63,7 +67,7 @@
     workspace = 2,  monitor:HDMI-A-1
     workspace = 3,  monitor:HDMI-A-1
     workspace = 4,  monitor:DVI-D-1
-    workspace = 5,  monitor:DVI-D-1
+    workspace = 5,  monitor:HDMI-A-1
     workspace = 6,  monitor:DVI-D-1
     workspace = 7,  monitor:HDMI-A-1
     workspace = 8,  monitor:HDMI-A-1
