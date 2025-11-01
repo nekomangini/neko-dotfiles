@@ -10,6 +10,34 @@
 - [X] rofi-wayland
 - [ ] kitty theme
 
+---
+
+## Flutter Setup
+### Flutter SDK Path Command
+
+#### Command
+```bash
+dirname $(dirname $(readlink -f $(which flutter)))
+```
+
+#### What it does
+Gets the Flutter SDK root directory on NixOS by resolving symlinks.
+
+#### Breakdown
+1. `which flutter` - find flutter binary path
+2. `readlink -f` - resolve all symlinks
+3. `dirname` (twice) - go up two directories (remove `/bin/flutter`)
+
+#### Output example
+```
+/nix/store/***-flutter-wrapped-3.***-sdk-links
+```
+
+#### Usage
+Configure Flutter SDK path in Android Studio.
+
+---
+
 ## Screenshot
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣴⣶⣶⣶⣾⣿⣿⣿⣿⣶⣶⣶⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣶⣿⡿⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠻⣷⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
