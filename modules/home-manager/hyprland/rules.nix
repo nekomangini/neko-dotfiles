@@ -25,6 +25,7 @@
     windowrule = opaque, noblur, class:^(Houdini FX)$
     windowrule = opaque, noblur, class:^(Godot)$
     windowrule = opaque, noblur, class:^(com.defold.editor.Start)$
+    windowrule = opaque, noblur, class:^(jetbrains-studio)$
 
     # Window behavior
     windowrule = maximize, class:^(Godot)$
@@ -32,6 +33,7 @@
     windowrule = fullscreen, class:^(kitty)$
     windowrule = fullscreen, class:^(blender)$
     windowrule = fullscreen, class:^(Emacs)$
+    windowrule = fullscreen, class:^(jetbrains-studio)$
 
     # Workspace assignments
     # monitor 22' (DVI-D-1)
@@ -48,6 +50,7 @@
     windowrule = workspace 1,  class:kitty
     windowrule = workspace 3,  class:Emacs
     windowrule = workspace 3,  class:dev.zed.Zed
+    windowrule = workspace 3,  class:jetbrains-studio
     windowrule = workspace 4,  class:org.kde.okular
     windowrule = workspace 4,  class:obsidian
     windowrule = workspace 7,  class:blender
