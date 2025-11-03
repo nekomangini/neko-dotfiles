@@ -206,6 +206,8 @@
 
     clang
     cmake
+    gcc
+    gnumake
     # end programming #
 
     # art #
