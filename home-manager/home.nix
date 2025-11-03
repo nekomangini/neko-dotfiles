@@ -19,6 +19,7 @@
     ../modules/home-manager/hyprlock.nix
     ../modules/home-manager/ydotool.nix
     ../modules/home-manager/android.nix
+    ../modules/home-manager/ruby
   ];
 
   home.username = "nekomangini";
