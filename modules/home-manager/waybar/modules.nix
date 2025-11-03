@@ -63,6 +63,7 @@
       max-volume = 150;
       format = "vol {volume}%";
       format-bluetooth = "vol {volume}%";
+      format-muted = "muted";
       nospacing = 1;
       on-click = "pwvucontrol";
       tooltip = false;
