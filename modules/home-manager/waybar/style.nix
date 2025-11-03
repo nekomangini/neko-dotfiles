@@ -149,6 +149,16 @@
         inset 0 1px 2px rgba(255, 100, 100, 0.3);
     }
 
+    /* Muted Audio State */
+    #pulseaudio.muted {
+      background: linear-gradient(135deg, rgba(255, 70, 70, 0.4), rgba(255, 50, 50, 0.35));
+      color: #ffe5e5;
+      border-color: rgba(255, 80, 80, 0.8);
+      box-shadow:
+        0 0 7px rgba(255, 70, 70, 0.6),
+        inset 0 1px 2px rgba(255, 100, 100, 0.3);
+    }
+
     /* System Tray */
     #tray {
       padding: 4px 11px;
