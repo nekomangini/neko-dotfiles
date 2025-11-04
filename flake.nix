@@ -15,9 +15,10 @@
     { nixpkgs, home-manager, ... }@inputs:
     {
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        # desktop
+        neko-desktop = nixpkgs.lib.nixosSystem {
           modules = [
-            ./hosts/nixos/configuration.nix
+            ./hosts/desktop/configuration.nix
 
             # make home-manager as a module of nixos
             # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -28,7 +29,27 @@
               home-manager.backupFileExtension = "bak";
 
               # home-manager.users.nekomangini = import ./home.nix;
-              home-manager.users.nekomangini = import ./home-manager/home.nix;
+              home-manager.users.nekomangini = import ./modules/home-manager/profiles/desktop.nix;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+            }
+          ];
+        };
+
+        # laptop
+        neko-laptop = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/laptop/configuration.nix
+
+            # make home-manager as a module of nixos
+            # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "bak";
+
+              # home-manager.users.nekomangini = import ./home.nix;
+              home-manager.users.nekomangini = import ./modules/home-manager/profiles/laptop.nix;
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
           ];

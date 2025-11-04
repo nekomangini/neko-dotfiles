@@ -6,8 +6,9 @@
     ./autostart.nix
     ./keybinds.nix
     ./rules.nix
-    ../scripts.nix
+    ../shell/scripts.nix
   ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;

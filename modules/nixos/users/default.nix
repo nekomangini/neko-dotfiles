@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  imports = [
+    ./nekomangini.nix
+  ];
+}

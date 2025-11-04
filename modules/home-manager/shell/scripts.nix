@@ -1,9 +1,13 @@
 { pkgs, ... }:
 
 let
-  sync-notes-script = ../scripts/sync-notes.raku;
-  nlog-script = ../scripts/nlog.raku;
+  sync-notes-script = ../../scripts/sync-notes.raku;
+  nlog-script = ../../scripts/nlog.raku;
+  powermenu = ../../scripts/powermenu.raku;
+  helix-fzf = ../../scripts/helix-fzf.raku;
+
 in
+
 {
   home.packages = with pkgs; [
     (writeShellScriptBin "et" ''
@@ -35,7 +39,7 @@ in
       name = "powermenu";
       runtimeInputs = [ rakudo ];
       text = ''
-        ${rakudo}/bin/raku ${../scripts/powermenu.raku}
+        ${rakudo}/bin/raku ${powermenu}
       '';
     })
 
@@ -43,7 +47,7 @@ in
       name = "hf";
       runtimeInputs = [ rakudo ];
       text = ''
-        ${rakudo}/bin/raku ${../scripts/helix-fzf.raku}
+        ${rakudo}/bin/raku ${helix-fzf}
       '';
     })
   ];
