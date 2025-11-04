@@ -8,222 +8,50 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./modules/polkit-rules.nix
+    ./modules/users.nix
+    ../../modules/nixos/users
+    ../../modules/nixos/core/boot.nix
+    ../../modules/nixos/core/locale.nix
+    ../../modules/nixos/core/fonts.nix
+    ../../modules/nixos/core/network.nix
+    ../../modules/nixos/core/nixsetting.nix
+
+    ../../modules/nixos/hardware/audio.nix
+
+    ../../modules/nixos/services/syncthing.nix
+    ../../modules/nixos/services/flatpak.nix
+    ../../modules/nixos/services/printing.nix
+    ../../modules/nixos/services/touchpad.nix
+
+    ../../modules/nixos/desktop/plasma.nix
+    ../../modules/nixos/desktop/xserver.nix
+
+    ../../modules/nixos/window-managers/hyprland.nix
+    ../../modules/nixos/window-managers/qtile.nix
+
+    ../../modules/nixos/programs/fish.nix
+
+    ../../modules/nixos/users
+
+    ../../modules/nixos/maintenance/autoupdate.nix
+
+    ../../modules/nixos/hardware/ydotools.nix
   ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # ydotools
-  # Load uinput kernel module
-  boot.kernelModules = [ "uinput" ];
-
-  # Create udev rule for uinput permissions
-  services.udev.extraRules = ''
-    KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-  '';
-
-  # Create uinput group
-  users.groups.uinput = { };
-  # ydotools
 
   networking.hostName = "neko-laptop"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  #! time.timeZone = "Asia/Manila";
-
-  # Select internationalisation properties.
-  #! i18n.defaultLocale = "en_PH.UTF-8";
-
-  #! i18n.extraLocaleSettings = {
-  #!   LC_ADDRESS = "fil_PH";
-  #!   LC_IDENTIFICATION = "fil_PH";
-  #!   LC_MEASUREMENT = "fil_PH";
-  #!   LC_MONETARY = "fil_PH";
-  #!   LC_NAME = "fil_PH";
-  #!   LC_NUMERIC = "fil_PH";
-  #!   LC_PAPER = "fil_PH";
-  #!   LC_TELEPHONE = "fil_PH";
-  #!   LC_TIME = "fil_PH";
-  #! };
-
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  #! services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  #! services.displayManager.sddm.enable = true;
-  #! services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  #! services.xserver.xkb = {
-  #!   layout = "us";
-  #!   variant = "";
-  #! };
-
-  # Enable CUPS to print documents.
-  #! services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  #! services.pulseaudio.enable = false;
-  #! security.rtkit.enable = true;
-  #! services.pipewire = {
-  #!   enable = true;
-  #!   alsa.enable = true;
-  #!   alsa.support32Bit = true;
-  #!   pulse.enable = true;
-  #!   # If you want to use JACK applications, uncomment this
-  #!   #jack.enable = true;
-
-  #   # use the example session manager (no others are packaged yet so this is enabled by default,
-  #   # no need to redefine it in your config for now)
-  #   #media-session.enable = true;
-  #! };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # ===============================================
-  # AUTOMATIC SYSTEM MAINTENANCE
-  # ===============================================
-
-  # 1. Auto System Update
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.dates = "weekly";
-
-  # 2. Auto Cleanup (Garbage Collection)
-  nix.gc.automatic = true;
-  nix.gc.dates = "daily";
-  nix.gc.options = "--delete-older-than 10d";
-
-  # 3. Store Optimisation
-  nix.settings.auto-optimise-store = true;
-
-  # syncthing
-  services.syncthing = {
-    enable = true;
-    user = "nekomangini";
-    dataDir = "/home/nekomangini/.config/syncthing";
-    configDir = "/home/nekomangini/.config/syncthing";
-    openDefaultPorts = true;
-
-    folders = {
-      "Orgmode-sync-fork" = {
-        path = "/home/nekomangini/sync/orgmode-sync-fork";
-        devices = [ "SM-AO57F" ];
-      };
-      "Logseq-sync-fork" = {
-        path = "/home/nekomangini/sync/logseq-sync-fork";
-        devices = [ "SM-AO57F" ];
-      };
-    };
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.nekomangini = {
-    isNormalUser = true;
-    description = "encar salazar";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "input"
-      "uinput"
-    ];
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
-    shell = pkgs.fish;
-  };
-
-  # Enable fish shell
-  programs.fish.enable = true;
-
-  # Enable hyprland
-  programs.hyprland.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
-
-  # Enable the Flakes feature and the accompanying new nix command-line tool
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
-    polkit
-    kdePackages.polkit-kde-agent-1
-
-    # brave
-    # vivaldi
-
-    # System tools
-    # git
     xdg-utils
-    shared-mime-info
-
-    # programming #
-    clojure
-    leiningen
-    clj-kondo
-
-    jdk24
-
-    #! nodejs_22
-    #! typescript
-
-    #! rakudo
-
-    #! clang
-    #! cmake
-    #! gcc
-    gnumake
-    # end programming #
-
-    # art #
-    #! (blender.override { cudaSupport = true; })
-    #! krita
-    kdePackages.gwenview
-    # end art #
-
-    # terminal #
-    # fish
-    # kitty
     neovim
     tmux
 
-    # hyprland #
     hyprshot
-    # waybar
-    # end hyprland #
-
   ];
-
-  # Enable policykit
-  security.polkit.enable = true;
-
-  # Fonts
-  #! fonts.packages = with pkgs; [
-  #!   nerd-fonts.fira-code
-  #!   nerd-fonts.jetbrains-mono
-  #!   nerd-fonts.droid-sans-mono
-  #!   symbola
-  #! ];
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
