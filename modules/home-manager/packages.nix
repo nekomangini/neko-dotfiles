@@ -3,6 +3,9 @@
   home.packages = with pkgs; [
     neovide
     kakoune
+    dunst
+
+    discord
 
     # CLI
     jq
