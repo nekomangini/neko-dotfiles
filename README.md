@@ -3,14 +3,12 @@
 ## TODO
 
 - [ ] modularize NixOS
-- [ ] Docker
+- [X] Docker
 - [X] Android Studio
 - [X] Flutter
 - [ ] notification
 - [X] rofi-wayland
 - [X] kitty theme
-
----
 
 ## Flutter Setup
 ### Flutter SDK Path Command
@@ -35,8 +33,6 @@ Gets the Flutter SDK root directory on NixOS by resolving symlinks.
 
 #### Usage
 Configure Flutter SDK path in Android Studio.
-
----
 
 ## Screenshot
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣴⣶⣶⣶⣾⣿⣿⣿⣿⣶⣶⣶⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
