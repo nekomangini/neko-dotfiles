@@ -1,5 +1,6 @@
 { pkgs, ... }:
 
+# TODO:
 {
   imports = [
     ../helix.nix
