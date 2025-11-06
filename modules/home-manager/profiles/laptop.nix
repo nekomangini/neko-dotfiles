@@ -3,7 +3,7 @@
 # TODO:
 {
   imports = [
-    ../helix.nix
+    ../helix
     ../shell/fish
     ../shell/scripts.nix
     ../git.nix
