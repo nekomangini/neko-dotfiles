@@ -9,6 +9,7 @@
 - [ ] notification
 - [X] rofi-wayland
 - [X] kitty theme
+- [ ] tmux
 
 ## Flutter Setup
 ### Flutter SDK Path Command
