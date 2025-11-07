@@ -57,11 +57,12 @@
       {
         name = "nix";
         language-servers = [
-          "nil"
           "nixd"
+          "nil"
         ];
         formatter = {
-          command = "nixfmt-rfc-style";
+          # command = "nixfmt-rfc-style";
+          command = "nixfmt";
         };
         auto-format = true;
       }
