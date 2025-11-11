@@ -6,7 +6,7 @@
 - [X] Docker
 - [X] Android Studio
 - [X] Flutter
-- [ ] notification
+- [X] notification
 - [X] rofi-wayland
 - [X] kitty theme
 - [ ] tmux
