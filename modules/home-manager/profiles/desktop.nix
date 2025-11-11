@@ -4,6 +4,7 @@
   imports = [
     ../helix
     ../shell/fish
+    ../dunst
     ../shell/scripts.nix
     ../git.nix
     ../kitty
