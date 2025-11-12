@@ -6,6 +6,8 @@
 
     discord
 
+    vinegar
+
     # CLI
     jq
     poppler
