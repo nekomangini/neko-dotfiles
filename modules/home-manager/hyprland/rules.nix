@@ -34,6 +34,7 @@
     windowrule = fullscreen, class:^(blender)$
     windowrule = fullscreen, class:^(Emacs)$
     windowrule = fullscreen, class:^(jetbrains-studio)$
+    windowrule = fullscreen, class:^(krita)$
 
     # Workspace assignments
     windowrule = workspace 1,  class:kitty
