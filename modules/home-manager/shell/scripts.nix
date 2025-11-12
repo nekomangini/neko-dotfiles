@@ -5,6 +5,7 @@ let
   nlog-script = ../../scripts/nlog.raku;
   powermenu = ../../scripts/powermenu.raku;
   helix-fzf = ../../scripts/helix-fzf.raku;
+  tmux-rails = ../../scripts/tmux-rails.raku;
 
 in
 
@@ -48,6 +49,14 @@ in
       runtimeInputs = [ rakudo ];
       text = ''
         ${rakudo}/bin/raku ${helix-fzf}
+      '';
+    })
+
+    (writeShellApplication {
+      name = "tmuxrails";
+      runtimeInputs = [ rakudo ];
+      text = ''
+        ${rakudo}/bin/raku ${tmux-rails}
       '';
     })
   ];
