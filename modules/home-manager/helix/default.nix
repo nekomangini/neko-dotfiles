@@ -27,5 +27,6 @@
     solargraph
     rufo
     rubocop
+    rubyPackages.htmlbeautifier
   ];
 }

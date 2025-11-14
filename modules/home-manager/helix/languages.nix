@@ -61,7 +61,6 @@
           "nil"
         ];
         formatter = {
-          # command = "nixfmt-rfc-style";
           command = "nixfmt";
         };
         auto-format = true;
@@ -77,15 +76,65 @@
         auto-format = true;
       }
 
-      # --- Ruby / Rails ✅ ---
+      # --- Ruby ---
       {
         name = "ruby";
         language-servers = [
           "ruby-lsp"
           "solargraph"
         ];
+        # rubocop
+        # formatter = {
+        #   command = "rubocop";
+        #   args = [
+        #     "--stdin"
+        #     "file.rb"
+        #     "-a"
+        #     "--stderr"
+        #     "--fail-level"
+        #     "fatal"
+        #   ];
+        # };
+
+        # rufo
         formatter = {
           command = "rufo";
+          args = [ "--simple-exit" ];
+        };
+        auto-format = true;
+      }
+
+      # --- ERB (Embedded Ruby) for Rails views ---
+      {
+        name = "erb";
+        language-servers = [
+          {
+            name = "ruby-lsp";
+            only-features = [
+              "format"
+              "diagnostics"
+            ];
+          }
+          {
+            name = "solargraph";
+            except-features = [
+              "format"
+              "diagnostics"
+            ];
+          }
+          "emmet-ls"
+        ];
+        # Only .erb files, not all .html
+        file-types = [ "erb" ];
+        formatter = {
+          command = "htmlbeautifier";
+          args = [
+            "--tab-stops"
+            "2"
+            # Preserve up to 2 consecutive blank lines
+            "--keep-blank-lines"
+            "2"
+          ];
         };
         auto-format = true;
       }
