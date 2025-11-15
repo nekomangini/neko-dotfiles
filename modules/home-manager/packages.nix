@@ -20,5 +20,12 @@
     wl-clipboard
     eza
     fastfetch
+
+    # Notes
+    logseq
+    obsidian
+    joplin-desktop
+    appflowy
+    ticktick
   ];
 }
