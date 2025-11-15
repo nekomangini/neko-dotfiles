@@ -4,14 +4,13 @@
 {
   imports = [
     ../helix
+    ../qtile
     ../shell/fish
     ../shell/scripts.nix
     ../git.nix
     ../kitty
     ../yazi.nix
-    ../notes.nix
     ../packages.nix
-    ../qtile.nix
     ../emacs.nix
     ../hyprland
     ../hyprpaper.nix
