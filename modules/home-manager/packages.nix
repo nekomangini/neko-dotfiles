@@ -3,10 +3,12 @@
   home.packages = with pkgs; [
     neovide
     kakoune
+    zed-editor
 
     discord
 
     vinegar
+    godot
 
     # CLI
     jq
@@ -25,7 +27,6 @@
     logseq
     obsidian
     joplin-desktop
-    appflowy
     ticktick
   ];
 }
