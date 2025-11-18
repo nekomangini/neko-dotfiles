@@ -507,6 +507,7 @@ screens = [
 
 # ===== MULTI MONITOR SETUP =====
 # Hook to handle dynamic screen reconfiguration
+# TODO:
 @hook.subscribe.screens_reconfigured
 async def _():
     """Handle screen reconfiguration (plugging/unplugging monitors)"""
