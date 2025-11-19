@@ -7,9 +7,9 @@ constant $MORNING_LOGNAME = 'morning-log';
 constant $EVENING_LOGNAME = 'evening-log';
 constant $WEEKLY_LOGNAME = 'weekly-log';
 constant $LOGSEQ_PAGES_PATH = '/run/media/nekomangini/D/logseq-files/pages/';
-constant $MORNING_LOG_PATH = '/run/media/nekomangini/D/emacs-save-files/emacs-org-sync/2-areas/dev-logs/morning-logs/';
-constant $EVENING_LOG_PATH = '/run/media/nekomangini/D/emacs-save-files/emacs-org-sync/2-areas/dev-logs/evening-logs/';
-constant $WEEKLY_LOG_PATH = '/run/media/nekomangini/D/emacs-save-files/emacs-org-sync/2-areas/dev-logs/weekly-logs/';
+constant $MORNING_LOG_PATH = '/run/media/nekomangini/D/emacs-org-sync/2-areas/dev-logs/morning-logs/';
+constant $EVENING_LOG_PATH = '/run/media/nekomangini/D/emacs-org-sync/2-areas/dev-logs/evening-logs/';
+constant $WEEKLY_LOG_PATH = '/run/media/nekomangini/D/emacs-org-sync/2-areas/dev-logs/weekly-logs/';
 
 
 constant $MORNING_TEMPLATE = qq:to/END/;
