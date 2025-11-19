@@ -1,7 +1,7 @@
 #!/usr/bin/env raku
 use v6.d;
 
-constant $REPO_PATH = '/run/media/nekomangini/D/emacs-save-files/emacs-org-sync';
+constant $REPO_PATH = '/run/media/nekomangini/D/emacs-org-sync';
 constant $DATE_TODAY = DateTime.now(formatter => {sprintf "%d-%d-%d", .month, .day, .year});
 constant $COMMIT_MESSAGE = "update notes $DATE_TODAY";
 
