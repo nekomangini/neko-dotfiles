@@ -4,6 +4,7 @@
   imports = [
     ./alias.nix
     ./functions.nix
+    ./keybinds.nix
   ];
 
   programs.fish = {
