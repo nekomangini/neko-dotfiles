@@ -204,8 +204,7 @@ keys = [
     Key([mod], "x", lazy.window.toggle_minimize(),   desc="Toggle minimize (pseudo)"),
     
     # Cycle through windows
-    # TODO:
-    Key([mod], "w", lazy.layout.next(), desc="Cycle to next window"),
+    Key([mod], "w", lazy.spawn("rofi -show window"), desc="Select window"),
     
     # ===== LAUNCH APPLICATIONS =====
     Key([mod], "Return", lazy.spawn(terminal),                                                desc="Launch terminal"),
