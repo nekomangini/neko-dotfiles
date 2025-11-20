@@ -6,6 +6,7 @@ let
   powermenu = ../../scripts/powermenu.raku;
   helix-fzf = ../../scripts/helix-fzf.raku;
   tmux-rails = ../../scripts/tmux-rails.raku;
+  helix-findword = ../../scripts/helix-findword.raku;
 
 in
 
@@ -57,6 +58,14 @@ in
       runtimeInputs = [ rakudo ];
       text = ''
         ${rakudo}/bin/raku ${tmux-rails}
+      '';
+    })
+
+    (writeShellApplication {
+      name = "hw";
+      runtimeInputs = [ rakudo ];
+      text = ''
+        exec ${rakudo}/bin/raku ${helix-findword} "$@"
       '';
     })
   ];

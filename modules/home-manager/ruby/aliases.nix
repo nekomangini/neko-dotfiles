@@ -3,26 +3,26 @@
 {
   programs.fish.shellAliases = {
     # Rails commands
-    rc = "rails console";
-    rs = "rails server";
-    rg = "rails generate";
-    rd = "rails destroy";
+    rails-c = "rails console";
+    rails-s = "rails server";
+    rails-g = "rails generate";
+    rails-d = "rails destroy";
 
     # Database
-    rdb = "rails db:migrate";
-    rdbr = "rails db:rollback";
-    rdbs = "rails db:seed";
-    rdbc = "rails db:create";
-    rdbd = "rails db:drop";
-    rdbm = "rails db:migrate:status";
+    rails-db = "rails db:migrate";
+    rails-dbr = "rails db:rollback";
+    rails-dbs = "rails db:seed";
+    rails-dbc = "rails db:create";
+    rails-dbd = "rails db:drop";
+    rails-dbm = "rails db:migrate:status";
 
     # Testing
-    rt = "rails test";
-    rspec = "bundle exec rspec";
+    rail-st = "rails test";
+    rail-sspec = "bundle exec rspec";
 
     # Bundler
-    be = "bundle exec";
-    bi = "bundle install";
-    bu = "bundle update";
+    bundle-e = "bundle exec";
+    bundle-i = "bundle install";
+    bundle-u = "bundle update";
   };
 }
