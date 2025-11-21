@@ -43,17 +43,16 @@
       # Focus exclusions - prevent these from becoming transparent when inactive
       focus-exclude = [
         "class_g = 'Vivaldi-stable'"
+        "class_g = 'Brave-browser'"
         "class_g = 'okular'"
       ];
 
       # Opacity rules for specific applications
       opacity-rule = [
-        "90:class_g = 'Emacs'"
-        "90:class_g = 'kitty'"
         "90:class_g = 'qutebrowser'"
         "100:class_g = 'Godot'"
         "100:class_g = 'jetbrains-studio'"
-        "100:class_g = 'Brave-browser' && !focused"
+        # "100:class_g = 'Brave-browser' && !focused"
         "100:class_g = 'dev.zed.Zed'"
       ];
 
