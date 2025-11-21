@@ -68,6 +68,8 @@
 
     jdk24
 
+    lua
+
     nodejs_22
     typescript
 
