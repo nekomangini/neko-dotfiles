@@ -35,7 +35,7 @@
     remember_window_size = "yes";
     initial_window_width = "1200";
     initial_window_height = "700";
-    window_padding_width = 10;
+    window_padding_width = 2;
     window_border_width = "1.0";
     draw_minimal_borders = "yes";
 
@@ -57,9 +57,9 @@
     bell_on_tab = "yes";
 
     # Opacity and blur
-    # background_opacity = "0.92";
-    # background_blur = 32;
-    # dynamic_background_opacity = "yes";
+    background_opacity = "0.70";
+    background_blur = 32;
+    dynamic_background_opacity = "yes";
 
     # Confirm close
     confirm_os_window_close = -1;
