@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    neovide
     kakoune
     zed-editor
 
@@ -22,6 +21,7 @@
     wl-clipboard
     eza
     fastfetch
+    unzip
 
     # Notes
     logseq
