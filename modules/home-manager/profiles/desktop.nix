@@ -3,6 +3,8 @@
 {
   imports = [
     ../helix
+    ../neovim/astronvim.nix
+    ../neovide
     ../qtile
     ../shell/fish
     ../dunst
