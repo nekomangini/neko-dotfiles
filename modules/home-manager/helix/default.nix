@@ -19,6 +19,8 @@
 
     clojure-lsp
 
+    astro-language-server
+    svelte-language-server
     typescript-language-server
     vscode-langservers-extracted
     emmet-ls

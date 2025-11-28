@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.helix.languages.language-server = {
@@ -15,6 +15,22 @@
 
     "emmet-ls" = {
       command = "emmet-ls";
+      args = [ "--stdio" ];
+    };
+
+    "astro-ls" = {
+      command = "astro-ls";
+      args = [ "--stdio" ];
+      config = {
+        typescript = {
+          # tsdk = "node_modules/typescript/lib";
+          tsdk = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib";
+        };
+      };
+    };
+
+    "svelteserver" = {
+      command = "svelteserver";
       args = [ "--stdio" ];
     };
 
