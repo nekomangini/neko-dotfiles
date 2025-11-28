@@ -52,6 +52,30 @@
         ];
         auto-format = true;
       }
+      # --- Astro ---
+      {
+        name = "astro";
+        scope = "source.astro";
+        injection-regex = "astro";
+        file-types = [ "astro" ];
+        roots = [
+          "package.json"
+          "astro.config.mjs"
+        ];
+        language-servers = [
+          "astro-ls"
+          "emmet-ls"
+        ];
+        auto-format = true;
+      }
+      # --- Svelte ---
+      {
+        name = "svelte";
+        language-servers = [
+          "svelteserver"
+          "emmet-ls"
+        ];
+      }
 
       # --- Nix ---
       {

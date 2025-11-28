@@ -15,6 +15,7 @@
     ../packages.nix
     ../emacs.nix
     ../hyprland
+    ../niri
     ../hyprpaper.nix
     ../waybar
     ../fuzzel.nix

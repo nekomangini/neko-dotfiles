@@ -30,6 +30,7 @@
 
     ../../modules/nixos/window-managers/hyprland.nix
     ../../modules/nixos/window-managers/qtile.nix
+    ../../modules/nixos/window-managers/niri.nix
 
     ../../modules/nixos/programs/fish.nix
     ../../modules/nixos/programs/adb.nix
@@ -79,6 +80,9 @@
     cmake
     gcc
     gnumake
+
+    rustup
+    lldb
     # end programming #
 
     # art #
