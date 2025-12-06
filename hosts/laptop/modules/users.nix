@@ -21,7 +21,8 @@
       nodejs_22
       typescript
 
-      jdk24
+      # jdk24 # EOF
+      jdk21_headless
 
       rakudo
     ];
