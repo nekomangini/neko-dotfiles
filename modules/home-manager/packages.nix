@@ -5,8 +5,8 @@
     zed-editor
 
     discord
+    libreoffice
 
-    vinegar
     godot
 
     # CLI
@@ -22,6 +22,7 @@
     eza
     fastfetch
     unzip
+    woeusb
 
     # Notes
     logseq
