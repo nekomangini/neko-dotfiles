@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     android-studio
     android-tools
-    android-udev-rules
+    # android-udev-rules
     gradle
     jdk17
 
