@@ -67,7 +67,8 @@
     leiningen
     clj-kondo
 
-    jdk24
+    # jdk24 # EOF
+    jdk21_headless
 
     lua
 
