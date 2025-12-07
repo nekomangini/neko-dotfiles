@@ -23,6 +23,7 @@
     fastfetch
     unzip
     woeusb
+    htop
 
     # Notes
     logseq
