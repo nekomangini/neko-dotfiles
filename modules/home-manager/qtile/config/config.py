@@ -359,7 +359,7 @@ def create_widgets(monitor=0):
             linewidth=0,
             padding=6,
         ),
-        widget.CurrentLayoutIcon(
+        widget.CurrentLayout(
             scale=0.65,
             padding=8,
             foreground=colors["orange"],
