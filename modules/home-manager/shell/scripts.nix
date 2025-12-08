@@ -12,8 +12,12 @@ in
 
 {
   home.packages = with pkgs; [
+    (writeShellScriptBin "ed" ''
+      exec ${emacs-gtk}/bin/emacsclient -nw
+    '')
+
     (writeShellScriptBin "et" ''
-      exec ${emacs-gtk}/bin/emacsclient -nw -c
+      exec ${emacs-gtk}/bin/emacs -nw
     '')
 
     (writeShellScriptBin "helix-joplin" ''
