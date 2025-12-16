@@ -2,6 +2,16 @@
 
 {
   wayland.windowManager.hyprland.extraConfig = ''
+
+    # Monitor Configuration
+    # 1. Left Monitor (22"): HDMI-A-1
+    # We set this as the starting point at 0x0.
+    monitor=HDMI-A-1, 1920x1080@59.96, 0x0, 1
+
+    # 2. Right Monitor (19"): DVI-D-1
+    # This monitor starts where the first one ends (at 1920 pixels X-coordinate).
+    monitor=DVI-D-1, 1366x768@59.62, 1920x0, 1
+
     # WINDOW RULES
     windowrule = suppressevent maximize, class:.*
     windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
@@ -64,8 +74,8 @@
     windowrule = workspace 10, class:com.defold.editor.Start
 
     # Multi-monitor setup
-    workspace = 1,  monitor:DVI-D-1
-    workspace = 2,  monitor:HDMI-A-1
+    workspace = 1,  monitor:HDMI-A-1
+    workspace = 2,  monitor:DVI-D-1
     workspace = 3,  monitor:HDMI-A-1
     workspace = 4,  monitor:DVI-D-1
     workspace = 5,  monitor:HDMI-A-1

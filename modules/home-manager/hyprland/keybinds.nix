@@ -114,8 +114,8 @@
     bind = $mainMod SHIFT, PERIOD, movewindow, mon:HDMI-A-1
 
     # Monitor navigation
-    bind = $mainMod, COMMA,  focusmonitor, DVI-D-1
-    bind = $mainMod, PERIOD, focusmonitor, HDMI-A-1
+    bind = $mainMod, COMMA,  focusmonitor, HDMI-A-1
+    bind = $mainMod, PERIOD, focusmonitor, DVI-D-1
 
     # Swap workspaces between monitors
     bind = $mainMod CTRL, PERIOD, swapactiveworkspaces, DVI-D-1 HDMI-A-1
