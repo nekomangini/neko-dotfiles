@@ -110,8 +110,8 @@
     binde = $mainMod ALT, m, exec, ydotool mousemove -- 40 40    # Down-Right
 
     # Move window to monitor
-    bind = $mainMod SHIFT, COMMA,  movewindow, mon:DVI-D-1
-    bind = $mainMod SHIFT, PERIOD, movewindow, mon:HDMI-A-1
+    bind = $mainMod SHIFT, COMMA,  movewindow, mon:HDMI-A-1
+    bind = $mainMod SHIFT, PERIOD, movewindow, mon:DVI-D-1
 
     # Monitor navigation
     bind = $mainMod, COMMA,  focusmonitor, HDMI-A-1
