@@ -110,15 +110,15 @@
     binde = $mainMod ALT, m, exec, ydotool mousemove -- 40 40    # Down-Right
 
     # Move window to monitor
-    bind = $mainMod SHIFT, COMMA,  movewindow, mon:HDMI-A-1
-    bind = $mainMod SHIFT, PERIOD, movewindow, mon:DVI-D-1
+    bind = $mainMod SHIFT, PERIOD,  movewindow, mon:HDMI-A-1
+    bind = $mainMod SHIFT, COMMA, movewindow, mon:DP-1
 
     # Monitor navigation
-    bind = $mainMod, COMMA,  focusmonitor, HDMI-A-1
-    bind = $mainMod, PERIOD, focusmonitor, DVI-D-1
+    bind = $mainMod, PERIOD,  focusmonitor, HDMI-A-1
+    bind = $mainMod, COMMA, focusmonitor, DP-1
 
     # Swap workspaces between monitors
-    bind = $mainMod CTRL, PERIOD, swapactiveworkspaces, DVI-D-1 HDMI-A-1
+    bind = $mainMod CTRL, PERIOD, swapactiveworkspaces, DP-1 HDMI-A-1
 
     # Multimedia keys
     bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+
@@ -136,6 +136,6 @@
 
     # Screenshot
     bind = ,                    PRINT, exec, hyprshot -m output -m HDMI-A-1
-    bind = $shiftmainMod SHIFT, PRINT, exec, hyprshot -m output -m DVI-D-1
+    bind = $shiftmainMod SHIFT, PRINT, exec, hyprshot -m output -m DP-1
   '';
 }

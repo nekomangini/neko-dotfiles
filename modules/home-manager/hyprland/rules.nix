@@ -4,13 +4,11 @@
   wayland.windowManager.hyprland.extraConfig = ''
 
     # Monitor Configuration
-    # 1. Left Monitor (22"): HDMI-A-1
-    # We set this as the starting point at 0x0.
-    monitor=HDMI-A-1, 1920x1080@59.96, 0x0, 1
+    # 1. Left Monitor (19"): DP-1
+    monitor=DP-1, 1366x768@59.62, 0x0, 1
 
-    # 2. Right Monitor (19"): DVI-D-1
-    # This monitor starts where the first one ends (at 1920 pixels X-coordinate).
-    monitor=DVI-D-1, 1366x768@59.62, 1920x0, 1
+    # 2. Right Monitor (22"): HDMI-A-1
+    monitor=HDMI-A-1, 1920x1080@59.88, 1366x0, 1
 
     # WINDOW RULES
     windowrule = suppressevent maximize, class:.*
@@ -47,8 +45,8 @@
     windowrule = fullscreen, class:^(krita)$
 
     # Workspace assignments
-    # monitor 19' (DVI-D-1)
-    windowrule = workspace 1,  class:kitty
+    # monitor 19' (DP-1)
+    windowrule = workspace 2,  class:vivaldi-stable
     windowrule = workspace 4,  class:brave-browser
     windowrule = workspace 4,  class:org.kde.okular
     windowrule = workspace 6,  class:org.kde.gwenview
@@ -56,7 +54,7 @@
 
 
     # monitor 22' (HDMI-A-1)
-    windowrule = workspace 2,  class:vivaldi-stable
+    windowrule = workspace 1,  class:kitty
     windowrule = workspace 3,  class:Emacs
     windowrule = workspace 3,  class:dev.zed.Zed
     windowrule = workspace 3,  class:jetbrains-studio
@@ -75,11 +73,11 @@
 
     # Multi-monitor setup
     workspace = 1,  monitor:HDMI-A-1
-    workspace = 2,  monitor:DVI-D-1
+    workspace = 2,  monitor:DP-1
     workspace = 3,  monitor:HDMI-A-1
-    workspace = 4,  monitor:DVI-D-1
+    workspace = 4,  monitor:DP-1
     workspace = 5,  monitor:HDMI-A-1
-    workspace = 6,  monitor:DVI-D-1
+    workspace = 6,  monitor:DP-1
     workspace = 7,  monitor:HDMI-A-1
     workspace = 8,  monitor:HDMI-A-1
     workspace = 9,  monitor:HDMI-A-1
