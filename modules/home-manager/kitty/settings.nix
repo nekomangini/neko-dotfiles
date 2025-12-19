@@ -47,8 +47,8 @@
 
     # Advanced
     shell_integration = "no-cursor";
-    # allow_remote_control = "yes";
-    # listen_on = "unix:/tmp/kitty";
+    allow_remote_control = "yes";
+    listen_on = "unix:/tmp/kitty";
 
     # Bell
     enable_audio_bell = "no";
