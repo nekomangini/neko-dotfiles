@@ -3,12 +3,11 @@
 {
   wayland.windowManager.hyprland.extraConfig = ''
 
-    # Monitor Configuration
     # 1. Left Monitor (19"): DP-1
-    monitor=DP-1, 1366x768@59.62, 0x0, 1
+    monitor=DP-1, 1366x768, 0x0, 1
 
-    # 2. Right Monitor (22"): HDMI-A-1
-    monitor=HDMI-A-1, 1920x1080@59.88, 1366x0, 1
+    # 2. Right Monitor (22"): DVI-D-1
+    monitor=DVI-D-1, 1920x1080, 1366x0, 1
 
     # WINDOW RULES
     windowrule = suppressevent maximize, class:.*
@@ -53,7 +52,7 @@
     windowrule = workspace 6,  class:org.kde.dolphin
 
 
-    # monitor 22' (HDMI-A-1)
+    # monitor 22' (DVI-D-1)
     windowrule = workspace 1,  class:kitty
     windowrule = workspace 3,  class:Emacs
     windowrule = workspace 3,  class:dev.zed.Zed
@@ -72,15 +71,15 @@
     windowrule = workspace 10, class:com.defold.editor.Start
 
     # Multi-monitor setup
-    workspace = 1,  monitor:HDMI-A-1
+    workspace = 1,  monitor:DVI-D-1
     workspace = 2,  monitor:DP-1
-    workspace = 3,  monitor:HDMI-A-1
+    workspace = 3,  monitor:DVI-D-1
     workspace = 4,  monitor:DP-1
-    workspace = 5,  monitor:HDMI-A-1
+    workspace = 5,  monitor:DVI-D-1
     workspace = 6,  monitor:DP-1
-    workspace = 7,  monitor:HDMI-A-1
-    workspace = 8,  monitor:HDMI-A-1
-    workspace = 9,  monitor:HDMI-A-1
-    workspace = 10, monitor:HDMI-A-1
+    workspace = 7,  monitor:DVI-D-1
+    workspace = 8,  monitor:DVI-D-1
+    workspace = 9,  monitor:DVI-D-1
+    workspace = 10, monitor:DVI-D-1
   '';
 }
