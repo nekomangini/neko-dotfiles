@@ -170,11 +170,10 @@ let
     function ndir
       set -l DIRECTORIES \
                     ~/neko-dotfiles \
-                    /run/media/nekomangini/D/Programming/{android-projects,neko-gitjournal,Projects,fedora-dotfiles,opensuse-laptop,blender-python,scripts,git-practice,programming-exercises} \
+                    /run/media/nekomangini/D/Programming/{android-projects,neko-gitjournal,Projects,dotfiles,blender-python,scripts,programming-exercises} \
                     /run/media/nekomangini/D/emacs-org-sync \
                     /run/media/nekomangini/D/game-development/save-files \
                     ~/.config/{nekovim,nvim,astronvim_v5} \
-                    ~/.local/bin/bash-scripts
 
         # Filter to only existing directories
         set -l EXISTING_DIRS
