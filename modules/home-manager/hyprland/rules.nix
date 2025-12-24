@@ -3,11 +3,14 @@
 {
   wayland.windowManager.hyprland.extraConfig = ''
 
-    # 1. Left Monitor (19"): DP-1
-    monitor=DP-1, 1366x768, 0x0, 1
+    # Left Monitor: HDMI-A-1 (Width: 1360)
+    monitor=HDMI-A-1, 1360x768, 0x0, 1
 
-    # 2. Right Monitor (22"): DVI-D-1
-    monitor=DVI-D-1, 1920x1080, 1366x0, 1
+    # Middle Monitor: DP-1 (Starts after HDMI: 1360)
+    monitor=DP-1, 1366x768, 1360x0, 1
+
+    # Right Monitor: DVI-D-1 (Starts after HDMI+DP: 1360 + 1366 = 2726)
+    monitor=DVI-D-1, 1920x1080, 2726x0, 1
 
     # WINDOW RULES
     windowrule = suppressevent maximize, class:.*
@@ -44,42 +47,43 @@
     windowrule = fullscreen, class:^(krita)$
 
     # Workspace assignments
-    # monitor 19' (DP-1)
-    windowrule = workspace 2,  class:vivaldi-stable
-    windowrule = workspace 4,  class:brave-browser
-    windowrule = workspace 4,  class:org.kde.okular
-    windowrule = workspace 6,  class:org.kde.gwenview
-    windowrule = workspace 6,  class:org.kde.dolphin
-
-
-    # monitor 22' (DVI-D-1)
-    windowrule = workspace 1,  class:kitty
-    windowrule = workspace 3,  class:Emacs
-    windowrule = workspace 3,  class:dev.zed.Zed
-    windowrule = workspace 3,  class:jetbrains-studio
-    windowrule = workspace 5,  class:ticktick
-    windowrule = workspace 5,  class:AppFlowy
-    windowrule = workspace 5,  class:obsidian
-    windowrule = workspace 5,  class:Logseq
-    windowrule = workspace 5,  class:Joplin
-    windowrule = workspace 7,  class:blender
-    windowrule = workspace 8,  class:Houdini FX
-    windowrule = workspace 9,  class:gimp-3.0
-    windowrule = workspace 9,  class:krita
-    windowrule = workspace 9,  class:libresprite
+    # monitor 32' (HDMI)
+    windowrule = workspace 1,  class:brave-browser
+    windowrule = workspace 4,  class:obsidian
+    windowrule = workspace 4,  class:Logseq
+    windowrule = workspace 7,  class:gimp-3.0
+    windowrule = workspace 7,  class:krita
+    windowrule = workspace 7,  class:libresprite
+    windowrule = workspace 10, class:Houdini FX
     windowrule = workspace 10, class:Godot
     windowrule = workspace 10, class:com.defold.editor.Start
 
+    # monitor 19' (DP-1)
+    windowrule = workspace 2,  class:vivaldi-stable
+    windowrule = workspace 5,  class:org.kde.dolphin
+    windowrule = workspace 8,  class:Joplin
+    windowrule = workspace 8,  class:ticktick
+    windowrule = workspace 8,  class:AppFlowy
+
+    # monitor 22' (DVI-D-1)
+    windowrule = workspace 3,  class:kitty
+    windowrule = workspace 3,  class:Emacs
+    windowrule = workspace 3,  class:dev.zed.Zed
+    windowrule = workspace 3,  class:jetbrains-studio
+    windowrule = workspace 6,  class:org.kde.okular
+    windowrule = workspace 6,  class:org.kde.gwenview
+    windowrule = workspace 9,  class:blender
+
     # Multi-monitor setup
-    workspace = 1,  monitor:DVI-D-1
+    workspace = 1,  monitor:HDMI-A-1
     workspace = 2,  monitor:DP-1
     workspace = 3,  monitor:DVI-D-1
-    workspace = 4,  monitor:DP-1
-    workspace = 5,  monitor:DVI-D-1
-    workspace = 6,  monitor:DP-1
-    workspace = 7,  monitor:DVI-D-1
-    workspace = 8,  monitor:DVI-D-1
+    workspace = 4,  monitor:HDMI-A-1
+    workspace = 5,  monitor:DP-1
+    workspace = 6,  monitor:DVI-D-1
+    workspace = 7,  monitor:HDMI-A-1
+    workspace = 8,  monitor:DP-1
     workspace = 9,  monitor:DVI-D-1
-    workspace = 10, monitor:DVI-D-1
+    workspace = 10, monitor:HDMI-A-1
   '';
 }
