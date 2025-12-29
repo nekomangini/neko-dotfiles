@@ -4,7 +4,7 @@
   programs.git = {
     enable = true;
 
-    extraConfig = {
+    settings = {
       core.editor = "${pkgs.helix}/bin/hx";
     };
   };
