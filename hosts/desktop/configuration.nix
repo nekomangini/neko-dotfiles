@@ -94,7 +94,6 @@
 
     # terminal #
     neovim
-    tmux
 
     hyprshot
   ];
