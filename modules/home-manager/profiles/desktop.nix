@@ -23,6 +23,7 @@
     ../ydotool.nix
     ../android.nix
     ../ruby
+    ../tmux.nix
   ];
 
   home = {

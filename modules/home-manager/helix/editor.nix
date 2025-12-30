@@ -2,7 +2,7 @@
 
 {
   programs.helix.settings = {
-    theme = "doom_acario_dark";
+    theme = "flexoki_dark";
 
     editor = {
       line-number = "relative";
