@@ -20,9 +20,9 @@
     decoration {
         rounding = 5
         rounding_power = 5
-        active_opacity     = 0.8
-        inactive_opacity   = 0.5
-        fullscreen_opacity = 0.7
+        active_opacity     = 0.91
+        inactive_opacity   = 0.7
+        fullscreen_opacity = 1.0
 
         shadow {
             enabled = true
@@ -33,8 +33,8 @@
 
         blur {
             enabled = true
-            size = 3
-            passes = 4
+            size = 1
+            passes = 2
             vibrancy = 0.1696
         }
     }
