@@ -36,25 +36,26 @@
     windowrule = opaque, noblur, class:^(jetbrains-studio)$
 
     # Window behavior
-    windowrule = fullscreen, class:^(Godot)$
-    windowrule = fullscreen, class:^(libresprite)$
     windowrule = maximize,   class:^(kitty)$
-    windowrule = fullscreen, class:^(blender)$
+    windowrule = maximize,   class:^(org.kde.okular)$
     windowrule = maximize,   class:^(Emacs)$
     windowrule = fullscreen, class:^(jetbrains-studio)$
+    windowrule = fullscreen, class:^(libresprite)$
     windowrule = fullscreen, class:^(krita)$
+    windowrule = fullscreen, class:^(blender)$
+    windowrule = fullscreen, class:^(Godot)$
 
     # Workspace assignments
     # monitor 19' (DP-1) Vertical
-    windowrule = workspace 2,  class:kitty
+    windowrule = workspace 1,  class:kitty
     windowrule = workspace 4,  class:org.kde.okular
     windowrule = workspace 4,  class:ticktick
     windowrule = workspace 4,  class:org.kde.gwenview
 
 
     # monitor 22' (DVI-D-1)
-    windowrule = workspace 1,  class:vivaldi-stable
-    windowrule = workspace 1,  class:brave-browser
+    windowrule = workspace 2,  class:vivaldi-stable
+    windowrule = workspace 2,  class:brave-browser
     windowrule = workspace 3,  class:Emacs
     windowrule = workspace 3,  class:dev.zed.Zed
     windowrule = workspace 3,  class:jetbrains-studio
