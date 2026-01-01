@@ -6,7 +6,7 @@
     extraConfig = ''
       # Unbind default prefix key (C-b) and change to (C-\)
       unbind C-b
-      set -g prefix 'C-space'
+      set -g prefix 'C-\'
 
       # Panes
       bind | split-window -h
