@@ -6,6 +6,9 @@
     # 1. Left Monitor (19"): DP-1
     monitor=DP-1, 1366x768, 0x0, 1
 
+    # TODO: Remove 30px bottom reservation if the DP-1 monitor is replaced.
+    monitor=DP-1, addreserved,0,0,0,30
+
     # 2. Right Monitor (22"): DVI-D-1
     monitor=DVI-D-1, 1920x1080, 1366x0, 1
 
