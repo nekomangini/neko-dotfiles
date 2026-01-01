@@ -7,7 +7,7 @@
     bold_font = "FiraCode Nerd Font Bold";
     italic_font = "FiraCode Nerd Font Italic";
     bold_italic_font = "FiraCode Nerd Font Bold Italic";
-    font_size = "12.0";
+    font_size = "8.0";
 
     # Cursor settings
     cursor_shape = "block";

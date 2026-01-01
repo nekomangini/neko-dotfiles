@@ -41,13 +41,13 @@
     #custom-launcher {
       color: @blue_bright;
       font-size: 20px;
-      padding: 5px 0 5px 7px;
+      padding: 5px 0 5px 0;
     }
 
     /* Workspaces */
     #workspaces {
       border-radius: 10px;
-      padding: 3px 0 3px 5px;
+      padding: 3px 0 3px 0;
       margin-right: 10px;
     }
 
@@ -179,7 +179,6 @@
       font-size: 16px;
       padding: 4px 11px;
       margin: 5px 5px;
-      margin-left: 6px;
       background: linear-gradient(135deg, rgba(91, 159, 255, 0.15), rgba(125, 111, 217, 0.12));
       border-radius: 8px;
       border: 1px solid rgba(91, 159, 255, 0.25);

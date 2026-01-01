@@ -3,7 +3,7 @@
 {
   wayland.windowManager.hyprland.extraConfig = ''
     # MONITORS
-    monitor=,preferred,auto,auto
+    # monitor=,preferred,auto,auto
 
     # LOOK AND FEEL
     general {
