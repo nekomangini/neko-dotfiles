@@ -30,6 +30,7 @@
         modules-right = [
           "tray"
           "temperature"
+          "custom/gpu-temp"
           "cpu"
           "memory"
           "network"
