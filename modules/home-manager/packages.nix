@@ -24,6 +24,7 @@
     unzip
     woeusb
     htop
+    lm_sensors
 
     # Notes
     logseq

@@ -107,6 +107,7 @@
 
     /* Stat Modules */
     #temperature,
+    #custom-gpu-temp,
     #cpu,
     #memory,
     #network,
@@ -126,6 +127,7 @@
     }
 
     #temperature:hover,
+    #custom-gpu-temp:hover,
     #cpu:hover,
     #memory:hover,
     #network:hover,
@@ -140,6 +142,7 @@
 
     /* Critical States */
     #temperature.critical,
+    #custom-gpu-temp.critical,
     #cpu.critical,
     #memory.critical {
       background: linear-gradient(135deg, rgba(255, 70, 70, 0.5), rgba(200, 50, 50, 0.45));

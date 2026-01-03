@@ -34,6 +34,13 @@
       };
     };
 
+    "custom/gpu-temp" = {
+      exec = "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits";
+      format = "gpu {}°C";
+      interval = 2;
+      tooltip = false;
+    };
+
     cpu = {
       format = "cpu {usage}%";
       interval = 2;
