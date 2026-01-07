@@ -36,6 +36,7 @@
     windowrule = maximize,   class:^(kitty)$
     windowrule = maximize,   class:^(org.kde.okular)$
     windowrule = maximize,   class:^(Emacs)$
+    windowrule = maximize,   class:^(Joplin)$
     windowrule = fullscreen, class:^(jetbrains-studio)$
     windowrule = fullscreen, class:^(krita)$
     windowrule = fullscreen, class:^(blender)$
