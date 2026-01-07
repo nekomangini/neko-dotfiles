@@ -24,7 +24,7 @@
 
     temperature = {
       thermal-zone = 2;
-      hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+      # hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
       critical-threshold = 80;
       format = "temp {temperatureC}°C";
       format-critical = "temp {temperatureC}°C";
