@@ -29,12 +29,12 @@
 
         modules-right = [
           "tray"
+          "network"
+          "pulseaudio"
           "temperature"
           "custom/gpu-temp"
           "cpu"
           "memory"
-          "network"
-          "pulseaudio"
           "custom/control"
         ];
       };
