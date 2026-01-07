@@ -6,6 +6,7 @@
 
     discord
     libreoffice
+    fancontrol-gui
 
     godot
 
