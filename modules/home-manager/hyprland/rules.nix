@@ -19,6 +19,10 @@
     windowrule = opaque, noblur, class:^(blender)$
     windowrule = opaque, noblur, class:^(Godot)$
     windowrule = opaque, noblur, class:^(jetbrains-studio)$
+    windowrule = opaque, noblur, class:^(dev.zed.Zed)$
+
+    # Override opacity
+    windowrule = opacity 0.7 override 0.5 override, class:^(Emacs)$
 
     # Window behavior
     windowrule = maximize, class:^(Godot)$
