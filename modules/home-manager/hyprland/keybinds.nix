@@ -20,7 +20,8 @@
     bind = $mainMod, V,            togglefloating,
     bind = $mainMod, Q,            killactive,
     bind = $mainMod  CTRL, q,      exit,
-    bind = $mainMod, F, fullscreen, 0
+    bind = $mainMod, F,            fullscreen, 0
+    bind = $mainMod, M,            fullscreen, 1
 
     # Launch applications
     bind = $mainMod, RETURN,       exec, $terminal
