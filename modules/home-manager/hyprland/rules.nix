@@ -35,7 +35,6 @@
     windowrule = opaque, noblur, class:^(jetbrains-studio)$
     windowrule = opaque, noblur, class:^(dev.zed.Zed)$
     windowrule = opaque, noblur, class:^(org.pwmt.zathura)
-    windowrule = opaque, noblur, class:^(superProductivity)
     windowrule = opaque, noblur, class:^(ticktick)
 
     # Override opacity
