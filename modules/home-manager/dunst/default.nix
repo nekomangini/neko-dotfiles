@@ -62,25 +62,25 @@
 
       # Low priority notifications
       urgency_low = {
-        background = "#0a0c1c"; 
-        foreground = "#e0ebff"; 
-        frame_color = "#5b9fff4d"; 
+        background = "#272E33"; 
+        foreground = "#D3C6AA"; 
+        frame_color = "#83C0924d"; 
         timeout = 5;
       };
 
       # Normal priority notifications
       urgency_normal = {
-        background = "#141932"; 
-        foreground = "#e0ebff"; 
-        frame_color = "#5b9fff"; 
+        background = "#2E383C"; 
+        foreground = "#D3C6AA"; 
+        frame_color = "#A7C080"; 
         timeout = 8;
       };
 
       # Critical notifications
       urgency_critical = {
-        background = "#1a1020"; 
-        foreground = "#ffe5e5"; 
-        frame_color = "#ff5050cc"; 
+        background = "#493B40"; 
+        foreground = "#D3C6AA"; 
+        frame_color = "#E67E80cc"; 
         timeout = 0; # Don't auto-dismiss critical
       };
     };

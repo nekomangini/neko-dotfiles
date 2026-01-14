@@ -3,23 +3,23 @@
 {
   wayland.windowManager.hyprland.extraConfig = ''
     # MONITORS
-    monitor=,preferred,auto,auto
+    # monitor=,preferred,auto,auto
 
     # LOOK AND FEEL
     general {
         gaps_in = 4
         gaps_out = 10
-        border_size = 1
-        col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-        col.inactive_border = rgba(595959aa)
+        border_size = 2
+        col.active_border = rgba(A7C080ee) rgba(83C092ee) 45deg
+        col.inactive_border = rgba(4F5B58aa)
         resize_on_border = false
         allow_tearing = false
         layout = dwindle
     }
 
     decoration {
-        rounding = 5
-        rounding_power = 5
+        rounding = 0
+        rounding_power = 0
         active_opacity     = 0.91
         inactive_opacity   = 0.7
         fullscreen_opacity = 1.0

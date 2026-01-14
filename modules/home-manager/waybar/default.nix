@@ -9,13 +9,14 @@
 
     settings = {
       mainBar = {
+        output = [ "HDMI-A-1" ];
         layer = "top";
         spacing = 0;
         height = 0;
-        margin-top = 10;
-        margin-right = 10;
+        margin-top = 0;
+        margin-right = 0;
         margin-bottom = 0;
-        margin-left = 10;
+        margin-left = 0;
 
         modules-left = [
           "custom/launcher"
