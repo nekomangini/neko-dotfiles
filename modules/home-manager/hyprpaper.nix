@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-  wallpaperPath = ../../wallpaper/frieren-2.jpeg;
-  wallpaperv2Path = ../../wallpaper/frieren-3.png;
+  wallpaperPath = ../../wallpaper/space_003.jpg;
+  wallpaperv2Path = ../../wallpaper/environment_065.jpg;
 in
 {
   home.packages = with pkgs; [ hyprpaper ];
@@ -22,8 +22,8 @@ in
       # 2. Wallpaper: Apply the preloaded image.
       # The ',' means "all monitors".
       wallpaper = [
-        "DVI-D-1,${wallpaperPath}"
-        "DP-1,${wallpaperv2Path}"
+        "HDMI-A-1,${wallpaperPath}"
+        "DVI-D-1,${wallpaperv2Path}"
       ];
 
       # Optional, but recommended for dynamic changes

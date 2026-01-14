@@ -7,7 +7,7 @@
     bold_font = "FiraCode Nerd Font Bold";
     italic_font = "FiraCode Nerd Font Italic";
     bold_italic_font = "FiraCode Nerd Font Bold Italic";
-    font_size = "8.0";
+    font_size = "10.0";
 
     # Cursor settings
     cursor_shape = "block";
@@ -35,7 +35,7 @@
     remember_window_size = "yes";
     initial_window_width = "1200";
     initial_window_height = "700";
-    window_padding_width = 2;
+    window_padding_width = 0;
     window_border_width = "1.0";
     draw_minimal_borders = "yes";
 

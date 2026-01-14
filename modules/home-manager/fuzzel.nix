@@ -30,16 +30,16 @@
         radius = 8;
       };
 
-      # Renna/Ranni colors - exact match from waybar theme
+      # Everforest colors
       colors = {
-        background = "0A0C1CEB";
-        text = "E0EBFFFF";
-        match = "7EB3FFFF";
-        selection = "141932D9";
-        selection-text = "7EB3FFFF";
-        selection-match = "4A8FFFEE";
-        border = "5B9FFF66";
-        placeholder = "A8B8D8CC";
+        background = "272E33EB"; # Background 0 with transparency
+        text = "D3C6AAFF"; # Foreground
+        match = "A7C080FF"; # Green (highlighted matches)
+        selection = "3C4841D9"; # Background Green with transparency
+        selection-text = "D3C6AAFF"; # Foreground
+        selection-match = "83C092EE"; # Aqua (matched text in selection)
+        border = "A7C08066"; # Green with transparency
+        placeholder = "859289CC"; # Grey 1 with transparency
       };
 
       dmenu = {

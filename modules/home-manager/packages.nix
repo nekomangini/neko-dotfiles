@@ -26,6 +26,7 @@
     woeusb
     htop
     lm_sensors
+    wlr-randr
 
     # Notes
     logseq
