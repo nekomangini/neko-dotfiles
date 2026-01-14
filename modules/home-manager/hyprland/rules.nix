@@ -21,7 +21,6 @@
     windowrule = opaque, noblur, class:^(org.kde.okular)$
     windowrule = opaque, noblur, class:^(org.kde.dolphin)$
     windowrule = opaque, noblur, class:^(krita)$
-    windowrule = opaque, noblur, class:^(libresprite)$
     windowrule = opaque, noblur, class:^(Logseq)$
     windowrule = opaque, noblur, class:^(Joplin)$
     windowrule = opaque, noblur, class:^(blender)$
