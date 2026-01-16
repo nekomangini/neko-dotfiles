@@ -49,7 +49,6 @@
 
       # Opacity rules for specific applications
       opacity-rule = [
-        "90:class_g = 'qutebrowser'"
         "100:class_g = 'Godot'"
         "100:class_g = 'jetbrains-studio'"
         # "100:class_g = 'Brave-browser' && !focused"

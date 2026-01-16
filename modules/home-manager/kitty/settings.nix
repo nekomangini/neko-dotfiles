@@ -57,7 +57,7 @@
     bell_on_tab = "yes";
 
     # Opacity and blur
-    background_opacity = "0.70";
+    background_opacity = "0.94";
     background_blur = 32;
     dynamic_background_opacity = "yes";
 
