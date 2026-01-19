@@ -4,10 +4,10 @@
   wayland.windowManager.hyprland.extraConfig = ''
 
     # 1. Left Monitor (22"): HDMI-A-1
-    monitor=HDMI-A-1, 1920x1080, 0x0, 1
+    monitor=DVI-D-1, 1920x1080, 0x0, 1
 
     # 2. Right Monitor (22"): DVI-D-1
-    monitor=DVI-D-1, 1920x1080, 1920x0, 1, transform, 3
+    monitor=HDMI-A-1, 1920x1080, 1920x0, 1, transform, 3
 
     # WINDOW RULES
     windowrule = suppressevent maximize, class:.*
@@ -49,7 +49,7 @@
     windowrule = fullscreen, class:^(obsidian)$
 
     # Workspace assignments
-    # monitor 22' (HDMI-A-1 LEFT) 
+    # monitor 22' (DVI-D-1 LEFT) 
     windowrule = workspace 2,  class:vivaldi-stable
     windowrule = workspace 4,  class:org.kde.gwenview
     windowrule = workspace 6,  class:org.kde.dolphin
@@ -59,7 +59,7 @@
     windowrule = workspace 10, class:Godot
 
 
-    # monitor 22' (DVI-D-1 RIGHT) Vertical
+    # monitor 22' (HDMI-A-1 RIGHT) Vertical
     windowrule = workspace 1,  class:kitty
     windowrule = workspace 3,  class:Emacs
     windowrule = workspace 3,  class:dev.zed.Zed
@@ -71,15 +71,15 @@
     windowrule = workspace 9,  class:obsidian
 
     # Multi-monitor setup
-    workspace = 1,  monitor:DVI-D-1
-    workspace = 2,  monitor:HDMI-A-1
-    workspace = 3,  monitor:DVI-D-1
-    workspace = 4,  monitor:HDMI-A-1
-    workspace = 5,  monitor:DVI-D-1
-    workspace = 6,  monitor:HDMI-A-1
-    workspace = 7,  monitor:DVI-D-1
-    workspace = 8,  monitor:HDMI-A-1
-    workspace = 9,  monitor:DVI-D-1
-    workspace = 10, monitor:HDMI-A-1
+    workspace = 1,  monitor:HDMI-A-1
+    workspace = 2,  monitor:DVI-D-1
+    workspace = 3,  monitor:HDMI-A-1
+    workspace = 4,  monitor:DVI-D-1
+    workspace = 5,  monitor:HDMI-A-1
+    workspace = 6,  monitor:DVI-D-1
+    workspace = 7,  monitor:HDMI-A-1
+    workspace = 8,  monitor:DVI-D-1
+    workspace = 9,  monitor:HDMI-A-1
+    workspace = 10, monitor:DVI-D-1
   '';
 }
