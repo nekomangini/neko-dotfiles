@@ -9,7 +9,7 @@
 
     settings = {
       mainBar = {
-        output = [ "HDMI-A-1" ];
+        output = [ "DVI-D-1" ];
         layer = "top";
         spacing = 0;
         height = 0;

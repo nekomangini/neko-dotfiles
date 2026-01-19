@@ -7,6 +7,8 @@
     discord
     libreoffice
     fancontrol-gui
+    zathura
+    affine
 
     godot
 

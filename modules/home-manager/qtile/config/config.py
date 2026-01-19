@@ -148,8 +148,8 @@ keys = [
 
     # ===== MULTI MONITOR SETUP =====
     # ===== MONITOR NAVIGATION =====
-    Key([mod], "comma", lazy.to_screen(0),                 desc="Focus monitor 0 (DVI-D-1)"),
-    Key([mod], "period", lazy.to_screen(1),                desc="Focus monitor 1 (HDMI-A-1)"),
+    Key([mod], "comma", lazy.to_screen(1),                 desc="Focus monitor 1 (DVI-D-1)"),
+    Key([mod], "period", lazy.to_screen(0),                desc="Focus monitor 0 (HDMI-A-1)"),
     Key([mod, "shift"], "comma", lazy.window.toscreen(0),  desc="Move window to monitor 0"),
     Key([mod, "shift"], "period", lazy.window.toscreen(1), desc="Move window to monitor 1"),
     
@@ -195,10 +195,10 @@ layouts = [
 ]
 
 # ===== GROUPS =====
-# Monitor 0 (HDMI-A-1 / 22"): 2, 4
-# Monitor 1 (DVI-D-1 / 22"):  1, 3, 5
+# Monitor 0 (DVI-D-1 / 22"): 2, 4
+# Monitor 1 (HDMI-A-1 / 22"):  1, 3, 5
 groups = [
-    # Monitor 0 (DVI-D-1 - 22" - Vertical)
+    # Monitor 0 (HDMI-A-1 - 22" - Vertical)
     Group(
         "1", 
         label="1",
@@ -211,7 +211,7 @@ groups = [
             Match(wm_class="jetbrains-studio"),
         ]
     ),
-    # Monitor 1 (HDMI-A-1 - 22" - Horizontal)
+    # Monitor 1 (DVI-D-1 - 22" - Horizontal)
     Group(
         "2", 
         label="2",
@@ -231,6 +231,7 @@ groups = [
         layout="max",
         matches=[
             Match(wm_class="gwenview"),
+            Match(wm_class="Zathura"),
             Match(wm_class="okular"),
         ]
     ),
@@ -410,6 +411,10 @@ def create_widgets(monitor=0):
 # ===== Screens - Create bar for each monitor =====
 screens = [
     # Monitor 0: DVI-D-1 (22" - HORIZONTAL)
+    # Monitor 1: HDMI-A-1 (22" - VERTICAL)
+    # DON'T DISPLAY THE PANEL BAR
+    Screen(),
+
     Screen(
         top=bar.Bar(
             create_widgets(monitor=0),
@@ -418,9 +423,6 @@ screens = [
             opacity=0.95,
         ),
     ),
-    # Monitor 1: HDMI-A-1 (22" - VERTICAL)
-    # DON'T DISPLAY THE PANEL BAR
-    Screen(),
 ]
 
 # Mouse bindings
