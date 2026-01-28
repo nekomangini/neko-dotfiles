@@ -27,6 +27,7 @@
     windowrule = opaque, noblur, class:^(Godot)$
     windowrule = opaque, noblur, class:^(jetbrains-studio)$
     windowrule = opaque, noblur, class:^(dev.zed.Zed)$
+    windowrule = opaque, noblur, class:^(org.pwmt.zathura)
 
     # Override opacity
     windowrule = opacity 0.9 override 0.8 override 0.8 override, class:^(Emacs)$ # 0.9 active, 0.8 inactive, 0.8 fullscreen opacity

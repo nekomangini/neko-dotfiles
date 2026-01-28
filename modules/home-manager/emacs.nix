@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     shellcheck
     pandoc
+    sbcl
   ];
 
   # emacs daemon server
