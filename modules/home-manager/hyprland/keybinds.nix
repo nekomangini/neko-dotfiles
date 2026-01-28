@@ -50,7 +50,10 @@
 
     # Cycle through windows
     bind = $mainMod, W, cyclenext
-    bind = $mainMod, W, bringactivetotop
+    # bind = $mainMod, W, bringactivetotop
+
+    # Toggle split windows
+    bind = $mainMod, Space, togglesplit
 
     # Switch workspaces
     bind = $mainMod, 1, workspace, 1

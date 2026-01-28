@@ -24,6 +24,7 @@
     ../android.nix
     ../ruby
     ../tmux.nix
+    ../vim.nix
   ];
 
   home = {

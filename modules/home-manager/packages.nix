@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     kakoune
     zed-editor
+    vimgolf
 
     discord
     libreoffice
