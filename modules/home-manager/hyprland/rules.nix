@@ -28,6 +28,7 @@
     windowrule = opaque, noblur, class:^(jetbrains-studio)$
     windowrule = opaque, noblur, class:^(dev.zed.Zed)$
     windowrule = opaque, noblur, class:^(org.pwmt.zathura)
+    windowrule = opaque, noblur, class:^(ticktick)
 
     # Override opacity
     windowrule = opacity 0.9 override 0.8 override 0.8 override, class:^(Emacs)$ # 0.9 active, 0.8 inactive, 0.8 fullscreen opacity
@@ -66,9 +67,9 @@
     windowrule = workspace 3,  class:dev.zed.Zed
     windowrule = workspace 3,  class:jetbrains-studio
     windowrule = workspace 5,  class:org.kde.okular
+    windowrule = workspace 5,  class:ticktick
     windowrule = workspace 7,  class:Logseq
     windowrule = workspace 7,  class:Joplin
-    windowrule = workspace 9,  class:ticktick
     windowrule = workspace 9,  class:obsidian
 
     # Multi-monitor setup
