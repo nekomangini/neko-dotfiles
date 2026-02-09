@@ -35,16 +35,14 @@
     windowrule = opacity 0.9 override 0.8 override 0.9 override, class:^(kitty)$ 
 
     # Window behavior
-    windowrule = maximize,   class:^(org.kde.dolphin)$
     windowrule = maximize,   class:^(Joplin)$
     windowrule = maximize,   class:^(brave-browser)$
+    windowrule = maximize,   class:^(Emacs)$
     windowrule = fullscreen, class:^(org.kde.okular)$
     windowrule = fullscreen, class:^(krita)$
     windowrule = fullscreen, class:^(blender)$
     windowrule = fullscreen, class:^(Godot)$
     windowrule = fullscreen, class:^(kitty)$
-    windowrule = fullscreen, class:^(Emacs)$
-    windowrule = fullscreen, class:^(jetbrains-studio)$
     windowrule = fullscreen, class:^(dev.zed.Zed)$
     windowrule = fullscreen, class:^(Logseq)$
     windowrule = fullscreen, class:^(Joplin)$
