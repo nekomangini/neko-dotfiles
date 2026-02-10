@@ -162,6 +162,17 @@
         };
         auto-format = true;
       }
+
+      # --- Dart/Flutter ---
+      {
+        name = "dart";
+        scope = "source.dart";
+        injection-regex = "dart";
+        file-types = [ "dart" ];
+        roots = [ "pubspec.yaml" ];
+        language-servers = [ "dart-analysis-server" ];
+        auto-format = true;
+      }
     ];
   };
 }
