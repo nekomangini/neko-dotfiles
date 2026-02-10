@@ -43,5 +43,10 @@
 
     "ruby-lsp".command = "ruby-lsp";
     "solargraph".command = "solargraph";
+
+    "dart-analysis-server" = {
+      command = "dart";
+      args = [ "language-server" ];
+    };
   };
 }
