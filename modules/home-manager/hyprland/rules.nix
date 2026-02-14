@@ -67,8 +67,8 @@
     windowrule = workspace 5,  class:org.kde.okular
     windowrule = workspace 5,  class:ticktick
     windowrule = workspace 7,  class:Logseq
-    windowrule = workspace 7,  class:Joplin
-    windowrule = workspace 9,  class:obsidian
+    windowrule = workspace 7,  class:obsidian
+    windowrule = workspace 9,  class:Joplin
 
     # Multi-monitor setup
     workspace = 1,  monitor:HDMI-A-1
