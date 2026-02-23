@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  # Fuzzel configuration - Renna/Ranni inspired
+  # Fuzzel configuration - Everforest
   programs.fuzzel = {
     enable = true;
 
