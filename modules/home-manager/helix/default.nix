@@ -25,6 +25,15 @@
     vscode-langservers-extracted
     emmet-ls
 
+    gopls
+    gotools
+    gomodifytags
+    impl
+    delve
+
+    marksman
+    prettier
+
     ruby-lsp
     solargraph
     rufo

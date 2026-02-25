@@ -48,5 +48,20 @@
       command = "dart";
       args = [ "language-server" ];
     };
+
+    gopls = {
+      command = "gopls";
+      config = {
+        gofumpt = true;
+        staticcheck = true;
+        analyses = {
+          unusedparams = true;
+          shadow = true;
+        };
+        usePlaceholders = true;
+        completeUnimported = true;
+        matcher = "fuzzy";
+      };
+    };
   };
 }

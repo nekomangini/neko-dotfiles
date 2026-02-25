@@ -173,6 +173,72 @@
         language-servers = [ "dart-analysis-server" ];
         auto-format = true;
       }
+
+      # --- Go ---
+      {
+        name = "go";
+        scope = "source.go";
+        injection-regex = "go";
+        file-types = [ "go" ];
+        roots = [
+          "go.mod"
+          "go.work"
+        ];
+        language-servers = [ "gopls" ];
+        formatter = {
+          command = "goimports";
+        };
+        auto-format = true;
+      }
+
+      # --- Go Templates (for Hugo) ---
+      {
+        name = "gohtml";
+        scope = "text.html.go";
+        injection-regex = "gohtml";
+        file-types = [ "gohtml" ];
+        language-servers = [ "gopls" ];
+        auto-format = false;
+      }
+
+      # --- Go Template (.tmpl files) ---
+      {
+        name = "gotmpl";
+        scope = "source.gotmpl";
+        file-types = [
+          "tmpl"
+          "tpl"
+        ];
+        language-servers = [ "gopls" ];
+        auto-format = false;
+      }
+
+      # --- TOML (for Hugo config) ---
+      {
+        name = "toml";
+        auto-format = true;
+      }
+
+      # --- YAML (for Hugo front matter) ---
+      {
+        name = "yaml";
+        auto-format = true;
+      }
+
+      # --- Markdown (Hugo) ---
+      {
+        name = "markdown";
+        language-servers = [ "marksman" ];
+        formatter = {
+          command = "prettier";
+          args = [
+            "--parser"
+            "markdown"
+          ];
+        };
+        auto-format = true;
+      }
+
     ];
   };
 }

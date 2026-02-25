@@ -84,6 +84,8 @@
 
     rustup
     lldb
+
+    go
     # end programming #
 
     # art #

@@ -5,6 +5,8 @@
     zed-editor
     vimgolf
 
+    hugo
+
     discord
     libreoffice
     fancontrol-gui
