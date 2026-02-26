@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-  wallpaperPath = ../../wallpaper/evangelion_018.png;
-  wallpaperv2Path = ../../wallpaper/wonyoung_002.jpeg;
+  wallpaperPath = ../../wallpaper/evangelion_017.jpg;
+  wallpaperv2Path = ../../wallpaper/itachi_014.jpg;
 in
 {
   home.packages = with pkgs; [ hyprpaper ];

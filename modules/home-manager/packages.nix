@@ -11,6 +11,7 @@
     libreoffice
     fancontrol-gui
     zathura
+    super-productivity
 
     godot
 
@@ -36,6 +37,5 @@
     logseq
     obsidian
     joplin-desktop
-    ticktick
   ];
 }
