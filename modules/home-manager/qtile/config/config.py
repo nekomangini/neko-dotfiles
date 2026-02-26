@@ -257,7 +257,7 @@ groups = [
             Match(wm_class="Logseq"),
             Match(wm_class="Joplin"),
             Match(wm_class="obsidian"),
-            Match(wm_class="ticktick"),
+            Match(wm_class="superProductivity"),
         ]
     ),
 ]
