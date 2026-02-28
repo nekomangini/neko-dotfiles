@@ -6,6 +6,7 @@
     vimgolf
 
     hugo
+    zola
 
     discord
     libreoffice
