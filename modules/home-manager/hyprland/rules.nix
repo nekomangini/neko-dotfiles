@@ -66,7 +66,7 @@
     windowrule = workspace 3,  class:Emacs
     windowrule = workspace 3,  class:dev.zed.Zed
     windowrule = workspace 3,  class:jetbrains-studio
-    windowrule = workspace 7,  class:obsidian
+    windowrule = workspace 5,  class:obsidian
     windowrule = workspace 7,  class:org.kde.okular
     windowrule = workspace 7,  class:org.pwmt.zathura
     windowrule = workspace 9,  class:Logseq
