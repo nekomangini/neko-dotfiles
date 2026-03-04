@@ -12,7 +12,8 @@
     libreoffice
     fancontrol-gui
     zathura
-    super-productivity
+    appimage-run
+    planify
 
     godot
 
