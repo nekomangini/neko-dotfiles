@@ -4,6 +4,7 @@ use v6.d;
 # 1. Configuration
 constant %ENGINES = (
     'Google'       => 'https://www.google.com/search?q=',
+    'StackOverflow' => 'https://www.google.com/search?q=site:stackoverflow.com+',
     'DuckDuckGo'   => 'https://duckduckgo.com/?q=',
     'Ecosia'       => 'https://www.ecosia.org/search?q=',
     'Wikipedia'    => 'https://en.wikipedia.org/wiki/Special:Search?search=',
