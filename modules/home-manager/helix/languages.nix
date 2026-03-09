@@ -239,6 +239,20 @@
         auto-format = true;
       }
 
+      # --- Python ---
+      {
+        name = "python";
+        language-servers = [ "pyright" ];
+        formatter = {
+          command = "black";
+          args = [
+            "--quiet"
+            "-"
+          ];
+        };
+        auto-format = true;
+      }
+
     ];
   };
 }

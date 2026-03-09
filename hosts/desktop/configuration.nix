@@ -86,6 +86,8 @@
     lldb
 
     go
+
+    python315
     # end programming #
 
     # art #
