@@ -63,5 +63,19 @@
         matcher = "fuzzy";
       };
     };
+
+    "pyright" = {
+      command = "pyright-langserver";
+      args = [ "--stdio" ];
+      config = {
+        pythoni = {
+          analysis = {
+            typeCheckingMode = "basic";
+            autSearchPaths = true;
+            useLibraryCodeForTypes = true;
+          };
+        };
+      };
+    };
   };
 }

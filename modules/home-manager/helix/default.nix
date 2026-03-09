@@ -39,5 +39,8 @@
     rufo
     rubocop
     rubyPackages.htmlbeautifier
+
+    pyright
+    black
   ];
 }
