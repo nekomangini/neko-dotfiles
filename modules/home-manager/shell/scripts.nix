@@ -2,6 +2,7 @@
 
 let
   sync-notes-script = ../../scripts/sync-notes.raku;
+  sync-nekopaper-script = ../../scripts/sync-nekopaper.raku;
   nlog-script = ../../scripts/nlog.raku;
   powermenu = ../../scripts/powermenu.raku;
   helix-fzf = ../../scripts/helix-fzf.raku;
@@ -21,14 +22,6 @@ in
     (writeShellScriptBin "et" ''
       exec ${emacs-gtk}/bin/emacs -nw
     '')
-
-    (writeShellApplication {
-      name = "sync-notes";
-      runtimeInputs = [ rakudo ];
-      text = ''
-        exec ${rakudo}/bin/raku ${sync-notes-script} "$@"
-      '';
-    })
 
     (writeShellApplication {
       name = "dev-notes";
@@ -80,5 +73,19 @@ in
     (writeShellScriptBin "websearch" ''
       exec ${rakudo}/bin/raku ${webSearchScriptLoc}
     '')
+
+    (writeShellApplication {
+      name = "sync-notes";
+      runtimeInputs = [ rakudo ];
+      text = ''
+        exec ${rakudo}/bin/raku ${sync-notes-script}
+      '';
+    })
+
+    (writeShellApplication {
+      name = "sync-nekopaper";
+      runtimeInputs = [ rakudo ];
+      text = ''exec ${rakudo}/bin/raku ${sync-nekopaper-script}'';
+    })
   ];
 }
