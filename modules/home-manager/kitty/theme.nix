@@ -1,57 +1,62 @@
-{ ... }:
 {
   programs.kitty.settings = {
-    # Dimmed Everforest Theme (Reduced Glare)
-    # Background shifted from #272E33 to a deeper charcoal
-    background = "#1a1e21";
-    foreground = "#9da9a0"; # Shifted from #D3C6AA (Grey 2 level)
+    # Emerald Cyberpunk Theme (Matched to cats_008.jpg)
 
-    # Cursor (Lowered saturation)
-    cursor = "#859289";
-    cursor_text_color = "#1a1e21";
+    # Background & Foreground
+    # Deep teal-black for that foggy night look
+    background = "#080c0c";
+    foreground = "#a3b8b5";
+
+    # Cursor - Now using the bright neon cyan from the signs
+    cursor = "#43f2d6";
+    cursor_text_color = "#080c0c";
 
     # Selection
-    selection_background = "#2d3437";
-    selection_foreground = "#9da9a0";
+    selection_background = "#1a2b28";
+    selection_foreground = "#43f2d6";
 
-    # Black (normal and bright)
-    color0 = "#232a2e";
-    color8 = "#4f5b58";
+    # Terminal Colors (Atmospheric Palette)
+    # Black: Dark teal tones
+    color0 = "#0a1211";
+    color8 = "#2a3b38";
 
-    # Red (Lowered from #E67E80)
-    color1 = "#a65d5e";
-    color9 = "#a65d5e";
+    # Red: Critical warning red from neon accents
+    color1 = "#ff4d4d";
+    color9 = "#ff6e6e";
 
-    # Green (Lowered from #A7C080)
-    color2 = "#7a8c5d";
-    color10 = "#7a8c5d";
+    # Green: Emerald fog tones
+    color2 = "#5fc497";
+    color10 = "#7ef2be";
 
-    # Yellow (Lowered from #DBBC7F)
-    color3 = "#a68e60";
-    color11 = "#a68e60";
+    # Yellow: Dim amber glow
+    color3 = "#d4b55e";
+    color11 = "#f0d082";
 
-    # Blue (Lowered from #7FBBB3)
-    color4 = "#5c8a84";
-    color12 = "#5c8a84";
+    # Blue: Deep rain/shadow blue
+    color4 = "#36a3d9";
+    color12 = "#71beeb";
 
-    # Magenta
-    color5 = "#9e7186";
-    color13 = "#9e7186";
+    # Magenta: Muted purple haze
+    color5 = "#9b6bdf";
+    color13 = "#c29ef3";
 
-    # Cyan
-    color6 = "#608c6b";
-    color14 = "#608c6b";
+    # Cyan: The signature neon cyan
+    color6 = "#43f2d6";
+    color14 = "#a2f9ec";
 
-    # White
-    color7 = "#859289";
-    color15 = "#707c74";
+    # White: Cold mist white
+    color7 = "#cbd9d7";
+    color15 = "#e6efee";
 
-    # Tab bar colors (Dimmed)
-    active_tab_background = "#7a8c5d";
-    active_tab_foreground = "#1a1e21";
-    inactive_tab_background = "#232a2e";
-    inactive_tab_foreground = "#4f5b58";
-    tab_bar_background = "#14181a";
+    # Tab bar colors
+    active_tab_background = "#43f2d6";
+    active_tab_foreground = "#080c0c";
+    inactive_tab_background = "#121f1d";
+    inactive_tab_foreground = "#5c706d";
+    tab_bar_background = "#080c0c";
 
+    # Window layout
+    active_border_color = "#43f2d6";
+    inactive_border_color = "#2a3b38";
   };
 }
