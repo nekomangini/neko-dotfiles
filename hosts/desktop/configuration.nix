@@ -39,6 +39,7 @@
 
     ../../modules/nixos/development/android.nix
     ../../modules/nixos/development/docker.nix
+    ../../modules/nixos/development/nix-ld.nix
 
     ../../modules/nixos/maintenance/autoupdate.nix
 

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  # Fuzzel configuration - Everforest
+  # Fuzzel configuration - Cyber-Emerald Neon
   programs.fuzzel = {
     enable = true;
 
@@ -26,20 +26,20 @@
       };
 
       border = {
-        width = 1;
+        width = 2; # Slightly thicker for that glowing edge effect
         radius = 8;
       };
 
-      # Everforest colors
+      # Colors sampled from the Cyan/Emerald wallpaper
       colors = {
-        background = "272E33EB"; # Background 0 with transparency
-        text = "D3C6AAFF"; # Foreground
-        match = "A7C080FF"; # Green (highlighted matches)
-        selection = "3C4841D9"; # Background Green with transparency
-        selection-text = "D3C6AAFF"; # Foreground
-        selection-match = "83C092EE"; # Aqua (matched text in selection)
-        border = "A7C08066"; # Green with transparency
-        placeholder = "859289CC"; # Grey 1 with transparency
+        background = "0D1616EB"; # Deep dark teal-black (matches the shadows)
+        text = "E0F7F2FF"; # Off-white with a hint of cyan
+        match = "43F2D6FF"; # Bright Neon Cyan (the primary light source)
+        selection = "1A3D37D9"; # Deep Emerald background for selection
+        selection-text = "43F2D6FF"; # Cyan text for selected item
+        selection-match = "5FC497FF"; # Emerald green for matches within selection
+        border = "43F2D666"; # Semi-transparent Cyan border
+        placeholder = "5FC49788"; # Dim Emerald for placeholders
       };
 
       dmenu = {

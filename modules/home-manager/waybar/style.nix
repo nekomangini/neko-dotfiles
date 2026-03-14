@@ -1,39 +1,36 @@
 {
   programs.waybar.style = ''
-    /* Everforest - Waybar Theme */
+    /* Cyber-Emerald Theme (Custom Matched to Wallpaper) */
     * {
-      margin: 0;
-      padding: 0;
-      border: none;
-      border-radius: 0;
-      font-family: "FiraCode Nerd Font", "Cascadia Code", monospace;
-      font-size: 12px;
-      min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    font-family: "FiraCode Nerd Font", "Cascadia Code", monospace;
+    font-size: 12px;
+    min-height: 0;
     }
 
-    @define-color fg #D3C6AA;
-    @define-color red #E67E80;
-    @define-color yellow #DBBC7F;
-    @define-color green #A7C080;
-    @define-color blue #7FBBB3;
-    @define-color purple #D699B6;
-    @define-color aqua #83C092;
-    @define-color orange #E69875;
-    @define-color grey0 #7A8478;
-    @define-color grey1 #859289;
-    @define-color grey2 #9DA9A0;
-    @define-color bg_dim #1E2326;
-    @define-color bg0 #272E33;
-    @define-color bg1 #2E383C;
-    @define-color bg2 #374145;
-    @define-color bg3 #414B50;
-    @define-color bg4 #495156;
-    @define-color bg5 #4F5B58;
+    /* Palette sampled from cats_008.jpg */
+    @define-color fg #a3b8b5;
+    @define-color red #ff4d4d;
+    @define-color neon_cyan #43f2d6;
+    @define-color emerald #5fc497;
+    @define-color blue #36a3d9;
+    @define-color aqua #95e6cb;
+    @define-color orange #f29718;
+    @define-color grey0 #2a3b38;
+    @define-color grey1 #40524f;
+    @define-color grey2 #5c706d;
+    @define-color bg_dim #080c0c;
+    @define-color bg0 #0a1211;
+    @define-color bg1 #121f1d;
+    @define-color bg2 #1a2b28;
 
     /* Main Bar */
     #waybar {
-      background: linear-gradient(135deg, rgba(30, 35, 38, 0.95) 0%, rgba(46, 56, 60, 0.9) 100%);
-      border: 1px solid rgba(131, 192, 146, 0.3);
+      background: rgba(10, 18, 17, 0.92);
+      border-bottom: 2px solid rgba(67, 242, 214, 0.3); /* Subtle cyan underline */
       border-radius: 0px;
     }
 
@@ -47,7 +44,7 @@
 
     /* Custom Launcher */
     #custom-launcher {
-      color: @green;
+      color: @neon_cyan;
       font-size: 20px;
       padding: 5px 0 5px 0;
     }
@@ -60,57 +57,49 @@
     }
 
     #workspaces button {
-      background: rgba(46, 56, 60, 0.6);
+      background: rgba(18, 31, 29, 0.6);
       color: @grey2;
       padding: 4px 11px;
       margin: 3px 3px;
-      border-radius: 7px;
-      border: 1px solid rgba(131, 192, 146, 0.2);
+      border-radius: 4px;
+      border: 1px solid rgba(67, 242, 214, 0.1);
       font-weight: 500;
       min-width: 28px;
       transition: all 300ms ease;
-      text-shadow: 0 0 6px rgba(167, 192, 128, 0.4);
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
     }
 
     #workspaces button:hover {
-      background: linear-gradient(135deg, rgba(65, 75, 80, 0.5), rgba(55, 65, 69, 0.4));
+      background: rgba(26, 43, 40, 0.8);
       color: @fg;
-      border-color: rgba(131, 192, 146, 0.5);
-      box-shadow:
-        0 0 8px rgba(131, 192, 146, 0.4),
-        inset 0 1px 2px rgba(167, 192, 128, 0.15);
+      border-color: @emerald;
     }
 
     #workspaces button.active {
-      background: linear-gradient(135deg, @green 0%, @aqua 100%);
+      background: @neon_cyan;
       color: @bg0;
       font-weight: 700;
-      border: 1px solid @aqua;
-      box-shadow: 0 0 12px rgba(167, 192, 128, 0.6);
+      border: 1px solid @neon_cyan;
+      /* Neon glow effect matched to the sign on the left */
+      box-shadow: 0 0 12px rgba(67, 242, 214, 0.6);
     }
 
     #workspaces button.urgent {
-      background: linear-gradient(135deg, rgba(230, 126, 128, 0.5), rgba(230, 126, 128, 0.4));
-      color: @fg;
-      border-color: rgba(230, 126, 128, 0.8);
-      box-shadow: 0 0 12px rgba(230, 126, 128, 0.6);
+      background: @red;
+      color: @bg0;
+      border-color: @red;
     }
 
     /* Clock */
     #clock {
-      background: linear-gradient(135deg, rgba(65, 75, 80, 0.75), rgba(55, 65, 69, 0.7));
-      color: @fg;
+      background: @bg1;
+      color: @neon_cyan;
       padding: 4px 11px;
       margin: 5px 5px;
-      border-radius: 7px;
-      letter-spacing: 0.08em;
-      border: 1px solid rgba(167, 192, 128, 0.3);
-      text-shadow: 0 0 10px rgba(131, 192, 146, 0.6);
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(67, 242, 214, 0.2);
       font-weight: 600;
-      box-shadow:
-        0 3px 10px rgba(0, 0, 0, 0.4),
-        inset 0 1px 2px rgba(211, 198, 170, 0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     }
 
     /* Stat Modules */
@@ -121,17 +110,13 @@
     #network,
     #pulseaudio,
     #tray {
-      background: linear-gradient(135deg, rgba(46, 56, 60, 0.65), rgba(39, 46, 51, 0.7));
+      background: @bg1;
       color: @fg;
       padding: 4px 11px;
       margin: 5px 5px;
-      border-radius: 7px;
-      margin-left: 5px;
-      border: 1px solid rgba(131, 192, 146, 0.25);
-      transition: all 300ms ease;
-      box-shadow: 
-        0 2px 5px rgba(0, 0, 0, 0.4),
-        inset 0 1px 1px rgba(167, 192, 128, 0.1);
+      border-radius: 4px;
+      border: 1px solid rgba(95, 196, 151, 0.15); /* Emerald border */
+      transition: all 200ms ease;
     }
 
     #temperature:hover,
@@ -140,12 +125,9 @@
     #memory:hover,
     #network:hover,
     #pulseaudio:hover {
-      background: linear-gradient(135deg, rgba(65, 75, 80, 0.6), rgba(131, 192, 146, 0.3));
-      color: @fg;
-      border-color: @aqua;
-      box-shadow:
-        0 4px 8px rgba(131, 192, 146, 0.5),
-        inset 0 1px 2px rgba(167, 192, 128, 0.2);
+      background: @bg2;
+      border-color: @neon_cyan;
+      color: @neon_cyan;
     }
 
     /* Critical States */
@@ -153,22 +135,16 @@
     #custom-gpu-temp.critical,
     #cpu.critical,
     #memory.critical {
-      background: linear-gradient(135deg, rgba(230, 126, 128, 0.5), rgba(230, 126, 128, 0.45));
-      color: @fg;
-      border-color: rgba(230, 126, 128, 0.8);
-      box-shadow:
-        0 0 10px rgba(230, 126, 128, 0.6),
-        inset 0 1px 2px rgba(230, 126, 128, 0.3);
+      background: @red;
+      color: @bg0;
+      border-color: @red;
     }
 
     /* Muted Audio State */
     #pulseaudio.muted {
-      background: linear-gradient(135deg, rgba(55, 65, 69, 0.6), rgba(46, 56, 60, 0.55));
+      background: @bg1;
       color: @grey1;
       border-color: @grey0;
-      box-shadow:
-        0 0 10px rgba(122, 132, 120, 0.4),
-        inset 0 1px 2px rgba(122, 132, 120, 0.3);
     }
 
     /* System Tray */
@@ -177,34 +153,23 @@
       margin: 5px 5px;
     }
 
-    #tray > .passive {
-      -gtk-icon-effect: dim;
-    }
-
-    #tray > .active {
-      -gtk-icon-effect: highlight;
-    }
-
     /* Custom Control (Power) */
     #custom-control {
-      color: @fg;
+      color: @neon_cyan;
       font-size: 16px;
       padding: 4px 11px;
       margin: 5px 5px;
-      background: linear-gradient(135deg, rgba(65, 75, 80, 0.6), rgba(55, 65, 69, 0.55));
-      border-radius: 8px;
-      border: 1px solid rgba(167, 192, 128, 0.3);
-      transition: all 300ms ease;
-      box-shadow: 0 2px 6px rgba(131, 192, 146, 0.3);
+      background: @bg1;
+      border-radius: 4px;
+      border: 1px solid rgba(67, 242, 214, 0.2);
     }
 
     #custom-control:hover {
-      background: linear-gradient(135deg, rgba(230, 126, 128, 0.6), rgba(230, 126, 128, 0.5));
-      color: @fg;
-      border-color: rgba(230, 126, 128, 0.8);
-      box-shadow: 
-        0 4px 14px rgba(230, 126, 128, 0.6),
-        inset 0 1px 2px rgba(230, 126, 128, 0.3);
+      background: @red;
+      color: @bg0;
+      border-color: @red;
     }
+
+
   '';
 }
