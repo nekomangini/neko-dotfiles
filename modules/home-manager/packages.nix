@@ -14,26 +14,32 @@
     zathura
     appimage-run
     planify
+    ticktick
 
     godot
 
     # CLI
-    jq
-    poppler
     fd
     ripgrep
     fzf
     zoxide
-    resvg
-    xclip
-    wl-clipboard
     eza
     fastfetch
+    htop
+
+    xclip
+    wl-clipboard
+    wlr-randr
+
+    jq
+    poppler
+    resvg
     unzip
     woeusb
-    htop
     lm_sensors
-    wlr-randr
+
+    gemini-cli
+    qwen-code
 
     # Notes
     logseq
