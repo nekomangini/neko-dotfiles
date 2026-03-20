@@ -29,6 +29,7 @@
     windowrule = opaque, noblur, class:^(dev.zed.Zed)$
     windowrule = opaque, noblur, class:^(org.pwmt.zathura)
     windowrule = opaque, noblur, class:^(superProductivity)
+    windowrule = opaque, noblur, class:^(ticktick)
 
     # Override opacity
     windowrule = opacity 0.9 override 0.8 override 0.8 override, class:^(Emacs)$ # 0.9 active, 0.8 inactive, 0.8 fullscreen opacity
@@ -55,6 +56,7 @@
     windowrule = workspace 2,  class:brave-browser
     windowrule = workspace 4,  class:org.kde.dolphin
     windowrule = workspace 6,  class:superProductivity
+    windowrule = workspace 6,  class:ticktick
     windowrule = workspace 6,  class:org.kde.gwenview
     windowrule = workspace 8,  class:blender
     windowrule = workspace 8,  class:krita
