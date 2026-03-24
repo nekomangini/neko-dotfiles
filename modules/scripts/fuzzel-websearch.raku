@@ -12,6 +12,7 @@ constant %ENGINES = (
     'Wikipedia'    => 'https://en.wikipedia.org/wiki/Special:Search?search=',
     'Arch Manual'  => 'https://man.archlinux.org/search?q=',
     'DevDocs'      => 'https://devdocs.io/#q=',
+    'Youtube'      => 'https://www.youtube.com/results?search_query='
 );
 
 # 2. URI Encoding Helper
