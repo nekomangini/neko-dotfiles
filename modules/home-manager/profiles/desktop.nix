@@ -6,6 +6,7 @@
     ../neovim/astronvim.nix
     ../neovide
     ../qtile
+    ../i3
     ../shell/fish
     ../dunst
     ../shell/scripts.nix

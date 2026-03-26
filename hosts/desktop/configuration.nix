@@ -31,6 +31,7 @@
     ../../modules/nixos/window-managers/hyprland.nix
     ../../modules/nixos/window-managers/qtile.nix
     ../../modules/nixos/window-managers/niri.nix
+    ../../modules/nixos/window-managers/i3.nix
 
     ../../modules/nixos/programs/fish.nix
     ../../modules/nixos/programs/adb.nix
