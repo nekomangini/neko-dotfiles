@@ -7,7 +7,7 @@ let
   kitty = "${pkgs.kitty}/bin/kitty";
   tmux = "${pkgs.tmux}/bin/tmux new-session -A -s main";
   emacs = "${pkgs.emacs-gtk}/bin/emacs";
-  dmenu = "${pkgs.dmenu}/bin/dmenu";
+  dmenu = "${pkgs.dmenu}/bin/dmenu_run";
 in
 
 {
