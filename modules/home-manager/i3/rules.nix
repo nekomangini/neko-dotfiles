@@ -2,7 +2,6 @@
 
 {
   xsession.windowManager.i3.config = {
-    # Window assignments
     assigns = {
       "9" = [
         { class = "^Vivaldi-stable$"; }

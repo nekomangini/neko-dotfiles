@@ -1,8 +1,14 @@
 { pkgs, ... }:
 
+let
+
+  tmuxsession = "${pkgs.kitty}/bin/kitty -e ${pkgs.tmux}/bin/tmux new-session -A -s main";
+in
+
 {
   xsession.windowManager.i3.config.startup = [
     # ===== SYSTEM SERVICES =====
+    # TODO
     # {
     #   command = "dex-autostart --autostart --environment i3";
     #   notification = false;
@@ -17,11 +23,13 @@
     # }
 
     # ===== COMPOSITOR & WALLPAPER =====
+    # NOTE: I'll enable this when I just want to look at my wallpaper and not work :)
     # {
     #   command = "picom";
     #   notification = false;
     # }
     # {
+    #   # FIX
     #   # command = "feh --bg-fill ~/neko-dotfiles/wallpaper/cars_036.jpg ~/neko-dotfiles/wallpaper/itachi_014.jpg";
     #   command = "feh --no-xinerama --bg-fill ~/neko-dotfiles/wallpaper/cars_036.jpg";
     #   notification = false;
@@ -40,10 +48,11 @@
     }
 
     # ===== EMACS DAEMON =====
-    {
-      command = "emacs --daemon=nekoserver";
-      notification = false;
-    }
+    # FIX
+    # {
+    #   command = "emacs --daemon=nekoserver";
+    #   notification = false;
+    # }
 
     # ===== MONITOR SETUP ====
     {
@@ -51,17 +60,13 @@
     }
 
     # ===== STARTUP APPLICATIONS =====
-    # {
-    #   command = "i3-msg 'workspace 1; exec kitty -e tmux new-session -A -s main'";
-    #   notification = false;
-    # }
-    # {
-    #   command = "sleep 3 && i3-msg 'workspace 2; exec vivaldi-stable'";
-    #   notification = false;
-    # }
-    # {
-    #   command = "sleep 10 && i3-msg 'workspace 3; exec $HOME/Ticktick/ticktick.AppImage'";
-    #   notification = false;
-    # }
+    {
+      command = "exec ${tmuxsession}";
+      notification = false;
+    }
+    {
+      command = "sleep 3 && exec ${pkgs.vivaldi}/bin/vivaldi";
+      notification = false;
+    }
   ];
 }

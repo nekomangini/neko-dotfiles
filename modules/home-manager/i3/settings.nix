@@ -2,7 +2,6 @@
 
 {
   xsession.windowManager.i3.config = {
-    # Fonts
     fonts = {
       names = [ "monospace" ];
       size = 8.0;

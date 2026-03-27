@@ -4,11 +4,17 @@ let
   mod = "Mod4";
   ctrl = "Control";
   xdotool = "${pkgs.xdotool}/bin/xdotool";
-
-  alt = "Mod1";
-  emacsGui = "${pkgs.emacs-gtk}/bin/emacsclient -c -a ''";
+  kitty = "${pkgs.kitty}/bin/kitty";
+  tmux = "${pkgs.tmux}/bin/tmux new-session -A -s main";
+  emacs = "${pkgs.emacs-gtk}/bin/emacs";
+  dmenu = "${pkgs.dmenu}/bin/dmenu";
 in
+
 {
+  imports = [
+    ../../home-manager/shell/scripts.nix
+  ];
+
   xsession.windowManager.i3 = {
     enable = true;
     config = {
@@ -17,14 +23,12 @@ in
 
       keybindings = lib.mkOptionDefault {
         # ===== APPLICATIONS =====
-        "${mod}+Return" = "exec kitty";
-        "${mod}+d" = "exec dmenu_run";
-
-        # FIX: powermenu * emacsclient
-        # "${mod}+p" = "exec powermenu";
-        # "${mod}+e" = "exec ${emacsGui}";
-        # "${mod}+Control+Return" = "exec kitty -e tmux new-session -A -s main";
-        "${mod}+e" = "exec ${pkgs.emacs-gtk}/bin/emacs";
+        "${mod}+Return" = "exec ${kitty}";
+        "${mod}+d" = "exec ${dmenu}";
+        "${mod}+Control+Return" = "exec ${kitty} -e ${tmux}";
+        "${mod}+e" = "exec ${kitty} -e ed"; # Terminal mode T.T
+        "${mod}+Shift+e" = "exec ${emacs}"; # Not emacs server T.T
+        "${mod}+p" = "exec x11powermenu"; # Imported from shell/scripts.nix
 
         # ===== WINDOW MANAGEMENT =====
         "${mod}+q" = "kill";
@@ -89,19 +93,23 @@ in
         # ===== SYSTEM =====
         "${mod}+Shift+r" = "reload";
         "${mod}+Shift+c" = "restart";
-        # "${mod}+Control+q" = "exec i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'";
         "${mod}+Control+q" = "exec i3-msg exit";
 
         # ===== MULTIMEDIA =====
-        # TODO
-        # "XF86AudioRaiseVolume" = "exec --no-startup-id amixer set Master 1%+";
-        # "XF86AudioLowerVolume" = "exec --no-startup-id amixer set Master 1%-";
-        # "XF86AudioMute" = "exec --no-startup-id amixer set Master toggle";
+        "XF86AudioRaiseVolume" = "exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+";
+        "XF86AudioLowerVolume" = "exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%-";
+        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+
+        "XF86AudioNext" = "exec playerctl next";
+        "XF86AudioPrev" = "exec playerctl previous";
+        "XF86AudioPlay" = "exec playerctl play-pause";
+        "XF86AudioPause" = "exec playerctl play-pause";
 
         # ===== SCREENSHOTS =====
-        # TODO
-        # "Print" =
-        #   "exec --no-startup-id scrot ~/Pictures/i3-screenshots/%Y-%m-%d-%T-screenshot.png && dunstify 'Screenshot Taken'";
+        # Imported from shell/scripts.nix
+        "Print" = "exec x11screenshot DVI";
+        "Shift+Print" = "exec x11screenshot HDMI";
+        "Control+Print" = "exec x11screenshot BOTH";
 
         # Resize mode trigger
         "${mod}+r" = "mode resize";
@@ -116,8 +124,10 @@ in
         # Clicks
         "${mod}+${ctrl}+comma" = "exec ${xdotool} click --clearmodifiers 1";
         "${mod}+${ctrl}+period" = "exec ${xdotool} click --clearmodifiers 3";
+        "${mod}+${ctrl}+y" = "exec ${xdotool} click --clearmodifiers 4"; # Scroll Wheel UP
+        "${mod}+${ctrl}+p" = "exec ${xdotool} click --clearmodifiers 5"; # Scroll Wheel DOWN
 
-        # Diagonals
+        # Diagonal Movement
         "${mod}+${ctrl}+u" = "exec ${xdotool} mousemove_relative -- -40 -40";
         "${mod}+${ctrl}+i" = "exec ${xdotool} mousemove_relative -- 40 -40";
         "${mod}+${ctrl}+n" = "exec ${xdotool} mousemove_relative -- -40 40";
