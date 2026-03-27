@@ -9,6 +9,8 @@ let
   tmux-rails = ../../scripts/tmux-rails.raku;
   helix-findword = ../../scripts/helix-findword.raku;
   webSearchScriptLoc = ../../scripts/fuzzel-websearch.raku;
+  x11-screenshot = ../../scripts/x11-screenshot.raku;
+  x11-powermenu = ../../scripts/x11-powermenu.raku;
 
 in
 
@@ -67,6 +69,22 @@ in
       runtimeInputs = [ rakudo ];
       text = ''
         ${rakudo}/bin/raku ${powermenu}
+      '';
+    })
+
+    # Imported in i3/keybinds.nix
+    (writeShellApplication {
+      name = "x11screenshot";
+      runtimeInputs = [ rakudo ];
+      text = ''
+        ${rakudo}/bin/raku ${x11-screenshot} "$@"
+      '';
+    })
+    (writeShellApplication {
+      name = "x11powermenu";
+      runtimeInputs = [ rakudo ];
+      text = ''
+        ${rakudo}/bin/raku ${x11-powermenu}
       '';
     })
 
