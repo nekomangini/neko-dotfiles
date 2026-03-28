@@ -5,9 +5,8 @@ let
   ctrl = "Control";
   xdotool = "${pkgs.xdotool}/bin/xdotool";
   kitty = "${pkgs.kitty}/bin/kitty";
-  tmux = "${pkgs.tmux}/bin/tmux new-session -A -s main";
-  emacs = "${pkgs.emacs-gtk}/bin/emacs";
   dmenu = "${pkgs.dmenu}/bin/dmenu_run";
+  # emacs = "${pkgs.emacs-gtk}/bin/emacs";
 in
 
 {
@@ -25,10 +24,13 @@ in
         # ===== APPLICATIONS =====
         "${mod}+Return" = "exec ${kitty}";
         "${mod}+d" = "exec ${dmenu}";
-        "${mod}+Control+Return" = "exec ${kitty} -e ${tmux}";
-        "${mod}+e" = "exec ${kitty} -e ed"; # Terminal mode T.T
-        "${mod}+Shift+e" = "exec ${emacs}"; # Not emacs server T.T
-        "${mod}+p" = "exec x11powermenu"; # Imported from shell/scripts.nix
+        # Imported from shell/scripts.nix
+        "${mod}+e" = "exec emacs-gui-x11";
+        "${mod}+p" = "exec x11powermenu";
+
+        # FIX: emacs gui
+        # "${mod}+e" = "exec ${emacs}";
+        # "${mod}+Shift+e" = "exec ${emacsclient} -c -a emacs";
 
         # ===== WINDOW MANAGEMENT =====
         "${mod}+q" = "kill";

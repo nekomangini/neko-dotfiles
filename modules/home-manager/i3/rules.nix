@@ -7,8 +7,8 @@
         { class = "^Vivaldi-stable$"; }
         { class = "^ticktick$"; }
         { class = "^Godot$"; }
-        { class = "^org.kde.dolphin$"; }
-        { class = "^org.kde.gwenview$"; }
+        { class = "^dolphin$"; }
+        { class = "^gwenview$"; }
         { class = "^Blender$"; }
         { class = "^krita$"; }
       ];
