@@ -7,6 +7,8 @@
       size = 8.0;
     };
 
+    workspaceLayout = "tabbed";
+
     # Floating modifier
     floating.modifier = "Mod4";
 

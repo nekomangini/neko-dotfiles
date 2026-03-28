@@ -1,10 +1,5 @@
 { pkgs, ... }:
 
-let
-
-  tmuxsession = "${pkgs.kitty}/bin/kitty -e ${pkgs.tmux}/bin/tmux new-session -A -s main";
-in
-
 {
   xsession.windowManager.i3.config.startup = [
     # ===== SYSTEM SERVICES =====
@@ -61,11 +56,15 @@ in
 
     # ===== STARTUP APPLICATIONS =====
     {
-      command = "exec ${tmuxsession}";
+      command = "exec ${pkgs.kitty}/bin/kitty";
       notification = false;
     }
     {
       command = "sleep 3 && exec ${pkgs.vivaldi}/bin/vivaldi";
+      notification = false;
+    }
+    {
+      command = "sleep 3 && exec ${pkgs.kdePackages.dolphin}/bin/dolphin";
       notification = false;
     }
   ];

@@ -87,6 +87,9 @@ in
         ${rakudo}/bin/raku ${x11-powermenu}
       '';
     })
+    (pkgs.writeShellScriptBin "emacs-gui-x11" ''
+      ${pkgs.emacs-gtk}/bin/emacsclient -c -a ""
+    '')
 
     (writeShellScriptBin "websearch" ''
       exec ${rakudo}/bin/raku ${webSearchScriptLoc}
