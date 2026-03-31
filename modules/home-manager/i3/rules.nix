@@ -21,6 +21,7 @@
         { class = "^Logseq$"; }
         { class = "^Joplin$"; }
         { class = "^Emacs$"; }
+        { class = "^okular$"; }
       ];
     };
 
