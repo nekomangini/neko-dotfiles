@@ -25,6 +25,9 @@
     ../../modules/nixos/services/printing.nix
     ../../modules/nixos/services/touchpad.nix
 
+    ../../modules/nixos/services/openssh.nix
+    ../../modules/nixos/core/secrets.nix
+
     ../../modules/nixos/desktop/plasma.nix
     ../../modules/nixos/desktop/xserver.nix
 
