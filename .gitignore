@@ -1,2 +1,2 @@
 *.log
-secrets/my-paths.age
+./secrets/my-paths.age
