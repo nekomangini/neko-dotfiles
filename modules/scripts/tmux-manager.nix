@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  x11tmuxmanager = pkgs.writeScriptBin "x11tmuxmanager" ''
+  tmux-manager = pkgs.writeScriptBin "tmanager" ''
     #!${pkgs.rakudo}/bin/raku
     use v6.d;
 
@@ -34,7 +34,12 @@ let
         my @sessions = <vue flutter notes dotfiles main>;
 
         my $selected = $choice // do {
-            my $proc = run '${pkgs.rofi}/bin/rofi', '-dmenu', '-i', '-p', 'Tmux session:', :in, :out;
+            my $proc   = run '${pkgs.fzf}/bin/fzf',
+                             '--prompt=Tmux session: ',
+                             '--height=~50%',
+                             '--layout=reverse',
+                             '--border',
+                             :in, :out;
             $proc.in.say: @sessions.join("\n");
             $proc.in.close;
             $proc.out.slurp(:close).trim;
@@ -90,6 +95,8 @@ let
                 run '${pkgs.tmux}/bin/tmux', 'new-window', '-t', $name, '-n', 'editor', '-c', $path;
                 run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:editor", 'hx .', 'C-m';
                 run '${pkgs.tmux}/bin/tmux', 'select-window', '-t', "{$name}:editor";
+                run '${pkgs.tmux}/bin/tmux', 'new-window', '-t', $name, '-n', 'git', '-c', $path;
+                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:git", 'lg', 'C-m';
             }
             when 'notes' {
                 run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', $name, 'y', 'C-m';
@@ -102,5 +109,5 @@ let
   '';
 in
 {
-  home.packages = [ x11tmuxmanager ];
+  home.packages = [ tmux-manager ];
 }

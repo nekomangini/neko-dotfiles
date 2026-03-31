@@ -10,7 +10,7 @@
     ../shell/fish
     ../dunst
     ../shell/scripts.nix
-    ../../../modules/scripts/x11tmuxmanager.nix
+    ../../../modules/scripts/tmux-manager.nix
     ../git.nix
     ../kitty
     ../yazi.nix
