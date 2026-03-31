@@ -23,6 +23,11 @@
       # Enable true color (24-bit) support
       set -ga terminal-overrides ",*256col*:Tc"
       set -ga terminal-overrides ",xterm-256color:Tc"
-      set -ga terminal-overrides ",xterm-kitty:Tc"    '';
+      set -ga terminal-overrides ",xterm-kitty:Tc"
+    '';
+  };
+
+  home.sessionVariables = {
+    TMUX_PATHS_FILE = "/run/agenix/my-paths";
   };
 }

@@ -16,13 +16,15 @@ in
 
 {
   home.packages = with pkgs; [
-    # Terminal base
+    # Emacs
     (writeShellScriptBin "ed" ''
       exec ${emacs-gtk}/bin/emacsclient -nw
     '')
-
     (writeShellScriptBin "et" ''
       exec ${emacs-gtk}/bin/emacs -nw
+    '')
+    (pkgs.writeShellScriptBin "eg" ''
+      ${pkgs.emacs-gtk}/bin/emacsclient -c -a ""
     '')
 
     (writeShellApplication {
@@ -87,9 +89,6 @@ in
         ${rakudo}/bin/raku ${x11-powermenu}
       '';
     })
-    (pkgs.writeShellScriptBin "emacs-gui-x11" ''
-      ${pkgs.emacs-gtk}/bin/emacsclient -c -a ""
-    '')
 
     (writeShellScriptBin "websearch" ''
       exec ${rakudo}/bin/raku ${webSearchScriptLoc}

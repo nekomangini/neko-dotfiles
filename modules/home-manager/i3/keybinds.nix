@@ -6,7 +6,7 @@ let
   xdotool = "${pkgs.xdotool}/bin/xdotool";
   kitty = "${pkgs.kitty}/bin/kitty";
   dmenu = "${pkgs.dmenu}/bin/dmenu_run";
-  # emacs = "${pkgs.emacs-gtk}/bin/emacs";
+  emacsclient = "${pkgs.emacs-gtk}/bin/emacsclient";
 in
 
 {
@@ -24,13 +24,10 @@ in
         # ===== APPLICATIONS =====
         "${mod}+Return" = "exec ${kitty}";
         "${mod}+d" = "exec ${dmenu}";
-        # Imported from shell/scripts.nix
-        "${mod}+e" = "exec emacs-gui-x11";
-        "${mod}+p" = "exec x11powermenu";
+        "${mod}+e" = "exec ${emacsclient} -c";
 
-        # FIX: emacs gui
-        # "${mod}+e" = "exec ${emacs}";
-        # "${mod}+Shift+e" = "exec ${emacsclient} -c -a emacs";
+        # Imported from shell/scripts.nix
+        "${mod}+p" = "exec x11powermenu";
 
         # ===== WINDOW MANAGEMENT =====
         "${mod}+q" = "kill";

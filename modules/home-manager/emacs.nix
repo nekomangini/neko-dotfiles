@@ -10,6 +10,9 @@
   services.emacs = with pkgs; {
     enable = true;
     package = emacs-gtk;
+    startWithUserSession = "graphical";
+    # extraOptions = [ "-D" ];
+    # extraOptions = [ "-l" "~/.config/emacs/init.el" ];
   };
 
   programs.emacs = with pkgs; {

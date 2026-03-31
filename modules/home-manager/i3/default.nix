@@ -30,7 +30,7 @@
           
           focused_workspace  #4c7899 #285577 #ffffff
           active_workspace   #333333 #5f676a #ffffff
-          inactive_workspace #333333 #222222 #888888
+          inactive_workspace #333333 #333333 #ffffff
           urgent_workspace   #2f343a #900000 #ffffff
         }
       }
