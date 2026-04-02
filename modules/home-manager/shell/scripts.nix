@@ -16,55 +16,16 @@ in
 
 {
   home.packages = with pkgs; [
-    # Emacs
+    # ===== Emacs =====
     (writeShellScriptBin "ed" ''
-      exec ${emacs-gtk}/bin/emacsclient -nw
-    '')
-    (writeShellScriptBin "et" ''
-      exec ${emacs-gtk}/bin/emacs -nw
-    '')
-    (pkgs.writeShellScriptBin "eg" ''
-      ${pkgs.emacs-gtk}/bin/emacsclient -c -a ""
+      exec ${emacs}/bin/emacsclient -nw
     '')
 
-    (writeShellApplication {
-      name = "dev-notes";
-      runtimeInputs = [ rakudo ];
-      text = ''
-        exec ${rakudo}/bin/raku ${nlog-script} "$@"
-      '';
-    })
-
-    (writeShellApplication {
-      name = "hf";
-      runtimeInputs = [ rakudo ];
-      text = ''
-        ${rakudo}/bin/raku ${helix-fzf}
-      '';
-    })
-
-    (writeShellApplication {
-      name = "tmuxrails";
-      runtimeInputs = [ rakudo ];
-      text = ''
-        ${rakudo}/bin/raku ${tmux-rails}
-      '';
-    })
-
-    (writeShellApplication {
-      name = "hw";
-      runtimeInputs = [ rakudo ];
-      text = ''
-        exec ${rakudo}/bin/raku ${helix-findword} "$@"
-      '';
-    })
-
-    # Joplin app
-    (writeShellScriptBin "helix-joplin" ''
-      COMMAND_ARRAY=("${helix}/bin/hx" "$@")
-      exec ${kitty}/bin/kitty ${tmux}/bin/tmux new-session -A -s joplin "''${COMMAND_ARRAY[@]}"
-    '')
-
+    # ===== Wayland =====
+    # TEST
+    # (writeShellScriptBin "hed" ''
+    #   exec ${emacs-pgtk}/bin/emacsclient -nw
+    # '')
     # Imported in hyprland/keybinds.nix
     (writeShellApplication {
       name = "powermenu";
@@ -74,6 +35,7 @@ in
       '';
     })
 
+    # ===== X11 =====
     # Imported in i3/keybinds.nix
     (writeShellApplication {
       name = "x11screenshot";
@@ -90,10 +52,53 @@ in
       '';
     })
 
+    # ===== Scripts=====
+    # FIX script
+    (writeShellApplication {
+      name = "dev-notes";
+      runtimeInputs = [ rakudo ];
+      text = ''
+        exec ${rakudo}/bin/raku ${nlog-script} "$@"
+      '';
+    })
+
+    # TODO
     (writeShellScriptBin "websearch" ''
       exec ${rakudo}/bin/raku ${webSearchScriptLoc}
     '')
 
+    (writeShellApplication {
+      name = "hf";
+      runtimeInputs = [ rakudo ];
+      text = ''
+        ${rakudo}/bin/raku ${helix-fzf}
+      '';
+    })
+
+    (writeShellApplication {
+      name = "hw";
+      runtimeInputs = [ rakudo ];
+      text = ''
+        exec ${rakudo}/bin/raku ${helix-findword} "$@"
+      '';
+    })
+
+    # tmux
+    (writeShellApplication {
+      name = "tmuxrails";
+      runtimeInputs = [ rakudo ];
+      text = ''
+        ${rakudo}/bin/raku ${tmux-rails}
+      '';
+    })
+
+    # Joplin
+    (writeShellScriptBin "helix-joplin" ''
+      COMMAND_ARRAY=("${helix}/bin/hx" "$@")
+      exec ${kitty}/bin/kitty ${tmux}/bin/tmux new-session -A -s joplin "''${COMMAND_ARRAY[@]}"
+    '')
+
+    # ===== AUTOMATION =====
     (writeShellApplication {
       name = "sync-notes";
       runtimeInputs = [ rakudo ];
