@@ -43,7 +43,7 @@
     }
 
     # ===== EMACS DAEMON =====
-    # FIX
+    # NOTE: Using systemd
     # {
     #   command = "emacs --daemon=nekoserver";
     #   notification = false;
@@ -60,11 +60,15 @@
       notification = false;
     }
     {
-      command = "sleep 3 && exec ${pkgs.vivaldi}/bin/vivaldi";
+      command = "exec ${pkgs.ticktick}/bin/ticktick";
       notification = false;
     }
     {
       command = "sleep 3 && exec ${pkgs.kdePackages.dolphin}/bin/dolphin";
+      notification = false;
+    }
+    {
+      command = "sleep 5 && exec ${pkgs.vivaldi}/bin/vivaldi";
       notification = false;
     }
   ];
