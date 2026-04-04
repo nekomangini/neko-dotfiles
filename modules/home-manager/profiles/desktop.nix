@@ -11,6 +11,15 @@
     ../dunst
     ../shell/scripts.nix
     ../../../modules/scripts/tmux-manager.nix
+    ../../../modules/scripts/helix-findword.nix
+    ../../../modules/scripts/helix-fzf.nix
+    ../../../modules/scripts/x11-powermenu.nix
+    ../../../modules/scripts/x11-screenshot.nix
+    ../../../modules/scripts/x11-websearch.nix
+    ../../../modules/scripts/sync-notes.nix
+    ../../../modules/scripts/sync-nekopaper.nix
+    ../../../modules/scripts/wayland-powermenu.nix
+    ../../../modules/scripts/wayland-websearch.nix
     ../git.nix
     ../kitty
     ../yazi.nix

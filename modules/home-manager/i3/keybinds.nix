@@ -26,8 +26,11 @@ in
         "${mod}+d" = "exec ${dmenu}";
         "${mod}+e" = "exec ${emacsclient} -c";
 
-        # Imported from shell/scripts.nix
-        "${mod}+p" = "exec x11powermenu";
+        # NOTE: Check modules/scripts/x11-powermenu.nix
+        "${mod}+p" = "exec x-powermenu";
+
+        # NOTE: Check modules/scripts/x11-webseach.nix
+        "${mod}+b" = "exec x-websearch";
 
         # ===== WINDOW MANAGEMENT =====
         "${mod}+q" = "kill";
@@ -106,9 +109,10 @@ in
 
         # ===== SCREENSHOTS =====
         # Imported from shell/scripts.nix
-        "Print" = "exec x11screenshot DVI";
-        "Shift+Print" = "exec x11screenshot HDMI";
-        "Control+Print" = "exec x11screenshot BOTH";
+        # NOTE: Check modules/scripts/x11-screenshot.nix
+        "Print" = "exec x-screenshot DVI";
+        "Shift+Print" = "exec x-screenshot HDMI";
+        "Control+Print" = "exec x-screenshot BOTH";
 
         # Resize mode trigger
         "${mod}+r" = "mode resize";

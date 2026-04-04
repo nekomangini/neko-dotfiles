@@ -28,8 +28,8 @@
     bind = $mainMod  CTRL, RETURN, exec, $tmux
     bind = $mainMod, D, exec,      $menu
     bind = $mainMod, E, exec,      $doom
-    bind = $mainMod, P, exec,      powermenu
-    bind = $mainMod, B, exec,      websearch
+    bind = $mainMod, P, exec,      wayland-powermenu
+    bind = $mainMod, B, exec,      wayland-websearch
 
     # Move focus with mainMod + hjkl
     bind = $mainMod, h, movefocus, l
