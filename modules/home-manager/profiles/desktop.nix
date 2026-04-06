@@ -10,7 +10,9 @@
     ../shell/fish
     ../dunst
     ../shell/scripts.nix
+    ../../../modules/scripts/neko-log.nix
     ../../../modules/scripts/tmux-manager.nix
+    ../../../modules/scripts/tmux-rails.nix
     ../../../modules/scripts/helix-findword.nix
     ../../../modules/scripts/helix-fzf.nix
     ../../../modules/scripts/x11-powermenu.nix
@@ -53,5 +55,7 @@
   home.sessionVariables = {
     EDITOR = "${pkgs.helix}/bin/hx";
     VISUAL = "${pkgs.helix}/bin/hx";
+    TMUX_PATHS_FILE = "/run/agenix/my-paths";
+    NOTES_SECRET_FILE = "/run/agenix/note-path";
   };
 }

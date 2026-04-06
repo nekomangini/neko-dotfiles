@@ -26,8 +26,4 @@
       set -ga terminal-overrides ",xterm-kitty:Tc"
     '';
   };
-
-  home.sessionVariables = {
-    TMUX_PATHS_FILE = "/run/agenix/my-paths";
-  };
 }
