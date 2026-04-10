@@ -31,7 +31,7 @@ let
     sub MAIN(Str $choice?) {
         BUILD-ENV();
 
-        my @sessions = <vue flutter notes dotfiles main>;
+        my @sessions = <vue flutter notes dotfiles ruby main>;
 
         my $selected = $choice // do {
             my $proc   = run '${pkgs.fzf}/bin/fzf',
@@ -68,7 +68,8 @@ let
             when 'vue'      { %env<VUE_PATH>      }
             when 'notes'    { %env<NOTES_PATH>    }
             when 'dotfiles' { %env<DOTFILES_PATH> }
-            when 'main'     { %env<PROJECTS_DIR>  }
+            when 'ruby'     { %env<RUBY_PATH>     }
+            when 'main'     { $*HOME.Str          }
             default         { $*HOME.Str          }
         } // $*HOME.Str;
 
@@ -100,6 +101,13 @@ let
             }
             when 'notes' {
                 run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', $name, 'y', 'C-m';
+            }
+            when 'ruby' {
+                run '${pkgs.tmux}/bin/tmux', 'rename-window', '-t', "{$name}:0", 'server';
+                run '${pkgs.tmux}/bin/tmux', 'new-window', '-t', $name, '-n', 'editor', '-c', $path;
+                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:editor", 'hx .', 'C-m';
+                run '${pkgs.tmux}/bin/tmux', 'new-window', '-t', $name, '-n', 'console', '-c', $path;
+                run '${pkgs.tmux}/bin/tmux', 'select-window', '-t', "{$name}:server";
             }
             default {
                 run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', $name, 'y', 'C-m';

@@ -11,7 +11,7 @@ in
   home.packages = with pkgs; [
     # ===== Emacs =====
     (writeShellScriptBin "ed" ''
-      exec ${emacs}/bin/emacsclient -nw
+      exec ${emacs}/bin/emacsclient -nw -a "" "$@"
     '')
 
     # ===== Wayland =====

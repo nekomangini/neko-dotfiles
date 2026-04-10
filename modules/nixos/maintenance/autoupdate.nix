@@ -6,8 +6,13 @@
   # ===============================================
 
   # 1. Auto System Update
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.dates = "weekly";
+  system.autoUpgrade = {
+    # WARN: May cause sudden system reboots if allowReboot is set to true
+    enable = true;
+    dates = "weekly";
+    allowReboot = false;
+    operation = "switch";
+  };
 
   # 2. Auto Cleanup (Garbage Collection)
   nix.gc.automatic = true;
