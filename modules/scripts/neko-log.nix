@@ -176,8 +176,6 @@ let
 
     sub create-file($template-arg, $logname-arg, $logpath-arg) {
         chdir($logpath-arg);
-        # TODO
-        # my $filename = $DATE ~ "-" ~ $logname-arg;
         my $filename = $logname-arg ~ "___" ~ $DATE;
         unless $filename.lc.ends-with($DEFAULT_EXT) {
             $filename ~= $DEFAULT_EXT;
