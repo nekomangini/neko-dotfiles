@@ -15,13 +15,32 @@
     # KEYBINDINGS
 
     # Window management
-    bind = $mainMod, X,            pseudo,
+    bind = $mainMod, X,            exec, pkill -SIGUSR1 waybar # NOTE: Toggle waybar
     bind = $mainMod, T,            togglesplit,
     bind = $mainMod, V,            togglefloating,
     bind = $mainMod, Q,            killactive,
     bind = $mainMod  CTRL, q,      exit,
     bind = $mainMod, F,            fullscreen, 0
     bind = $mainMod, M,            fullscreen, 1
+
+    # Group management
+    bind = $mainMod, G, togglegroup                            # NOTE: Create/destroy a group from the active window
+    bind = $mainMod SHIFT, G, lockactivegroup, toggle          # NOTE: Lock/unlock the active group
+    bind = $mainMod, U, moveoutofgroup                         # NOTE: Remove from group
+
+    # Cycle through windows inside the group
+    bind = ALT, L, changegroupactive, f
+    bind = ALT, H, changegroupactive, b
+
+    # Rearrange the order of windows inside the group
+    bind = ALT SHIFT, L, movegroupwindow, f
+    bind = ALT SHIFT, H, movegroupwindow, b
+
+    # Move a window into the group in a direction
+    bind = $mainMod ALT, H, moveintogroup, l
+    bind = $mainMod ALT, L, moveintogroup, r
+    bind = $mainMod ALT, K, moveintogroup, u
+    bind = $mainMod ALT, J, moveintogroup, d
 
     # Launch applications
     bind = $mainMod, RETURN,       exec, $terminal
@@ -90,7 +109,6 @@
 
     # Workspace navigation
     bind = $mainMod, backslash, workspace, previous
-    bind = $mainMod, TAB,       workspace, previous
     bind = $mainMod, O, workspace, m+1
     bind = $mainMod, I, workspace, m-1
 

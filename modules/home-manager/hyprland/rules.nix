@@ -3,10 +3,10 @@
 {
   wayland.windowManager.hyprland.extraConfig = ''
 
-    # 1. Left Monitor (22"): HDMI-A-1
+    # 1. Left Monitor (22"): DVI-D-1
     monitor=DVI-D-1, 1920x1080, 0x0, 1
 
-    # 2. Right Monitor (22"): DVI-D-1
+    # 2. Right Monitor (22"): HDMI-A-1
     monitor=HDMI-A-1, 1920x1080, 1920x0, 1, transform, 3
 
     # WINDOW RULES
@@ -38,52 +38,47 @@
     # Window behavior
     windowrule = maximize,   class:^(Joplin)$
     windowrule = maximize,   class:^(brave-browser)$
-    windowrule = maximize,   class:^(Emacs)$
     windowrule = maximize,   class:^(superProductivity)$
-    windowrule = fullscreen, class:^(org.kde.okular)$
     windowrule = fullscreen, class:^(krita)$
     windowrule = fullscreen, class:^(blender)$
     windowrule = fullscreen, class:^(Godot)$
-    windowrule = fullscreen, class:^(kitty)$
     windowrule = fullscreen, class:^(dev.zed.Zed)$
-    windowrule = fullscreen, class:^(Logseq)$
     windowrule = fullscreen, class:^(Joplin)$
-    windowrule = fullscreen, class:^(obsidian)$
 
     # Workspace assignments
-    # monitor 22' (DVI-D-1 LEFT) 
-    windowrule = workspace 2,  class:vivaldi-stable
-    windowrule = workspace 2,  class:brave-browser
-    windowrule = workspace 4,  class:org.kde.dolphin
-    windowrule = workspace 6,  class:superProductivity
-    windowrule = workspace 6,  class:ticktick
-    windowrule = workspace 6,  class:org.kde.gwenview
-    windowrule = workspace 8,  class:blender
-    windowrule = workspace 8,  class:krita
-    windowrule = workspace 10, class:Godot
+    # monitor 22' (DVI-D-1 RIGHT) 
+    windowrule = group, workspace 1,  class:vivaldi-stable
+    windowrule = group, workspace 1,  class:org.kde.dolphin
+    windowrule = group, workspace 1,  class:ticktick
+    windowrule = group, workspace 3,  class:org.kde.gwenview
+    windowrule = group, workspace 3,  class:brave-browser
+    windowrule = group, workspace 5,  class:superProductivity
+    windowrule = group, workspace 5,  class:krita
+    windowrule = workspace 7,  class:blender
+    windowrule = workspace 9,  class:Godot
 
 
-    # monitor 22' (HDMI-A-1 RIGHT) Vertical
-    windowrule = workspace 1,  class:kitty
-    windowrule = workspace 3,  class:Emacs
-    windowrule = workspace 3,  class:dev.zed.Zed
-    windowrule = workspace 3,  class:jetbrains-studio
-    windowrule = workspace 5,  class:obsidian
-    windowrule = workspace 7,  class:org.kde.okular
-    windowrule = workspace 7,  class:org.pwmt.zathura
-    windowrule = workspace 9,  class:Logseq
-    windowrule = workspace 9,  class:Joplin
+    # monitor 22' (HDMI-A-1 LEFT) Vertical
+    windowrule = group, workspace 2,  class:kitty
+    windowrule = group, workspace 2,  class:Emacs
+    windowrule = group, workspace 4,  class:obsidian
+    windowrule = group, workspace 4,  class:Logseq
+    windowrule = group, workspace 6,  class:dev.zed.Zed
+    windowrule = group, workspace 6,  class:jetbrains-studio
+    windowrule = group, workspace 8,  class:org.kde.okular
+    windowrule = group, workspace 8,  class:org.pwmt.zathura
+    windowrule = workspace 10, class:Joplin
 
     # Multi-monitor setup
-    workspace = 1,  monitor:HDMI-A-1
-    workspace = 2,  monitor:DVI-D-1
-    workspace = 3,  monitor:HDMI-A-1
-    workspace = 4,  monitor:DVI-D-1
-    workspace = 5,  monitor:HDMI-A-1
-    workspace = 6,  monitor:DVI-D-1
-    workspace = 7,  monitor:HDMI-A-1
-    workspace = 8,  monitor:DVI-D-1
-    workspace = 9,  monitor:HDMI-A-1
-    workspace = 10, monitor:DVI-D-1
+    workspace = 1,  monitor:DVI-D-1
+    workspace = 2,  monitor:HDMI-A-1
+    workspace = 3,  monitor:DVI-D-1
+    workspace = 4,  monitor:HDMI-A-1
+    workspace = 5,  monitor:DVI-D-1
+    workspace = 6,  monitor:HDMI-A-1
+    workspace = 7,  monitor:DVI-D-1
+    workspace = 8,  monitor:HDMI-A-1
+    workspace = 9,  monitor:DVI-D-1
+    workspace = 10, monitor:HDMI-A-1
   '';
 }
