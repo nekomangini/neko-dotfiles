@@ -29,12 +29,12 @@
     bind = $mainMod, U, moveoutofgroup                         # NOTE: Remove from group
 
     # Cycle through windows inside the group
-    bind = ALT, L, changegroupactive, f
-    bind = ALT, H, changegroupactive, b
+    bind = $mainMod, BRACKETRIGHT, changegroupactive, f
+    bind = $mainMod, BRACKETLEFT,  changegroupactive, b
 
     # Rearrange the order of windows inside the group
-    bind = ALT SHIFT, L, movegroupwindow, f
-    bind = ALT SHIFT, H, movegroupwindow, b
+    bind = $mainMod CTRL, BRACKETRIGHT, movegroupwindow, f
+    bind = $mainMod CTRL, BRACKETLEFT,  movegroupwindow, b
 
     # Move a window into the group in a direction
     bind = $mainMod ALT, H, moveintogroup, l
