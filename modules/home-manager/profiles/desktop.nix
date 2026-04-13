@@ -28,6 +28,7 @@
     ../ruby
     ../tmux.nix
     ../vim.nix
+    ../kakoune.nix
   ];
 
   home = {
