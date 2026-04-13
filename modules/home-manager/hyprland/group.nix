@@ -12,7 +12,7 @@
         enabled = true;
         font_family = "FiraCode Nerd Font";
         font_size = 12;
-        height = 20;
+        height = 16;
         "col.active" = "rgba(43f2d6ff)";
         "col.inactive" = "rgba(121f1dff)";
       };

@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
-{
-  home.packages = with pkgs; [
-    shellcheck
-    pandoc
-    sbcl
-  ];
 
+{
   # emacs daemon server
   services.emacs = with pkgs; {
     enable = true;
@@ -22,6 +17,8 @@
 
   home.sessionVariables = {
     EMACS_BIN_PATH = "${config.home.homeDirectory}/.config/emacs/bin";
+    DART_SDK = "${pkgs.dart}";
+    FLUTTER_ROOT = "${pkgs.flutter}";
   };
 
   home.sessionPath = [

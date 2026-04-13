@@ -10,22 +10,12 @@
     ../shell/fish
     ../dunst
     ../shell/scripts.nix
-    ../../../modules/scripts/neko-log.nix
-    ../../../modules/scripts/tmux-manager.nix
-    ../../../modules/scripts/tmux-rails.nix
-    ../../../modules/scripts/helix-findword.nix
-    ../../../modules/scripts/helix-fzf.nix
-    ../../../modules/scripts/x11-powermenu.nix
-    ../../../modules/scripts/x11-screenshot.nix
-    ../../../modules/scripts/x11-websearch.nix
-    ../../../modules/scripts/sync-notes.nix
-    ../../../modules/scripts/sync-nekopaper.nix
-    ../../../modules/scripts/wayland-powermenu.nix
-    ../../../modules/scripts/wayland-websearch.nix
+    ../../scripts
     ../git.nix
     ../kitty
     ../yazi.nix
     ../packages.nix
+    ../dev-tools.nix
     ../emacs.nix
     ../hyprland
     ../niri
@@ -45,9 +35,6 @@
     homeDirectory = "/home/nekomangini";
     stateVersion = "25.05";
   };
-  # home.username = "nekomangini";
-  # home.homeDirectory = "/home/nekomangini";
-  # home.stateVersion = "25.05";
 
   # Let home-manager manage itself
   programs.home-manager.enable = true;
