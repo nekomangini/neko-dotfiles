@@ -7,6 +7,8 @@ let
   tmux = pkgs.tmux;
 in
 
+# TODO
+# Simplify/Move to scripts/default.nix if possible
 {
   home.packages = with pkgs; [
     # ===== Emacs =====

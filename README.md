@@ -11,6 +11,7 @@
 - [x] kitty theme
 - [x] tmux
 - [ ] Nixify Raku and Python scripts
+- [ ] Cleanup packages
 
 ## Flutter Setup
 
