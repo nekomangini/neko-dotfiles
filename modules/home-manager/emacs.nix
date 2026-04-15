@@ -4,15 +4,23 @@
   # emacs daemon server
   services.emacs = with pkgs; {
     enable = true;
-    package = emacs-gtk;
     startWithUserSession = "graphical";
     # extraOptions = [ "-D" ];
     # extraOptions = [ "-l" "~/.config/emacs/init.el" ];
+    package = (
+      emacs-gtk.pkgs.withPackages (epkgs: [
+        epkgs.treesit-grammars.with-all-grammars
+      ])
+    );
   };
 
   programs.emacs = with pkgs; {
     enable = true;
-    package = emacs-gtk;
+    package = (
+      emacs-gtk.pkgs.withPackages (epkgs: [
+        epkgs.treesit-grammars.with-all-grammars
+      ])
+    );
   };
 
   home.sessionVariables = {

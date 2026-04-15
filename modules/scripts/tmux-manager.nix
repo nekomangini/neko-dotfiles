@@ -7,7 +7,7 @@ let
     our %env;
 
     sub BUILD-ENV {
-        my $env-file = %*ENV<TMUX_PATHS_FILE> // "/run/agenix/my-paths";
+        my $env-file = %*ENV<TMUX_PATHS_FILE> // "/run/agenix/tmux-manager-paths";
         my $file = $env-file.IO;
 
         unless $file.e {
@@ -85,27 +85,27 @@ let
         given $name {
             when 'vue' {
                 run '${pkgs.tmux}/bin/tmux', 'rename-window', '-t', "{$name}:0", 'editor';
-                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:0", 'hx .', 'C-m';
+                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:0", 'hx', 'C-m';
             }
             when 'flutter' {
-                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', $name, 'y', 'C-m';
+                run '${pkgs.tmux}/bin/tmux', 'rename-window', '-t', "{$name}:0", 'editor';
+                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', $name, 'hx', 'C-m';
             }
             when 'dotfiles' {
-                run '${pkgs.tmux}/bin/tmux', 'rename-window', '-t', "{$name}:0", 'files';
-                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:0", 'y', 'C-m';
-                run '${pkgs.tmux}/bin/tmux', 'new-window', '-t', $name, '-n', 'editor', '-c', $path;
-                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:editor", 'hx .', 'C-m';
+                run '${pkgs.tmux}/bin/tmux', 'rename-window', '-t', "{$name}:0", 'editor';
+                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:0", 'hx', 'C-m';
+                run '${pkgs.tmux}/bin/tmux', 'new-window', '-t', $name, '-n', 'console', '-c', $path;
                 run '${pkgs.tmux}/bin/tmux', 'select-window', '-t', "{$name}:editor";
-                run '${pkgs.tmux}/bin/tmux', 'new-window', '-t', $name, '-n', 'git', '-c', $path;
-                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:git", 'lg', 'C-m';
             }
             when 'notes' {
-                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', $name, 'y', 'C-m';
+                run '${pkgs.tmux}/bin/tmux', 'rename-window', '-t', "{$name}:0", 'editor';
+                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:0", '${pkgs.emacs}/bin/emacsclient -nw -a "" "' ~ $path ~ '"', 'C-m';
             }
             when 'ruby' {
-                run '${pkgs.tmux}/bin/tmux', 'rename-window', '-t', "{$name}:0", 'server';
-                run '${pkgs.tmux}/bin/tmux', 'new-window', '-t', $name, '-n', 'editor', '-c', $path;
-                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:editor", 'hx .', 'C-m';
+                run '${pkgs.tmux}/bin/tmux', 'rename-window', '-t', "{$name}:0", 'editor';
+                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:0", 'hx', 'C-m';
+                run '${pkgs.tmux}/bin/tmux', 'new-window', '-t', $name, '-n', 'server', '-c', $path;
+                run '${pkgs.tmux}/bin/tmux', 'send-keys', '-t', "{$name}:server", 'hx .', 'C-m';
                 run '${pkgs.tmux}/bin/tmux', 'new-window', '-t', $name, '-n', 'console', '-c', $path;
                 run '${pkgs.tmux}/bin/tmux', 'select-window', '-t', "{$name}:server";
             }
