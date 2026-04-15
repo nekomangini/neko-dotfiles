@@ -30,9 +30,10 @@ let
     constant $DAILY_LOGNAME = $LOGS ~  '___' ~ 'daily-logs';
     constant $WEEKLY_LOGNAME = $LOGS ~  '___' ~ 'weekly-logs';
     constant $MONTHLY_LOGNAME = $LOGS ~  '___' ~ 'monthly-logs';
-    # constant $LOGSEQ_PAGES_PATH = '/run/media/nekomangini/D/emacs-org-sync/02-areas/pages/';
     my $LOGSEQ_PAGES_PATH = %paths<LOGSEQ_PAGES_PATH>
         // die "⚠️ LOGSEQ_PAGES_PATH not set in $secrets-file";
+    my $BLOG_PATH = %paths<BLOG_PATH>
+        // die "⚠️ BLOG_PATH not set in $secrets-file";
 
 
     # ──────────────────────────────────────────────
@@ -196,8 +197,28 @@ let
         say "Succesfully created: '$filename'";
     }
 
+    sub create-blog() {
+
+        my $prompt-blogname = prompt("Enter blogpost title: ");
+        my $blog-filename = "blog-" ~ $prompt-blogname.trim.lc.subst(/\s+/, '-', :g);
+        $blog-filename ~= $DEFAULT_EXT unless $blog-filename.ends-with($DEFAULT_EXT);
+
+        chdir($BLOG_PATH);
+
+        if $blog-filename.IO.e {
+              say "File '$blog-filename' already exists. Aborting...";
+              exit
+        }
+
+         say "Creating file '$blog-filename'...";
+         sleep 1;
+
+         spurt($blog-filename, "");
+         say "Successfully created '$blog-filename'";
+    }
+
     sub create-log {
-        my $template-selector = prompt("Select template: (1) Qlog, (2) Daily Log, (3) Weekly Log, (4) Monthly Log: ");
+        my $template-selector = prompt("Select template: (1) Qlog, (2) Daily Log, (3) Weekly Log, (4) Monthly Log, (5) Blog drafts: ");
 
         given $template-selector.trim {
             when "1" {
@@ -215,6 +236,10 @@ let
             when "4" {
                 say "template 4 is selected";
                 create-file($MONTHLY_TEMPLATE, $MONTHLY_LOGNAME, $LOGSEQ_PAGES_PATH);
+            }
+            when "5" {
+                 say "template 5 is selected";
+                 create-blog();
             }
             default {
                 say "Please select valid templates";
