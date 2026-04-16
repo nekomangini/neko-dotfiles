@@ -5,49 +5,62 @@ let
     #!/usr/bin/env raku
     use v6.d;
 
-    sub MAIN(Str $action?) {
-        my @actions = <reboot poweroff logout lock suspend hibernate>;
+    sub MAIN() {
+        # Using the options and commands style from your reference
+        my @options = <Shutdown Reboot Suspend Hibernate Logout Lock Cancel>;
+        
+        my %commands = 
+            Shutdown  => ['systemctl', 'poweroff'],
+            Reboot    => ['systemctl', 'reboot'],
+            Suspend   => ['systemctl', 'suspend'],
+            Hibernate => ['systemctl', 'hibernate'],
+            Lock      => ['i3lock-color', '-c', '000000'],
+            Cancel    => [];
 
-        my $selected = $action // do {
-            my $proc = run 'dmenu', '-p', 'Power Menu:', '-i', :in, :out;
+        # Build the Rofi process with your specific theme overrides
+        my $proc = run 'rofi', '-dmenu', '-i', '-p', 'Power Menu',
+            '-theme-str', 'window {width: 460px; height: 380px;}',
+            '-theme-str', 'listview {lines: 7; scrollbar: false;}',
+            '-theme-str', 'mainbox {children: [ "inputbar", "listview" ];}',
+            :in, :out, :err;
+        
+        # Feed options to Rofi
+        $proc.in.say($_) for @options;
+        $proc.in.close;
+        
+        my $selected = $proc.out.slurp(:close).trim;
+        
+        return if !$selected || $selected eq 'Cancel';
 
-            # Feed the actions into dmenu's STDIN
-            $proc.in.say(@actions.join("\n"));
-            $proc.in.close;
-
-            # Capture the selection
-            $proc.out.slurp(:close).trim;
-        };
-
-        return unless $selected;
-
-        if $selected ∈ @actions {
-            execute-action($selected);
+        if %commands{$selected}:exists {
+            run |%commands{$selected};
+        } elsif $selected eq 'Logout' {
+            execute-logout();
         } else {
-            note "Invalid action: $selected";
+            note "Invalid selection: $selected";
             exit 1;
         }
     }
 
-    sub execute-action(Str $action) {
-        say "Executing: $action";
-        given $action {
-            when 'reboot'    { run 'systemctl', 'reboot'    }
-            when 'poweroff'  { run 'systemctl', 'poweroff'  }
-            when 'suspend'   { run 'systemctl', 'suspend'   }
-            when 'hibernate' { run 'systemctl', 'hibernate' }
+    sub execute-logout() {
+        # Detect session and logout appropriately
+        my $session = %*ENV<DESKTOP_SESSION> // "";
 
-            # i3wm specific logout
-            when 'logout'    { run 'i3-msg', 'exit'         }
-
-            # Common X11 lock tools (i3lock is standard on i3)
-            when 'lock'      { run 'i3lock-color', '-c', '000000' } 
+        run 'pkill', '-TERM', 'vivaldi-bin';
+        sleep 2;
+        
+        if $session.lc.contains('qtile') {
+            run 'qtile', 'cmd-obj', '-o', 'cmd', '-f', 'shutdown';
+        } elsif $session.lc.contains('i3') {
+            run 'i3-msg', 'exit';
+        } else {
+            say "Session not recognized. Attempting generic exit...";
+            run 'pkill', '-KILL', '-u', %*ENV<USER>;
         }
     }
   '';
 
 in
-
 {
   home.packages = [ x11Powemenu ];
 }
