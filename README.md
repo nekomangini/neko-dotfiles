@@ -10,7 +10,7 @@
 - [x] rofi-wayland
 - [x] kitty theme
 - [x] tmux
-- [ ] Nixify Raku and Python scripts
+- [x] Nixify Raku scripts
 - [ ] Cleanup packages
 
 ## Flutter Setup

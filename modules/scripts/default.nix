@@ -1,6 +1,5 @@
 { ... }:
 
-# TODO
 {
   imports = [
     ./neko-log.nix
@@ -11,6 +10,7 @@
     ./x11-powermenu.nix
     ./x11-screenshot.nix
     ./x11-websearch.nix
+    ./qtile-autostart.nix
     ./sync-notes.nix
     ./sync-nekopaper.nix
     ./wayland-powermenu.nix
