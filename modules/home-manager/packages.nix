@@ -1,7 +1,7 @@
 { pkgs, ... }:
+
 {
   home.packages = with pkgs; [
-    kakoune
     zed-editor
     vimgolf
 
@@ -40,6 +40,12 @@
 
     gemini-cli
     qwen-code
+
+    xdotool
+    feh
+    scrot
+    playerctl
+    i3lock-color
 
     # Notes
     logseq
