@@ -8,7 +8,7 @@ from libqtile.lazy import lazy
 
 mod = "mod4"
 terminal = "kitty"
-doom = "emacsclient -c -a ''"
+doom = "emacsclient -c"
 
 # ──  Gruvbox Dark  ──────────────────
 colors = {
@@ -30,8 +30,8 @@ colors = {
 keys = [
     # ── WINDOW MANAGEMENT  ──────────────────
     # NOTE: For tabbed setup (max layout) only
-    Key([mod], "j", lazy.layout.next(), desc="Next window"),
-    Key([mod], "k", lazy.layout.previous(), desc="Previous window"),
+    Key([mod], "l", lazy.layout.next(), desc="Next window"),
+    Key([mod], "h", lazy.layout.previous(), desc="Previous window"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
     Key([mod], "n", lazy.window.toggle_minimize(), desc="Toggle minimize (pseudo)"),
@@ -172,6 +172,12 @@ keys = [
         "Print",
         lazy.spawn("x-screenshot BOTH"),
         desc="Screenshot Both monitors",
+    ),
+    Key(
+        [mod],
+        "b",
+        lazy.spawn("x-websearch"),
+        desc="Search the Web",
     ),
     # ── MOUSE EMULATION  ──────────────────
     Key([mod, "control"], "h", lazy.spawn("xdotool mousemove_relative -- -20 0")),

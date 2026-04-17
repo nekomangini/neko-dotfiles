@@ -4,7 +4,7 @@
   programs.kakoune = {
     enable = true;
     extraConfig = ''
-      colorscheme solarized-dark
+      colorscheme gruvbox-dark
 
       add-highlighter global/ number-lines -relative -hlcursor
       set-option global ui_options assistant=none

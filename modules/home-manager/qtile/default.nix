@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   home.file.".config/qtile" = {
@@ -11,11 +11,4 @@
     ../picom.nix
   ];
 
-  home.packages = with pkgs; [
-    scrot
-    playerctl
-    feh
-    xdotool
-    i3lock-color
-  ];
 }

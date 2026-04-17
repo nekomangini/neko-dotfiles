@@ -2,21 +2,28 @@
 
 {
   imports = [
+    ../kitty
+    ../shell/fish
     ../helix
+    ../emacs.nix
     ../neovim/astronvim.nix
     ../neovide
-    ../qtile
-    ../i3
-    ../shell/fish
-    ../dunst
+    ../tmux.nix
+    ../vim.nix
+    ../kakoune.nix
+    ../git.nix
+    ../yazi.nix
+
+    ../android.nix
+    ../dev-tools.nix
+    ../ruby
+    ../packages.nix
     ../shell/scripts.nix
     ../../scripts
-    ../git.nix
-    ../kitty
-    ../yazi.nix
-    ../packages.nix
-    ../dev-tools.nix
-    ../emacs.nix
+
+    ../qtile
+    ../i3
+    ../dunst
     ../hyprland
     ../niri
     ../hyprpaper.nix
@@ -24,11 +31,6 @@
     ../fuzzel.nix
     ../hyprlock.nix
     ../ydotool.nix
-    ../android.nix
-    ../ruby
-    ../tmux.nix
-    ../vim.nix
-    ../kakoune.nix
   ];
 
   home = {
