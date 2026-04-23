@@ -64,11 +64,11 @@
       notification = false;
     }
     {
-      command = "sleep 3 && exec ${pkgs.kdePackages.dolphin}/bin/dolphin";
+      command = "sleep 5 && exec ${pkgs.kdePackages.dolphin}/bin/dolphin";
       notification = false;
     }
     {
-      command = "sleep 5 && exec ${pkgs.vivaldi}/bin/vivaldi";
+      command = "sleep 7 && exec ${pkgs.vivaldi}/bin/vivaldi";
       notification = false;
     }
   ];

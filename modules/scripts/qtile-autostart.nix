@@ -25,10 +25,10 @@ let
         sleep 2;
         shell "${pkgs.ticktick}/bin/ticktick &";
         
-        sleep 3;
+        sleep 5;
         shell "${pkgs.kdePackages.dolphin}/bin/dolphin &";
         
-        sleep 5;
+        sleep 7;
         shell "${pkgs.vivaldi}/bin/vivaldi &";
     }
   '';

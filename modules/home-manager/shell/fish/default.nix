@@ -12,6 +12,8 @@
 
     interactiveShellInit = ''
       ${pkgs.zoxide}/bin/zoxide init fish | source
+      fish_add_path $HOME/.local/state/Dart/install/bin
+      fish_add_path $HOME/.pub-cache/bin
     '';
   };
 
