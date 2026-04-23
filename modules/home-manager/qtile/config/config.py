@@ -1,8 +1,17 @@
 # Qtile Configuration for NixOS - Dual Monitor Setup
-import os
+# import os
 import subprocess
-from libqtile import bar, layout, widget, hook, qtile
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
+from libqtile import bar, layout, widget, hook
+from libqtile.config import (
+    Click,
+    Drag,
+    Group,
+    Key,
+    Match,
+    Screen,
+    ScratchPad,
+    DropDown,
+)
 from libqtile.lazy import lazy
 
 
@@ -94,6 +103,12 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "d", lazy.spawn("rofi -show drun"), desc="Launch rofi"),
     Key([mod], "e", lazy.spawn(doom), desc="Launch Emacs"),
+    Key(
+        [mod],
+        "s",
+        lazy.group["scratchpad"].dropdown_toggle("emacs_scratchpad"),
+        desc="Toggle Emacs scratchpad",
+    ),
     # ── LAYOUT MANAGEMENT  ──────────────────
     # NOTE: Commented out because of tabbed setup(widget.TaskList)
     # Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
@@ -316,8 +331,27 @@ groups_names = [
     ),
 ]
 
-
 groups = [Group(name, **kwargs) for name, kwargs in groups_names]
+
+# ── SCRATCHPAD  ──────────────────
+groups.append(
+    ScratchPad(
+        "scratchpad",
+        [
+            DropDown(
+                "emacs_scratchpad",
+                # NOTE: check modules/home-manager/shell/scripts.nix
+                "doom-scratchpad",
+                x=0.05,
+                y=0.05,
+                width=0.9,
+                height=0.9,
+                opacity=1.0,
+                on_focus_lost_hide=True,
+            ),
+        ],
+    )
+)
 
 for name, kwargs in groups_names:
     keys.append(
@@ -567,4 +601,5 @@ wmname = "LG3D"
 # ── Autostart hook ──────────────────────────────────────────
 @hook.subscribe.startup_once
 def autostart():
+    # NOTE: check modules/scripts/qtile-autostart.nix
     subprocess.Popen(["qtile-autostart"])

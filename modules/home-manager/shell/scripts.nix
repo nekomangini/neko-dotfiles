@@ -16,6 +16,10 @@ in
       exec ${emacs}/bin/emacsclient -nw -a "" "$@"
     '')
 
+    (writeShellScriptBin "doom-scratchpad" ''
+      exec ${kitty}/bin/kitty --hold ${emacs}/bin/emacsclient -nw -a ""
+    '')
+
     # ===== Wayland =====
     # TEST
     # (writeShellScriptBin "hed" ''

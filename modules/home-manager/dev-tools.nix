@@ -4,12 +4,13 @@
   home.packages = with pkgs; [
     shellcheck
     pandoc
-    sbcl
+    marksman
 
     bash-language-server
     shfmt
 
     clojure-lsp
+    sbcl
 
     gopls
     (lib.lowPrio gotools)
@@ -18,9 +19,6 @@
     delve
     gotests
     gore
-
-    marksman
-    prettier
 
     nil
     nixd
