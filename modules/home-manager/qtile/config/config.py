@@ -326,6 +326,7 @@ groups_names = [
                 Match(wm_class="gwenview"),
                 Match(wm_class="Zathura"),
                 Match(wm_class="org.kde.okular"),
+                Match(wm_class="helium"),
             ],
         },
     ),

@@ -11,6 +11,17 @@
     "typescript-language-server" = {
       command = "typescript-language-server";
       args = [ "--stdio" ];
+      config = {
+        plugins = [
+          {
+            name = "@vue/typescript-plugin";
+            # location = "${pkgs.vue-language-server}/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin";
+            # location = "${pkgs.vue-vue-language-server}/lib/node_modules/@vue/typescript-plugin";
+            location = "${pkgs.vue-language-server}/lib/language-tools/packages/language-server/node_modules/@vue/typescript-plugin";
+            languages = [ "vue" ];
+          }
+        ];
+      };
     };
 
     "emmet-ls" = {
