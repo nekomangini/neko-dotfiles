@@ -34,6 +34,8 @@
     vscode-langservers-extracted
     vue-language-server
     typescript-language-server
+    # nodePackages.typescript
+    typescript
 
     ruby-lsp
     solargraph

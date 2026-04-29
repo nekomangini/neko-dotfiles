@@ -76,6 +76,33 @@
           "emmet-ls"
         ];
       }
+      # --- Vue/Nuxt ---
+      {
+        name = "vue";
+        scope = "source.vue";
+        injection-regex = "vue";
+        file-types = [ "vue" ];
+        comment-token = "//";
+        roots = [
+          "package.json"
+          "nuxt.config.ts"
+          "nuxt.config.js"
+          "vite.config.ts"
+        ];
+        # Add both here
+        language-servers = [
+          "typescript-language-server"
+          "emmet-ls"
+        ];
+        formatter = {
+          command = "prettier";
+          args = [
+            "--parser"
+            "vue"
+          ];
+        };
+        auto-format = true;
+      }
 
       # --- Nix ---
       {
