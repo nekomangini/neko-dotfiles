@@ -8,7 +8,7 @@
 
     exec-once = ${pkgs.kitty}/bin/kitty
     exec-once = ${pkgs.ticktick}/bin/ticktick
-    exec-once = sleep 3 && ${pkgs.kdePackages.dolphin}/bin/dolphin
-    exec-once = sleep 5 && ${pkgs.vivaldi}/bin/vivaldi
+    exec-once = sleep 5 && ${pkgs.kdePackages.dolphin}/bin/dolphin
+    exec-once = sleep 7 && ${pkgs.vivaldi}/bin/vivaldi
   '';
 }
