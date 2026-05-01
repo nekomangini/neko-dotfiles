@@ -45,17 +45,16 @@
       focus-exclude = [
         "class_g = 'Vivaldi-stable'"
         "class_g = 'Brave-browser'"
-        "class_g = 'okular'"
-        "class_g = 'Qtile'"
-        "QTILE_INTERNAL = 1"
+        "class_g = 'brave-browser'"
       ];
 
       # Opacity rules for specific applications
       opacity-rule = [
         "100:class_g = 'Godot'"
         "100:class_g = 'jetbrains-studio'"
-        # "100:class_g = 'Brave-browser' && !focused"
         "100:class_g = 'dev.zed.Zed'"
+        "class_g = 'Brave-browser'"
+        "class_g = 'brave-browser'"
       ];
 
       # Rounded corners (disabled in your openSUSE config)
@@ -65,8 +64,6 @@
         "window_type = 'desktop'"
         "class_g = 'Qtile'"
         "QTILE_INTERNAL = 1"
-        # "class_g = 'awesome' && name = 'Awesome drawin'"
-        "class_g = 'qutebrowser'"
       ];
 
       # Background blur
@@ -84,6 +81,9 @@
         "class_g = 'librewolf-default'"
         "class_g = 'Vivaldi-stable'"
         "class_g = 'okular'"
+        "class_g = 'brave-browser'"
+        "class_g = 'Qtile'"
+        "QTILE_INTERNAL = 1"
       ];
 
       # Window detection

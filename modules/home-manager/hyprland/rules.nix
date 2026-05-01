@@ -13,7 +13,6 @@
 
     # 3. Right Monitor: HDMI-A-1
     # Position starts at 3840x0 (1920 + 1920)
-    # Note: Keeping your 'transform, 3' (270° rotation) as in your original config
     monitor=HDMI-A-1, 1920x1080@60, 3840x0, 1, transform, 3
 
     # WINDOW RULES

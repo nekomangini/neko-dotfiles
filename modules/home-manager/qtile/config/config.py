@@ -211,27 +211,14 @@ keys = [
     # ── Scroll Wheel DOWN ──────────────────────────────────────────
     Key([mod, "control"], "p", lazy.spawn("xdotool click --clearmodifiers 5")),
     # ── MULTI MONITOR SETUP + MONITOR NAVIGATION  ──────────────────
-    Key([mod], "i", lazy.to_screen(0), desc="Focus monitor 0 (DVI-D-1)"),
-    Key([mod], "o", lazy.to_screen(1), desc="Focus monitor 1 (HDMI-A-1)"),
+    Key([mod], "comma", lazy.to_screen(2), desc="Focus monitor 0  (DP-1 32)"),
+    Key([mod], "period", lazy.to_screen(0), desc="Focus monitor 1 (DVI-D-0)"),
+    Key([mod], "slash", lazy.to_screen(1), desc="Focus monitor 2 (HDMI-0 vertical)"),
+    Key([mod, "shift"], "comma", lazy.window.toscreen(2), desc="Move window to DP-1"),
     Key(
-        [mod, "shift"],
-        "i",
-        lazy.window.toscreen(0),
-        desc="Move window to monitor 0",
+        [mod, "shift"], "period", lazy.window.toscreen(0), desc="Move window to DVI-D-0"
     ),
-    Key(
-        [mod, "shift"],
-        "o",
-        lazy.window.toscreen(1),
-        desc="Move window to monitor 1",
-    ),
-    # Swap window
-    Key(
-        [mod, "control"],
-        "s",
-        lazy.screen.prev_group(skip_empty=True),
-        desc="Swap workspaces between monitors",
-    ),
+    Key([mod, "shift"], "slash", lazy.window.toscreen(1), desc="Move window to HDMI-0"),
 ]
 
 # ── Layouts  ──────────────────
@@ -290,43 +277,54 @@ layouts = [
 
 # ── GROUPS  ──────────────────
 groups_names = [
-    # ── Monitor 0 (DVI-D-1  / 22"): 1  ──────────────────
+    # ── Monitor 0 (DP-1 / 32"): 1 ──────────────────
     (
         "1",
         {
             "label": "1",
             "layout": "max",
-            "screen_affinity": 0,
+            "screen_affinity": 2,  # DP-1 is screen 2
             "matches": [
-                Match(wm_class="dolphin"),
-                Match(wm_class="vivaldi-stable"),
                 Match(wm_class="brave-browser"),
-                Match(wm_class="ticktick"),
-                Match(wm_class="Joplin"),
-                Match(wm_class="Logseq"),
-                Match(wm_class="obsidian"),
-                Match(wm_class="Blender"),
-                Match(wm_class="krita"),
+                Match(wm_class="helium"),
+                Match(wm_class="gwenview"),
+                Match(wm_class="Zathura"),
                 Match(wm_class="Godot"),
+                Match(wm_class="Blender"),
             ],
         },
     ),
-    # ── Monitor 1 (HDMI-A-1 / 22"): 2  ──────────────────
+    # ── Monitor 1 (DVI-D-0 / 22" horizontal): 2 ──────────────────
     (
         "2",
         {
             "label": "2",
             "layout": "max",
-            "screen_affinity": 1,
+            "screen_affinity": 0,  # DVI-D-0 is screen 0
+            "matches": [
+                Match(wm_class="dolphin"),
+                Match(wm_class="vivaldi-stable"),
+                Match(wm_class="ticktick"),
+                Match(wm_class="Joplin"),
+                Match(wm_class="Logseq"),
+                Match(wm_class="obsidian"),
+                Match(wm_class="krita"),
+            ],
+        },
+    ),
+    # ── Monitor 2 (HDMI-0 / 22" vertical): 3 ──────────────────
+    (
+        "3",
+        {
+            "label": "3",
+            "layout": "max",
+            "screen_affinity": 1,  # HDMI-0 is screen 1
             "matches": [
                 Match(wm_class="kitty"),
                 Match(wm_class="Emacs"),
                 Match(wm_class="dev.zed.Zed"),
                 Match(wm_class="jetbrains-studio"),
-                Match(wm_class="gwenview"),
-                Match(wm_class="Zathura"),
                 Match(wm_class="org.kde.okular"),
-                Match(wm_class="helium"),
             ],
         },
     ),
@@ -523,7 +521,7 @@ def create_widgets():
 
 
 screens = [
-    # ── Monitor 0 (DVI-D-1  / 22") Horizontal ──────────────────────────────────────────
+    # ── Screen 0: DVI-D-0 (22") Horizontal ──────────────────
     Screen(
         top=bar.Bar(
             create_widgets(),
@@ -540,7 +538,7 @@ screens = [
             margin=[4, 6, 0, 6],
         ),
     ),
-    # ── Monitor 1 (HDMI-A-1 / 22") Vertical ──────────────────────────────────────────
+    # ── Screen 1: HDMI-0 (22") Vertical ──────────────────────
     Screen(
         bottom=bar.Bar(
             [make_tasklist()],
@@ -550,6 +548,8 @@ screens = [
             margin=[4, 6, 0, 6],
         ),
     ),
+    # ── Screen 2: DP-1 (32") ─────────────────────────────────
+    Screen(),
 ]
 # ── Mouse bindings ──────────────────────────────────────────
 mouse = [
