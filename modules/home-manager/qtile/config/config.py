@@ -549,7 +549,15 @@ screens = [
         ),
     ),
     # ── Screen 2: DP-1 (32") ─────────────────────────────────
-    Screen(),
+    Screen(
+        bottom=bar.Bar(
+            [make_tasklist()],
+            28,
+            background=colors["bg"],
+            opacity=1.00,
+            margin=[4, 6, 0, 6],
+        ),
+    ),
 ]
 # ── Mouse bindings ──────────────────────────────────────────
 mouse = [
