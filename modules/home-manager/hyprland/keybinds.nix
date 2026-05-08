@@ -160,6 +160,7 @@
 
     # Screenshot
     bind = ,                    PRINT, exec, hyprshot -m output -m DVI-D-1
-    bind = $shiftmainMod SHIFT, PRINT, exec, hyprshot -m output -m HDMI-A-1
+    bind = $mainMod SHIFT,      PRINT, exec, hyprshot -m output -m HDMI-A-1
+    bind = $mainMod ALT,        PRINT, exec, hyprshot -m output -m DP-1
   '';
 }

@@ -183,10 +183,16 @@ keys = [
         desc="Screenshot HDMI monitor",
     ),
     Key(
+        ["mod1"],
+        "Print",
+        lazy.spawn("x-screenshot DP"),
+        desc="Screenshot DP monitor",
+    ),
+    Key(
         ["control"],
         "Print",
         lazy.spawn("x-screenshot BOTH"),
-        desc="Screenshot Both monitors",
+        desc="Screenshot all monitors",
     ),
     Key(
         [mod],

@@ -5,6 +5,7 @@
 
     # 1. Left Monitor: DP-1
     # Position starts at 0x0
+    # TODO:
     monitor=DP-1, 1920x1080@60, 0x0, 1
 
     # 2. Middle Monitor: DVI-D-1
