@@ -112,6 +112,7 @@ in
         # NOTE: Check modules/scripts/x11-screenshot.nix
         "Print" = "exec x-screenshot DVI";
         "Shift+Print" = "exec x-screenshot HDMI";
+        "Alt+Print" = "exec x-screenshot DP";
         "Control+Print" = "exec x-screenshot BOTH";
 
         # Resize mode trigger

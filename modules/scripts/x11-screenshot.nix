@@ -7,9 +7,10 @@ let
 
     # Define geometry map for monitors (X,Y,W,H)
     constant %GEOMETRY = (
-        DVI  => "0,0,1920,1080",
-        HDMI => "1920,0,1080,1920",
-        BOTH => "0,0,3000,1920",
+        DP   => "0,0,1360,768",
+        DVI  => "1360,0,1920,1080",
+        HDMI => "3280,0,1080,1920",
+        BOTH => "0,0,4360,1920",
     );
 
     sub MAIN(Str $monitor = "DVI") {
