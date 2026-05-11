@@ -54,6 +54,7 @@
     # Workspace assignments
     # monitor 32' (DP)
     windowrule = workspace 1,  class:brave-browser
+    windowrule = workspace 1,  class:helium
     windowrule = workspace 2,  class:org.kde.gwenview
     windowrule = workspace 3,  class:org.pwmt.zathura
     windowrule = workspace 4,  class:Godot
@@ -70,11 +71,11 @@
     windowrule = group, workspace 8,  class:ticktick
 
     # monitor 22' (HDMI)
-    windowrule = group, workspace 9,  class:org.kde.okular
     windowrule = group, workspace 9,  class:kitty
-    windowrule = group, workspace 9,  class:Emacs
+    windowrule = group, workspace 0,  class:Emacs
     windowrule = group, workspace 0,  class:dev.zed.Zed
     windowrule = group, workspace 0,  class:jetbrains-studio
+    windowrule = group, workspace 0,  class:org.kde.okular
 
     # Multi-monitor setup
     workspace = 1,  monitor:DP-1

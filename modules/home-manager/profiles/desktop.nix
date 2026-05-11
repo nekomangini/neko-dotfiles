@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -43,8 +43,8 @@
   programs.home-manager.enable = true;
 
   home.sessionVariables = {
-    EDITOR = "${pkgs.helix}/bin/hx";
-    VISUAL = "${pkgs.helix}/bin/hx";
+    # EDITOR = "${pkgs.helix}/bin/hx";
+    # VISUAL = "${pkgs.helix}/bin/hx";
     TMUX_PATHS_FILE = "/run/agenix/tmux-manager-paths";
     NOTES_SECRET_FILE = "/run/agenix/note-path";
   };
