@@ -12,6 +12,7 @@
       ];
       "9" = [
         { class = "^Vivaldi-stable$"; }
+        { class = "^helium$"; }
         { class = "^ticktick$"; }
         { class = "^dolphin$"; }
         { class = "^krita$"; }

@@ -70,7 +70,7 @@
       notification = false;
     }
     {
-      command = "sleep 7 && exec ${pkgs.vivaldi}/bin/vivaldi";
+      command = "sleep 7 && exec ${pkgs.brave}/bin/brave";
       notification = false;
     }
   ];

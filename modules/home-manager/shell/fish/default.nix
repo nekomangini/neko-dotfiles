@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -17,11 +17,11 @@
     '';
   };
 
-  home.sessionPath = [
-    "${config.home.homeDirectory}/.config/emacs/bin"
-  ];
+  # home.sessionPath = [
+  #   "${config.home.homeDirectory}/.config/emacs/bin"
+  # ];
 
-  home.sessionVariables = {
-    EMACS_BIN_PATH = "${config.home.homeDirectory}/.config/emacs/bin";
-  };
+  # home.sessionVariables = {
+  #   EMACS_BIN_PATH = "${config.home.homeDirectory}/.config/emacs/bin";
+  # };
 }
