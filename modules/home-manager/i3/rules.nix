@@ -19,6 +19,7 @@
         { class = "^obsidian$"; }
         { class = "^Logseq$"; }
         { class = "^Joplin$"; }
+        { class = "^bitwarden$"; }
       ];
 
       "10" = [

@@ -69,6 +69,7 @@
     windowrule = group, workspace 8,  class:vivaldi-stable
     windowrule = group, workspace 8,  class:org.kde.dolphin
     windowrule = group, workspace 8,  class:ticktick
+    windowrule = group, workspace 8,  class:bitwarden
 
     # monitor 22' (HDMI)
     windowrule = group, workspace 9,  class:kitty

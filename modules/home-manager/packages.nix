@@ -16,6 +16,8 @@
     planify
     ticktick
 
+    bitwarden-desktop
+
     godot
 
     # CLI
