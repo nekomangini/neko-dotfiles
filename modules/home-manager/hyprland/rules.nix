@@ -72,7 +72,7 @@
     windowrule = group, workspace 8,  class:bitwarden
 
     # monitor 22' (HDMI)
-    windowrule = group, workspace 9,  class:kitty
+    windowrule =        workspace 9,  class:kitty
     windowrule = group, workspace 0,  class:Emacs
     windowrule = group, workspace 0,  class:dev.zed.Zed
     windowrule = group, workspace 0,  class:jetbrains-studio
