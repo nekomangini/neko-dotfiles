@@ -9,6 +9,7 @@
     rails-d = "rails destroy";
     rails-t = "rails test";
     rails-r = "rails routes";
+    rails-n = "rails new";
 
     # Database
     rails-db = "rails db:migrate";

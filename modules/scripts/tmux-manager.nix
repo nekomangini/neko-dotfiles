@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  tmux-manager = pkgs.writeScriptBin "txm" ''
+  tmux-manager = pkgs.writeScriptBin "tmx" ''
     #!${pkgs.rakudo}/bin/raku
     use v6.d;
 
