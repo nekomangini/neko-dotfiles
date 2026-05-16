@@ -5,37 +5,50 @@ let
     #!/usr/bin/env raku
     use v6.d;
 
-    constant $SESSION_NAME = 'rails-dev';
-
-    sub tmux-session-exists(--> Bool) {
-        my $proc = run 'tmux', 'has-session', '-t', $SESSION_NAME, :out, :err;
+    sub tmux-session-exists(Str $session --> Bool) {
+        my $proc = run 'tmux', 'has-session', '-t', $session, :out, :err;
         return $proc.exitcode == 0;
     }
 
+    sub send(Str $session, Str $window, Str $cmd) {
+        run 'tmux', 'send-keys', '-t', "$session:$window", $cmd, 'C-m';
+    }
+
     sub MAIN() {
-        if tmux-session-exists() {
-            say "Session '$SESSION_NAME' already exists. Attaching...";
-            run 'tmux', 'attach', '-t', $SESSION_NAME;
+        my $project-dir  = $*CWD;
+        my $session-name = $project-dir.basename;
+        my $flake-path   = $project-dir;
+
+        unless "$project-dir/Gemfile".IO.e && "$project-dir/bin/rails".IO.e {
+            say "❌ Error: '$project-dir' does not look like a Rails project.";
+            say "   (Missing Gemfile or bin/rails)";
+            exit 1;
+        }
+
+        unless "$flake-path/flake.nix".IO.e {
+            say "❌ Error: No flake.nix found in '$flake-path'.";
+            exit 1;
+        }
+
+        if tmux-session-exists($session-name) {
+            say "Session '$session-name' already exists. Attaching...";
+            run 'tmux', 'attach', '-t', $session-name;
             exit;
         }
 
-        say "Starting new tmux session: $SESSION_NAME...";
+        say "🚀 Starting Rails dev session: $session-name";
 
-        say "Creating server window";
-        run 'tmux', 'new-session', '-d', '-s', $SESSION_NAME, '-n', 'server';
-        run 'tmux', 'send-keys', '-t', "$SESSION_NAME:0", "nix develop --command bash -c 'rails server; exec fish'", 'C-m';
+        run 'tmux', 'new-session', '-d', '-s', $session-name, '-n', 'server';
+        send $session-name, 'server', "cd $project-dir && nix develop $flake-path --command bash -c 'rails server; exec fish'";
 
-        say "Creating editor window";
-        run 'tmux', 'new-window', '-t', $SESSION_NAME, '-n', 'editor';
-        run 'tmux', 'send-keys', '-t', "$SESSION_NAME:1", "nix develop --command bash -c 'hx .; exec fish'", 'C-m';
+        run 'tmux', 'new-window', '-t', $session-name, '-n', 'editor';
+        send $session-name, 'editor',  "cd $project-dir && nix develop $flake-path --command bash -c 'hx .; exec fish'";
 
-        say "Creating console window";
-        run 'tmux', 'new-window', '-t', $SESSION_NAME, '-n', 'console';
-        run 'tmux', 'send-keys', '-t', "$SESSION_NAME:2", "nix develop --command bash -c 'rails console; exec fish'", 'C-m';
+        run 'tmux', 'new-window', '-t', $session-name, '-n', 'console';
+        send $session-name, 'console', "cd $project-dir && nix develop $flake-path --command bash -c 'rails console; exec fish'";
 
-        say "Selecting editor window and attaching...";
-        run 'tmux', 'select-window', '-t', "$SESSION_NAME:1";
-        run 'tmux', 'attach', '-t', $SESSION_NAME;
+        run 'tmux', 'select-window', '-t', "$session-name:1";
+        run 'tmux', 'attach', '-t', $session-name;
     }
   '';
 in

@@ -77,6 +77,7 @@
 
     lua
 
+    bun
     nodejs_22
     typescript
 
