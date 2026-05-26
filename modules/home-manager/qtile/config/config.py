@@ -316,6 +316,8 @@ groups_names = [
                 Match(wm_class="obsidian"),
                 Match(wm_class="krita"),
                 Match(wm_class="bitwarden"),
+                Match(wm_class="kdeconnect-app"),
+                Match(wm_class="PixiEditor.Desktop"),
             ],
         },
     ),
