@@ -70,6 +70,8 @@
     windowrule = group, workspace 8,  class:org.kde.dolphin
     windowrule = group, workspace 8,  class:ticktick
     windowrule = group, workspace 8,  class:bitwarden
+    windowrule = group, workspace 8,  class:kdeconnect-app
+    windowrule = group, workspace 8,  class:PixiEditor.Desktop
 
     # monitor 22' (HDMI)
     windowrule =        workspace 9,  class:kitty

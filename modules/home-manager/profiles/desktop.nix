@@ -20,6 +20,7 @@
     ../packages.nix
     ../shell/scripts.nix
     ../../scripts
+    ../kdeconnect.nix
 
     ../qtile
     ../i3
