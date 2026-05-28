@@ -70,6 +70,7 @@
 
     brave
     vivaldi
+    vlc
 
     # System tools
     # git

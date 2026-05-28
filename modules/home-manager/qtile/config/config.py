@@ -311,6 +311,7 @@ groups_names = [
                 Match(wm_class="dolphin"),
                 Match(wm_class="vivaldi-stable"),
                 Match(wm_class="ticktick"),
+                Match(wm_class="io.github.alainm23.planify"),
                 Match(wm_class="Joplin"),
                 Match(wm_class="Logseq"),
                 Match(wm_class="obsidian"),

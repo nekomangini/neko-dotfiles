@@ -6,7 +6,7 @@ let
     use v6.d;
 
     sub MAIN() {
-        shell "picom &";
+        shell "${pkgs.picom}/bin/picom &";
 
         # Monitor Setup (DVI Horizontal, HDMI Vertical)
         shell "xrandr --output DP-1 --mode 1360x768 --pos 0x0 --output DVI-D-0 --mode 1920x1080 --pos 1360x0 --rotate normal --output HDMI-0 --mode 1920x1080 --pos 3280x0 --rotate right &";
@@ -23,9 +23,12 @@ let
         shell "${pkgs.kitty}/bin/kitty &";
         
         # Delayed starts for heavier apps
-        sleep 2;
-        shell "${pkgs.ticktick}/bin/ticktick &";
-        
+        # sleep 2;
+        # shell "${pkgs.ticktick}/bin/ticktick &";
+
+        sleep 3;
+        shell "${pkgs.planify}/bin/io.github.alainm23.planify &";
+
         sleep 5;
         shell "${pkgs.kdePackages.dolphin}/bin/dolphin &";
         
