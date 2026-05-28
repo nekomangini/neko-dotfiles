@@ -39,13 +39,15 @@
 
       # Opacity and transparency
       frame-opacity = 0.7;
-      inactive-opacity-override = true;
+      inactive-opacity-override = false;
 
       # Focus exclusions - prevent these from becoming transparent when inactive
       focus-exclude = [
         "class_g = 'Vivaldi-stable'"
         "class_g = 'Brave-browser'"
         "class_g = 'brave-browser'"
+        "class_g = 'Godot'"
+        "class_g = 'io.github.alainm23.planify'"
       ];
 
       # Opacity rules for specific applications
@@ -53,11 +55,12 @@
         "100:class_g = 'Godot'"
         "100:class_g = 'jetbrains-studio'"
         "100:class_g = 'dev.zed.Zed'"
-        "class_g = 'Brave-browser'"
-        "class_g = 'brave-browser'"
+        "100:class_g = 'brave-browser'"
+        "100:class_g = 'Godot'"
+        "100:class_g = 'io.github.alainm23.planify'"
       ];
 
-      # Rounded corners (disabled in your openSUSE config)
+      # Rounded corners (disabled in openSUSE config)
       corner-radius = 0;
       rounded-corners-exclude = [
         "window_type = 'dock'"
@@ -77,12 +80,12 @@
         "_GTK_FRAME_EXTENTS@:c"
         "window_type = 'dock'"
         "window_type = 'desktop'"
-        "class_g = 'brave'"
-        "class_g = 'librewolf-default'"
         "class_g = 'Vivaldi-stable'"
         "class_g = 'okular'"
-        "class_g = 'brave-browser'"
         "class_g = 'Qtile'"
+        "class_g = 'Brave-browser'"
+        "class_g = 'Godot'"
+        "class_g = 'io.github.alainm23.planify'"
         "QTILE_INTERNAL = 1"
       ];
 
@@ -98,18 +101,16 @@
       log-level = "warn";
 
       # Animations (appear on open/show)
-      animations = [
-        {
-          triggers = [
-            "open"
-            "show"
-          ];
-          preset = "appear";
-          direction = "up";
-          scale = 0.9;
-          duration = 0.2;
-        }
-      ];
+      animations = ({
+        triggers = [
+          "open"
+          "show"
+        ];
+        preset = "appear";
+        direction = "up";
+        scale = 0.9;
+        duration = 0.2;
+      });
 
       # Window type specific settings
       wintypes = {

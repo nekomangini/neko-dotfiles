@@ -14,6 +14,7 @@
         { class = "^Vivaldi-stable$"; }
         { class = "^helium$"; }
         { class = "^ticktick$"; }
+        { class = "^io.github.alainm23.planify$"; }
         { class = "^dolphin$"; }
         { class = "^krita$"; }
         { class = "^obsidian$"; }
