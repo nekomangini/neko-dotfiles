@@ -58,6 +58,7 @@
         "100:class_g = 'brave-browser'"
         "100:class_g = 'Godot'"
         "100:class_g = 'io.github.alainm23.planify'"
+        "90:class_g  = 'kitty'"
       ];
 
       # Rounded corners (disabled in openSUSE config)
