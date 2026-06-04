@@ -43,26 +43,26 @@ let
     constant $DAILY_TEMPLATE = qq:to/END/;
     * 🎯 TODAY'S TASK:
     ** Primary task:
-    - 
+    *** 
 
     ** Other tasks:
-    -
-    -
+    ***
+    ***
 
     * 🚧 TROUBLESHOOTING
     ** Problem Encountered:
-    - 
+    *** 
     ** Hypothesized Cause (Patterns):
-    - 
+    *** 
     ** Resolution (What fixed it?):
-    - 
+    *** 
     ** Code/Commands:
     #+BEGIN_SRC shell
     #+END_SRC
 
     * 🧠 LEARNINGS & TOOLS NOTES
     ** What I learned:
-    -
+    ***
     ** Code/Commands:
     #+BEGIN_SRC shell
     #+END_SRC
@@ -70,11 +70,11 @@ let
     ** Where to document (wiki/blog):
 
     * 📝 UNSTRUCTURED NOTES
-    - 
+    *** 
 
     * 💾 END-OF-DAY SAVE POINT
-    - What I was doing:
-    - What to do first tomorrow:
+    ** What I was doing:
+    ** What to do first tomorrow:
     END
 
     # ──────────────────────────────────────────────
@@ -84,13 +84,13 @@ let
     constant $WEEKLY_TEMPLATE = qq:to/END/;
     * 📊 WEEKLY SNAPSHOT
     ** Key projects worked on:
-    - Project Progress:
+    *** Project Progress:
 
     * 🏆 ACHIEVEMENTS
-    - 
+    ** 
 
     * 🧠 KEY LEARNINGS
-    - 
+    ** 
 
     * 🧭 NEXT WEEK'S FOCUS
     ** Primary goal:
@@ -104,11 +104,11 @@ let
 
     constant $MONTHLY_TEMPLATE = qq:to/END/;
     * 📊 ACHIEVEMENTS
-    - 
+    ** 
 
     * 🛠️ TECH STACK EVOLUTION
-    - What tools did I master this month?
-    - What should be added to the Blog?
+    ** What tools did I master this month?
+    ** What should be added to the Blog?
     END
 
     # ──────────────────────────────────────────────
@@ -119,31 +119,31 @@ let
     date: $DATE
     * 🎯 Task in Focus
     ** What I’m doing:
-    -
+    **
     ** Why I’m doing it:
-    -
+    **
 
     * 🔥 Problem
     ** What’s broken or missing:
-    -
+    **
 
     * 💡 Solution
     ** My approach:
-    -
+    **
     ** Code / Commands:
 
     #+BEGIN_SRC shell
     #+END_SRC
 
     * 📚 Resources:
-    -
+    **
 
     * 🧠 Key Insight
-    - What I learned:
-    -
+    ** What I learned:
+    **
 
     * 💾 Next Steps
-    -
+    **
     END
 
     # ──────────────────────────────────────────────

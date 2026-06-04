@@ -14,6 +14,19 @@ let
         exit 1;
     }
 
+    # --- THE GIT PULL CHECKER ---
+    say "Checking for remote changes (git pull)...";
+    my $pull-proc = shell 'git pull';
+
+    if $pull-proc.exitcode != 0 {
+        warn "   ERROR: 'git pull' failed with exit code {$pull-proc.exitcode}.";
+        warn "   This could be due to a network issue or merge conflicts.";
+        warn "   Aborting sync to prevent data loss. Please resolve manually.";
+        exit 1;
+    }
+    say "SUCCESS: Local repository is up to date.";
+
+
     # Handle git add with potential lock file issue
     my $add-success = True;
     try {

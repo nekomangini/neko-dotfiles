@@ -280,6 +280,27 @@
         auto-format = true;
       }
 
+      # --- C ---
+      {
+        name = "c";
+        language-servers = [ "clangd" ];
+        formatter = {
+          command = "clang-format";
+          args = [ "-style=webkit" ]; # Options: llvm, google, chromium, mozilla, webkit
+        };
+        auto-format = true;
+      }
+
+      # --- C++ ---
+      {
+        name = "cpp";
+        language-servers = [ "clangd" ];
+        formatter = {
+          command = "clang-format";
+          args = [ "-style=webkit" ];
+        };
+        auto-format = true;
+      }
     ];
   };
 }
