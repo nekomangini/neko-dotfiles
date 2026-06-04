@@ -9,6 +9,8 @@
     bash-language-server
     shfmt
 
+    clang-tools
+
     clojure-lsp
     sbcl
 

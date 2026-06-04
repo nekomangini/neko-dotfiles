@@ -88,5 +88,15 @@
         };
       };
     };
+
+    "clangd" = {
+      command = "clangd";
+      args = [
+        "--background-index"
+        "--clang-tidy"
+        "--completion-style=detailed"
+        "--header-insertion=never"
+      ];
+    };
   };
 }
