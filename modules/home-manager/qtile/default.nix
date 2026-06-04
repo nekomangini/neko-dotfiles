@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   home.file.".config/qtile" = {
@@ -7,15 +7,8 @@
   };
 
   imports = [
-    ./rofi.nix
-    ./picom.nix
+    ../rofi.nix
+    ../picom.nix
   ];
 
-  home.packages = with pkgs; [
-    scrot
-    playerctl
-    feh
-    xdotool
-    i3lock-color
-  ];
 }

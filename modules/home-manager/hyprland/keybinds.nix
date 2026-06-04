@@ -15,7 +15,7 @@
     # KEYBINDINGS
 
     # Window management
-    bind = $mainMod, X,            pseudo,
+    bind = $mainMod, X,            exec, pkill -SIGUSR1 waybar # NOTE: Toggle waybar
     bind = $mainMod, T,            togglesplit,
     bind = $mainMod, V,            togglefloating,
     bind = $mainMod, Q,            killactive,
@@ -23,12 +23,32 @@
     bind = $mainMod, F,            fullscreen, 0
     bind = $mainMod, M,            fullscreen, 1
 
+    # Group management
+    bind = $mainMod, G, togglegroup                            # NOTE: Create/destroy a group from the active window
+    bind = $mainMod SHIFT, G, lockactivegroup, toggle          # NOTE: Lock/unlock the active group
+    bind = $mainMod, U, moveoutofgroup                         # NOTE: Remove from group
+
+    # Cycle through windows inside the group
+    bind = $mainMod, BRACKETRIGHT, changegroupactive, f
+    bind = $mainMod, BRACKETLEFT,  changegroupactive, b
+
+    # Rearrange the order of windows inside the group
+    bind = $mainMod CTRL, BRACKETRIGHT, movegroupwindow, f
+    bind = $mainMod CTRL, BRACKETLEFT,  movegroupwindow, b
+
+    # Move a window into the group in a direction
+    bind = $mainMod ALT, H, moveintogroup, l
+    bind = $mainMod ALT, L, moveintogroup, r
+    bind = $mainMod ALT, K, moveintogroup, u
+    bind = $mainMod ALT, J, moveintogroup, d
+
     # Launch applications
     bind = $mainMod, RETURN,       exec, $terminal
     bind = $mainMod  CTRL, RETURN, exec, $tmux
     bind = $mainMod, D, exec,      $menu
     bind = $mainMod, E, exec,      $doom
-    bind = $mainMod, P, exec,      powermenu
+    bind = $mainMod, P, exec,      wayland-powermenu
+    bind = $mainMod, B, exec,      wayland-websearch
 
     # Move focus with mainMod + hjkl
     bind = $mainMod, h, movefocus, l
@@ -50,7 +70,10 @@
 
     # Cycle through windows
     bind = $mainMod, W, cyclenext
-    bind = $mainMod, W, bringactivetotop
+    # bind = $mainMod, W, bringactivetotop
+
+    # Toggle split windows
+    bind = $mainMod, Space, togglesplit
 
     # Switch workspaces
     bind = $mainMod, 1, workspace, 1
@@ -86,7 +109,6 @@
 
     # Workspace navigation
     bind = $mainMod, backslash, workspace, previous
-    bind = $mainMod, TAB,       workspace, previous
     bind = $mainMod, O, workspace, m+1
     bind = $mainMod, I, workspace, m-1
 
@@ -95,31 +117,32 @@
     bindm = $mainMod, mouse:273, resizewindow
 
     # Mouse mode with Super + Alt + hjkl
-    binde = $mainMod ALT, h, exec, ydotool mousemove -- -20 0   # Left
-    binde = $mainMod ALT, j, exec, ydotool mousemove -- 0 20    # Down
-    binde = $mainMod ALT, k, exec, ydotool mousemove -- 0 -20   # Up
-    binde = $mainMod ALT, l, exec, ydotool mousemove -- 20 0    # Right
+    binde = $mainMod CTRL, h, exec, ydotool mousemove -- -20 0   # Left
+    binde = $mainMod CTRL, j, exec, ydotool mousemove -- 0 20    # Down
+    binde = $mainMod CTRL, k, exec, ydotool mousemove -- 0 -20   # Up
+    binde = $mainMod CTRL, l, exec, ydotool mousemove -- 20 0    # Right
 
-    bind  = $mainMod ALT, SPACE, exec, ydotool click 0xC0       # Left click
-    bind  = $mainMod ALT, RETURN, exec, ydotool click 0xC1      # Right click
-
+    binde = $mainMod CTRL, COMMA, exec, ydotool click 0xC0       # Left click
+    binde = $mainMod CTRL, PERIOD, exec, ydotool click 0xC1      # Right click
 
     # Diagonal directions
-    binde = $mainMod ALT, u, exec, ydotool mousemove -- -40 -40  # Up-Left
-    binde = $mainMod ALT, i, exec, ydotool mousemove -- 40 -40   # Up-Right
-    binde = $mainMod ALT, n, exec, ydotool mousemove -- -40 40   # Down-Left
-    binde = $mainMod ALT, m, exec, ydotool mousemove -- 40 40    # Down-Right
+    binde = $mainMod CTRL, u, exec, ydotool mousemove -- -40 -40  # Up-Left
+    binde = $mainMod CTRL, i, exec, ydotool mousemove -- 40 -40   # Up-Right
+    binde = $mainMod CTRL, n, exec, ydotool mousemove -- -40 40   # Down-Left
+    binde = $mainMod CTRL, m, exec, ydotool mousemove -- 40 40    # Down-Right
 
     # Move window to monitor
-    bind = $mainMod SHIFT, COMMA,  movewindow, mon:DVI-D-1
-    bind = $mainMod SHIFT, PERIOD, movewindow, mon:HDMI-A-1
+    bind = $mainMod SHIFT, COMMA,  movewindow, mon:DP-1
+    bind = $mainMod SHIFT, PERIOD, movewindow, mon:DVI-D-1
+    bind = $mainMod SHIFT, SLASH,  movewindow, mon:HDMI-A-1
 
     # Monitor navigation
-    bind = $mainMod, COMMA,  focusmonitor, DVI-D-1
-    bind = $mainMod, PERIOD, focusmonitor, HDMI-A-1
+    bind = $mainMod, COMMA, focusmonitor, DP-1
+    bind = $mainMod, PERIOD,focusmonitor, DVI-D-1
+    bind = $mainMod, SLASH, focusmonitor, HDMI-A-1
 
     # Swap workspaces between monitors
-    bind = $mainMod CTRL, PERIOD, swapactiveworkspaces, DVI-D-1 HDMI-A-1
+    bind = $mainMod CTRL, S, swapactiveworkspaces, DVI-D-1 HDMI-A-1 
 
     # Multimedia keys
     bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+
@@ -136,7 +159,8 @@
     bindl = , XF86AudioPrev, exec, playerctl previous
 
     # Screenshot
-    bind = ,                    PRINT, exec, hyprshot -m output -m HDMI-A-1
-    bind = $shiftmainMod SHIFT, PRINT, exec, hyprshot -m output -m DVI-D-1
+    bind = ,                    PRINT, exec, hyprshot -m output -m DVI-D-1
+    bind = $mainMod SHIFT,      PRINT, exec, hyprshot -m output -m HDMI-A-1
+    bind = $mainMod ALT,        PRINT, exec, hyprshot -m output -m DP-1
   '';
 }

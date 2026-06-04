@@ -24,7 +24,7 @@
         padding = 12;
         horizontal_padding = 14;
         text_icon_padding = 8;
-        frame_width = 1;
+        frame_width = 2;
         gap_size = 6;
         separator_color = "frame";
         sort = true;
@@ -57,30 +57,30 @@
 
         # Animations and timing
         idle_threshold = 120;
-        corner_radius = 8;
+        corner_radius = 10;
       };
 
-      # Low priority notifications
+      # Low priority notifications - Emerald Green
       urgency_low = {
-        background = "#0a0c1c"; 
-        foreground = "#e0ebff"; 
-        frame_color = "#5b9fff4d"; 
+        background = "#0D1616";
+        foreground = "#5FC497";
+        frame_color = "#1A3D37";
         timeout = 5;
       };
 
-      # Normal priority notifications
+      # Normal priority notifications - Neon Cyan
       urgency_normal = {
-        background = "#141932"; 
-        foreground = "#e0ebff"; 
-        frame_color = "#5b9fff"; 
+        background = "#0D1616";
+        foreground = "#E0F7F2";
+        frame_color = "#43F2D6";
         timeout = 8;
       };
 
-      # Critical notifications
+      # Critical notifications - Neon Magenta/Pink (Accent from signs)
       urgency_critical = {
-        background = "#1a1020"; 
-        foreground = "#ffe5e5"; 
-        frame_color = "#ff5050cc"; 
+        background = "#1A0D16";
+        foreground = "#FF79C6";
+        frame_color = "#FF2E97";
         timeout = 0; # Don't auto-dismiss critical
       };
     };

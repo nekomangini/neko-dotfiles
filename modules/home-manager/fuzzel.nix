@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  # Fuzzel configuration - Renna/Ranni inspired
+  # Fuzzel configuration - Cyber-Emerald Neon
   programs.fuzzel = {
     enable = true;
 
@@ -26,20 +26,20 @@
       };
 
       border = {
-        width = 1;
+        width = 2; # Slightly thicker for that glowing edge effect
         radius = 8;
       };
 
-      # Renna/Ranni colors - exact match from waybar theme
+      # Colors sampled from the Cyan/Emerald wallpaper
       colors = {
-        background = "0A0C1CEB";
-        text = "E0EBFFFF";
-        match = "7EB3FFFF";
-        selection = "141932D9";
-        selection-text = "7EB3FFFF";
-        selection-match = "4A8FFFEE";
-        border = "5B9FFF66";
-        placeholder = "A8B8D8CC";
+        background = "0D1616EB"; # Deep dark teal-black (matches the shadows)
+        text = "E0F7F2FF"; # Off-white with a hint of cyan
+        match = "43F2D6FF"; # Bright Neon Cyan (the primary light source)
+        selection = "1A3D37D9"; # Deep Emerald background for selection
+        selection-text = "43F2D6FF"; # Cyan text for selected item
+        selection-match = "5FC497FF"; # Emerald green for matches within selection
+        border = "43F2D666"; # Semi-transparent Cyan border
+        placeholder = "5FC49788"; # Dim Emerald for placeholders
       };
 
       dmenu = {

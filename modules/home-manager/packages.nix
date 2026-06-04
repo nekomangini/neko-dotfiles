@@ -1,36 +1,57 @@
 { pkgs, ... }:
+
 {
   home.packages = with pkgs; [
-    kakoune
     zed-editor
+    vimgolf
+
+    hugo
+    zola
 
     discord
     libreoffice
     fancontrol-gui
+    zathura
+    appimage-run
+    planify
+    ticktick
+
+    bitwarden-desktop
 
     godot
 
     # CLI
-    jq
-    poppler
     fd
     ripgrep
     fzf
     zoxide
-    resvg
-    xclip
-    wl-clipboard
     eza
     fastfetch
+    htop
+
+    xclip
+    wl-clipboard
+    wlr-randr
+
+    jq
+    poppler
+    resvg
     unzip
     woeusb
-    htop
     lm_sensors
+
+    gemini-cli
+    qwen-code
+
+    xdotool
+    feh
+    scrot
+    playerctl
+    i3lock-color
 
     # Notes
     logseq
     obsidian
     joplin-desktop
-    ticktick
   ];
 }

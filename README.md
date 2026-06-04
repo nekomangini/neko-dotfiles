@@ -2,40 +2,49 @@
 
 ## TODO
 
-- [ ] modularize NixOS
-- [X] Docker
-- [X] Android Studio
-- [X] Flutter
-- [X] notification
-- [X] rofi-wayland
-- [X] kitty theme
-- [X] tmux
+- [x] modularize NixOS
+- [x] Docker
+- [x] Android Studio
+- [x] Flutter
+- [x] notification
+- [x] rofi-wayland
+- [x] kitty theme
+- [x] tmux
+- [x] Nixify Raku scripts
+- [ ] Cleanup packages
 
 ## Flutter Setup
+
 ### Flutter SDK Path Command
 
 #### Command
+
 ```bash
 dirname $(dirname $(readlink -f $(which flutter)))
 ```
 
 #### What it does
+
 Gets the Flutter SDK root directory on NixOS by resolving symlinks.
 
 #### Breakdown
+
 1. `which flutter` - find flutter binary path
 2. `readlink -f` - resolve all symlinks
 3. `dirname` (twice) - go up two directories (remove `/bin/flutter`)
 
 #### Output example
+
 ```
 /nix/store/***-flutter-wrapped-3.***-sdk-links
 ```
 
 #### Usage
+
 Configure Flutter SDK path in Android Studio.
 
 ## Screenshot
+
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣴⣶⣶⣶⣾⣿⣿⣿⣿⣶⣶⣶⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣶⣿⡿⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠻⣷⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠈⣉⣉⣿⣿⡿⠛⠛⠛⠀⠀⠀⠉⢻⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

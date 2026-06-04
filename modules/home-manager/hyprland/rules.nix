@@ -2,6 +2,20 @@
 
 {
   wayland.windowManager.hyprland.extraConfig = ''
+
+    # 1. Left Monitor: DP-1
+    # Position starts at 0x0
+    # TODO:
+    monitor=DP-1, 1920x1080@60, 0x0, 1
+
+    # 2. Middle Monitor: DVI-D-1
+    # Position starts at 1920x0 (Offset by the width of DP-1)
+    monitor=DVI-D-1, 1920x1080@60, 1920x0, 1
+
+    # 3. Right Monitor: HDMI-A-1
+    # Position starts at 3840x0 (1920 + 1920)
+    monitor=HDMI-A-1, 1920x1080@60, 3840x0, 1, transform, 3
+
     # WINDOW RULES
     windowrule = suppressevent maximize, class:.*
     windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
@@ -20,34 +34,63 @@
     windowrule = opaque, noblur, class:^(Godot)$
     windowrule = opaque, noblur, class:^(jetbrains-studio)$
     windowrule = opaque, noblur, class:^(dev.zed.Zed)$
+    windowrule = opaque, noblur, class:^(org.pwmt.zathura)
+    windowrule = opaque, noblur, class:^(ticktick)
+    windowrule = opaque, noblur, class:^(io.github.alainm23.planify)
 
     # Override opacity
-    windowrule = opacity 0.7 override 0.5 override, class:^(Emacs)$
+    windowrule = opacity 0.9 override 0.8 override 0.8 override, class:^(Emacs)$ # 0.9 active, 0.8 inactive, 0.8 fullscreen opacity
+    windowrule = opacity 0.9 override 0.8 override 0.9 override, class:^(kitty)$ 
 
     # Window behavior
-    windowrule = maximize, class:^(Godot)$
-    windowrule = fullscreen, class:^(kitty)$
-    windowrule = fullscreen, class:^(blender)$
-    windowrule = fullscreen, class:^(Emacs)$
-    windowrule = fullscreen, class:^(jetbrains-studio)$
+    windowrule = maximize,   class:^(Joplin)$
+    windowrule = maximize,   class:^(brave-browser)$
+    windowrule = maximize,   class:^(superProductivity)$
     windowrule = fullscreen, class:^(krita)$
+    windowrule = fullscreen, class:^(blender)$
+    windowrule = fullscreen, class:^(Godot)$
+    windowrule = fullscreen, class:^(dev.zed.Zed)$
+    windowrule = fullscreen, class:^(Joplin)$
 
     # Workspace assignments
-    windowrule = workspace 1,  class:kitty
-    windowrule = workspace 2,  class:vivaldi-stable
-    windowrule = workspace 2,  class:brave-browser
-    windowrule = workspace 3,  class:Emacs
-    windowrule = workspace 3,  class:dev.zed.Zed
-    windowrule = workspace 3,  class:jetbrains-studio
-    windowrule = workspace 4,  class:org.kde.okular
-    windowrule = workspace 4,  class:obsidian
-    windowrule = workspace 5,  class:ticktick
-    windowrule = workspace 5,  class:Logseq
-    windowrule = workspace 5,  class:Joplin
-    windowrule = workspace 6,  class:org.kde.gwenview
-    windowrule = workspace 6,  class:org.kde.dolphin
-    windowrule = workspace 7,  class:blender
-    windowrule = workspace 9,  class:krita
-    windowrule = workspace 10, class:Godot
+    # monitor 32' (DP)
+    windowrule = workspace 1,  class:brave-browser
+    windowrule = workspace 1,  class:helium
+    windowrule = workspace 2,  class:org.kde.gwenview
+    windowrule = workspace 3,  class:org.pwmt.zathura
+    windowrule = workspace 4,  class:Godot
+    windowrule = workspace 5,  class:blender
+
+    # monitor 22' (DVI)
+    windowrule = group, workspace 6,  class:gimp-3.0
+    windowrule = group, workspace 6,  class:krita
+    windowrule = group, workspace 7,  class:obsidian
+    windowrule = group, workspace 7,  class:Logseq
+    windowrule = group, workspace 7,  class:Joplin
+    windowrule = group, workspace 8,  class:vivaldi-stable
+    windowrule = group, workspace 8,  class:org.kde.dolphin
+    windowrule = group, workspace 8,  class:ticktick
+    windowrule = group, workspace 8,  class:bitwarden
+    windowrule = group, workspace 8,  class:kdeconnect-app
+    windowrule = group, workspace 8,  class:PixiEditor.Desktop
+
+    # monitor 22' (HDMI)
+    windowrule =        workspace 9,  class:kitty
+    windowrule = group, workspace 0,  class:Emacs
+    windowrule = group, workspace 0,  class:dev.zed.Zed
+    windowrule = group, workspace 0,  class:jetbrains-studio
+    windowrule = group, workspace 0,  class:org.kde.okular
+
+    # Multi-monitor setup
+    workspace = 1,  monitor:DP-1
+    workspace = 2,  monitor:DP-1
+    workspace = 3,  monitor:DP-1
+    workspace = 4,  monitor:DP-1
+    workspace = 5,  monitor:DP-1
+    workspace = 6,  monitor:DVI-D-1
+    workspace = 7,  monitor:DVI-D-1
+    workspace = 8,  monitor:DVI-D-1
+    workspace = 9,  monitor:HDMI-A-1
+    workspace = 10, monitor:HDMI-A-1
   '';
 }

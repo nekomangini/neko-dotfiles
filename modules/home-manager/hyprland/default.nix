@@ -1,4 +1,5 @@
 { ... }:
+
 {
   imports = [
     ./environment.nix
@@ -7,6 +8,7 @@
     ./keybinds.nix
     ./rules.nix
     ../shell/scripts.nix
+    ./group.nix
   ];
 
   wayland.windowManager.hyprland = {

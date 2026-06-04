@@ -1,76 +1,38 @@
 { pkgs, ... }:
 
 let
-  sync-notes-script = ../../scripts/sync-notes.raku;
-  nlog-script = ../../scripts/nlog.raku;
-  powermenu = ../../scripts/powermenu.raku;
-  helix-fzf = ../../scripts/helix-fzf.raku;
-  tmux-rails = ../../scripts/tmux-rails.raku;
-  helix-findword = ../../scripts/helix-findword.raku;
-
+  helix = pkgs.helix;
+  emacs = pkgs.emacs;
+  kitty = pkgs.kitty;
+  tmux = pkgs.tmux;
 in
 
+# TODO
+# Simplify/Move to scripts/default.nix if possible
 {
   home.packages = with pkgs; [
+    # ===== Emacs =====
     (writeShellScriptBin "ed" ''
-      exec ${emacs-gtk}/bin/emacsclient -nw
+      exec ${emacs}/bin/emacsclient -nw -a "" "$@"
     '')
 
-    (writeShellScriptBin "et" ''
-      exec ${emacs-gtk}/bin/emacs -nw
+    (writeShellScriptBin "doom-scratchpad" ''
+      exec ${kitty}/bin/kitty --hold ${emacs}/bin/emacsclient -nw -a ""
     '')
 
+    # ===== Wayland =====
+    # TEST
+    # (writeShellScriptBin "hed" ''
+    #   exec ${emacs-pgtk}/bin/emacsclient -nw
+    # '')
+
+    # ===== Scripts=====
+    # Joplin
     (writeShellScriptBin "helix-joplin" ''
       COMMAND_ARRAY=("${helix}/bin/hx" "$@")
       exec ${kitty}/bin/kitty ${tmux}/bin/tmux new-session -A -s joplin "''${COMMAND_ARRAY[@]}"
     '')
 
-    (writeShellApplication {
-      name = "sync-notes";
-      runtimeInputs = [ rakudo ];
-      text = ''
-        exec ${rakudo}/bin/raku ${sync-notes-script} "$@"
-      '';
-    })
-
-    (writeShellApplication {
-      name = "dev-notes";
-      runtimeInputs = [ rakudo ];
-      text = ''
-        exec ${rakudo}/bin/raku ${nlog-script} "$@"
-      '';
-    })
-
-    (writeShellApplication {
-      name = "powermenu";
-      runtimeInputs = [ rakudo ];
-      text = ''
-        ${rakudo}/bin/raku ${powermenu}
-      '';
-    })
-
-    (writeShellApplication {
-      name = "hf";
-      runtimeInputs = [ rakudo ];
-      text = ''
-        ${rakudo}/bin/raku ${helix-fzf}
-      '';
-    })
-
-    (writeShellApplication {
-      name = "tmuxrails";
-      runtimeInputs = [ rakudo ];
-      text = ''
-        ${rakudo}/bin/raku ${tmux-rails}
-      '';
-    })
-
-    (writeShellApplication {
-      name = "hw";
-      runtimeInputs = [ rakudo ];
-      text = ''
-        exec ${rakudo}/bin/raku ${helix-findword} "$@"
-      '';
-    })
+    # ===== AUTOMATION =====
   ];
 }

@@ -166,6 +166,7 @@ let
       rm -f -- "$tmp"
     end
 
+    # TODO
     # ndir - directory jumper with fzf
     function ndir
       set -l DIRECTORIES \

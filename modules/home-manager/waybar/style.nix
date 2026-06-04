@@ -1,32 +1,37 @@
-{ ... }:
-
 {
   programs.waybar.style = ''
-    /* Twilight Frost - Redesigned Waybar */
+    /* Cyber-Emerald Theme (Custom Matched to Wallpaper) */
     * {
-      margin: 0;
-      padding: 0;
-      border: none;
-      border-radius: 0;
-      font-family: "FiraCode Nerd Font", "Cascadia Code", monospace;
-      font-size: 12px;
-      min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    font-family: "FiraCode Nerd Font", "Cascadia Code", monospace;
+    font-size: 12px;
+    min-height: 0;
     }
 
-    @define-color alice_blue #E7EFFE;
-    @define-color vintage_grape #413F60;
-    @define-color icy_blue #BFD8FC;
-    @define-color dusk_blue #4D619E;
-    @define-color baby_blue_ice #A5BAF0;
-    @define-color alice_blue_2 #F6FCFE;
-    @define-color prussian_blue #181E35;
-    @define-color twilight_indigo #2E395B;
+    /* Palette sampled from cats_008.jpg */
+    @define-color fg #a3b8b5;
+    @define-color red #ff4d4d;
+    @define-color neon_cyan #43f2d6;
+    @define-color emerald #5fc497;
+    @define-color blue #36a3d9;
+    @define-color aqua #95e6cb;
+    @define-color orange #f29718;
+    @define-color grey0 #2a3b38;
+    @define-color grey1 #40524f;
+    @define-color grey2 #5c706d;
+    @define-color bg_dim #080c0c;
+    @define-color bg0 #0a1211;
+    @define-color bg1 #121f1d;
+    @define-color bg2 #1a2b28;
 
     /* Main Bar */
     #waybar {
-      background: linear-gradient(135deg, rgba(24, 30, 53, 0.95) 0%, rgba(46, 57, 91, 0.9) 100%);
-      border: 1px solid rgba(77, 97, 158, 0.4);
-      border-radius: 8px;
+      background: rgba(10, 18, 17, 0.92);
+      border-bottom: 2px solid rgba(67, 242, 214, 0.3); /* Subtle cyan underline */
+      border-radius: 0px;
     }
 
     /* Container Spacing */
@@ -39,70 +44,62 @@
 
     /* Custom Launcher */
     #custom-launcher {
-      color: @baby_blue_ice;
+      color: @neon_cyan;
       font-size: 20px;
-      padding: 5px 0 5px 7px;
+      padding: 5px 0 5px 0;
     }
 
     /* Workspaces */
     #workspaces {
       border-radius: 10px;
-      padding: 3px 0 3px 5px;
+      padding: 3px 0 3px 0;
       margin-right: 10px;
     }
 
     #workspaces button {
-      background: rgba(46, 57, 91, 0.6);
-      color: @icy_blue;
+      background: rgba(18, 31, 29, 0.6);
+      color: @grey2;
       padding: 4px 11px;
       margin: 3px 3px;
-      border-radius: 7px;
-      border: 1px solid rgba(77, 97, 158, 0.3);
+      border-radius: 4px;
+      border: 1px solid rgba(67, 242, 214, 0.1);
       font-weight: 500;
       min-width: 28px;
       transition: all 300ms ease;
-      text-shadow: 0 0 6px rgba(165, 186, 240, 0.6);
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
     }
 
     #workspaces button:hover {
-      background: linear-gradient(135deg, rgba(77, 97, 158, 0.4), rgba(46, 57, 91, 0.35));
-      color: @alice_blue;
-      border-color: rgba(77, 97, 158, 0.6);
-      box-shadow:
-        0 0 8px rgba(77, 97, 158, 0.5),
-        inset 0 1px 2px rgba(191, 216, 252, 0.15);
+      background: rgba(26, 43, 40, 0.8);
+      color: @fg;
+      border-color: @emerald;
     }
 
     #workspaces button.active {
-      background: linear-gradient(135deg, @dusk_blue 0%, @baby_blue_ice 100%);
-      color: @prussian_blue;
+      background: @neon_cyan;
+      color: @bg0;
       font-weight: 700;
-      border: 1px solid @icy_blue;
-      box-shadow: 0 0 12px rgba(165, 186, 240, 0.7);
+      border: 1px solid @neon_cyan;
+      /* Neon glow effect matched to the sign on the left */
+      box-shadow: 0 0 12px rgba(67, 242, 214, 0.6);
     }
 
     #workspaces button.urgent {
-      background: linear-gradient(135deg, rgba(255, 80, 80, 0.5), rgba(255, 60, 60, 0.4));
-      color: #ffe0e0;
-      border-color: rgba(255, 80, 80, 0.8);
-      box-shadow: 0 0 12px rgba(255, 80, 80, 0.6);
+      background: @red;
+      color: @bg0;
+      border-color: @red;
     }
 
     /* Clock */
     #clock {
-      background: linear-gradient(135deg, rgba(77, 97, 158, 0.75), rgba(46, 57, 91, 0.7));
-      color: @alice_blue;
+      background: @bg1;
+      color: @neon_cyan;
       padding: 4px 11px;
       margin: 5px 5px;
-      border-radius: 7px;
-      letter-spacing: 0.08em;
-      border: 1px solid rgba(165, 186, 240, 0.4);
-      text-shadow: 0 0 10px rgba(165, 186, 240, 0.8);
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(67, 242, 214, 0.2);
       font-weight: 600;
-      box-shadow:
-        0 3px 10px rgba(0, 0, 0, 0.4),
-        inset 0 1px 2px rgba(231, 239, 254, 0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     }
 
     /* Stat Modules */
@@ -113,17 +110,13 @@
     #network,
     #pulseaudio,
     #tray {
-      background: linear-gradient(135deg, rgba(46, 57, 91, 0.65), rgba(24, 30, 53, 0.7));
-      color: @alice_blue;
+      background: @bg1;
+      color: @fg;
       padding: 4px 11px;
       margin: 5px 5px;
-      border-radius: 7px;
-      margin-left: 5px;
-      border: 1px solid rgba(77, 97, 158, 0.3);
-      transition: all 300ms ease;
-      box-shadow: 
-        0 2px 5px rgba(0, 0, 0, 0.4),
-        inset 0 1px 1px rgba(165, 186, 240, 0.1);
+      border-radius: 4px;
+      border: 1px solid rgba(95, 196, 151, 0.15); /* Emerald border */
+      transition: all 200ms ease;
     }
 
     #temperature:hover,
@@ -132,12 +125,9 @@
     #memory:hover,
     #network:hover,
     #pulseaudio:hover {
-      background: linear-gradient(135deg, rgba(77, 97, 158, 0.5), rgba(165, 186, 240, 0.3));
-      color: @alice_blue_2;
-      border-color: @baby_blue_ice;
-      box-shadow:
-        0 4px 8px rgba(165, 186, 240, 0.6),
-        inset 0 1px 2px rgba(191, 216, 252, 0.2);
+      background: @bg2;
+      border-color: @neon_cyan;
+      color: @neon_cyan;
     }
 
     /* Critical States */
@@ -145,22 +135,16 @@
     #custom-gpu-temp.critical,
     #cpu.critical,
     #memory.critical {
-      background: linear-gradient(135deg, rgba(255, 70, 70, 0.5), rgba(200, 50, 50, 0.45));
-      color: @alice_blue_2;
-      border-color: rgba(255, 80, 80, 0.8);
-      box-shadow:
-        0 0 10px rgba(255, 70, 70, 0.6),
-        inset 0 1px 2px rgba(255, 100, 100, 0.3);
+      background: @red;
+      color: @bg0;
+      border-color: @red;
     }
 
     /* Muted Audio State */
     #pulseaudio.muted {
-      background: linear-gradient(135deg, rgba(65, 63, 96, 0.6), rgba(46, 57, 91, 0.55));
-      color: @icy_blue;
-      border-color: @vintage_grape;
-      box-shadow:
-        0 0 10px rgba(65, 63, 96, 0.5),
-        inset 0 1px 2px rgba(65, 63, 96, 0.3);
+      background: @bg1;
+      color: @grey1;
+      border-color: @grey0;
     }
 
     /* System Tray */
@@ -169,34 +153,23 @@
       margin: 5px 5px;
     }
 
-    #tray > .passive {
-      -gtk-icon-effect: dim;
-    }
-
-    #tray > .active {
-      -gtk-icon-effect: highlight;
-    }
-
     /* Custom Control (Power) */
     #custom-control {
-      color: @alice_blue;
+      color: @neon_cyan;
       font-size: 16px;
       padding: 4px 11px;
       margin: 5px 5px;
-      background: linear-gradient(135deg, rgba(77, 97, 158, 0.6), rgba(46, 57, 91, 0.55));
-      border-radius: 8px;
-      border: 1px solid rgba(165, 186, 240, 0.4);
-      transition: all 300ms ease;
-      box-shadow: 0 2px 6px rgba(77, 97, 158, 0.4);
+      background: @bg1;
+      border-radius: 4px;
+      border: 1px solid rgba(67, 242, 214, 0.2);
     }
 
     #custom-control:hover {
-      background: linear-gradient(135deg, rgba(255, 80, 100, 0.6), rgba(255, 60, 80, 0.5));
-      color: @alice_blue_2;
-      border-color: rgba(255, 80, 100, 0.8);
-      box-shadow: 
-        0 4px 14px rgba(255, 80, 100, 0.6),
-        inset 0 1px 2px rgba(255, 120, 120, 0.3);
+      background: @red;
+      color: @bg0;
+      border-color: @red;
     }
+
+
   '';
 }

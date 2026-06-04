@@ -76,6 +76,33 @@
           "emmet-ls"
         ];
       }
+      # --- Vue/Nuxt ---
+      {
+        name = "vue";
+        scope = "source.vue";
+        injection-regex = "vue";
+        file-types = [ "vue" ];
+        comment-token = "//";
+        roots = [
+          "package.json"
+          "nuxt.config.ts"
+          "nuxt.config.js"
+          "vite.config.ts"
+        ];
+        # Add both here
+        language-servers = [
+          "typescript-language-server"
+          "emmet-ls"
+        ];
+        formatter = {
+          command = "prettier";
+          args = [
+            "--parser"
+            "vue"
+          ];
+        };
+        auto-format = true;
+      }
 
       # --- Nix ---
       {
@@ -159,6 +186,118 @@
             "--keep-blank-lines"
             "2"
           ];
+        };
+        auto-format = true;
+      }
+
+      # --- Dart/Flutter ---
+      {
+        name = "dart";
+        scope = "source.dart";
+        injection-regex = "dart";
+        file-types = [ "dart" ];
+        roots = [ "pubspec.yaml" ];
+        language-servers = [ "dart-analysis-server" ];
+        auto-format = true;
+      }
+
+      # --- Go ---
+      {
+        name = "go";
+        scope = "source.go";
+        injection-regex = "go";
+        file-types = [ "go" ];
+        roots = [
+          "go.mod"
+          "go.work"
+        ];
+        language-servers = [ "gopls" ];
+        formatter = {
+          command = "goimports";
+        };
+        auto-format = true;
+      }
+
+      # --- Go Templates (for Hugo) ---
+      {
+        name = "gohtml";
+        scope = "text.html.go";
+        injection-regex = "gohtml";
+        file-types = [ "gohtml" ];
+        language-servers = [ "gopls" ];
+        auto-format = false;
+      }
+
+      # --- Go Template (.tmpl files) ---
+      {
+        name = "gotmpl";
+        scope = "source.gotmpl";
+        file-types = [
+          "tmpl"
+          "tpl"
+        ];
+        language-servers = [ "gopls" ];
+        auto-format = false;
+      }
+
+      # --- TOML (for Hugo config) ---
+      {
+        name = "toml";
+        auto-format = true;
+      }
+
+      # --- YAML (for Hugo front matter) ---
+      {
+        name = "yaml";
+        auto-format = true;
+      }
+
+      # --- Markdown (Hugo) ---
+      {
+        name = "markdown";
+        language-servers = [ "marksman" ];
+        formatter = {
+          command = "prettier";
+          args = [
+            "--parser"
+            "markdown"
+          ];
+        };
+        auto-format = true;
+      }
+
+      # --- Python ---
+      {
+        name = "python";
+        language-servers = [ "pyright" ];
+        formatter = {
+          command = "black";
+          args = [
+            "--quiet"
+            "-"
+          ];
+        };
+        auto-format = true;
+      }
+
+      # --- C ---
+      {
+        name = "c";
+        language-servers = [ "clangd" ];
+        formatter = {
+          command = "clang-format";
+          args = [ "-style=webkit" ]; # Options: llvm, google, chromium, mozilla, webkit
+        };
+        auto-format = true;
+      }
+
+      # --- C++ ---
+      {
+        name = "cpp";
+        language-servers = [ "clangd" ];
+        formatter = {
+          command = "clang-format";
+          args = [ "-style=webkit" ];
         };
         auto-format = true;
       }

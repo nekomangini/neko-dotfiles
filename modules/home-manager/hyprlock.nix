@@ -1,14 +1,10 @@
-{ ... }:
-
 {
-
-  # Hyprlock configuration
+  # Hyprlock configuration - Cyber-Emerald
   programs.hyprlock = {
     enable = true;
 
     settings = {
       general = {
-        # Disable loading the wallpaper
         disable_loading_bar = true;
         hide_cursor = true;
         grace = 0;
@@ -16,22 +12,22 @@
         no_fade_out = false;
       };
 
-      # Background - Renna/Ranni deep blue
+      # Background - Darkened Slate with Emerald Vibrancy
       background = [
         {
           monitor = "";
-          path = "screenshot"; # Uses a screenshot with blur
+          path = "screenshot";
           blur_passes = 3;
           blur_size = 7;
           noise = 0.0117;
           contrast = 0.8916;
-          brightness = 0.7;
-          vibrancy = 0.1696;
-          vibrancy_darkness = 0.0;
+          brightness = 0.5;
+          vibrancy = 0.3;
+          vibrancy_darkness = 0.1;
         }
       ];
 
-      # Input field for password
+      # Input field - Glassy Emerald
       input-field = [
         {
           monitor = "";
@@ -42,46 +38,47 @@
           dots_center = true;
           dots_rounding = -1;
 
-          # Colors from Renna/Ranni theme
-          outer_color = "rgb(91, 159, 255)";
-          inner_color = "rgb(10, 12, 28)";
-          font_color = "rgb(224, 235, 255)";
+          # Cyber-Emerald Palette
+          outer_color = "rgb(0, 255, 159)";
+          inner_color = "rgba(10, 20, 20, 0.8)";
+          font_color = "rgb(200, 255, 230)";
           fade_on_empty = false;
           fade_timeout = 1000;
 
-          placeholder_text = "<i>Enter Password...</i>";
+          placeholder_text = "<i>Enter password...</i>";
 
-          check_color = "rgb(126, 179, 255)";
+          check_color = "rgb(0, 255, 159)";
           fail_color = "rgb(255, 80, 80)";
-          fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
+          fail_text = "<i>Access Denied <b>($ATTEMPTS)</b></i>";
 
           position = "0, -120";
           halign = "center";
           valign = "center";
+          rounding = 10;
         }
       ];
 
       # Time display
       label = [
-        # Clock
+        # Clock - Sharp Emerald Glow
         {
           monitor = "";
-          text = ''cmd[update:1000] echo "$(date +"%H:%M")"'';
-          color = "rgb(126, 179, 255)";
+          text = ''cmd[update:1000] echo "$(date +"%I:%M $p")"'';
+          color = "rgb(0, 255, 159)";
           font_size = 120;
-          font_family = "FiraCode Nerd Font";
+          font_family = "FiraCode Nerd Font Bold";
           position = "0, 300";
           halign = "center";
           valign = "center";
           shadow_passes = 2;
-          shadow_size = 5;
-          shadow_color = "rgb(74, 143, 255)";
+          shadow_size = 8;
+          shadow_color = "rgba(0, 255, 159, 0.4)";
         }
-        # Date
+        # Date - Cool Grey/Cyan
         {
           monitor = "";
           text = ''cmd[update:1000] echo "$(date +"%A, %B %d")"'';
-          color = "rgb(168, 184, 216)";
+          color = "rgb(150, 200, 190)";
           font_size = 24;
           font_family = "FiraCode Nerd Font";
           position = "0, 200";
@@ -91,9 +88,9 @@
         # User greeting
         {
           monitor = "";
-          text = "Welcome back, $USER";
-          color = "rgb(224, 235, 255)";
-          font_size = 20;
+          text = "Welcome back: $USER";
+          color = "rgb(200, 255, 230)";
+          font_size = 18;
           font_family = "FiraCode Nerd Font";
           position = "0, 80";
           halign = "center";
@@ -103,15 +100,13 @@
     };
   };
 
-  # Optional: Setup hypridle for auto-lock
   services.hypridle = {
     enable = true;
-
     settings = {
       general = {
-        lock_cmd = "pidof hyprlock || hyprlock"; # Avoid starting multiple instances
-        before_sleep_cmd = "loginctl lock-session"; # Lock before sleep
-        after_sleep_cmd = "hyprctl dispatch dpms on"; # Turn on screen after sleep
+        lock_cmd = "pidof hyprlock || hyprlock";
+        before_sleep_cmd = "loginctl lock-session";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
       };
 
       listener = [

@@ -1,0 +1,51 @@
+{ pkgs, ... }:
+
+{
+  home.packages = with pkgs; [
+    shellcheck
+    pandoc
+    marksman
+
+    bash-language-server
+    shfmt
+
+    clang-tools
+
+    clojure-lsp
+    sbcl
+
+    gopls
+    (lib.lowPrio gotools)
+    gomodifytags
+    impl
+    delve
+    gotests
+    gore
+
+    nil
+    nixd
+    nixfmt-rfc-style
+
+    html-tidy
+    stylelint
+    emmet-ls
+    js-beautify
+    prettier
+    astro-language-server
+    svelte-language-server
+    vscode-langservers-extracted
+    vue-language-server
+    typescript-language-server
+    # nodePackages.typescript
+    typescript
+
+    ruby-lsp
+    solargraph
+    rufo
+    rubocop
+    # rubyPackages.htmlbeautifier
+
+    pyright
+    black
+  ];
+}

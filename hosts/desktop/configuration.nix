@@ -11,38 +11,51 @@
     ./modules/polkit-rules.nix
     ./modules/users.nix
     ../../modules/nixos/users
+
+    # === CORE ===
     ../../modules/nixos/core/boot.nix
     ../../modules/nixos/core/locale.nix
     ../../modules/nixos/core/fonts.nix
     ../../modules/nixos/core/network.nix
     ../../modules/nixos/core/nixsetting.nix
 
+    # === Secrets ===
+    ../../modules/nixos/core/secrets.nix
+    ../../modules/nixos/services/openssh.nix
+
+    # === Hardware ===
     ../../modules/nixos/hardware/audio.nix
     ../../modules/nixos/hardware/nvidia.nix
+    ../../modules/nixos/hardware/ydotools.nix
 
+    # === Desktop ===
+    ../../modules/nixos/desktop/plasma.nix
+    ../../modules/nixos/desktop/xserver.nix
+
+    # === Window Managers ===
+    ../../modules/nixos/window-managers/hyprland.nix
+    ../../modules/nixos/window-managers/qtile.nix
+    ../../modules/nixos/window-managers/niri.nix
+    ../../modules/nixos/window-managers/i3.nix
+
+    # === Services ===
+    ../../modules/nixos/services/kdeconnect.nix
     ../../modules/nixos/services/syncthing.nix
     ../../modules/nixos/services/flatpak.nix
     ../../modules/nixos/services/printing.nix
     ../../modules/nixos/services/touchpad.nix
 
-    ../../modules/nixos/desktop/plasma.nix
-    ../../modules/nixos/desktop/xserver.nix
-
-    ../../modules/nixos/window-managers/hyprland.nix
-    ../../modules/nixos/window-managers/qtile.nix
-    ../../modules/nixos/window-managers/niri.nix
-
+    # === Programs ===
     ../../modules/nixos/programs/fish.nix
     ../../modules/nixos/programs/adb.nix
 
-    ../../modules/nixos/users
-
+    # === Development ===
     ../../modules/nixos/development/android.nix
     ../../modules/nixos/development/docker.nix
+    ../../modules/nixos/development/nix-ld.nix
 
+    # === Maintenance ===
     ../../modules/nixos/maintenance/autoupdate.nix
-
-    ../../modules/nixos/hardware/ydotools.nix
   ];
 
   networking.hostName = "neko-desktop"; # Define your hostname.
@@ -57,6 +70,7 @@
 
     brave
     vivaldi
+    vlc
 
     # System tools
     # git
@@ -72,6 +86,7 @@
 
     lua
 
+    bun
     nodejs_22
     typescript
 
@@ -84,11 +99,16 @@
 
     rustup
     lldb
+
+    go
+
+    python315
     # end programming #
 
     # art #
     (blender.override { cudaSupport = true; })
     krita
+    pixieditor
     kdePackages.gwenview
     # end art #
 

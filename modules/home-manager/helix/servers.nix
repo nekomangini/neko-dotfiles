@@ -11,6 +11,17 @@
     "typescript-language-server" = {
       command = "typescript-language-server";
       args = [ "--stdio" ];
+      config = {
+        plugins = [
+          {
+            name = "@vue/typescript-plugin";
+            # location = "${pkgs.vue-language-server}/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin";
+            # location = "${pkgs.vue-vue-language-server}/lib/node_modules/@vue/typescript-plugin";
+            location = "${pkgs.vue-language-server}/lib/language-tools/packages/language-server/node_modules/@vue/typescript-plugin";
+            languages = [ "vue" ];
+          }
+        ];
+      };
     };
 
     "emmet-ls" = {
@@ -43,5 +54,49 @@
 
     "ruby-lsp".command = "ruby-lsp";
     "solargraph".command = "solargraph";
+
+    "dart-analysis-server" = {
+      command = "dart";
+      args = [ "language-server" ];
+    };
+
+    gopls = {
+      command = "gopls";
+      config = {
+        gofumpt = true;
+        staticcheck = true;
+        analyses = {
+          unusedparams = true;
+          shadow = true;
+        };
+        usePlaceholders = true;
+        completeUnimported = true;
+        matcher = "fuzzy";
+      };
+    };
+
+    "pyright" = {
+      command = "pyright-langserver";
+      args = [ "--stdio" ];
+      config = {
+        pythoni = {
+          analysis = {
+            typeCheckingMode = "basic";
+            autSearchPaths = true;
+            useLibraryCodeForTypes = true;
+          };
+        };
+      };
+    };
+
+    "clangd" = {
+      command = "clangd";
+      args = [
+        "--background-index"
+        "--clang-tidy"
+        "--completion-style=detailed"
+        "--header-insertion=never"
+      ];
+    };
   };
 }

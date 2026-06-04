@@ -1,74 +1,62 @@
-{ ... }:
-
 {
   programs.kitty.settings = {
-    # Rennala / Ranni the Witch Theme
+    # Emerald Cyberpunk Theme (Matched to cats_008.jpg)
 
-    # Background and foreground
-    background = "#0a0c1c";
-    foreground = "#e8f2ff";
+    # Background & Foreground
+    # Deep teal-black for that foggy night look
+    background = "#080c0c";
+    foreground = "#a3b8b5";
 
-    # Cursor
-    cursor = "#7eb3ff";
-    cursor_text_color = "#0a0e1e";
+    # Cursor - Now using the bright neon cyan from the signs
+    cursor = "#43f2d6";
+    cursor_text_color = "#080c0c";
 
     # Selection
-    selection_background = "#5b9fff";
-    selection_foreground = "#ffffff";
+    selection_background = "#1a2b28";
+    selection_foreground = "#43f2d6";
 
-    # URL underline color
-    url_color = "#9cc5ff";
+    # Terminal Colors (Atmospheric Palette)
+    # Black: Dark teal tones
+    color0 = "#0a1211";
+    color8 = "#2a3b38";
 
-    # Black (normal and bright)
-    color0 = "#1e2646";
-    color8 = "#6c82b4";
+    # Red: Critical warning red from neon accents
+    color1 = "#ff4d4d";
+    color9 = "#ff6e6e";
 
-    # Red (normal and bright)
-    color1 = "#ff6080";
-    color9 = "#ff8ca8";
+    # Green: Emerald fog tones
+    color2 = "#5fc497";
+    color10 = "#7ef2be";
 
-    # Green (normal and bright)
-    color2 = "#8fbfff";
-    color10 = "#afd5ff";
+    # Yellow: Dim amber glow
+    color3 = "#d4b55e";
+    color11 = "#f0d082";
 
-    # Yellow (normal and bright)
-    color3 = "#c0d0f0";
-    color11 = "#e0f0ff";
+    # Blue: Deep rain/shadow blue
+    color4 = "#36a3d9";
+    color12 = "#71beeb";
 
-    # Blue (normal and bright)
-    color4 = "#6aa8ff";
-    color12 = "#8fbfff";
+    # Magenta: Muted purple haze
+    color5 = "#9b6bdf";
+    color13 = "#c29ef3";
 
-    # Magenta (normal and bright)
-    color5 = "#9d8ff9";
-    color13 = "#bdb0ff";
+    # Cyan: The signature neon cyan
+    color6 = "#43f2d6";
+    color14 = "#a2f9ec";
 
-    # Cyan (normal and bright)
-    color6 = "#6aa8ff";
-    color14 = "#8ac0ff";
-
-    # White (normal and bright)
-    color7 = "#e8f2ff";
-    color15 = "#ffffff";
+    # White: Cold mist white
+    color7 = "#cbd9d7";
+    color15 = "#e6efee";
 
     # Tab bar colors
-    active_tab_background = "#5b9fff";
-    active_tab_foreground = "#0a0e1e";
-    inactive_tab_background = "#1e2646";
-    inactive_tab_foreground = "#c0d0f0";
-    tab_bar_background = "#0f1226";
+    active_tab_background = "#43f2d6";
+    active_tab_foreground = "#080c0c";
+    inactive_tab_background = "#121f1d";
+    inactive_tab_foreground = "#5c706d";
+    tab_bar_background = "#080c0c";
 
-    # Window border colors
-    active_border_color = "#5b9fff";
-    inactive_border_color = "#3a4a6a";
-    bell_border_color = "#ff6080";
-
-    # Mark colors (for hints and marks)
-    mark1_foreground = "#0a0e1e";
-    mark1_background = "#7eb3ff";
-    mark2_foreground = "#0a0e1e";
-    mark2_background = "#9d8ff9";
-    mark3_foreground = "#0a0e1e";
-    mark3_background = "#6aa8ff";
+    # Window layout
+    active_border_color = "#43f2d6";
+    inactive_border_color = "#2a3b38";
   };
 }

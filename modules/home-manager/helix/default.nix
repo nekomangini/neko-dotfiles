@@ -8,27 +8,8 @@
   ];
 
   programs.helix.enable = true;
-
-  programs.helix.extraPackages = with pkgs; [
-    bash-language-server
-    shfmt
-
-    nil
-    nixd
-    nixfmt-rfc-style
-
-    clojure-lsp
-
-    astro-language-server
-    svelte-language-server
-    typescript-language-server
-    vscode-langservers-extracted
-    emmet-ls
-
-    ruby-lsp
-    solargraph
-    rufo
-    rubocop
-    rubyPackages.htmlbeautifier
-  ];
+  home.sessionVariables = {
+    EDITOR = "${pkgs.helix}/bin/hx";
+    VISUAL = "${pkgs.helix}/bin/hx";
+  };
 }
