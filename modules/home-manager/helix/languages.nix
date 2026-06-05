@@ -301,6 +301,20 @@
         };
         auto-format = true;
       }
+
+      # --- Java ---
+      {
+        name = "java";
+        language-servers = [ "jdtls" ];
+        roots = [
+          "pom.xml"
+          "build.gradle"
+          ".git"
+          "mvnw"
+          "gradlew"
+        ];
+        auto-format = true;
+      }
     ];
   };
 }
