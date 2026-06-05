@@ -14,6 +14,8 @@
     clojure-lsp
     sbcl
 
+    jdt-language-server
+
     gopls
     (lib.lowPrio gotools)
     gomodifytags

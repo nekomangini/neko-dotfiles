@@ -2,12 +2,15 @@
 
 {
   programs.helix.languages.language-server = {
+    # --- HTML ---
     vscode-html-language-server.command = "vscode-html-language-server";
     vscode-html-language-server.args = [ "--stdio" ];
 
+    # --- CSS ---
     vscode-css-language-server.command = "vscode-css-language-server";
     vscode-css-language-server.args = [ "--stdio" ];
 
+    # --- Typescript ---
     "typescript-language-server" = {
       command = "typescript-language-server";
       args = [ "--stdio" ];
@@ -24,11 +27,13 @@
       };
     };
 
+    # --- Emmet ---
     "emmet-ls" = {
       command = "emmet-ls";
       args = [ "--stdio" ];
     };
 
+    # --- Astro ---
     "astro-ls" = {
       command = "astro-ls";
       args = [ "--stdio" ];
@@ -40,26 +45,32 @@
       };
     };
 
+    # --- Svelte ---
     "svelteserver" = {
       command = "svelteserver";
       args = [ "--stdio" ];
     };
 
+    # --- Nix ---
     "nixd".command = "nixd";
 
+    # --- Bash ---
     "bash-language-server" = {
       command = "bash-language-server";
       args = [ "start" ];
     };
 
+    # --- Ruby ---
     "ruby-lsp".command = "ruby-lsp";
     "solargraph".command = "solargraph";
 
+    # --- Dart ---
     "dart-analysis-server" = {
       command = "dart";
       args = [ "language-server" ];
     };
 
+    # --- GO ---
     gopls = {
       command = "gopls";
       config = {
@@ -75,6 +86,7 @@
       };
     };
 
+    # --- Python ---
     "pyright" = {
       command = "pyright-langserver";
       args = [ "--stdio" ];
@@ -89,6 +101,7 @@
       };
     };
 
+    # --- C/C++ ---
     "clangd" = {
       command = "clangd";
       args = [
@@ -96,6 +109,15 @@
         "--clang-tidy"
         "--completion-style=detailed"
         "--header-insertion=never"
+      ];
+    };
+
+    # --- Java Language Server ---
+    "jdtls" = {
+      command = "jdtls";
+      args = [
+        "-data"
+        ".jdtls-workspace"
       ];
     };
   };
