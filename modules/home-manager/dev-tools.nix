@@ -26,7 +26,7 @@
 
     nil
     nixd
-    nixfmt-rfc-style
+    nixfmt
 
     html-tidy
     stylelint
@@ -38,7 +38,6 @@
     vscode-langservers-extracted
     vue-language-server
     typescript-language-server
-    # nodePackages.typescript
     typescript
 
     ruby-lsp

@@ -37,7 +37,7 @@
   home = {
     username = "nekomangini";
     homeDirectory = "/home/nekomangini";
-    stateVersion = "25.05";
+    stateVersion = "26.05";
   };
 
   # Let home-manager manage itself

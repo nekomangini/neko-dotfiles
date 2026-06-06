@@ -47,7 +47,9 @@
 
     # === Programs ===
     ../../modules/nixos/programs/fish.nix
-    ../../modules/nixos/programs/adb.nix
+    # NOTE
+    # no longer needed in 26.05, use pkgs.android-tools
+    # ../../modules/nixos/programs/adb.nix
 
     # === Development ===
     ../../modules/nixos/development/android.nix
