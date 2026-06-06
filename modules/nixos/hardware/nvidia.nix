@@ -36,7 +36,12 @@
     # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
+    # WARN
+    # breaks in 26.06
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
+
   };
 }

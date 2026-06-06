@@ -10,13 +10,9 @@
 
     discord
     libreoffice
-    fancontrol-gui
     zathura
     appimage-run
     planify
-    ticktick
-
-    bitwarden-desktop
 
     godot
 
@@ -50,7 +46,6 @@
     i3lock-color
 
     # Notes
-    logseq
     obsidian
     joplin-desktop
   ];

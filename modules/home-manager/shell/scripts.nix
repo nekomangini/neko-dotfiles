@@ -2,9 +2,13 @@
 
 let
   helix = pkgs.helix;
-  emacs = pkgs.emacs;
   kitty = pkgs.kitty;
   tmux = pkgs.tmux;
+
+  # emacs = pkgs.emacs-gtk;
+  emacs = pkgs.emacs-gtk.pkgs.withPackages (epkgs: [
+    epkgs.treesit-grammars.with-all-grammars
+  ]);
 in
 
 # TODO
