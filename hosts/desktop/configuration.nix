@@ -50,6 +50,7 @@
     # NOTE
     # no longer needed in 26.05, use pkgs.android-tools
     # ../../modules/nixos/programs/adb.nix
+    ../../modules/nixos/jellyfin
 
     # === Development ===
     ../../modules/nixos/development/android.nix
