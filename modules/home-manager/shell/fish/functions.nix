@@ -171,9 +171,9 @@ let
     function ndir
       set -l DIRECTORIES \
                     ~/neko-dotfiles \
-                    /run/media/nekomangini/D/Programming/{android-projects,neko-gitjournal,Projects,dotfiles,blender-python,scripts,programming-exercises} \
-                    /run/media/nekomangini/D/emacs-org-sync \
-                    /run/media/nekomangini/D/game-development/save-files \
+                    /mnt/D/Programming/{android-projects,neko-gitjournal,Projects,dotfiles,blender-python,scripts,programming-exercises} \
+                    /mnt/D/emacs-org-sync \
+                    /mnt/D/game-development/save-files \
                     ~/.config/{nekovim,nvim,astronvim_v5} \
 
         # Filter to only existing directories

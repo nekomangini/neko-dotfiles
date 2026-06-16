@@ -14,6 +14,10 @@
     appimage-run
     planify
 
+    # Music
+    easytag
+    picard
+
     godot
 
     # CLI

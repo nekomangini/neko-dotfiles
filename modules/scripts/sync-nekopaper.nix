@@ -6,7 +6,7 @@ let
     #!/usr/bin/env raku
     use v6.d;
 
-    constant $REPO_PATH = '/run/media/nekomangini/D/Programming/Projects/nekopaper/';
+    constant $REPO_PATH = '/mnt/D/Programming/Projects/nekopaper/';
     constant $DATE_TODAY = DateTime.now(formatter => { sprintf "%02d-%02d-%d", .month, .day, .year });
     constant $COMMIT_MESSAGE = "update notes $DATE_TODAY";
 

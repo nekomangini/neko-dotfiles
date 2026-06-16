@@ -51,6 +51,8 @@
     # no longer needed in 26.05, use pkgs.android-tools
     # ../../modules/nixos/programs/adb.nix
     ../../modules/nixos/jellyfin
+    ../../modules/nixos/navidrome
+    ../../modules/nixos/linkding
 
     # === Development ===
     ../../modules/nixos/development/android.nix
