@@ -12,4 +12,8 @@ in
     nekomangini
     local
   ];
+  "homepage.env.age".publicKeys = [
+    nekomangini
+    local
+  ];
 }

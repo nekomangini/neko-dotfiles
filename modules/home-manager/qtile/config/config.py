@@ -19,20 +19,21 @@ mod = "mod4"
 terminal = "kitty"
 doom = "emacsclient -c"
 
-# ──  Gruvbox Dark  ──────────────────
+# ──  Theme  ──────────────────
 colors = {
-    "bg": "#1d2021",
-    "fg": "#ebdbb2",
-    "red": "#cc241d",
-    "green": "#98971a",
-    "yellow": "#d79921",
-    "blue": "#458588",
-    "purple": "#b16286",
-    "aqua": "#689d6a",
-    "orange": "#d65d0e",
-    "gray": "#928374",
-    "bg1": "#3c3836",
-    "bg2": "#504945",
+    "bg": "#1a1b26",
+    "fg": "#c0caf5",
+    "accent": "#7aa2f7",
+    "highlight": "#f7768e",
+    "bg1": "#24283b",
+    "bg2": "#414868",
+    "gray": "#565f89",
+    "red": "#f7768e",
+    "green": "#73daca",
+    "yellow": "#e0af68",
+    "blue": "#7aa2f7",
+    "purple": "#bb9af7",
+    "aqua": "#b4f9f8",
 }
 
 # ── Keybindings  ──────────────────
@@ -231,19 +232,19 @@ keys = [
 layouts = [
     layout.Max(margin=7),
     # layout.MonadTall(
-    #     border_focus=colors["orange"],
+    #     border_focus=colors["accent"],
     #     border_normal=colors["bg2"],
     #     border_width=3,
     #     margin=7,
     # ),
     # layout.VerticalTile(
-    #     border_focus=colors["orange"],
+    #     border_focus=colors["accent"],
     #     border_normal=colors["bg2"],
     #     border_width=3,
     #     margin=5,
     # ),
     # layout.MonadWide(
-    #     border_focus=colors["orange"],
+    #     border_focus=colors["accent"],
     #     border_normal=colors["bg2"],
     #     border_width=3,
     #     margin=7,
@@ -260,7 +261,7 @@ layouts = [
     #     section_padding=8,
     #     section_fontsize=12,
     #     sections=[""],
-    #     active_bg=colors["orange"],
+    #     active_bg=colors["highlight"],
     #     active_fg=colors["bg"],
     #     inactive_bg=colors["bg1"],
     #     inactive_fg=colors["fg"],
@@ -269,13 +270,13 @@ layouts = [
     #     previous_on_rm=True,
     # ),
     # layout.Columns(
-    #     border_focus=colors["orange"],
+    #     border_focus=colors["accent"],
     #     border_normal=colors["bg2"],
     #     border_width=3,
     #     margin=7,
     # ),
     # layout.Floating(
-    #     border_focus=colors["orange"],
+    #     border_focus=colors["accent"],
     #     border_normal=colors["bg2"],
     #     border_width=3,
     # ),
@@ -390,7 +391,7 @@ def make_tasklist():
         fontsize=12,
         foreground=colors["fg"],
         background=colors["bg"],
-        border=colors["orange"],
+        border=colors["bg1"],
         unfocused_border=colors["bg1"],
         urgent_border=colors["red"],
         borderwidth=0,
@@ -399,7 +400,7 @@ def make_tasklist():
         margin=2,
         icon_size=0,
         title_width_method="uniform",
-        markup_focused="<b>{}</b>",
+        markup_focused=f"<span foreground='{colors['highlight']}'><b>{{}}</b></span>",
         markup_normal="{}",
         highlight_method="block",
         rounded=False,
@@ -412,8 +413,8 @@ def create_widgets():
         widget.CurrentLayout(
             font="JetBrainsMono Nerd Font Bold",
             fontsize=12,
-            foreground=colors["bg"],
-            background=colors["orange"],
+            foreground=colors["highlight"],
+            background=colors["bg1"],
             padding=12,
         ),
         # ── Group box ────────────────────────────────────────────
@@ -425,8 +426,8 @@ def create_widgets():
             inactive=colors["gray"],
             highlight_method="line",
             highlight_color=[colors["bg1"], colors["bg1"]],
-            this_current_screen_border=colors["orange"],
-            this_screen_border=colors["yellow"],
+            this_current_screen_border=colors["highlight"],
+            this_screen_border=colors["accent"],
             other_current_screen_border=colors["blue"],
             other_screen_border=colors["gray"],
             urgent_border=colors["red"],
@@ -482,7 +483,7 @@ def create_widgets():
             format="󰻠 {load_percent}%",
             font="JetBrainsMono Nerd Font",
             fontsize=12,
-            foreground=colors["yellow"],
+            foreground=colors["purple"],
             background=colors["bg1"],
             update_interval=2,
             padding=6,
@@ -496,35 +497,21 @@ def create_widgets():
             padding=6,
         ),
         # ── Volume block ─────────────────────────────────────────
-        widget.TextBox(
-            text="",
-            fontsize=22,
-            foreground=colors["bg2"],
-            background=colors["bg1"],
-            padding=0,
-        ),
         widget.PulseVolume(
             fmt="󰕾 {}",
             font="JetBrainsMono Nerd Font",
             fontsize=12,
             foreground=colors["purple"],
-            background=colors["bg2"],
+            background=colors["bg1"],
             padding=10,
         ),
         # ── Clock block ──────────────────────────────────────────
-        widget.TextBox(
-            text="",
-            fontsize=22,
-            foreground=colors["orange"],
-            background=colors["bg2"],
-            padding=0,
-        ),
         widget.Clock(
-            format=" %Y-%m-%d  %I:%M",
+            format="%Y-%m-%d  %I:%M",
             font="JetBrainsMono Nerd Font Bold",
             fontsize=12,
-            foreground=colors["bg"],
-            background=colors["orange"],
+            foreground=colors["aqua"],
+            background=colors["bg1"],
             padding=10,
         ),
     ]
@@ -604,7 +591,7 @@ floating_layout = layout.Floating(
         Match(wm_class="pavucontrol"),
         Match(wm_class="nm-connection-editor"),
     ],
-    border_focus=colors["orange"],
+    border_focus=colors["accent"],
     border_normal=colors["bg2"],
     border_width=3,
 )

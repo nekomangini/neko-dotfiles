@@ -2,7 +2,7 @@
 
 {
   programs.helix.settings = {
-    theme = "ayu_dark";
+    theme = "rose_pine_moon";
 
     editor = {
       line-number = "relative";
