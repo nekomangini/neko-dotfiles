@@ -11,6 +11,10 @@
         file = ../../../secrets/note-path.age;
         owner = "nekomangini";
       };
+      "homepage.env" = {
+        file = ../../../secrets/homepage.env.age;
+        owner = "nekomangini";
+      };
     };
   };
 }

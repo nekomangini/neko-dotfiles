@@ -53,6 +53,8 @@
     ../../modules/nixos/jellyfin
     ../../modules/nixos/navidrome
     ../../modules/nixos/linkding
+    ../../modules/nixos/homepage
+    ../../modules/nixos/radicale
 
     # === Development ===
     ../../modules/nixos/development/android.nix
