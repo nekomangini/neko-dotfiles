@@ -22,7 +22,7 @@ in
     ];
 
     settings = {
-      title = "Neko Home Lab";
+      title = "Home Lab";
       theme = "dark";
       color = "blue";
       headerStyle = "clean";
@@ -53,7 +53,7 @@ in
           format = {
             dateStyle = "short";
             timeStyle = "short";
-            hourCycle = "h23";
+            hour12 = true;
           };
         };
       }
@@ -92,6 +92,31 @@ in
               };
             };
           }
+          {
+            "Kavita" = {
+              description = "Manga Reader";
+              href = "http://192.168.1.72:3020";
+              icon = "kavita.png";
+              widget = {
+                type = "kavita";
+                url = "http://192.168.1.72:3020";
+                key = "{{HOMEPAGE_VAR_KAVITA_API_KEY}}";
+              };
+            };
+          }
+          {
+            "Immich" = {
+              description = "Photo Backup";
+              href = "http://192.168.1.72:2283";
+              icon = "immich.png";
+              widget = {
+                type = "immich";
+                url = "http://192.168.1.72:2283";
+                key = "{{HOMEPAGE_VAR_IMMICH_API_KEY}}";
+                version = 2;
+              };
+            };
+          }
         ];
       }
       {
@@ -115,6 +140,29 @@ in
               description = "CalDAV Server";
               href = "http://192.168.1.72:5232";
               icon = "radicale.png";
+            };
+          }
+        ];
+      }
+      {
+        "Tools" = [
+          {
+            "Uptime Kuma" = {
+              description = "Uptime Monitor";
+              href = "http://192.168.1.72:3001";
+              icon = "uptime-kuma.png";
+              widget = {
+                type = "uptimekuma";
+                url = "http://192.168.1.72:3001";
+                slug = "homelab";
+              };
+            };
+          }
+          {
+            "Forgejo" = {
+              description = "Git Server";
+              href = "http://192.168.1.72:3002";
+              icon = "forgejo.png";
             };
           }
         ];
