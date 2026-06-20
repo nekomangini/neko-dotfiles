@@ -40,7 +40,6 @@
     woeusb
     lm_sensors
 
-    gemini-cli
     qwen-code
 
     xdotool

@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 let
-  background = ../../../wallpaper/evangelion_010.jpg;
+  background = ../../wallpaper/evangelion_010.jpg;
   package = pkgs.homepage-dashboard.overrideAttrs (oldAttrs: {
     postInstall = ''
       mkdir -p $out/share/homepage/public/images
@@ -163,6 +163,20 @@ in
               description = "Git Server";
               href = "http://192.168.1.72:3002";
               icon = "forgejo.png";
+            };
+          }
+          {
+            "Syncthing" = {
+              description = "Local sync tool";
+              href = "http://192.168.1.72:8384";
+              icon = "syncthing.png";
+            };
+          }
+          {
+            "MeTube" = {
+              description = "YouTube downloader";
+              href = "http://192.168.1.72:8081";
+              icon = "youtube.png";
             };
           }
         ];

@@ -8,5 +8,7 @@
     dataDir = "/home/nekomangini/.config/syncthing";
     configDir = "/home/nekomangini/.config/syncthing";
     openDefaultPorts = true;
+
+    guiAddress = "0.0.0.0:8384";
   };
 }
