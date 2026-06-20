@@ -40,7 +40,6 @@
 
     # === Services ===
     ../../modules/nixos/services/kdeconnect.nix
-    ../../modules/nixos/services/syncthing.nix
     ../../modules/nixos/services/flatpak.nix
     ../../modules/nixos/services/printing.nix
     ../../modules/nixos/services/touchpad.nix
@@ -51,16 +50,8 @@
     # no longer needed in 26.05, use pkgs.android-tools
     # ../../modules/nixos/programs/adb.nix
 
-    # NOTE: Move to a separate folder(homalab)
-    ../../modules/nixos/jellyfin
-    ../../modules/nixos/navidrome
-    ../../modules/nixos/linkding
-    ../../modules/nixos/homepage
-    ../../modules/nixos/radicale
-    ../../modules/nixos/kavita
-    ../../modules/nixos/uptime-kuma
-    ../../modules/nixos/forgejo
-    ../../modules/nixos/immich
+    # homelab
+    ../../homelab
 
     # === Development ===
     ../../modules/nixos/development/android.nix
