@@ -6,6 +6,7 @@
     ./homepage
     ./immich
     ./jellyfin
+    ./jotty
     ./kavita
     ./linkding
     ./metube
@@ -14,5 +15,7 @@
     ./syncthing
     ./uptime-kuma
     # ./vaultwarden
+    ./vikunja
+    ./wiki-js
   ];
 }

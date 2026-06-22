@@ -8,13 +8,15 @@ let
       ln -s ${background} $out/share/homepage/public/images/background.png
     '';
   });
+  pc-server = "192.168.1.6";
+  laptop-server = "192.168.1.9";
 in
 {
   services.homepage-dashboard = {
     enable = true;
     openFirewall = true;
     listenPort = 3333;
-    allowedHosts = "192.168.1.72:3333,localhost:3333";
+    allowedHosts = "${pc-server}:3333,localhost:3333";
     package = package;
 
     environmentFiles = [
@@ -65,11 +67,11 @@ in
           {
             "Jellyfin" = {
               description = "Media Server";
-              href = "http://192.168.1.72:8096";
+              href = "http://${pc-server}:8096";
               icon = "jellyfin.png";
               widget = {
                 type = "jellyfin";
-                url = "http://192.168.1.72:8096";
+                url = "http://${pc-server}:8096";
                 key = "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}";
                 version = 2;
                 enableBlocks = true;
@@ -80,11 +82,11 @@ in
           {
             "Navidrome" = {
               description = "Music Server";
-              href = "http://192.168.1.72:4533";
+              href = "http://${pc-server}:4533";
               icon = "navidrome.png";
               widget = {
                 type = "navidrome";
-                url = "http://192.168.1.72:4533";
+                url = "http://${pc-server}:4533";
                 user = "{{HOMEPAGE_VAR_NAVIDROME_USER}}";
                 token = "{{HOMEPAGE_VAR_NAVIDROME_TOKEN}}";
                 salt = "{{HOMEPAGE_VAR_NAVIDROME_SALT}}";
@@ -95,11 +97,11 @@ in
           {
             "Kavita" = {
               description = "Manga Reader";
-              href = "http://192.168.1.72:3020";
+              href = "http://${pc-server}:3020";
               icon = "kavita.png";
               widget = {
                 type = "kavita";
-                url = "http://192.168.1.72:3020";
+                url = "http://${pc-server}:3020";
                 key = "{{HOMEPAGE_VAR_KAVITA_API_KEY}}";
               };
             };
@@ -107,11 +109,11 @@ in
           {
             "Immich" = {
               description = "Photo Backup";
-              href = "http://192.168.1.72:2283";
+              href = "http://${pc-server}:2283";
               icon = "immich.png";
               widget = {
                 type = "immich";
-                url = "http://192.168.1.72:2283";
+                url = "http://${pc-server}:2283";
                 key = "{{HOMEPAGE_VAR_IMMICH_API_KEY}}";
                 version = 2;
               };
@@ -124,22 +126,50 @@ in
           {
             "Linkding" = {
               description = "Bookmark Manager";
-              href = "http://192.168.1.72:9090";
+              href = "http://${pc-server}:9090";
               icon = "linkding.png";
             };
           }
           {
             "Radicale (Void)" = {
               description = "CalDAV Server";
-              href = "http://192.168.1.11:5232";
+              href = "http://${laptop-server}:5232";
               icon = "radicale.png";
             };
           }
           {
             "Radicale (NixOS)" = {
               description = "CalDAV Server";
-              href = "http://192.168.1.72:5232";
+              href = "http://${pc-server}:5232";
               icon = "radicale.png";
+            };
+          }
+          {
+            "Vikunja" = {
+              description = "Task Manager";
+              href = "http://${pc-server}:3456";
+              icon = "vikunja.png";
+              widget = {
+                type = "vikunja";
+                url = "http://${pc-server}:3456";
+                key = "{{HOMEPAGE_VAR_VIKUNJA_API_KEY}}";
+                enableTaskList = true;
+                version = 2;
+              };
+            };
+          }
+          {
+            "Wiki.js" = {
+              description = "Documentation";
+              href = "http://${pc-server}:3005";
+              icon = "wikijs.png";
+            };
+          }
+          {
+            "Jotty" = {
+              description = "Task Manager";
+              href = "http://${pc-server}:3030";
+              icon = "jotty.png";
             };
           }
         ];
@@ -149,11 +179,11 @@ in
           {
             "Uptime Kuma" = {
               description = "Uptime Monitor";
-              href = "http://192.168.1.72:3001";
+              href = "http://${pc-server}:3001";
               icon = "uptime-kuma.png";
               widget = {
                 type = "uptimekuma";
-                url = "http://192.168.1.72:3001";
+                url = "http://${pc-server}:3001";
                 slug = "homelab";
               };
             };
@@ -161,21 +191,25 @@ in
           {
             "Forgejo" = {
               description = "Git Server";
-              href = "http://192.168.1.72:3002";
+              href = "http://${pc-server}:3002";
               icon = "forgejo.png";
             };
           }
           {
             "Syncthing" = {
               description = "Local sync tool";
-              href = "http://192.168.1.72:8384";
+              href = "http://${pc-server}:8384";
               icon = "syncthing.png";
+              widget = {
+                type = "strelaysrv";
+                url = "http://${pc-server}:8384";
+              };
             };
           }
           {
             "MeTube" = {
               description = "YouTube downloader";
-              href = "http://192.168.1.72:8081";
+              href = "http://${pc-server}:8081";
               icon = "youtube.png";
             };
           }
