@@ -7,7 +7,7 @@
     exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
 
     exec-once = ${pkgs.kitty}/bin/kitty
-    exec-once = ${pkgs.ticktick}/bin/ticktick
+    exec-once = ${pkgs.planify}/bin/io.github.alainm23.planify
     exec-once = sleep 5 && ${pkgs.kdePackages.dolphin}/bin/dolphin
     exec-once = sleep 7 && ${pkgs.vivaldi}/bin/vivaldi
   '';
