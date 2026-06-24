@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   # Import niri configuration from KDL file
@@ -7,7 +7,7 @@
   };
 
   # Only add niri-specific packages that aren't already configured elsewhere
-  # home.packages = with pkgs; [
-  #   brightnessctl
-  # ];
+  home.packages = with pkgs; [
+    awww
+  ];
 }

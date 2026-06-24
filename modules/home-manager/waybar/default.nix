@@ -20,7 +20,7 @@
 
         modules-left = [
           "custom/launcher"
-          "hyprland/workspaces"
+          "niri/workspaces"
         ];
 
         modules-center = [
