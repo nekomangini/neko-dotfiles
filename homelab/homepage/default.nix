@@ -145,20 +145,6 @@ in
             };
           }
           {
-            "Vikunja" = {
-              description = "Task Manager";
-              href = "http://${pc-server}:3456";
-              icon = "vikunja.png";
-              widget = {
-                type = "vikunja";
-                url = "http://${pc-server}:3456";
-                key = "{{HOMEPAGE_VAR_VIKUNJA_API_KEY}}";
-                enableTaskList = true;
-                version = 2;
-              };
-            };
-          }
-          {
             "Wiki.js" = {
               description = "Documentation";
               href = "http://${pc-server}:3005";
@@ -211,6 +197,13 @@ in
               description = "YouTube downloader";
               href = "http://${pc-server}:8081";
               icon = "youtube.png";
+            };
+          }
+          {
+            "Adguard Home" = {
+              description = "DNS Blocker";
+              href = "http://${pc-server}:3004";
+              icon = "adguard-home.png";
             };
           }
         ];

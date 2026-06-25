@@ -9,4 +9,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # FIX
+  # networking.nameservers = [ "127.0.0.1" ];
 }
