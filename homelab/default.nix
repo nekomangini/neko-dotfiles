@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./adguard
     ./forgejo
     ./homepage
     ./immich
@@ -15,7 +16,6 @@
     ./syncthing
     ./uptime-kuma
     # ./vaultwarden
-    ./vikunja
     ./wiki-js
   ];
 }

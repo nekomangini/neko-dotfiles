@@ -29,13 +29,13 @@ input {
     // Omitting settings disables them, or leaves them at their default values.
     // All commented-out settings here are examples, not defaults.
     touchpad {
-        // off
-        tap
+        off
+        // tap
         // dwt
         // dwtp
         // drag false
         // drag-lock
-        natural-scroll
+        // natural-scroll
         // accel-speed 0.2
         // accel-profile "flat"
         // scroll-method "two-finger"
@@ -62,11 +62,11 @@ input {
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
+    warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
+    focus-follows-mouse max-scroll-amount="0%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -280,7 +280,7 @@ spawn-at-startup "awww-daemon"
 
 // triple monitor
 // spawn-sh-at-startup "sleep 1 && swww img --outputs DP-1 /home/nekomangini/neko-dotfiles/wallpaper/cars_034.png && swww img --outputs DVI-D-1 /home/nekomangini/neko-dotfiles/wallpaper/space_009.jpg && swww img --outputs HDMI-A-1 /home/nekomangini/neko-dotfiles/wallpaper/cars_036.jpg"
-// 
+
 // dual monitor
 spawn-sh-at-startup "sleep 1 && awww img --outputs HDMI-A-1 /home/nekomangini/neko-dotfiles/wallpaper/cats_008.jpg && awww img --outputs DVI-D-1 /home/nekomangini/neko-dotfiles/wallpaper/cars_034.png"
 
