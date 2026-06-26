@@ -229,6 +229,22 @@ in
               }
             ];
           }
+          {
+            "Nix Pills" = [
+              {
+                href = "https://nixos.org/guides/nix-pills/";
+                icon = "nixos.png";
+              }
+            ];
+          }
+          {
+            "NixOS & Flakes Book" = [
+              {
+                href = "https://nixos-and-flakes.thiscute.world/introduction/";
+                icon = "nixos.png";
+              }
+            ];
+          }
         ];
       }
     ];

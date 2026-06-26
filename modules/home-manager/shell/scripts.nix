@@ -20,7 +20,7 @@ in
       exec ${emacs}/bin/emacsclient -nw -a "" "$@"
     '')
 
-    (writeShellScriptBin "doom-scratchpad" ''
+    (writeShellScriptBin "doom-terminal" ''
       exec ${kitty}/bin/kitty --hold ${emacs}/bin/emacsclient -nw -a ""
     '')
 

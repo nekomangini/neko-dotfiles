@@ -1,35 +1,42 @@
-{ config, pkgs, ... }:
-
 {
-  # emacs daemon server
-  services.emacs = with pkgs; {
-    enable = true;
-    startWithUserSession = "graphical";
-    # extraOptions = [ "-D" ];
-    # extraOptions = [ "-l" "~/.config/emacs/init.el" ];
-    package = (
-      emacs-gtk.pkgs.withPackages (epkgs: [
-        epkgs.treesit-grammars.with-all-grammars
-      ])
-    );
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  cfg = config.myModules.emacs;
+  emacsPackage = cfg.package.pkgs.withPackages (epkgs: [
+    epkgs.treesit-grammars.with-all-grammars
+  ]);
+in
+{
+  options.myModules.emacs = {
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.emacs-pgtk;
+      description = "Emacs variant to use (e.g. emacs-pgtk for Wayland, emacs-gtk for X11)";
+    };
   };
 
-  programs.emacs = with pkgs; {
-    enable = true;
-    package = (
-      emacs-gtk.pkgs.withPackages (epkgs: [
-        epkgs.treesit-grammars.with-all-grammars
-      ])
-    );
-  };
+  config = {
+    services.emacs = {
+      enable = true;
+      startWithUserSession = "graphical";
+      package = emacsPackage;
+    };
+    programs.emacs = {
+      enable = true;
+      package = emacsPackage;
+    };
 
-  home.sessionVariables = {
-    EMACS_BIN_PATH = "${config.home.homeDirectory}/.config/emacs/bin";
-    DART_SDK = "${pkgs.dart}";
-    FLUTTER_ROOT = "${pkgs.flutter}";
+    home.sessionVariables = {
+      EMACS_BIN_PATH = "${config.home.homeDirectory}/.config/emacs/bin";
+      DART_SDK = "${pkgs.dart}";
+      FLUTTER_ROOT = "${pkgs.flutter}";
+    };
+    home.sessionPath = [
+      "${config.home.homeDirectory}/.config/emacs/bin"
+    ];
   };
-
-  home.sessionPath = [
-    "${config.home.homeDirectory}/.config/emacs/bin"
-  ];
 }

@@ -49,4 +49,7 @@
     TMUX_PATHS_FILE = "/run/agenix/tmux-manager-paths";
     NOTES_SECRET_FILE = "/run/agenix/note-path";
   };
+
+  # NOTE Only add this if you ever need pure X11 emacs:
+  # myModules.emacs.package = pkgs.emacs-gtk;
 }
