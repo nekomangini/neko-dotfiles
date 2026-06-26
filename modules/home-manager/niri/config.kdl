@@ -362,6 +362,7 @@ window-rule {
 
 window-rule {
     match app-id=r#"^brave-browser$"#
+    open-maximized true
     draw-border-with-background false
     variable-refresh-rate false
     clip-to-geometry true
@@ -369,15 +370,18 @@ window-rule {
 
 window-rule {
     match app-id=r#"^vivaldi-stable$"#
+    open-maximized true
     draw-border-with-background false
     variable-refresh-rate false
     clip-to-geometry true
 }
 
 
-// Kitty - blur effect only, no color tinting
+// blur effect only, no color tinting
 window-rule {
     match app-id=r#"^kitty$"#
+    match app-id=r#"^emacs$"#
+    open-maximized true
     draw-border-with-background false
     opacity 0.8
     background-effect {
@@ -419,6 +423,9 @@ binds {
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
     // For example, this is a standard bind to toggle the screen reader (orca).
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+
+    Mod+Shift+E { spawn "doom-terminal"; }
+    Mod+E       { spawn "emacsclient" "-c" "-a" ""; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
@@ -655,7 +662,7 @@ binds {
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+E { quit; }
+    Mod+Ctrl+Q { quit; }
     Ctrl+Alt+Delete { quit; }
 
     // Powers off the monitors. To turn them back on, do any input like

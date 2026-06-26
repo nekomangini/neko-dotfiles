@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   mod = "Mod4";
@@ -6,7 +11,8 @@ let
   xdotool = "${pkgs.xdotool}/bin/xdotool";
   kitty = "${pkgs.kitty}/bin/kitty";
   dmenu = "${pkgs.dmenu}/bin/dmenu_run";
-  emacsclient = "${pkgs.emacs-gtk}/bin/emacsclient";
+  # emacsclient = "${pkgs.emacs-gtk}/bin/emacsclient";
+  emacsclient = "${config.myModules.emacs.package}/bin/emacsclient";
 in
 
 {
