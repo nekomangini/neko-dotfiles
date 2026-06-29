@@ -79,6 +79,7 @@
     # System tools
     # git
     xdg-utils
+    unrar
 
     # programming #
     clojure

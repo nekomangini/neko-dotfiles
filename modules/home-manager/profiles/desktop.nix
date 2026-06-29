@@ -1,9 +1,9 @@
-{ ... }:
+{ config, ... }:
 
 {
   imports = [
     ../kitty
-    ../shell/fish
+    ../shell
     ../helix
     ../emacs.nix
     ../neovim/astronvim.nix
@@ -18,7 +18,6 @@
     ../dev-tools.nix
     ../ruby
     ../packages.nix
-    ../shell/scripts.nix
     ../../scripts
     ../kdeconnect.nix
 
@@ -32,6 +31,21 @@
     ../fuzzel.nix
     ../hyprlock.nix
     ../ydotool.nix
+  ];
+
+  # ndir path
+  myModules.ndir.directories = [
+    "/home/nekomangini/neko-dotfiles"
+    "/mnt/D/Programming/android-projects"
+    "/mnt/D/Programming/Projects"
+    "/mnt/D/Programming/dotfiles"
+    "/mnt/D/Programming/blender-python"
+    "/mnt/D/Programming/scripts"
+    "/mnt/D/Programming/programming-exercises"
+    "/mnt/D/emacs-org-sync"
+    "/mnt/D/game-development/save-files"
+    "${config.home.homeDirectory}/.config/nekovim"
+    "${config.home.homeDirectory}/.config/astronvim-v5"
   ];
 
   home = {

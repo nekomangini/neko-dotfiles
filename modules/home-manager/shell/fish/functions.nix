@@ -166,34 +166,32 @@ let
       rm -f -- "$tmp"
     end
 
-    # TODO
     # ndir - directory jumper with fzf
     function ndir
-      set -l DIRECTORIES \
-                    ~/neko-dotfiles \
-                    /mnt/D/Programming/{android-projects,neko-gitjournal,Projects,dotfiles,blender-python,scripts,programming-exercises} \
-                    /mnt/D/emacs-org-sync \
-                    /mnt/D/game-development/save-files \
-                    ~/.config/{nekovim,nvim,astronvim_v5} \
+      set -l paths_file ~/.config/ndir-paths
 
-        # Filter to only existing directories
-        set -l EXISTING_DIRS
-        for dir in $DIRECTORIES
-            test -d "$dir" && set -a EXISTING_DIRS "$dir"
-        end
-        
-        if test (count $EXISTING_DIRS) -eq 0
-            echo "No directories available. Check if paths exist." >&2
-            return 1
-        end
+      if not test -f "$paths_file"
+          echo "No paths file found at $paths_file" >&2
+          return 1
+      end
 
-        set -l SELECTED_DIR (printf "%s\n" $EXISTING_DIRS | ${pkgs.fzf}/bin/fzf --height 40% --reverse --prompt="Select a directory: ")
+      set -l EXISTING_DIRS
+      for dir in (cat "$paths_file")
+          test -d "$dir" && set -a EXISTING_DIRS "$dir"
+      end
 
-        if test -n "$SELECTED_DIR"
-            cd "$SELECTED_DIR" && echo "Changed to: $SELECTED_DIR" || echo "Failed to navigate to $SELECTED_DIR"
-        else
-            echo "No directory selected."
-        end
+      if test (count $EXISTING_DIRS) -eq 0
+          echo "No valid directories found." >&2
+          return 1
+      end
+
+      set -l SELECTED_DIR (printf "%s\n" $EXISTING_DIRS | ${pkgs.fzf}/bin/fzf --height 40% --reverse --prompt="Select a directory: ")
+
+      if test -n "$SELECTED_DIR"
+          cd "$SELECTED_DIR" && echo "Changed to: $SELECTED_DIR" || echo "Failed to navigate to $SELECTED_DIR"
+      else
+          echo "No directory selected."
+      end
     end
   '';
 
