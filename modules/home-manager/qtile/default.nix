@@ -9,6 +9,7 @@
   imports = [
     ../rofi.nix
     ../picom.nix
+    ./qtile-autostart.nix
   ];
 
 }

@@ -3,6 +3,7 @@
 {
   imports = [
     ./adguard
+    ./caddy
     ./forgejo
     ./homepage
     ./immich

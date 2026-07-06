@@ -1,6 +1,6 @@
 { ... }:
 
-# FIX
+# FIX: Not working properly
 {
   services.adguardhome = {
     enable = true;
@@ -49,27 +49,27 @@
         rewrites = [
           {
             domain = "immich.home";
-            answer = "192.168.1.6";
+            answer = "192.168.1.200";
           }
           {
             domain = "jellyfin.home";
-            answer = "192.168.1.6";
+            answer = "192.168.1.200";
           }
           {
             domain = "navidrome.home";
-            answer = "192.168.1.6";
+            answer = "192.168.1.200";
           }
           {
             domain = "forgejo.home";
-            answer = "192.168.1.6";
+            answer = "192.168.1.200";
           }
           {
             domain = "homepage.home";
-            answer = "192.168.1.6";
+            answer = "192.168.1.200";
           }
           {
             domain = "adguard.home";
-            answer = "192.168.1.6";
+            answer = "192.168.1.200";
           }
         ];
       };

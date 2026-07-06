@@ -7,10 +7,6 @@
         file = ../../../secrets/tmux-manager-paths.age;
         owner = "nekomangini";
       };
-      note-path = {
-        file = ../../../secrets/note-path.age;
-        owner = "nekomangini";
-      };
       "homepage.env" = {
         file = ../../../secrets/homepage.env.age;
         owner = "nekomangini";
