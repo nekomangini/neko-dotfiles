@@ -1,50 +1,49 @@
 { ... }:
 
-# FIX: Not working properly
 {
   services.caddy = {
     enable = true;
     virtualHosts = {
-      "jellyfin.home" = {
+      "http://jellyfin.home" = {
         extraConfig = "reverse_proxy localhost:8096";
       };
-      "navidrome.home" = {
-        extraConfig = "reverse_proxy localhost:4533";
-      };
-      "kavita.home" = {
-        extraConfig = "reverse_proxy localhost:3020";
-      };
-      "immich.home" = {
+      "http://immich.home" = {
         extraConfig = "reverse_proxy localhost:2283";
       };
-      "linkding.home" = {
+      "http://navidrome.home" = {
+        extraConfig = "reverse_proxy localhost:4533";
+      };
+      "http://kavita.home" = {
+        extraConfig = "reverse_proxy localhost:3020";
+      };
+      "http://linkding.home" = {
         extraConfig = "reverse_proxy localhost:9090";
       };
-      "radicale.home" = {
+      "http://radicale.home" = {
         extraConfig = "reverse_proxy localhost:5232";
       };
-      "wikijs.home" = {
+      "http://wikijs.home" = {
         extraConfig = "reverse_proxy localhost:3005";
       };
-      "jotty.home" = {
+      "http://jotty.home" = {
         extraConfig = "reverse_proxy localhost:3030";
       };
-      "uptime.home" = {
+      "http://uptime.home" = {
         extraConfig = "reverse_proxy localhost:3001";
       };
-      "forgejo.home" = {
+      "http://forgejo.home" = {
         extraConfig = "reverse_proxy localhost:3000";
       };
-      "syncthing.home" = {
+      "http://syncthing.home" = {
         extraConfig = "reverse_proxy localhost:8384";
       };
-      "metube.home" = {
+      "http://metube.home" = {
         extraConfig = "reverse_proxy localhost:8081";
       };
-      "adguard.home" = {
+      "http://adguard.home" = {
         extraConfig = "reverse_proxy localhost:3004";
       };
-      "dashboard.home" = {
+      "http://dashboard.home" = {
         extraConfig = "reverse_proxy localhost:3333";
       };
     };
