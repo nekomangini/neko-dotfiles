@@ -1,80 +1,44 @@
 { ... }:
 
-# FIX: Not working properly
 {
   services.adguardhome = {
     enable = true;
-
-    # Web UI
+    mutableSettings = false;
     host = "0.0.0.0";
     port = 3004;
-
     settings = {
       dns = {
-        # Listen on all interfaces
         bind_hosts = [ "0.0.0.0" ];
-
-        # Encrypted upstream DNS
         upstream_dns = [
           "https://dns.cloudflare.com/dns-query"
           "tls://9.9.9.9"
           "tls://149.112.112.112"
         ];
-
-        # Query all upstreams simultaneously and use the fastest answer
+        # Required when using DoH/DoT upstreams
+        bootstrap_dns = [
+          "1.1.1.1"
+          "8.8.8.8"
+          "9.9.9.9"
+        ];
         upstream_mode = "parallel";
-
-        # Cache
         cache_enabled = true;
         cache_size = 4194304;
-
-        # DNSSEC validation
         enable_dnssec = true;
-
-        # Local network clients
         serve_plain_dns = true;
       };
-
       filtering = {
         protection_enabled = true;
         filtering_enabled = true;
-
         parental_enabled = false;
-
-        safe_search = {
-          enabled = false;
-        };
-
-        # Future homelab DNS entries
+        safe_search.enabled = false;
         rewrites = [
           {
-            domain = "immich.home";
+            domain = "*.home";
             answer = "192.168.1.200";
-          }
-          {
-            domain = "jellyfin.home";
-            answer = "192.168.1.200";
-          }
-          {
-            domain = "navidrome.home";
-            answer = "192.168.1.200";
-          }
-          {
-            domain = "forgejo.home";
-            answer = "192.168.1.200";
-          }
-          {
-            domain = "homepage.home";
-            answer = "192.168.1.200";
-          }
-          {
-            domain = "adguard.home";
-            answer = "192.168.1.200";
+            enabled = true;
           }
         ];
       };
-
-      # Blocklists
       filters =
         map
           (url: {
@@ -82,25 +46,12 @@
             inherit url;
           })
           [
-            # AdGuard Base Filter
             "https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt"
-
-            # Malware domains
             "https://adguardteam.github.io/HostlistsRegistry/assets/filter_9.txt"
-
-            # Malicious URLs
             "https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt"
           ];
-
-      # Logging
-      querylog = {
-        enabled = true;
-      };
-
-      statistics = {
-        enabled = true;
-      };
-
+      querylog.enabled = true;
+      statistics.enabled = true;
     };
   };
 
@@ -108,8 +59,5 @@
     53
     3004
   ];
-
-  networking.firewall.allowedUDPPorts = [
-    53
-  ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
 }
