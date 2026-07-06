@@ -18,7 +18,7 @@
     ../dev-tools.nix
     ../ruby
     ../packages.nix
-    ../../scripts
+    ../../../packages
     ../kdeconnect.nix
 
     ../qtile
@@ -41,8 +41,9 @@
     "/mnt/D/Programming/dotfiles"
     "/mnt/D/Programming/blender-python"
     "/mnt/D/Programming/scripts"
+    "/mnt/D/Programming/scratchpad"
     "/mnt/D/Programming/programming-exercises"
-    "/mnt/D/emacs-org-sync"
+    "/mnt/D/homelab/sync/notes"
     "/mnt/D/game-development/save-files"
     "${config.home.homeDirectory}/.config/nekovim"
     "${config.home.homeDirectory}/.config/astronvim-v5"
@@ -61,7 +62,6 @@
     # EDITOR = "${pkgs.helix}/bin/hx";
     # VISUAL = "${pkgs.helix}/bin/hx";
     TMUX_PATHS_FILE = "/run/agenix/tmux-manager-paths";
-    NOTES_SECRET_FILE = "/run/agenix/note-path";
   };
 
   # NOTE Only add this if you ever need pure X11 emacs:

@@ -8,7 +8,7 @@ let
       ln -s ${background} $out/share/homepage/public/images/background.png
     '';
   });
-  pc-server = "192.168.1.6";
+  pc-server = "192.168.1.200";
   laptop-server = "192.168.1.9";
 in
 {
@@ -187,8 +187,28 @@ in
               href = "http://${pc-server}:8384";
               icon = "syncthing.png";
               widget = {
-                type = "strelaysrv";
-                url = "http://${pc-server}:8384";
+                type = "customapi";
+                url = "http://${pc-server}:8384/rest/svc/report";
+                headers = {
+                  "X-API-Key" = "{{HOMEPAGE_VAR_SYNCTHING_API_KEY}}";
+                };
+                mappings = [
+                  {
+                    field = "numFolders";
+                    label = "Folders";
+                    format = "number";
+                  }
+                  {
+                    field = "numDevices";
+                    label = "Devices";
+                    format = "number";
+                  }
+                  {
+                    field = "totFiles";
+                    label = "Files";
+                    format = "number";
+                  }
+                ];
               };
             };
           }

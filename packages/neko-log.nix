@@ -10,15 +10,8 @@ let
     # DYNAMIC PATHS FROM AGENIX
     # ──────────────────────────────────────────────
 
-    my $secrets-file = %*ENV<NOTES_SECRET_FILE> // "/run/agenix/note-path";
-    die "⚠️ Secrets not found at $secrets-file" unless $secrets-file.IO.e;
-
-    my %paths = $secrets-file.IO.lines
-        .grep({ .contains('=') && !.starts-with('#') })
-        .map({
-            my ($key, $val) = .split('=', 2);
-            $key.trim => $val.trim;
-        });
+    my $NOTES_DIR_PATH = "/mnt/D/homelab/sync/notes/02-areas/pages";
+    my $BLOG_DIR_PATH = "/mnt/D/homelab/sync/notes/01-projects/Media/blog-drafts";
 
     # ──────────────────────────────────────────────
     # CONSTANTS
@@ -30,10 +23,10 @@ let
     constant $DAILY_LOGNAME = $LOGS ~  '___' ~ 'daily-logs';
     constant $WEEKLY_LOGNAME = $LOGS ~  '___' ~ 'weekly-logs';
     constant $MONTHLY_LOGNAME = $LOGS ~  '___' ~ 'monthly-logs';
-    my $LOGSEQ_PAGES_PATH = %paths<LOGSEQ_PAGES_PATH>
-        // die "⚠️ LOGSEQ_PAGES_PATH not set in $secrets-file";
-    my $BLOG_PATH = %paths<BLOG_PATH>
-        // die "⚠️ BLOG_PATH not set in $secrets-file";
+    # my $LOGSEQ_PAGES_PATH = %paths<LOGSEQ_PAGES_PATH>
+    #     // die "⚠️ LOGSEQ_PAGES_PATH not set in $secrets-file";
+    # my $BLOG_PATH = %paths<BLOG_PATH>
+    #     // die "⚠️ BLOG_PATH not set in $secrets-file";
 
 
     # ──────────────────────────────────────────────
@@ -157,7 +150,7 @@ let
        my $raw-filename = $prompt-filename.wordcase;
        my $category = $prompt-category.wordcase;
 
-       chdir($LOGSEQ_PAGES_PATH);
+       chdir($NOTES_DIR_PATH);
 
        my $filename = "$category" ~ "___" ~ "$raw-filename";
        unless $filename.lc.ends-with($DEFAULT_EXT) {
@@ -203,7 +196,7 @@ let
         my $blog-filename = "blog-" ~ $prompt-blogname.trim.lc.subst(/\s+/, '-', :g);
         $blog-filename ~= $DEFAULT_EXT unless $blog-filename.ends-with($DEFAULT_EXT);
 
-        chdir($BLOG_PATH);
+        chdir($BLOG_DIR_PATH);
 
         if $blog-filename.IO.e {
               say "File '$blog-filename' already exists. Aborting...";
@@ -227,15 +220,15 @@ let
             }
             when "2" {
                 say "template 2 is selected";
-                create-file($DAILY_TEMPLATE, $DAILY_LOGNAME, $LOGSEQ_PAGES_PATH);
+                create-file($DAILY_TEMPLATE, $DAILY_LOGNAME, $NOTES_DIR_PATH);
             }
             when "3" {
                 say "template 3 is selected";
-                create-file($WEEKLY_TEMPLATE, $WEEKLY_LOGNAME, $LOGSEQ_PAGES_PATH);
+                create-file($WEEKLY_TEMPLATE, $WEEKLY_LOGNAME, $NOTES_DIR_PATH);
             }
             when "4" {
                 say "template 4 is selected";
-                create-file($MONTHLY_TEMPLATE, $MONTHLY_LOGNAME, $LOGSEQ_PAGES_PATH);
+                create-file($MONTHLY_TEMPLATE, $MONTHLY_LOGNAME, $NOTES_DIR_PATH);
             }
             when "5" {
                  say "template 5 is selected";

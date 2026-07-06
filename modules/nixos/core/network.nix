@@ -8,8 +8,37 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  # networking.networkmanager.enable = true;
 
-  # FIX
-  # networking.nameservers = [ "127.0.0.1" ];
+  networking = {
+    hostName = "neko-desktop";
+    useDHCP = false;
+
+    # Disable NetworkManager since because I'm setting the static IP manually
+    networkmanager.enable = false;
+
+    interfaces.enp3s0.ipv4.addresses = [
+      {
+        address = "192.168.1.200"; # safe IP outside typical DHCP range
+        prefixLength = 24;
+      }
+    ];
+
+    defaultGateway = "192.168.1.1";
+    nameservers = [
+      "192.168.1.1"
+      "8.8.8.8"
+    ];
+  };
+
+  # mDNS so I can use neko-desktop.local instead of IP
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+    };
+  };
 }

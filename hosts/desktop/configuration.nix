@@ -27,6 +27,7 @@
     ../../modules/nixos/hardware/audio.nix
     ../../modules/nixos/hardware/nvidia.nix
     ../../modules/nixos/hardware/ydotools.nix
+    ../../modules/nixos/hardware/bluetooth.nix
 
     # === Desktop ===
     ../../modules/nixos/desktop/plasma.nix
@@ -80,6 +81,7 @@
     # git
     xdg-utils
     unrar
+    nmap
 
     # programming #
     clojure

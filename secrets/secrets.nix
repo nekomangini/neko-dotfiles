@@ -8,10 +8,6 @@ in
     nekomangini
     local
   ];
-  "note-path.age".publicKeys = [
-    nekomangini
-    local
-  ];
   "homepage.env.age".publicKeys = [
     nekomangini
     local

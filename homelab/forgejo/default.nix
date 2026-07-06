@@ -13,7 +13,7 @@ in
       server = {
         DOMAIN = "${pc-server}";
         HTTP_PORT = 3002;
-        ROOT_URL = "http://${pc-server}:3000/";
+        ROOT_URL = "http://${pc-server}:3002/";
       };
       service = {
         DISABLE_REGISTRATION = true;
