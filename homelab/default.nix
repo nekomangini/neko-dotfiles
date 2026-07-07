@@ -13,6 +13,7 @@
     ./linkding
     ./metube
     ./navidrome
+    ./netdata
     ./radicale
     ./syncthing
     ./uptime-kuma

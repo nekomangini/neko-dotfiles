@@ -46,6 +46,9 @@
       "http://dashboard.home" = {
         extraConfig = "reverse_proxy localhost:3333";
       };
+      "http://netdata.home" = {
+        extraConfig = "reverse_proxy localhost:19999";
+      };
     };
   };
 

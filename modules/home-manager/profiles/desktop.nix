@@ -58,11 +58,11 @@
   # Let home-manager manage itself
   programs.home-manager.enable = true;
 
-  home.sessionVariables = {
-    # EDITOR = "${pkgs.helix}/bin/hx";
-    # VISUAL = "${pkgs.helix}/bin/hx";
-    TMUX_PATHS_FILE = "/run/agenix/tmux-manager-paths";
-  };
+  # home.sessionVariables = {
+  #   # EDITOR = "${pkgs.helix}/bin/hx";
+  #   # VISUAL = "${pkgs.helix}/bin/hx";
+  #   # TMUX_PATHS_FILE = "/run/agenix/tmux-manager-paths";
+  # };
 
   # NOTE Only add this if you ever need pure X11 emacs:
   # myModules.emacs.package = pkgs.emacs-gtk;
