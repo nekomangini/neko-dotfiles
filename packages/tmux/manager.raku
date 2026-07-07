@@ -67,7 +67,7 @@ sub create-session {
 sub delete-session {
     my $tmux = run 'tmux', 'ls', :out;
 
-    my $fzf = run <fzf --prompt=Kill-Session:>, :in, :out;
+    my $fzf = run <fzf --height=~50% --border --layout=reverse --prompt=Kill-Session:>, :in, :out;
 
     $fzf.in.print($tmux.out.slurp);
     $fzf.in.close;
@@ -83,7 +83,7 @@ sub delete-session {
 sub attach-session {
     my $tmux = run 'tmux', 'ls', :out;
 
-    my $fzf = run <fzf --prompt=Attach-Session:>, :in, :out;
+    my $fzf = run <fzf --height=~50% --border --layout=reverse --prompt=Attach-Session:>, :in, :out;
 
     $fzf.in.print($tmux.out.slurp);
     $fzf.in.close;

@@ -226,6 +226,18 @@ in
               icon = "adguard-home.png";
             };
           }
+          {
+            "Netdata" = {
+              description = "System Monitor";
+              href = "http://netdata.home";
+              icon = "netdata.png";
+              widget = {
+                type = "netdata";
+                url = "http://${pc-server}:19999";
+                metric = "system.ram";
+              };
+            };
+          }
         ];
       }
     ];
