@@ -1,9 +1,5 @@
 { ... }:
 
-let
-  pc-server = "192.168.1.6";
-in
-
 {
   services.forgejo = {
     enable = true;
@@ -11,9 +7,9 @@ in
     lfs.enable = true;
     settings = {
       server = {
-        DOMAIN = "${pc-server}";
+        DOMAIN = "forgejo.home";
         HTTP_PORT = 3002;
-        ROOT_URL = "http://${pc-server}:3002/";
+        ROOT_URL = "http://forgejo.home/";
       };
       service = {
         DISABLE_REGISTRATION = true;
