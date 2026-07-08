@@ -7,6 +7,12 @@
         file = ../../../secrets/homepage.env.age;
         owner = "nekomangini";
       };
+      "netdata-discord" = {
+        file = ../../../secrets/netdata-discord.age;
+        owner = "netdata";
+        group = "netdata";
+        mode = "0640";
+      };
     };
   };
 }
