@@ -1,27 +1,22 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   services.netdata = {
     enable = true;
+    package = pkgs.netdata.override { withCloudUi = true; };
     config = {
       global = {
-        "memory mode" = "dbengine";
-        "update every" = "1";
+        "memory mode" = "ram";
         "debug log" = "none";
         "access log" = "none";
         "error log" = "syslog";
       };
-      web = {
-        "bind to" = "0.0.0.0:19999";
-        "allow connections from" = "localhost 192.168.1.*";
-      };
     };
   };
 
-  systemd.services.netdata.path = [ pkgs.linuxPackages.nvidia_x11 ];
-  services.netdata.configDir."python.d.conf" = pkgs.writeText "python.d.conf" ''
-    nvidia_smi: yes
-  '';
+  # Discord alert configuration
+  environment.etc."netdata/health_alarm_notify.conf".source =
+    config.age.secrets."netdata-discord".path;
 
   networking.firewall.allowedTCPPorts = [ 19999 ];
 }

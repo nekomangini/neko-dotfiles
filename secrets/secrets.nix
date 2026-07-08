@@ -8,4 +8,8 @@ in
     nekomangini
     local
   ];
+  "netdata-discord.age".publicKeys = [
+    nekomangini
+    local
+  ];
 }
