@@ -16,7 +16,7 @@ in
     enable = true;
     openFirewall = true;
     listenPort = 3333;
-    allowedHosts = "${pc-server}:3333,localhost:3333";
+    allowedHosts = "${pc-server}:3333,localhost:3333,dashboard.home";
     package = package;
 
     environmentFiles = [
@@ -67,7 +67,7 @@ in
           {
             "Jellyfin" = {
               description = "Media Server";
-              href = "http://${pc-server}:8096";
+              href = "http://jellyfin.home";
               icon = "jellyfin.png";
               widget = {
                 type = "jellyfin";
@@ -82,7 +82,7 @@ in
           {
             "Navidrome" = {
               description = "Music Server";
-              href = "http://${pc-server}:4533";
+              href = "http://navidrome.home";
               icon = "navidrome.png";
               widget = {
                 type = "navidrome";
@@ -97,7 +97,7 @@ in
           {
             "Kavita" = {
               description = "Manga Reader";
-              href = "http://${pc-server}:3020";
+              href = "http://kavita.home";
               icon = "kavita.png";
               widget = {
                 type = "kavita";
@@ -109,7 +109,7 @@ in
           {
             "Immich" = {
               description = "Photo Backup";
-              href = "http://${pc-server}:2283";
+              href = "http://immich.home";
               icon = "immich.png";
               widget = {
                 type = "immich";
@@ -126,7 +126,7 @@ in
           {
             "Linkding" = {
               description = "Bookmark Manager";
-              href = "http://${pc-server}:9090";
+              href = "http://linkding.home";
               icon = "linkding.png";
             };
           }
@@ -140,21 +140,21 @@ in
           {
             "Radicale (NixOS)" = {
               description = "CalDAV Server";
-              href = "http://${pc-server}:5232";
+              href = "http://radicale.home";
               icon = "radicale.png";
             };
           }
           {
             "Wiki.js" = {
               description = "Documentation";
-              href = "http://${pc-server}:3005";
+              href = "http://wikijs.home";
               icon = "wikijs.png";
             };
           }
           {
             "Jotty" = {
               description = "Task Manager";
-              href = "http://${pc-server}:3030";
+              href = "http://jotty.home";
               icon = "jotty.png";
             };
           }
@@ -165,7 +165,7 @@ in
           {
             "Uptime Kuma" = {
               description = "Uptime Monitor";
-              href = "http://${pc-server}:3001";
+              href = "http://uptime.home";
               icon = "uptime-kuma.png";
               widget = {
                 type = "uptimekuma";
@@ -177,14 +177,14 @@ in
           {
             "Forgejo" = {
               description = "Git Server";
-              href = "http://${pc-server}:3002";
+              href = "http://forgejo.home";
               icon = "forgejo.png";
             };
           }
           {
             "Syncthing" = {
               description = "Local sync tool";
-              href = "http://${pc-server}:8384";
+              href = "http://syncthing.home";
               icon = "syncthing.png";
               widget = {
                 type = "customapi";
@@ -215,14 +215,14 @@ in
           {
             "MeTube" = {
               description = "YouTube downloader";
-              href = "http://${pc-server}:8081";
+              href = "http://metube.home";
               icon = "youtube.png";
             };
           }
           {
             "Adguard Home" = {
               description = "DNS Blocker";
-              href = "http://${pc-server}:3004";
+              href = "http://adguard.home";
               icon = "adguard-home.png";
             };
           }
