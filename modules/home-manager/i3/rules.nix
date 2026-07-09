@@ -20,7 +20,6 @@
         { class = "^obsidian$"; }
         { class = "^Logseq$"; }
         { class = "^Joplin$"; }
-        { class = "^bitwarden$"; }
         { class = "^kdeconnect-app$"; }
         { class = "^PixiEditor.Desktop$"; }
       ];

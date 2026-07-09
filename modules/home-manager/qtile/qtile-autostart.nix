@@ -15,10 +15,11 @@ let
       vivaldi
     ];
     text = ''
+      # NOTE: 3 MONITORS SETUP
       # Monitors
       xrandr --output DP-1 --mode 1360x768 --pos 0x0 \
-             --output DVI-D-0 --mode 1920x1080 --pos 1360x0 \
-             --output HDMI-0 --mode 1920x1080 --pos 3280x0 --rotate right
+             --output HDMI-0--mode 1920x1080 --pos 1360x0 \
+             --output DVI-D-0  --mode 1920x1080 --pos 3280x0 --rotate right
 
       # Wallpapers
       feh --bg-fill ${wallpapers}/cars_034.png \
