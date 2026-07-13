@@ -218,14 +218,12 @@ keys = [
     # ── Scroll Wheel DOWN ──────────────────────────────────────────
     Key([mod, "control"], "p", lazy.spawn("xdotool click --clearmodifiers 5")),
     # ── MULTI MONITOR SETUP + MONITOR NAVIGATION  ──────────────────
-    Key([mod], "comma", lazy.to_screen(2), desc="Focus monitor 0  (DP-1 32)"),
-    Key([mod], "period", lazy.to_screen(0), desc="Focus monitor 1 (DVI-D-0)"),
-    Key([mod], "slash", lazy.to_screen(1), desc="Focus monitor 2 (HDMI-0 vertical)"),
-    Key([mod, "shift"], "comma", lazy.window.toscreen(2), desc="Move window to DP-1"),
-    Key(
-        [mod, "shift"], "period", lazy.window.toscreen(0), desc="Move window to DVI-D-0"
-    ),
-    Key([mod, "shift"], "slash", lazy.window.toscreen(1), desc="Move window to HDMI-0"),
+    Key([mod], "comma", lazy.to_screen(2), desc="Focus DP-1"),
+    Key([mod], "period", lazy.to_screen(1), desc="Focus HDMI-0"),
+    Key([mod], "slash", lazy.to_screen(0), desc="Focus DVI-D-0"),
+    Key([mod, "shift"], "comma", lazy.window.toscreen(2), desc="Move to DP-1"),
+    Key([mod, "shift"], "period", lazy.window.toscreen(1), desc="Move to HDMI-0"),
+    Key([mod, "shift"], "slash", lazy.window.toscreen(0), desc="Move to DVI-D-0"),
 ]
 
 # ── Layouts  ──────────────────
@@ -293,6 +291,7 @@ groups_names = [
             "screen_affinity": 2,  # DP-1 is screen 2
             "matches": [
                 Match(wm_class="brave-browser"),
+                Match(wm_class="vivaldi-stable"),
                 Match(wm_class="helium"),
                 Match(wm_class="gwenview"),
                 Match(wm_class="Zathura"),
@@ -309,15 +308,13 @@ groups_names = [
             "layout": "max",
             "screen_affinity": 0,  # DVI-D-0 is screen 0
             "matches": [
+                Match(wm_class="Emacs"),
                 Match(wm_class="dolphin"),
-                Match(wm_class="vivaldi-stable"),
                 Match(wm_class="ticktick"),
                 Match(wm_class="io.github.alainm23.planify"),
                 Match(wm_class="Joplin"),
-                Match(wm_class="Logseq"),
                 Match(wm_class="obsidian"),
                 Match(wm_class="krita"),
-                Match(wm_class="bitwarden"),
                 Match(wm_class="kdeconnect-app"),
                 Match(wm_class="PixiEditor.Desktop"),
             ],
@@ -332,7 +329,7 @@ groups_names = [
             "screen_affinity": 1,  # HDMI-0 is screen 1
             "matches": [
                 Match(wm_class="kitty"),
-                Match(wm_class="Emacs"),
+                Match(wm_class="Logseq"),
                 Match(wm_class="dev.zed.Zed"),
                 Match(wm_class="jetbrains-studio"),
                 Match(wm_class="org.kde.okular"),
@@ -351,7 +348,7 @@ groups.append(
             DropDown(
                 "emacs_scratchpad",
                 # NOTE: check modules/home-manager/shell/scripts.nix
-                "doom-scratchpad",
+                "doom-terminal",
                 x=0.05,
                 y=0.05,
                 width=0.9,
@@ -520,13 +517,6 @@ def create_widgets():
 screens = [
     # ── Screen 0: DVI-D-0 (22") Horizontal ──────────────────
     Screen(
-        top=bar.Bar(
-            create_widgets(),
-            30,
-            background=colors["bg"],
-            opacity=1.00,
-            margin=[4, 6, 0, 6],
-        ),
         bottom=bar.Bar(
             [make_tasklist()],
             28,
@@ -547,6 +537,13 @@ screens = [
     ),
     # ── Screen 2: DP-1 (32") ─────────────────────────────────
     Screen(
+        top=bar.Bar(
+            create_widgets(),
+            30,
+            background=colors["bg"],
+            opacity=1.00,
+            margin=[4, 6, 0, 6],
+        ),
         bottom=bar.Bar(
             [make_tasklist()],
             28,
