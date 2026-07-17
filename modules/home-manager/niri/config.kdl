@@ -426,7 +426,7 @@ binds {
 
     Mod+Shift+E { spawn "doom-terminal"; }
     Mod+E       { spawn "emacsclient" "-c" "-a" ""; }
-    Mod+b       { spawn "wayland-websearch"; }
+    Mod+B       { spawn "wayland-websearch"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
@@ -496,6 +496,13 @@ binds {
     Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+
+    // Cusom keybind for navigating on my setup(2 monitors)
+    Mod+N           { focus-monitor-right; }
+    Mod+P           { focus-monitor-left;  }
+
+    Mod+Ctrl+N  { move-column-to-monitor-right; }
+    Mod+Ctrl+P  { move-column-to-monitor-left;  }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }

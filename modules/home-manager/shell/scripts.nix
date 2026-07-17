@@ -16,7 +16,7 @@ in
 {
   home.packages = with pkgs; [
     # ===== Emacs =====
-    (writeShellScriptBin "ed" ''
+    (writeShellScriptBin "nkt" ''
       exec ${emacs}/bin/emacsclient -nw -a "" "$@"
     '')
 
