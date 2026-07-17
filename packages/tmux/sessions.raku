@@ -19,12 +19,19 @@ sub MAIN(Str $choice?) {
                        '--layout=reverse',
                        '--border',
                        :in, :out;
-        $proc.in.say: @sessions.join("\n");
+
+        # Display all sessions + quit
+        for |@sessions, 'quit' -> $option {
+                $proc.in.say($option);
+            }
+
+        # $proc.in.say: @sessions.join("\n");
         $proc.in.close;
         $proc.out.slurp(:close).trim;
     };
 
     exit 0 unless $selected;
+    exit 0 if $selected eq 'quit';
 
     unless $selected ∈ @sessions {
         note "❌ '$selected' is not a predefined session.";
@@ -63,13 +70,13 @@ sub create-session(Str $name) {
 
     given $name {
         when 'vue' {
-            run 'tmux', 'rename-window', '-t', "{$name}:0", 'editor';
-            run 'tmux', 'send-keys', '-t', "{$name}:0", 'hx', 'C-m';
+            run 'tmux', 'rename-window', '-t', "{$name}:0", 'explorer';
+            run 'tmux', 'send-keys', '-t', "{$name}:0", 'y', 'C-m';
             run 'kitten', '@', 'set-tab-title', 'tmux-vue';
         }
         when 'flutter' {
-            run 'tmux', 'rename-window', '-t', "{$name}:0", 'editor';
-            run 'tmux', 'send-keys', '-t', $name, 'hx', 'C-m';
+            run 'tmux', 'rename-window', '-t', "{$name}:0", 'explorer';
+            run 'tmux', 'send-keys', '-t', $name, 'y', 'C-m';
             run 'kitten', '@', 'set-tab-title', 'tmux-flutter';
         }
         when 'dotfiles' {

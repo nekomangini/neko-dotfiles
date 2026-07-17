@@ -2,10 +2,11 @@
 
 {
   imports = [
-    ./neko-log.nix
+    ./logs
 
     ./x11-screenshot.nix
 
+    ./emacs
     ./tmux
     ./sync
     ./helix

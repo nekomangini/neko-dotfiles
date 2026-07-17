@@ -2,7 +2,7 @@
 
 {
   programs.helix.settings = {
-    theme = "tokyonight";
+    theme = "ayu_evolve";
 
     editor = {
       line-number = "relative";
