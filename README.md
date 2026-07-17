@@ -12,7 +12,7 @@ My personal NixOS configuration — desktop, laptop, and a self-hosted home lab,
 
 | Hostname       | Role       | Notes                                                                                                                                                                                 |
 | -------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `neko-desktop` | 🖥️ Desktop | i5-7100, 16GB RAM, GTX 1050 Ti · static IP `192.168.1.200` · runs the home lab stack                                                                                                  |
+| `neko-desktop` | 🖥️ Desktop | i3-7100, 16GB RAM, GTX 1050 Ti · static IP `192.168.1.200` · runs the home lab stack                                                                                                  |
 | `neko-laptop`  | 💻 Laptop  | **Not active** — only 2GB RAM, not enough headroom to run NixOS. Currently running [Void Linux](https://voidlinux.org) instead; config kept in-repo for whenever the hardware changes |
 
 ## Structure
