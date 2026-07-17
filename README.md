@@ -84,7 +84,7 @@ Everything runs on the desktop host, fronted by **Caddy** as a reverse proxy on 
 | [Radicale](https://radicale.org)                                  | CalDAV/CardDAV server                                |
 | [Linkding](https://github.com/sissbruecker/linkding)              | Bookmark manager                                     |
 | [Wiki.js](https://js.wiki)                                        | Personal wiki                                        |
-| [Jotty](https://github.com)                                       | Notes                                                |
+| [Jotty](https://jotty.page)                                       | Notes                                                |
 | [MeTube](https://github.com/alexta69/metube)                      | yt-dlp download frontend                             |
 | [Uptime Kuma](https://github.com/louislam/uptime-kuma)            | Uptime monitoring, with Discord notifications/alerts |
 | [Netdata](https://www.netdata.cloud)                              | Real-time metrics, alerts to Discord                 |
