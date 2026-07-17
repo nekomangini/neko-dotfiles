@@ -84,7 +84,7 @@ Everything runs on the desktop host, fronted by **Caddy** as a reverse proxy on 
 | [Radicale](https://radicale.org)                                  | CalDAV/CardDAV server                                |
 | [Linkding](https://github.com/sissbruecker/linkding)              | Bookmark manager                                     |
 | [Wiki.js](https://js.wiki)                                        | Personal wiki                                        |
-| [Jotty](https://github.com)                                       | Notes                                                |
+| [Jotty](https://jotty.page)                                       | Notes                                                |
 | [MeTube](https://github.com/alexta69/metube)                      | yt-dlp download frontend                             |
 | [Uptime Kuma](https://github.com/louislam/uptime-kuma)            | Uptime monitoring, with Discord notifications/alerts |
 | [Netdata](https://www.netdata.cloud)                              | Real-time metrics, alerts to Discord                 |
@@ -99,7 +99,7 @@ Raku-based CLI tools packaged as Nix derivations and wired into the shell:
 - `tmux/` — session manager, plus a dedicated Ruby on Rails dev-environment launcher
 - `powermenu/` — Wayland and X11 power menus
 - `websearch/` — Wayland and X11 quick-search launchers
-- `sync/` — sync helpers (notes, blog, [nekopaper](https://github.com/nekomangini))
+- `sync/` — sync helpers (notes, blog, [nekopaper](https://nekopaper.netlify.app))
 - `logs/`, `helix/`, `emacs/` — dev-log and editor session helpers
 
 ## Usage
@@ -129,4 +129,4 @@ Secrets are managed with agenix — see `secrets/secrets.nix` for the recipient 
 
 ---
 
-Also check out [nekopaper](https://github.com/nekomangini) for the companion wallpaper gallery app.
+Also check out [nekopaper](https://nekopaper.netlify.app) for the companion wallpaper gallery app.
