@@ -2,7 +2,10 @@
 
 {
   services.picom = {
-    enable = true;
+    # NOTE: Picom is an X11 compositor and is completely unnecessary under Wayland.
+    # Enabling this would generate a background systemd service that will fail/crash
+    # under Wayland compositors like Niri or Hyprland because no X server is present.
+    # enable = true;
 
     # Backend and VSync
     backend = "glx";
