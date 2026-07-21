@@ -91,7 +91,7 @@
       command = "pyright-langserver";
       args = [ "--stdio" ];
       config = {
-        pythoni = {
+        python = {
           analysis = {
             typeCheckingMode = "basic";
             autSearchPaths = true;

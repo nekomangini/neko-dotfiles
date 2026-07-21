@@ -63,7 +63,8 @@
     ../../modules/nixos/maintenance/autoupdate.nix
   ];
 
-  networking.hostName = "neko-desktop"; # Define your hostname.
+  # NOTE: Move to /modules/nixos/core/network.nix
+  # networking.hostName = "neko-desktop"; # Define your hostname.
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

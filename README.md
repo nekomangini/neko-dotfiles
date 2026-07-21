@@ -122,6 +122,7 @@ Secrets are managed with agenix — see `secrets/secrets.nix` for the recipient 
 - [ ] Migrate Immich from a native service to Podman via oci-containers, consistent with Linkding
 - [ ] Migrate remaining GitHub repositories to Forgejo
 - [ ] Deploy Vaultwarden
+- [ ] Cleanup Raku scripts
 
 ## Screenshots
 

@@ -36,7 +36,7 @@ in
         "${mod}+p" = "exec x-powermenu";
 
         # NOTE: Check modules/scripts/x11-webseach.nix
-        "${mod}+b" = "exec x-websearch";
+        "${mod}+b" = "exec x11-websearch";
 
         # ===== WINDOW MANAGEMENT =====
         "${mod}+q" = "kill";

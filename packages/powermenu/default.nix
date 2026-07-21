@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-  waylandPowermenu = pkgs.writeShellApplication {
-    name = "wayland-powermenu";
+  hyprlandPowermenu = pkgs.writeShellApplication {
+    name = "hyprland-powermenu";
 
     runtimeInputs = with pkgs; [
       rakudo
@@ -10,7 +10,20 @@ let
     ];
 
     text = ''
-      exec raku ${./wayland.raku}
+      exec raku ${./hyprland.raku}
+    '';
+  };
+
+  niriPowermenu = pkgs.writeShellApplication {
+    name = "niri-powermenu";
+
+    runtimeInputs = with pkgs; [
+      rakudo
+      fuzzel
+    ];
+
+    text = ''
+      exec raku ${./niri.raku}
     '';
   };
 
@@ -30,7 +43,8 @@ in
 
 {
   home.packages = [
-    waylandPowermenu
+    hyprlandPowermenu
+    niriPowermenu
     x11Powermenu
   ];
 }
