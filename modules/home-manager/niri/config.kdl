@@ -427,6 +427,7 @@ binds {
     Mod+Shift+E { spawn "doom-terminal"; }
     Mod+E       { spawn "emacsclient" "-c" "-a" ""; }
     Mod+B       { spawn "wayland-websearch"; }
+    Mod+X       { spawn "niri-powermenu"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.

@@ -41,6 +41,7 @@
     lm_sensors
 
     qwen-code
+    opencode
 
     xdotool
     feh

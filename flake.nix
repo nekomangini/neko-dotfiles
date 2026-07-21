@@ -24,7 +24,8 @@
       system = "x86_64-linux";
     in
     {
-      homeConfiguraton.neko-desktop = home-manager.lib.homeManagerConfiguration { };
+      # WARN: Dead code
+      # homeConfiguration.neko-desktop = home-manager.lib.homeManagerConfiguration { };
       nixosConfigurations = {
         # desktop
         neko-desktop = nixpkgs.lib.nixosSystem {

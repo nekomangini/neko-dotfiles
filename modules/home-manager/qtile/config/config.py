@@ -198,7 +198,7 @@ keys = [
     Key(
         [mod],
         "b",
-        lazy.spawn("x-websearch"),
+        lazy.spawn("x11-websearch"),
         desc="Search the Web",
     ),
     # ── MOUSE EMULATION  ──────────────────
