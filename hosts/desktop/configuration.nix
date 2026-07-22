@@ -74,56 +74,8 @@
     polkit
     kdePackages.polkit-kde-agent-1
 
-    brave
-    vivaldi
-    vlc
-
     # System tools
     # git
-    xdg-utils
-    unrar
-    nmap
-
-    # programming #
-    clojure
-    leiningen
-    clj-kondo
-
-    # jdk24 # EOF
-    jdk21_headless
-
-    lua
-
-    bun
-    nodejs_22
-    typescript
-
-    rakudo
-
-    clang
-    cmake
-    gcc
-    gnumake
-
-    rustup
-    lldb
-
-    go
-
-    python315
-    # end programming #
-
-    # art #
-    (blender.override { cudaSupport = true; })
-    krita
-    pixieditor
-    kdePackages.gwenview
-    # end art #
-
-    # terminal #
-    neovim
-
-    hyprshot
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

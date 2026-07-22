@@ -40,7 +40,7 @@ My personal NixOS configuration — desktop, laptop, and a self-hosted home lab,
 │       ├── kitty/ waybar/ dunst/ rofi.nix / fuzzel.nix
 │       ├── shell/fish/                  # aliases, functions, keybinds
 │       ├── ruby/                        # Rails dev environment
-│       └── ...                          # git, tmux, emacs, neovim, vim, kdeconnect, android, dev-tools
+│       └── ...                          # git, tmux, emacs, neovim, vim, kdeconnect, android, packages
 ├── homelab/                             # one module per self-hosted service (see below)
 ├── packages/                            # Raku CLI tooling, packaged as Nix derivations
 ├── secrets/                             # agenix-encrypted secrets + secrets.nix
@@ -118,7 +118,7 @@ Secrets are managed with agenix — see `secrets/secrets.nix` for the recipient 
 
 - [ ] Migrate Hyprland configuration from Hyprlang to Lua
 - [ ] Enable GPU acceleration for machine learning in Immich
-- [ ] Clean up and reorganize packages
+- [x] Clean up and reorganize packages
 - [ ] Migrate Immich from a native service to Podman via oci-containers, consistent with Linkding
 - [ ] Migrate remaining GitHub repositories to Forgejo
 - [ ] Deploy Vaultwarden
