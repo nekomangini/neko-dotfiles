@@ -2,23 +2,27 @@
 
 {
   home.packages = with pkgs; [
+    # Editor
     zed-editor
     vimgolf
 
     hugo
     zola
 
+    # GUI
     discord
     libreoffice
     zathura
-    appimage-run
     planify
-
-    # Music
-    easytag
-    picard
+    obsidian
+    joplin-desktop
 
     godot
+
+    # Multimedia
+    easytag
+    picard
+    playerctl
 
     # CLI
     fd
@@ -28,29 +32,27 @@
     eza
     fastfetch
     htop
-
+    bat
+    highlight
     xclip
     wl-clipboard
-    wlr-randr
-
     jq
     poppler
     resvg
     unzip
     woeusb
     lm_sensors
+    xdotool
+    appimage-run
 
+    # AI
     qwen-code
     opencode
 
-    xdotool
+    # Shell utils
+    i3lock-color
+    wlr-randr
     feh
     scrot
-    playerctl
-    i3lock-color
-
-    # Notes
-    obsidian
-    joplin-desktop
   ];
 }

@@ -14,10 +14,9 @@
     ../git.nix
     ../yazi.nix
 
+    ../packages
     ../android.nix
-    ../dev-tools.nix
     ../ruby
-    ../packages.nix
     ../../../packages
     ../kdeconnect.nix
 

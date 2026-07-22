@@ -5,7 +5,7 @@
     android-studio
     android-tools
     gradle
-    jdk17
+    # jdk17
 
     flutter
     ninja
@@ -21,6 +21,7 @@
     CHROME_EXECUTABLE = "${pkgs.brave}/bin/brave";
     ANDROID_HOME = "$HOME/Android/Sdk";
     ANDROID_SDK_ROOT = "$HOME/Android/Sdk";
-    JAVA_HOME = "${pkgs.jdk17.home}";
+    # JAVA_HOME = "${pkgs.jdk17.home}";
+    JAVA_HOME = "${pkgs.jdk21.headless.home}";
   };
 }
