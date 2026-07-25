@@ -28,6 +28,19 @@ sub choose-script {
 
     my $proc = run 'fzf',
         '--prompt=Sync Repo: ',
+        '--style', 'full',
+        '--preview',
+        'set q {}
+        switch $q
+            case notes
+                echo "Runs: sync-notes"
+            case nekopaper
+                echo "Runs: sync-nekopaper"
+            case blog
+                echo "Runs: sync-blog"
+            case quit
+                echo "Exit without running anything."
+        end',
         '--height=~50%',
         '--layout=reverse',
         '--border',
