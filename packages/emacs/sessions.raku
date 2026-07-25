@@ -14,6 +14,41 @@ sub MAIN(Str $session?) {
     my $selected = $session // do {
         my $proc = run 'fzf',
             '--prompt=Emacs session: ',
+            '--style', 'full',
+            '--preview',
+            'set q {}
+            switch $q
+                case notes
+                    echo "Notes workspace
+
+                Opens Doom Emacs (terminal)
+                Directory: ~/sync/notes
+                Buffer: Dired"
+
+                case raku
+                    echo "Raku workspace
+
+                Opens Doom Emacs (terminal)
+                Directory: ~/Programming/scripts
+                Buffer: Dired"
+
+                case dotfiles
+                    echo "Dotfiles workspace
+
+                Opens Doom Emacs (terminal)
+                Directory: ~/neko-dotfiles
+                Buffer: Dired"
+
+                case blog
+                    echo "Blog workspace
+
+                Opens Doom Emacs (terminal)
+                Directory: ~/sync/notes/01-para/02-areas/media/blogs
+                Buffer: Dired"
+
+                case quit
+                    echo "Exit without opening Doom Emacs"
+            end',
             '--height=~50%',
             '--layout=reverse',
             '--border',

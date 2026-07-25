@@ -6,7 +6,7 @@ sub MAIN(Str $word) {
     # rg --vimgrep <word> | fzf --height 70% | xargs hx
 
     my $proc1 = run 'rg', '--vimgrep', $word, :out;
-    my $proc2 = run 'fzf', '--height', '70%', :in($proc1.out), :out, :err;
+    my $proc2 = run 'fzf', '--height', '~70%', '--style', 'full', '--border', :in($proc1.out), :out, :err;
     $proc1.out.slurp;
     my $selected-line = $proc2.out.slurp(:close).trim;
     my $exitcode = $proc2.exitcode;
