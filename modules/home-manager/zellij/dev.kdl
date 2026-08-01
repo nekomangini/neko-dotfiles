@@ -1,0 +1,59 @@
+layout {
+
+    default_tab_template {
+        // NOTE: the default zellij tab-bar and status bar plugins
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        // NOTE: shows hint
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="vue" cwd="/mnt/D/Programming/Projects/project-vue" {
+        pane name="explorer" {
+            pane command="yazi"
+        }
+        pane name="editor" focus=true
+        pane split_direction="vertical" {
+            pane name="git"
+            pane name="terminal"
+        }
+    }
+
+    tab name="flutter" cwd="/mnt/D/Programming/Projects/android-projects" {
+        pane name="explorer" {
+            pane command="yazi"
+        }
+        pane name="editor" focus=true
+        pane split_direction="vertical" {
+            pane name="git"
+            pane name="terminal"
+        }
+    }
+
+    tab name="ruby" cwd="/mnt/D/Programming/Projects/project-rubyonrails" {
+        pane name="explorer" {
+            pane command="yazi"
+        }
+        pane name="editor" focus=true
+        pane split_direction="vertical" {
+            pane name="git"
+            pane name="terminal"
+        }
+    }
+
+    tab name="scripts" {
+        pane name="emacs" command="sh" {
+            args "-c" "exec emacsclient -nw -a '' -e '(dired \"/mnt/D/Programming/scripts\")'"
+        }
+    }
+
+    tab name="notes" {
+        pane name="emacs" command="sh" {
+            args "-c" "exec emacsclient -nw -a '' -e '(dired \"/mnt/D/homelab/sync/notes\")'"
+        }
+    }
+}

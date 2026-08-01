@@ -22,7 +22,7 @@
       insert.j.k = "normal_mode";
 
       normal = {
-        "C-g" = [
+        "A-g" = [
           ":new"
           ":insert-output lazygit"
           ":buffer-close!"
