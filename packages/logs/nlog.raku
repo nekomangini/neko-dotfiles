@@ -347,6 +347,7 @@ sub extract-daily-to-weekly(IO::Path $daily-file = "{journal-dir('daily')}/{jour
     }
 
     my $daily-text = $daily-file.slurp;
+    my $date-tag = $daily-file.basename.subst(/\.org$/, '');
     my @tasks   = section-items($daily-text, 'Primary task');
     my @learned = section-items($daily-text, 'What I learned');
 
@@ -358,9 +359,9 @@ sub extract-daily-to-weekly(IO::Path $daily-file = "{journal-dir('daily')}/{jour
     my $weekly-path = ensure-log('weekly', $WEEKLY_TEMPLATE);
     my $weekly-text = $weekly-path.slurp;
 
-    $weekly-text = append-dated-section($weekly-text, 'weekly snapshot', @tasks)
+    $weekly-text = append-dated-section($weekly-text, 'weekly snapshot', @tasks, $date-tag)
         if @tasks;
-    $weekly-text = append-dated-section($weekly-text, 'Key Learnings', @learned)
+    $weekly-text = append-dated-section($weekly-text, 'Key Learnings', @learned, $date-tag)
         if @learned;
 
     spurt($weekly-path, $weekly-text);

@@ -83,6 +83,7 @@
 
     # lua
     lua
+    lua-language-server
 
     # raku
     rakudo

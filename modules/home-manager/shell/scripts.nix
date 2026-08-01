@@ -4,9 +4,10 @@ let
   helix = pkgs.helix;
   kitty = pkgs.kitty;
   tmux = pkgs.tmux;
+  foot = pkgs.foot;
 
   # emacs = pkgs.emacs-gtk;
-  emacs = pkgs.emacs-gtk.pkgs.withPackages (epkgs: [
+  emacs = pkgs.emacs-pgtk.pkgs.withPackages (epkgs: [
     epkgs.treesit-grammars.with-all-grammars
   ]);
 in
@@ -22,6 +23,15 @@ in
 
     (writeShellScriptBin "doom-terminal" ''
       exec ${kitty}/bin/kitty --hold ${emacs}/bin/emacsclient -nw -a ""
+    '')
+
+    # NOTE: Used in wayland session
+    (writeShellScriptBin "doom-foot-terminal" ''
+      if ! ${foot}/bin/footclient -- ${emacs}/bin/emacsclient -nw -a "" 2>/dev/null; then
+        ${foot}/bin/foot --server &
+        sleep 0.3
+        exec ${foot}/bin/footclient -- ${emacs}/bin/emacsclient -nw -a ""
+      fi
     '')
 
     # ===== Wayland =====

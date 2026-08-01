@@ -379,9 +379,24 @@ window-rule {
 
 // blur effect only, no color tinting
 window-rule {
-    match app-id=r#"^kitty$"#
     match app-id=r#"^emacs$"#
     open-maximized true
+    draw-border-with-background false
+    opacity 0.8
+    background-effect {
+        xray true
+        blur true
+        noise 0.02
+        saturation 1.0
+    }
+}
+
+window-rule {
+    match app-id=r#"^kitty$"#
+    match app-id=r#"^footclient$"#
+    match app-id=r#"^foot$"#
+    match app-id=r#"^Alacritty$"#
+    open-fullscreen true
     draw-border-with-background false
     opacity 0.8
     background-effect {
@@ -424,7 +439,7 @@ binds {
     // For example, this is a standard bind to toggle the screen reader (orca).
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
-    Mod+Shift+E { spawn "doom-terminal"; }
+    Mod+Shift+E { spawn "doom-foot-terminal"; }
     Mod+E       { spawn "emacsclient" "-c" "-a" ""; }
     Mod+B       { spawn "wayland-websearch"; }
     Mod+X       { spawn "niri-powermenu"; }

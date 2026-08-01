@@ -27,6 +27,9 @@
     ../niri
     ../hyprpaper.nix
     ../waybar
+    ../foot
+    ../zellij
+    ../alacritty
     ../fuzzel.nix
     ../hyprlock.nix
     ../ydotool.nix
