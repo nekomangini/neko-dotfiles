@@ -2,6 +2,9 @@
 
 {
   home.packages = with pkgs; [
+    # emacs orgmode
+    mermaid-cli
+
     # Markdown
     shellcheck
     pandoc
@@ -84,6 +87,10 @@
     # lua
     lua
     lua-language-server
+    luau
+    luau-lsp
+    stylua
+    luarocks
 
     # raku
     rakudo

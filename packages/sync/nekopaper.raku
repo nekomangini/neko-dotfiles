@@ -3,7 +3,7 @@ use v6.d;
 
 constant $REPO_PATH = '/mnt/D/Programming/Projects/project-vue/nekopaper';
 constant $DATE_TODAY = DateTime.now(formatter => { sprintf "%02d-%02d-%d", .month, .day, .year });
-constant $COMMIT_MESSAGE = "update notes $DATE_TODAY";
+constant $COMMIT_MESSAGE = "update wallpaper $DATE_TODAY";
 
 unless chdir($REPO_PATH) {
     note "❌ Error: Could not find repository at '$REPO_PATH'";
@@ -63,7 +63,7 @@ $add-proc or die "❌ Git add failed definitively.";
 
 # 6. Handle Commit & Push
 # my $commit = run 'git', 'commit', '-m', "test: Validate Raku automation script";
-my $commit = run 'git', 'commit', '-m', "Wallpaper Update: $COMMIT_MESSAGE";
+my $commit = run 'git', 'commit', '-m', "chore: $COMMIT_MESSAGE";
 
 given $commit.exitcode {
     when 0 {

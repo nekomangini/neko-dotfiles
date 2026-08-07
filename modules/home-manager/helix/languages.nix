@@ -315,6 +315,31 @@
         ];
         auto-format = true;
       }
+
+      # --- Lua ---
+      {
+        name = "lua";
+        language-servers = [ "lua-language-server" ];
+        auto-format = true;
+        formatter = {
+          command = "stylua";
+          args = [ "-" ];
+        };
+      }
+
+      # --- Luau ---
+      {
+        name = "luau";
+        scope = "source.luau";
+        injection-regex = "^luau";
+        file-types = [ "luau" ];
+        language-servers = [ "luau-lsp" ];
+        auto-format = true;
+        formatter = {
+          command = "stylua";
+          args = [ "-" ];
+        };
+      }
     ];
   };
 }

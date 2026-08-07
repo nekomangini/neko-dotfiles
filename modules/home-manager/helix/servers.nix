@@ -120,5 +120,11 @@
         ".jdtls-workspace"
       ];
     };
+
+    # --- luaa Language Server ---
+    "luau" = {
+      command = "luau-lsp";
+      args = [ "lsp" ];
+    };
   };
 }
