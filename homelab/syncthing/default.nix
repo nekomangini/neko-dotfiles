@@ -5,7 +5,7 @@
   services.syncthing = {
     enable = true;
     user = "nekomangini";
-    dataDir = "/mnt/D/emacs-org-sync";
+    dataDir = "/mnt/D/homelab/sync/notes";
     configDir = "/home/nekomangini/.config/syncthing";
     openDefaultPorts = true;
 
@@ -17,7 +17,8 @@
           path = "/mnt/D/homelab/sync/notes";
           devices = [
             "SM-A057F"
-            "vivo 1920"
+            "vivo-1920"
+            "void-nekomangini"
           ];
         };
       };
@@ -26,8 +27,11 @@
         "SM-A057F" = {
           id = "GOXVTWV-7DMTWCL-ZIJUV4K-IOPPZFK-O42NWT6-HBYSGWW-LPQQZYC-ATJ2NQR";
         };
-        "vivo 1920" = {
-          id = "CJXMOOA-WM7TGLR-WAOJJP3-MRUU6UR-NHIAKIZ-NO2L4FE-K6G6IUJ-WDWRDQY";
+        "vivo-1920" = {
+          id = "26TUQQW-EDFBM26-TT4X7KL-5VZCNGY-QFJD3TW-FO7XOBU-OVA7SKD-FIZSZQF";
+        };
+        "void-nekomangini" = {
+          id = "HR33SED-ARJB5UU-R3FCZE5-WGCRGC3-CEI7KYW-2RSEKQL-VCLDSUF-XPZUMQJ";
         };
       };
     };
