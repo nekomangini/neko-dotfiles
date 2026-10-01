@@ -1,0 +1,800 @@
+#+TITLE: Doom emacs configuration
+#+PROPERTY: header-args :elisp :tangle config.el
+#+startup: overview
+
+
+* Table of contents :toc:
+- [[#initial-setup][Initial Setup]]
+- [[#fonts][Fonts]]
+- [[#themes][Themes]]
+- [[#transparency][Transparency]]
+- [[#line-numbers][Line Numbers]]
+- [[#escape-sequence][Escape Sequence]]
+- [[#terminal][Terminal]]
+- [[#completion][Completion]]
+- [[#company][Company]]
+- [[#orgmode][Orgmode]]
+  - [[#orgmode-initial--setup][Orgmode Initial  Setup]]
+  - [[#org-agenda][Org Agenda]]
+  - [[#org-capture-templates][Org Capture Templates]]
+  - [[#org-tangle][Org tangle]]
+- [[#dev][Dev]]
+  - [[#dartflutter][Dart/Flutter]]
+  - [[#go][Go]]
+  - [[#web][Web]]
+  - [[#nix][Nix]]
+- [[#system-clipboard][System clipboard]]
+- [[#snippets][Snippets]]
+- [[#mermaid][Mermaid]]
+- [[#caldav-calendar][Caldav Calendar]]
+- [[#notes][Notes]]
+
+* Initial Setup
+#+begin_src elisp
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+
+;; Place your private configuration here! Remember, you do not need to run 'doom
+;; sync' after modifying this file!
+
+
+;; Some functionality uses this to identify you, e.g. GPG configuration, email
+;; clients, file templates and snippets. It is optional.
+(setq user-full-name "Encar Salazar"
+      user-mail-address "nekomangini.dev@gmail.com")
+#+end_src
+
+* Fonts
+#+begin_src elisp
+;; Doom exposes five (optional) variables for controlling fonts in Doom:
+;;
+;; - `doom-font' -- the primary font to use
+;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
+;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
+;;   presentations or streaming.
+;; - `doom-symbol-font' -- for symbols
+;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
+;;
+;; See 'C-h v doom-font' for documentation and more examples of what they
+;; accept. For example:
+;;
+;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 12))
+
+;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
+;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
+;; refresh your font settings. If Emacs still can't find your font, it likely
+;; wasn't installed correctly. Font issues are rarely Doom issues!
+#+end_src
+
+* Themes
+#+begin_src elisp
+;; There are two ways to load a theme. Both assume the theme is installed and
+;; available. You can either set `doom-theme' or manually load a theme with the
+;; `load-theme' function. This is the default:
+;; (setq doom-theme 'doom-one)
+;; hyprland
+;; (setq doom-theme 'doom-acario-dark)
+;; (setq doom-theme 'ef-deuteranopia-dark)
+;; (setq doom-theme 'ef-duo-dark)
+;; (setq doom-theme 'ef-maris-dark)
+;; (setq doom-theme 'doom-ayu-dark)
+;; Green
+;; (setq doom-theme 'ef-elea-dark)
+;; (setq doom-theme 'ef-bio)
+;; qtile
+;; (setq doom-theme 'ef-bio)
+;; (setq doom-theme 'ef-elea-dark)
+;; (setq doom-theme 'doom-gruvbox)
+;; (setq doom-theme 'doom-shades-of-purple)
+;; (setq doom-theme 'doom-challenger-deep)
+;; (setq doom-theme 'doom-tokyo-night)
+;; (setq doom-theme 'doom-zenburn)
+;; niri
+;; (setq doom-theme 'doom-solarized-dark-high-contrast)
+;; (setq doom-theme 'doom-solarized-dark)
+;; (setq doom-theme 'doom-oksolar-dark)
+;; (setq doom-theme 'doom-moonlight)
+;; (setq doom-theme 'ef-maris-dark)
+;; (setq doom-theme 'ef-symbiosis)
+;; (setq doom-theme 'modus-vivendi)
+(setq doom-theme 'ef-bio)
+#+end_src
+
+* Transparency
+Smaller than 2.2 = Darker | Larger than 2.2 = Brighter
+#+begin_src elisp
+(set-frame-parameter nil 'screen-gamma 1.8)
+#+end_src
+
+* Line Numbers
+This determines the style of line numbers in effect. If set to `nil', line numbers are disabled. For relative line numbers, set this to `relative'.
+#+begin_src elisp
+(setq display-line-numbers-type 'relative)
+#+end_src
+
+* Escape Sequence
+Explicitly enable the mode
+#+begin_src elisp
+(after! evil
+  (setq evil-escape-key-sequence "jk")
+  (setq evil-escape-delay 0.2)
+  (evil-escape-mode +1))
+#+end_src
+
+* Terminal
+#+begin_src elisp
+;; set shell from POSIX to bash
+;; Tell Emacs to use a POSIX shell (Bash) for internal processes
+;; Use the NixOS path for Bash for maximum reliability
+(setq shell-file-name (executable-find "bash"))
+;; (setq shell-file-name "/run/current-system/sw/bin/bash")
+
+;; Use Fish for interactive terminals in Emacs
+;; Use the NixOS path for Fish
+(setq-default explicit-shell-file-name "/run/current-system/sw/bin/fish")
+
+;; Commented out because I am using eshell
+;; (setq-default vterm-shell "/run/current-system/sw/bin/fish")
+#+end_src
+
+* Completion
+#+begin_src elisp
+;;; ============================================================================
+;;; COMPLETION (Vertico + Orderless + Consult)
+;;; ============================================================================
+
+(after! vertico
+  ;; Visual minimal display
+  (setq vertico-count 16
+        vertico-cycle t
+        vertico-resize t
+        vertico-sort-function #'vertico-sort-history-alpha)
+
+  ;; Directory navigation helpers
+  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
+  (define-key vertico-map (kbd "DEL") #'vertico-directory-delete-char)
+  (define-key vertico-map (kbd "M-DEL") #'vertico-directory-delete-word)
+
+  ;; Quick navigation
+  (define-key vertico-map (kbd "C-j") #'vertico-next)
+  (define-key vertico-map (kbd "C-k") #'vertico-previous)
+  (define-key vertico-map (kbd "M-RET") #'vertico-exit-input)
+
+  ;; History navigation
+  (define-key vertico-map (kbd "M-p") #'vertico-previous-history)
+  (define-key vertico-map (kbd "M-n") #'vertico-next-history)
+  (define-key vertico-map (kbd "C-r") #'consult-history))
+
+;; Configure orderless for better filtering
+(after! orderless
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles basic partial-completion orderless))))
+
+  (setq orderless-component-separator #'orderless-escapable-split-on-space
+        orderless-matching-styles '(orderless-literal
+                                    orderless-prefixes
+                                    orderless-initialism
+                                    orderless-regexp)))
+
+;; Enhanced marginalia annotations
+(after! marginalia
+  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  ;; Show more details in marginalia
+  (setq marginalia-max-relative-age 0
+        marginalia-align 'right))
+
+;; Configure consult
+(after! consult
+  (setq consult-preview-key "M-."
+        consult-line-numbers-widen t
+        consult-async-min-input 2
+        consult-async-refresh-delay 0.15)
+
+  (consult-customize
+   consult-theme consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   :preview-key '(:debounce 0.4 any)))
+
+;; Consult-dir for directory jumping
+(use-package! consult-dir
+  :bind (("C-x C-d" . consult-dir)
+         :map vertico-map
+         ("C-x C-d" . consult-dir)
+         ("C-x C-j" . consult-dir-jump-file)))
+
+;; Embark for quick actions
+(map! :leader
+      (:prefix ("k" . "embark")
+       :desc "Embark act" "a" #'embark-act
+       :desc "Embark dwim" "d" #'embark-dwim
+       :desc "Embark collect" "c" #'embark-collect))
+#+end_src
+
+* Company
+#+begin_src elisp
+;;; ============================================================================
+;; AUTO COMPLETION SETUP
+;;; ============================================================================
+
+;; (after! company
+;;   (setq company-idle-delay 0.2
+;;         company-minimum-prefix-length 2)
+
+;;   (setq company-backends
+;;         '((company-capf          ; LSP completions (primary)
+;;            company-keywords      ; Language keywords
+;;            company-dabbrev-code) ; Code words
+;;           company-files          ; File paths (separate, own group)
+;;           company-dabbrev))      ; Regular words (separate, own group)
+
+;;   ;; Allow company-capf to merge with other backends
+;;   (setq company-capf-annotation-rotate-to-front t)
+;;   (setq lsp-completion-provider :capf))
+
+;; (after! company
+;;   ;; How fast the popup appears after you stop typing
+;;   (setq company-idle-delay 0.2
+;;         ;; How many characters before suggestions appear
+;;         company-minimum-prefix-length 2
+;;         ;; Show numbers next to candidates (M-1, M-2 to select)
+;;         company-show-quick-access t
+;;         ;; Wrap around when navigating candidates
+;;         company-selection-wrap-around t
+;;         ;; Don't downcase completions
+;;         company-dabbrev-downcase nil
+;;         ;; Search completions across all open buffers
+;;         company-dabbrev-other-buffers t)
+;;   (add-to-list 'company-backends 'company-files))
+
+(after! company
+  (setq company-minimum-prefix-length 1        ;; More aggressive
+        company-idle-delay 0.1                 ;; Faster popup
+        company-show-quick-access t
+        company-tooltip-limit 20               ;; Show more options
+        company-tooltip-align-annotations t    ;; Align annotations nicely
+        company-selection-wrap-around t        ;; Wrap around results
+        company-dabbrev-downcase nil           ;; Keep original casing
+        company-dabbrev-other-buffers t)       ;; Search other buffers
+
+  ;; Prioritize company-files for path completion
+  (setq company-backends (cons 'company-files (delete 'company-files company-backends)))
+
+  ;; Better file path completion
+  (setq company-files-exclusions nil
+        company-files-chop-trailing-slash t)
+
+  ;; Enable completion at point for file paths
+  (defun my/enable-path-completion ()
+    "Enable file path completion using company."
+    (setq-local company-backends
+                (cons 'company-files company-backends)))
+
+  ;; Enable for all major modes
+  (add-hook 'after-change-major-mode-hook #'my/enable-path-completion)
+
+  ;; Smart path detection function
+  (defun my/looks-like-path-p (input)
+    "Check if INPUT looks like a file path."
+    (or (string-match-p "^/" input)               ;; Absolute path
+        (string-match-p "^~/" input)              ;; Home directory
+        (string-match-p "^\\.\\{1,2\\}/" input))) ;; Relative path
+
+  ;; Custom path completion trigger
+  (defun my/company-path-trigger (command &optional arg &rest ignored)
+    "Company backend that triggers file completion for path-like input."
+    (interactive (list 'interactive))
+    (cl-case command
+      (interactive (company-begin-backend 'company-files))
+      (prefix (when (my/looks-like-path-p (or (company-grab-line "\\([^ ]*\\)" 1) ""))
+                (company-files 'prefix)))
+      (t (apply 'company-files command arg ignored))))
+
+  ;; Add the custom path trigger
+  (add-to-list 'company-backends 'my/company-path-trigger))
+#+end_src
+* Orgmode
+** Orgmode Initial  Setup
+#+begin_src elisp
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+;; NOTE: old directory (setq org-directory "/run/media/nekomangini/D/emacs-org-sync/")
+;; (setq org-directory "/mnt/D/notes")
+
+
+;; Whenever you reconfigure a package, make sure to wrap your config in an
+;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
+;;
+;;   (after! PACKAGE
+;;     (setq x y))
+;;
+;; The exceptions to this rule:
+;;
+;;   - Setting file/directory variables (like `org-directory')
+;;   - Setting variables which explicitly tell you to set them before their
+;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
+;;   - Setting doom variables (which start with 'doom-' or '+').
+
+;;; ============================================================================
+;;; ORG-MODE CONFIGURATION
+;;; ============================================================================
+
+(after! org
+  ;; Canonical location
+  (setq org-directory "/mnt/D/notes")
+
+  ;; ─────────────────────────────────────────────────────────────────────────
+  ;; TODO keywords
+  ;; ─────────────────────────────────────────────────────────────────────────
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "NOTE(n)" "WARN(a)" "FIX(f)" "|" "DONE(d)" "CANCELLED(c)")))
+
+  ;; TODO Add READING
+  ;; Customize todo keyword faces
+  (setq org-todo-keyword-faces
+        '(("TODO" . (:foreground "#fabd2f" :weight bold))
+          ("IN-PROGRESS" . (:foreground "#8ec07c" :weight bold))
+          ("WAITING" . (:foreground "#fe8019" :weight bold))
+          ("WARN" . (:foreground "#fe8019" :weight bold :background "#3c3836"))
+          ("FIX" . (:foreground "#fb4934" :weight bold :underline t))
+          ("NOTE" . (:foreground "#83a598" :weight bold :slant italic))
+          ("CANCELLED" . (:foreground "#928374" :strike-through t :slant italic))
+          ("DONE" . (:foreground "#928374" :weight normal :slant italic)))))
+#+end_src
+** Org Agenda
+#+begin_src elisp
+;; ─────────────────────────────────────────────────────────────────────────
+;; DYNAMIC ORG-AGENDA-FILES (auto-add/remove based on TODOs)
+;; ─────────────────────────────────────────────────────────────────────────
+
+;; Check if current buffer contains a TODO item
+(defun my/agenda-file-p ()
+  "Check if current buffer contains a TODO item."
+  (org-element-map
+      (org-element-parse-buffer 'headline)
+      'headline
+    (lambda (h)
+      (eq (org-element-property :todo-type h) 'todo))
+    nil 'first-match))
+
+;; Update org-agenda-files dynamically
+(defun my/org-agenda-update-files (&rest _)
+  "Add/remove current file from org-agenda-files based on TODO items."
+  (when (and (derived-mode-p 'org-mode) (buffer-file-name))
+    (let ((file-name (file-truename (buffer-file-name))))
+      (if (my/agenda-file-p)
+          ;; If file has TODO, add it
+          (add-to-list 'org-agenda-files file-name)
+        ;; If no TODO, remove it
+        (setq org-agenda-files (delete file-name org-agenda-files))))))
+
+;; Clean up non-existent files from org-agenda-files
+(defun my/org-agenda-cleanup-files (&rest _)
+  "Remove non-existent files from org-agenda-files."
+  (setq org-agenda-files
+        (seq-filter #'file-exists-p org-agenda-files)))
+
+;; Add hooks to update on file open and save
+(add-hook 'org-mode-hook
+          (lambda ()
+            (add-hook 'find-file-hook #'my/org-agenda-update-files nil t)
+            (add-hook 'before-save-hook #'my/org-agenda-update-files nil t)))
+
+;; Clean up before showing agenda
+(advice-add 'org-agenda :before #'my/org-agenda-cleanup-files)
+(advice-add 'org-todo-list :before #'my/org-agenda-cleanup-files)
+
+;; Initialize with base directories (dynamic will expand from here)
+(setq org-agenda-files
+      '("/mnt/D/notes/inbox.org"
+        "/mnt/D/notes/journal/daily/"
+        "/mnt/D/notes/journal/weekly/"
+        "/mnt/D/notes/journal/dream/"
+        "/mnt/D/notes/journal/profit/"
+        "/mnt/D/notes/journal/motorcycle/"
+        "/mnt/D/notes/journal/bike/"
+        "/mnt/D/notes/journal/spanish/"))
+
+;; Remember org-agenda-files between sessions
+;; (add-to-list 'savehist-additional-variables 'org-agenda-files)
+(after! savehist
+  (setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring)))
+
+;; ─────────────────────────────────────────────────────────────────────────
+;; Agenda settings
+;; ─────────────────────────────────────────────────────────────────────────
+
+(setq org-agenda-start-on-weekday 1
+      org-agenda-span 7
+      org-agenda-skip-scheduled-if-done t
+      org-agenda-skip-deadline-if-done t
+      org-agenda-skip-timestamp-if-done t
+      org-agenda-time-grid '((daily today require-timed)
+                             (800 1000 1200 1400 1600 1800 2000)
+                             "......" "────────────────")
+      org-agenda-current-time-string "◀── now ───────────────────────────────────────────────"
+      org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s")
+                                 (todo . " %i %-12:c")
+                                 (tags . " %i %-12:c")
+                                 (search . " %i %-12:c"))
+      org-agenda-block-separator ?─
+      org-agenda-show-all-dates nil
+      org-agenda-use-time-grid t
+      org-agenda-timegrid-use-ampm nil
+      org-tags-column -77)
+
+;; ─────────────────────────────────────────────────────────────────────────
+;; Custom agenda views
+;; ─────────────────────────────────────────────────────────────────────────
+
+(setq org-agenda-custom-commands
+      '(("a" "My Agenda"
+         ((agenda ""
+                  ((org-agenda-overriding-header "📅 Week Agenda")
+                   (org-agenda-span 7)
+                   (org-agenda-start-day "0d")
+                   (org-agenda-show-all-dates t)))
+          (todo "TODO"
+                ((org-agenda-overriding-header "\n📋 Tasks")
+                 (org-agenda-sorting-strategy '(priority-down category-keep))))
+          (todo "WAITING"
+                ((org-agenda-overriding-header "\n⏳ Waiting On")))
+          (todo "IN-PROGRESS"
+                ((org-agenda-overriding-header "\n🔄 In Progress")))
+          (todo "WARN"
+                ((org-agenda-overriding-header "\n⚠️ Warnings")))
+          (todo "FIX"
+                ((org-agenda-overriding-header "\n🔧 Fix")))
+          (todo "NOTE"
+                ((org-agenda-overriding-header "\n📝 Notes"))))
+         ((org-agenda-compact-blocks nil)))
+        ("w" "Work Week"
+         ((agenda ""
+                  ((org-agenda-overriding-header "Work Week")
+                   (org-agenda-span 5)
+                   (org-agenda-start-on-weekday 1)
+                   (org-agenda-start-day "0d")))
+          (tags-todo "+work"
+                     ((org-agenda-overriding-header "\n💼 Work Tasks"))))
+         ((org-agenda-compact-blocks nil)))
+        ("t" "Today"
+         ((agenda ""
+                  ((org-agenda-overriding-header "Today")
+                   (org-agenda-span 1)
+                   (org-agenda-start-day "0d")))
+          (todo "TODO"
+                ((org-agenda-overriding-header "\nTasks")))
+          (todo "NOTE"
+                ((org-agenda-overriding-header "\nNotes"))))
+         ((org-agenda-compact-blocks nil)))))
+#+end_src
+
+** Org Capture Templates
+#+begin_src elisp
+;; ─────────────────────────────────────────────────────────────────────────
+;; Capture templates
+;; ─────────────────────────────────────────────────────────────────────────
+
+(after! org-capture
+  (setq org-capture-templates
+        '(;; Inbox
+          ("i" "Inbox" entry
+           (file "/mnt/D/notes/inbox.org")
+           "* %?\n%U\n"
+           :empty-lines 1)
+
+          ;; Daily log with FULL TEMPLATE
+          ("d" "Daily log entry" plain
+           (file
+            (lambda ()
+              (let* ((year (format-time-string "%Y"))
+                     (date (format-time-string "%Y-%m-%d"))
+                     (path (format "/mnt/D/notes/journal/daily/%s/%s.org" year date)))
+                (make-directory (file-name-directory path) t)
+                path)))
+           "%?"
+           :unnarrowed t
+           :hook (lambda () (yas-expand-snippet (yas-lookup-snippet "Daily Log Entry"))))
+
+          ;; Specialized logs
+          ("r" "Dream" entry
+           (file+headline
+            (lambda ()
+              (let* ((year (format-time-string "%Y"))
+                     (date (format-time-string "%Y-%m-%d")))
+                (format "/mnt/D/notes/journal/dream/%s/%s.org" year date)))
+            "Dream")
+           "* %?\n%U\n"
+           :empty-lines 1)
+
+          ("p" "Profit" entry
+           (file+headline
+            (lambda ()
+              (let* ((year (format-time-string "%Y"))
+                     (date (format-time-string "%Y-%m-%d")))
+                (format "/mnt/D/notes/journal/profit/%s/%s.org" year date)))
+            "Notes")
+           "* %?\n%U\n"
+           :empty-lines 1)
+
+          ("m" "Motorcycle" entry
+           (file+headline
+            (lambda ()
+              (let* ((year (format-time-string "%Y"))
+                     (date (format-time-string "%Y-%m-%d")))
+                (format "/mnt/D/notes/journal/motorcycle/%s/%s.org" year date)))
+            "Motorcycle Notes")
+           "* %?\n%U\n"
+           :empty-lines 1)
+
+          ("b" "Bike" entry
+           (file+headline
+            (lambda ()
+              (let* ((year (format-time-string "%Y"))
+                     (date (format-time-string "%Y-%m-%d")))
+                (format "/mnt/D/notes/journal/bike/%s/%s.org" year date)))
+            "Bike Notes")
+           "* %?\n%U\n"
+           :empty-lines 1)
+
+          ("s" "Spanish" entry
+           (file+headline
+            (lambda ()
+              (let* ((year (format-time-string "%Y"))
+                     (date (format-time-string "%Y-%m-%d")))
+                (format "/mnt/D/notes/journal/spanish/%s/%s.org" year date)))
+            "Notes")
+           "* %?\n%U\n"
+           :empty-lines 1))))
+#+end_src
+
+** Org tangle
+Org-auto-tangle
+#+begin_src elisp
+(use-package org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
+#+end_src
+* Dev
+** Dart/Flutter
+#+begin_src elisp
+;;; ============================================================================
+;; DART/FLUTTER SETUP
+;;; ============================================================================
+
+(after! lsp-dart
+  (setq lsp-dart-sdk-dir
+        (or (getenv "DART_SDK")        ; try Nix env var first
+            (string-trim               ; fall back to runtime resolution
+             (shell-command-to-string
+              "dirname $(dirname $(readlink -f $(which dart)))")))
+        lsp-dart-flutter-sdk-dir
+        (or (getenv "FLUTTER_ROOT")
+            (string-trim
+             (shell-command-to-string
+              "dirname $(readlink -f $(which flutter))")))))
+#+end_src
+
+** Go
+#+begin_src elisp
+;;; ============================================================================
+;; GO SETUP SETUP
+;;; ============================================================================
+
+(after! go-mode
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook #'lsp-organize-imports t t)
+              (add-hook 'before-save-hook #'lsp-format-buffer t t))))
+
+(after! lsp-mode
+  (setq lsp-go-analyses
+        '((nilness . t)
+          (shadow . t)
+          (unusedparams . t)
+          (unusedwrite . t)
+          (useany . t)
+          (unusedvariable . t))))
+#+end_src
+
+** Web
+#+begin_src elisp
+;;; ============================================================================
+;; WEB DEVELOPMENT SETUP
+;;; ============================================================================
+
+;; (add-hook 'web-mode-hook #'lsp-deferred)
+;; (add-hook 'web-mode-hook #'lsp!)
+;; (add-hook 'web-mode-hook #'emmet-mode)
+
+;; Emmet remap
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+(map! :map emmet-mode-keymap
+      :n "<C-return>" #'emmet-expand-line)
+(setq emmet-expand-jsx-className? t) ;; default nil
+
+(add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.templ\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
+
+(set-file-template! "\\.astro$" :trigger "__astro" :mode 'web-mode)
+(set-file-template! "\\.templ$" :trigger "__templ" :mode 'web-mode)
+(set-file-template! "\\.svelte$" :trigger "__svelte" :mode 'web-mode)
+
+;; TODO
+;; Rainbow colors in style section
+;; (after! rainbow-mode
+;;   (add-hook 'web-mode-hook #'rainbow-mode))
+
+;; TODO
+;; lsp-ui - keep it light
+;; (after! lsp-ui
+;;   (setq lsp-ui-doc-enable t
+;;         lsp-ui-doc-position 'at-point
+;;         lsp-ui-sideline-enable nil
+;;         lsp-ui-sideline-show-code-actions nil))
+#+end_src
+
+*** Svelte
+#+begin_src elisp
+;;; ============================================================================
+;; Svelte
+;;; ============================================================================
+
+;; (use-package! lsp-mode
+;;   :hook (svelte-mode . lsp)
+;;   :config
+;;   (setq lsp-svelte-server-command '("svelteserver" "--stdio")))
+
+(use-package! svelte-mode
+  :mode "\\.svelte\\'"
+  :config
+  (setq svelte-basic-offset 2)
+  ;; Disable automatic reformatting
+  (setq svelte-format-on-save nil)
+  ;; Use prettier instead
+  (add-hook 'svelte-mode-hook 'prettier-js-mode))
+#+end_src
+
+*** Prettier
+#+begin_src elisp
+(use-package! prettier-js
+  :config
+  (setq prettier-js-args
+        '("--parser" "svelte"
+          "--tab-width" "2"
+          "--use-tabs" "true")))
+#+end_src
+
+** Nix
+#+begin_src elisp
+;; (after! (nix-mode lsp-mode)
+;;   ;; Formatting
+;;   (setq nix-indent-level 2)
+
+;;   ;; Disable nil, use nixd only
+;;   (setq lsp-disabled-clients '((nix-mode . nix-nil)))
+
+;;   ;; nixd configuration
+;;   (setopt lsp-nix-nixd-server-path "nixd"
+;;           lsp-nix-nixd-formatting-command ["nixfmt"]
+;;           lsp-nix-nixd-nixpkgs-expr
+;;           "import (builtins.getFlake \"/etc/nixos/\").inputs.nixpkgs { }"
+;;           lsp-nix-nixd-home-manager-options-expr
+;;           "(builtins.getFlake \"/etc/nixos\").homeConfigurations.nekomangini.options")
+
+;;   ;; Ensure LSP starts in nix buffers
+;;   (add-hook 'nix-mode-hook #'lsp-deferred)
+
+;;   ;; Local backends for nix buffers
+;;   (add-hook 'nix-mode-hook
+;;             (lambda ()
+;;               (setq-local company-backends
+;;                           '((company-capf
+;;                              company-keywords
+;;                              company-dabbrev-code)
+;;                             company-files)))))
+#+end_src
+
+* System clipboard
+#+begin_src elisp
+;;; ============================================================================
+;; Enable system clipboard
+;;; ============================================================================
+
+;; Terminal Emacs clipboard integration - Wayland + X11
+(unless (display-graphic-p)
+  ;; Wayland support (Niri)
+  (when (and (executable-find "wl-paste") (executable-find "wl-copy"))
+    (defun wl-copy (text)
+      "Send text to the Wayland clipboard."
+      (let ((wl-copy-process (make-process :name "wl-copy"
+                                           :command '("wl-copy")
+                                           :connection-type 'pipe)))
+        (process-send-string wl-copy-process text)
+        (process-send-eof wl-copy-process)))
+
+    (defun wl-paste ()
+      "Return the contents of the Wayland clipboard as a string, or nil."
+      (let ((wl-paste-output (with-temp-buffer
+                               (call-process "wl-paste" nil t nil)
+                               (buffer-string))))
+        (when (and wl-paste-output (not (string= wl-paste-output "")))
+          (replace-regexp-in-string "\n\\'" "" wl-paste-output))))
+
+    (setq interprogram-paste-function 'wl-paste)
+    (setq interprogram-cut-function 'wl-copy)
+    (setq select-enable-clipboard t))
+
+  ;; X11 fallback (qtile, i3)
+  (when (and (not (and (executable-find "wl-paste") (executable-find "wl-copy")))
+             (executable-find "xclip"))
+    (defun copy-to-xclip (text &optional push)
+      (let ((process-connection-type nil))
+        (start-process "xclip-write" nil "xclip" "-selection" "clipboard")
+        (process-send-string nil text)
+        (process-send-eof nil)))
+
+    (defun paste-from-xclip ()
+      (shell-command-to-string "xclip -o -selection clipboard"))
+
+    (setq interprogram-cut-function #'copy-to-xclip)
+    (setq interprogram-paste-function #'paste-from-xclip)))
+#+end_src
+
+* Snippets
+#+begin_src elisp
+(after! yasnippet
+  (setq yas-snippet-dirs
+        (list (expand-file-name "snippets/" doom-user-dir))))
+
+;;Snippets
+;; (yas-global-mode 1)
+;; (add-hook 'yas-minor-mode-hook (lambda () (yas-activate-extra-mode 'fundamental-mode)))
+#+end_src
+
+* Mermaid
+#+begin_src elisp
+;;; ============================================================================
+;;; Mermaid executable path
+;;; ============================================================================
+
+(after! ob-mermaid
+  (setq ob-mermaid-cli-path (executable-find "mmdc")))
+#+end_src
+
+* Caldav Calendar
+#+begin_src elisp
+;;; ============================================================================
+;;; Caldav Calendar
+;;; ============================================================================
+#+end_src
+
+* Notes
+#+begin_src elisp
+;; Here are some additional functions/macros that will help you configure Doom.
+;;
+;; - `load!' for loading external *.el files relative to this one
+;; - `use-package!' for configuring packages
+;; - `after!' for running code after a package has loaded
+;; - `add-load-path!' for adding directories to the `load-path', relative to
+;;   this file. Emacs searches the `load-path' when you load packages with
+;;   `require' or `use-package'.
+;; - `map!' for binding new keys
+;;
+;; To get information about any of these functions/macros, move the cursor over
+;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
+;; This will open documentation for it, including demos of how they are used.
+;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
+;; etc).
+;;
+;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
+;; they are implemented.
+
+;; Remove warning
+;; (setq warning-minimum-level :error)
+#+end_src

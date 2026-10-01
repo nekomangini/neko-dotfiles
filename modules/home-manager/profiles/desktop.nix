@@ -5,7 +5,7 @@
     ../kitty
     ../shell
     ../helix
-    ../emacs.nix
+    ../emacs
     ../neovim/astronvim.nix
     ../neovide
     ../tmux.nix
@@ -13,6 +13,7 @@
     ../kakoune.nix
     ../git.nix
     ../yazi.nix
+    ../emacs
 
     ../packages
     ../android.nix
