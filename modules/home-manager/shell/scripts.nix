@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
   helix = pkgs.helix;
@@ -8,9 +8,15 @@ let
   zellij = pkgs.zellij;
 
   # emacs = pkgs.emacs-gtk;
-  emacs = pkgs.emacs-pgtk.pkgs.withPackages (epkgs: [
-    epkgs.treesit-grammars.with-all-grammars
-  ]);
+  # emacs = pkgs.emacs-pgtk.pkgs.withPackages (epkgs: [
+  #   epkgs.treesit-grammars.with-all-grammars
+  # ]);
+
+  emacs = config.programs.emacs.package;
+
+  nkt = pkgs.writeShellScriptBin "nkt" ''
+    exec ${emacs}/bin/emacsclient -nw -a "" "$@"
+  '';
 
   kittySession = pkgs.writeText "kitty-session.conf" ''
     new_tab main
@@ -27,6 +33,9 @@ let
 
     new_tab tmux-dotfiles
     launch ${tmux}/bin/tmux new-session -A -s dotfiles
+
+    new_tab emacs
+    launch ${nkt}/bin/nkt
   '';
 in
 

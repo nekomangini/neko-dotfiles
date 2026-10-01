@@ -4,12 +4,14 @@
   lib,
   ...
 }:
+
 let
   cfg = config.myModules.emacs;
   emacsPackage = cfg.package.pkgs.withPackages (epkgs: [
     epkgs.treesit-grammars.with-all-grammars
   ]);
 in
+
 {
   options.myModules.emacs = {
     package = lib.mkOption {

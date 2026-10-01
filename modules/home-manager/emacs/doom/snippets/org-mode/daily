@@ -1,0 +1,43 @@
+# -*- mode: snippet -*-
+# name: Daily Log Entry
+# key: daily
+# --
+* 🎯 TODAY'S TASK:
+** Primary task:
+*** ${1:Task here}
+
+** Other tasks:
+*** ${2:Other task 1}
+*** ${3:Other task 2}
+
+* 🚧 TROUBLESHOOTING
+** Problem Encountered:
+*** ${4:Problem}
+** Hypothesized Cause (Patterns):
+*** ${5:Cause}
+** Resolution (What fixed it?):
+*** ${6:Solution}
+** Code/Commands:
+#+BEGIN_SRC shell
+${7:echo "meow meow meow meow"}
+#+END_SRC
+
+* 🧠 LEARNINGS & TOOLS NOTES
+** What I learned:
+*** ${8:Learning}
+** Code/Commands:
+#+BEGIN_SRC shell
+${9:echo "meow meow meow meow"}
+#+END_SRC
+
+** Where to document (wiki/blog):
+${10:Documentation note}
+
+* 📝 UNSTRUCTURED NOTES
+*** ${11:Notes}
+
+* 💾 END-OF-DAY SAVE POINT
+** What I was doing:
+${12:Activity}
+** What to do first tomorrow:
+${13:Next steps}

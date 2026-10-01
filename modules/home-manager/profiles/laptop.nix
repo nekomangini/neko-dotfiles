@@ -4,7 +4,7 @@
   imports = [
     # === EDITORS ===
     ../helix
-    ../emacs.nix
+    ../emacs
     ../neovim/astronvim.nix
     ../vim.nix
     ../kakoune.nix
