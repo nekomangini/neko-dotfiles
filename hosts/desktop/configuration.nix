@@ -63,8 +63,23 @@
     ../../modules/nixos/maintenance/autoupdate.nix
   ];
 
-  # NOTE: Move to /modules/nixos/core/network.nix
   # networking.hostName = "neko-desktop"; # Define your hostname.
+  networking = {
+    hostName = "sylphiette";
+    useDHCP = false;
+    networkmanager.enable = false;
+    interfaces.enp3s0.ipv4.addresses = [
+      {
+        address = "192.168.1.200";
+        prefixLength = 24;
+      }
+    ];
+    defaultGateway = "192.168.1.1";
+    nameservers = [
+      "192.168.1.200"
+      "94.140.14.15"
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

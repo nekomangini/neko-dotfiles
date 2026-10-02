@@ -417,7 +417,7 @@
            :empty-lines 1)
 
           ;; Daily log with FULL TEMPLATE
-          ("d" "Daily log entry" plain
+          ("d" "Daily" plain
            (file
             (lambda ()
               (let* ((year (format-time-string "%Y"))
@@ -430,6 +430,18 @@
            :hook (lambda () (yas-expand-snippet (yas-lookup-snippet "Daily Log Entry"))))
 
           ;; Specialized logs
+          ("h" "Health" plain
+           (file
+            (lambda ()
+              (let* ((year (format-time-string "%Y"))
+                     (date (format-time-string "%Y-%m-%d"))
+                     (path (format "/mnt/D/notes/journal/health/%s/%s.org" year date)))
+                (make-directory (file-name-directory path) t)
+                path)))
+           "%?"
+           :unnarrowed t
+           :hook (lambda () (yas-expand-snippet (yas-lookup-snippet "Health Log Entry"))))
+
           ("r" "Dream" entry
            (file+headline
             (lambda ()
