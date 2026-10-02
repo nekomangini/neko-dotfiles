@@ -127,7 +127,7 @@ Secrets are managed with agenix — see `secrets/secrets.nix` for the recipient 
 
 ## Screenshots
 
-![Desktop screenshot](assets/Screenshot%20from%202026-07-17%2010-38-32.png)
+![Desktop screenshot](assets/screenshot-01.png.png)
 
 ---
 

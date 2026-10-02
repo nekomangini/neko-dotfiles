@@ -6,6 +6,7 @@ let
   tmux = pkgs.tmux;
   foot = pkgs.foot;
   zellij = pkgs.zellij;
+  htop = pkgs.htop;
 
   # emacs = pkgs.emacs-gtk;
   # emacs = pkgs.emacs-pgtk.pkgs.withPackages (epkgs: [
@@ -36,6 +37,9 @@ let
 
     new_tab emacs
     launch ${nkt}/bin/nkt
+
+    new_tab monitor
+    launch ${htop}/bin/htop
   '';
 in
 
