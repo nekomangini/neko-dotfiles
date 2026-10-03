@@ -316,12 +316,14 @@ layout {
 spawn-at-startup "waybar"
 spawn-at-startup "awww-daemon"
 
+// To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
+// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+
 // triple monitor
 // spawn-sh-at-startup "sleep 1 && swww img --outputs DP-1 /home/nekomangini/nix-server/wallpaper/cars_034.png && swww img --outputs DVI-D-1 /home/nekomangini/nix-server/wallpaper/space_009.jpg && swww img --outputs HDMI-A-1 /home/nekomangini/nix-server/wallpaper/cars_036.jpg"
 
 // dual monitor
-spawn-sh-at-startup "sleep 1 && awww img --outputs HDMI-A-1 /home/nekomangini/nix-server/wallpaper/cats_008.jpg && awww img --outputs DVI-D-1 /home/nekomangini/nix-server/wallpaper/cars_034.png" // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
-// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+spawn-sh-at-startup "sleep 1 && awww img --outputs HDMI-A-1 /home/nekomangini/nix-server/wallpaper/environment_art_036.jpg && awww img --outputs DVI-D-1 /home/nekomangini/nix-server/wallpaper/environment_art_038.jpg" 
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
