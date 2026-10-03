@@ -67,6 +67,8 @@
   networking = {
     hostName = "sylphiette";
     useDHCP = false;
+
+    # Disable NetworkManager because I'm setting the static IP manually
     networkmanager.enable = false;
     interfaces.enp3s0.ipv4.addresses = [
       {

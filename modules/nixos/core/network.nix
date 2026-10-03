@@ -15,7 +15,7 @@
   #   hostName = "sylphiette";
   #   useDHCP = false;
 
-  #   # Disable NetworkManager since because I'm setting the static IP manually
+  #   # Disable NetworkManager because I'm setting the static IP manually
   #   networkmanager.enable = false;
 
   #   interfaces.enp3s0.ipv4.addresses = [
