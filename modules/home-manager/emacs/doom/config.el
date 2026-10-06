@@ -265,14 +265,15 @@
   ;; TODO keywords
   ;; ─────────────────────────────────────────────────────────────────────────
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "NOTE(n)" "WARN(a)" "FIX(f)" "|" "DONE(d)" "CANCELLED(c)")))
+        '((sequence "TODO(t)" "IN-PROGRESS(p)" "WAITING(w)" "READING(r)" "WATCHING(h)" "NOTE(n)" "WARN(a)" "FIX(f)" "|" "DONE(d)" "CANCELLED(c)")))
 
-  ;; TODO Add READING
   ;; Customize todo keyword faces
   (setq org-todo-keyword-faces
         '(("TODO" . (:foreground "#fabd2f" :weight bold))
           ("IN-PROGRESS" . (:foreground "#8ec07c" :weight bold))
           ("WAITING" . (:foreground "#fe8019" :weight bold))
+          ("READING" . (:foreground "#8ec07c" :weight bold))
+          ("WATCHING" . (:foreground "#8ec07c" :weight bold))
           ("WARN" . (:foreground "#fe8019" :weight bold :background "#3c3836"))
           ("FIX" . (:foreground "#fb4934" :weight bold :underline t))
           ("NOTE" . (:foreground "#83a598" :weight bold :slant italic))
@@ -373,16 +374,20 @@
           (todo "TODO"
                 ((org-agenda-overriding-header "\n📋 Tasks")
                  (org-agenda-sorting-strategy '(priority-down category-keep))))
-          (todo "WAITING"
-                ((org-agenda-overriding-header "\n⏳ Waiting On")))
           (todo "IN-PROGRESS"
                 ((org-agenda-overriding-header "\n🔄 In Progress")))
+          (todo "WAITING"
+                ((org-agenda-overriding-header "\n⏳ Waiting On")))
           (todo "WARN"
                 ((org-agenda-overriding-header "\n⚠️ Warnings")))
           (todo "FIX"
                 ((org-agenda-overriding-header "\n🔧 Fix")))
           (todo "NOTE"
-                ((org-agenda-overriding-header "\n📝 Notes"))))
+                ((org-agenda-overriding-header "\n📝 Notes")))
+          (todo "WATCHING"
+                ((org-agenda-overriding-header "\n Watching")))
+          (todo "READING"
+                ((org-agenda-overriding-header "\n Reading"))))
          ((org-agenda-compact-blocks nil)))
         ("w" "Work Week"
          ((agenda ""

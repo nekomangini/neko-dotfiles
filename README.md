@@ -8,19 +8,20 @@ My personal NixOS configuration — desktop, laptop, and a self-hosted home lab,
 
 ## Hosts
 
-| Hostname      | Role       | Notes                                                                                                                                                                                 |
-| ------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sylphiette`  | 🖥️ Desktop | i3-7100, 16GB RAM, GTX 1050 Ti · static IP `192.168.1.200` · runs the home lab stack                                                                                                  |
-| `neko-laptop` | 💻 Laptop  | **Not active** — only 2GB RAM, not enough headroom to run NixOS. Currently running [Void Linux](https://voidlinux.org) instead; config kept in-repo for whenever the hardware changes |
+| Hostname     | Role       | Notes                                                                                |
+| ------------ | ---------- | ------------------------------------------------------------------------------------ |
+| `sylphiette` | 🖥️ Desktop | i3-7100, 16GB RAM, GTX 1050 Ti · static IP `192.168.1.200` · runs the home lab stack |
+| `roxy`       | 💻 Laptop  | WIP                                                                                  |
+| `eris`       | -          | -                                                                                    |
 
 ## Structure
 
 ```
 .
-├── flake.nix                            # entrypoint: nixosConfigurations for sylphiette / neko-laptop
+├── flake.nix                            # entrypoint: nixosConfigurations for sylphiette / roxy / eris
 ├── hosts/
-│   ├── desktop/                         # configuration.nix, hardware-configuration.nix, users
-│   └── laptop/
+│   ├── sylphiette/                      # configuration.nix, hardware-configuration.nix, users
+│   └── roxy/
 ├── modules/
 │   ├── nixos/                           # system-level modules
 │   │   ├── core/                        # boot, locale, networking, nix settings, secrets
@@ -102,7 +103,7 @@ Raku-based CLI tools packaged as Nix derivations and wired into the shell:
 - `powermenu/` — Wayland and X11 power menus
 - `websearch/` — Wayland and X11 quick-search launchers
 - `sync/` — sync helpers (notes, blog, [nekopaper](https://nekopaper.netlify.app))
-- `logs/`, `helix/`, `emacs/` — dev-log and editor session helpers
+- `helix/`, `emacs/` — dev-log and editor session helpers
 
 ## Usage
 
@@ -111,7 +112,7 @@ Raku-based CLI tools packaged as Nix derivations and wired into the shell:
 sudo nixos-rebuild switch --flake .#sylphiette
 
 # rebuild the laptop
-sudo nixos-rebuild switch --flake .#neko-laptop
+sudo nixos-rebuild switch --flake .#roxy
 ```
 
 Secrets are managed with agenix — see `secrets/secrets.nix` for the recipient list before rekeying.
