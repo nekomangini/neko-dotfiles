@@ -2,8 +2,6 @@
 
 {
   imports = [
-    ./logs
-
     ./x11-screenshot.nix
 
     ./emacs

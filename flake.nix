@@ -30,7 +30,7 @@
         # desktop
         sylphiette = nixpkgs.lib.nixosSystem {
           modules = [
-            ./hosts/desktop/configuration.nix
+            ./hosts/sylphiette/configuration.nix
             agenix.nixosModules.default
 
             {
@@ -58,7 +58,7 @@
         # TODO
         roxy = nixpkgs.lib.nixosSystem {
           modules = [
-            ./hosts/laptop/configuration.nix
+            ./hosts/roxy/configuration.nix
 
             # make home-manager as a module of nixos
             # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
