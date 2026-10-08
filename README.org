@@ -129,12 +129,6 @@ Secrets are managed with agenix — see =secrets/secrets.nix= for the recipient 
 ** Screenshots
 
 - [[file:./assets/screenshot-01.png][screenshot]]
-#+begin_src html
-<a href="https://raw.githubusercontent.com/nekomangini/nix-server/refs/heads/main/assets/screenshot-01.png">
-  <img src="https://raw.githubusercontent.com/nekomangini/nix-server/refs/heads/main/assets/screenshot-01.png"/>
-</a>
-#+end_src
-
 
 -----
 
