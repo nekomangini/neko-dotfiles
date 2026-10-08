@@ -120,15 +120,15 @@ Secrets are managed with agenix — see =secrets/secrets.nix= for the recipient 
 ** TODOs
 
 - [ ] Migrate Hyprland configuration from Hyprlang to Lua
-- [x] Enable GPU acceleration for machine learning in Immich
-- [x] Clean up and reorganize packages
-- [x] Migrate remaining GitHub repositories to Forgejo
+- [X] Enable GPU acceleration for machine learning in Immich
+- [X] Clean up and reorganize packages
+- [X] Migrate remaining GitHub repositories to Forgejo
 - [ ] Deploy Vaultwarden
 - [ ] Cleanup Raku scripts
 
 ** Screenshots
 
-[[file:./assets/screenshot-01.png][screenshot]]
+- [[file:./assets/screenshot-01.png][screenshot]]
 
 -----
 
