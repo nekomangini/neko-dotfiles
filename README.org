@@ -119,23 +119,16 @@ Secrets are managed with agenix — see =secrets/secrets.nix= for the recipient 
 
 ** TODOs
 
-#+begin_src md
 - [ ] Migrate Hyprland configuration from Hyprlang to Lua
 - [X] Enable GPU acceleration for machine learning in Immich
 - [X] Clean up and reorganize packages
 - [X] Migrate remaining GitHub repositories to Forgejo
 - [ ] Deploy Vaultwarden
 - [ ] Cleanup Raku scripts
-#+end_src
 
 ** Screenshots
 
-#+begin_src html
-<a href="https://raw.githubusercontent.com/nekomangini/nix-server/refs/heads/main/assets/screenshot-01.png">
-  <img src="https://raw.githubusercontent.com/nekomangini/nix-server/refs/heads/main/assets/screenshot-01.png"/>
-</a>
-#+end_src
-
+- [[file:./assets/screenshot-01.png][screenshot]]
 
 -----
 
