@@ -49,10 +49,10 @@ My personal NixOS configuration — desktop, laptop, and a self-hosted home lab,
 
 Multi-compositor setup, switched per-session depending on what I'm feeling:
 
-- **i3** — single monitor (wip)
-- **Niri** — main compositor (dual/triple monitor); uses Kanshi for dynamic output management instead of inline =output= configurations in =config.kdl=
-- **Qtile** — triple monitor (wip)
-- **Hyprland** — currently broken; planning to migrate from Hyprlang to Lua config
+- *i3* — single monitor (wip)
+- *Niri* — main compositor (dual/triple monitor); uses Kanshi for dynamic output management instead of inline =output= configurations in =config.kdl=
+- *Qtile* — triple monitor (wip)
+- *Hyprland* — currently broken; planning to migrate from Hyprlang to Lua config
 
 Shared across all of them: Waybar/panel, Fuzzel/Rofi launchers, Dunst notifications, Kitty (with a custom theme), Fish shell, Helix as the primary editor with a Doom Emacs daemon on standby, and tmux session management driven by [[https://raku.org][Raku]] scripts.
 
