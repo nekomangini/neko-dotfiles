@@ -126,5 +126,11 @@
       command = "luau-lsp";
       args = [ "lsp" ];
     };
+
+    # --- Fish ---
+    "fish-lsp" = {
+      command = "fish-lsp";
+      args = [ "start" ];
+    };
   };
 }

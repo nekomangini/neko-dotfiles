@@ -340,6 +340,20 @@
           args = [ "-" ];
         };
       }
+
+      # --- Fish ---
+      {
+        name = "fish";
+        scope = "source.fish";
+        injection-regex = "fish";
+        file-types = [ "fish" ];
+        comment-token = "#";
+        language-servers = [ "fish-lsp" ];
+        formatter = {
+          command = "fish_indent";
+        };
+        auto-format = true;
+      }
     ];
   };
 }
