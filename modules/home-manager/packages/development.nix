@@ -2,14 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    # emacs orgmode
-    mermaid-cli
-
-    # Markdown
-    shellcheck
-    pandoc
-    marksman
-
     # bash
     bash-language-server
     shfmt
@@ -31,9 +23,14 @@
     # Common Lisp
     sbcl
 
-    # Java jdk24
-    jdk21_headless
-    jdt-language-server
+    # emacs orgmode
+    mermaid-cli
+
+    # fish
+    fish-lsp
+
+    # Game Development
+    godot
 
     # Go
     go
@@ -45,10 +42,50 @@
     gotests
     gore
 
+    # Java jdk24
+    jdk21_headless
+    jdt-language-server
+
+    # lua
+    lua
+    lua-language-server
+    luau
+    luau-lsp
+    stylua
+    luarocks
+
+    # Markdown
+    shellcheck
+    pandoc
+    marksman
+
     # Nix
     nil
     nixd
     nixfmt
+
+    # Python
+    python315
+    pyright
+    black
+
+    # raku
+    rakudo
+
+    # Ruby
+    ruby-lsp
+    solargraph
+    rufo
+    rubocop
+    # rubyPackages.htmlbeautifier
+
+    # Rust
+    rustup
+    lldb
+
+    # Static Site Generators
+    hugo
+    zola
 
     # Web
     html-tidy
@@ -64,39 +101,5 @@
     typescript
     bun
     nodejs_22
-
-    # Ruby
-    ruby-lsp
-    solargraph
-    rufo
-    rubocop
-    # rubyPackages.htmlbeautifier
-
-    # Python
-    python315
-    pyright
-    black
-
-    # Game Development
-    godot
-
-    # Static Site Generators
-    hugo
-    zola
-
-    # lua
-    lua
-    lua-language-server
-    luau
-    luau-lsp
-    stylua
-    luarocks
-
-    # raku
-    rakudo
-
-    # Rust
-    rustup
-    lldb
   ];
 }
