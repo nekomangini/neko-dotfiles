@@ -323,8 +323,7 @@ spawn-at-startup "awww-daemon"
 // spawn-sh-at-startup "sleep 1 && swww img --outputs DP-1 /home/nekomangini/nix-server/wallpaper/cars_034.png && swww img --outputs DVI-D-1 /home/nekomangini/nix-server/wallpaper/space_009.jpg && swww img --outputs HDMI-A-1 /home/nekomangini/nix-server/wallpaper/cars_036.jpg"
 
 // dual monitor
-spawn-sh-at-startup "sleep 1 && awww img --outputs HDMI-A-1 /home/nekomangini/nix-server/wallpaper/vertical/environment_art_036.jpg && awww img --outputs DVI-D-1 /home/nekomangini/nix-server/wallpaper/environment_art_038.jpg" 
-
+spawn-sh-at-startup "sleep 1 && awww img --outputs HDMI-A-1 /home/nekomangini/nix-server/wallpaper/environment_art_036_h.jpg && awww img --outputs DVI-D-1 /home/nekomangini/nix-server/wallpaper/environment_art_038.jpg"
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
     // skip-at-startup
