@@ -7,6 +7,40 @@ let
   foot = pkgs.foot;
   zellij = pkgs.zellij;
   htop = pkgs.htop;
+  awww = pkgs.awww;
+  fuzzel = pkgs.fuzzel;
+  eza = pkgs.eza;
+
+  wallDir = "${config.home.homeDirectory}/nix-server/wallpaper";
+
+  wallpaperPicker =
+    name: output: dir:
+    pkgs.writeShellScriptBin name ''
+      choice=$(
+        while IFS= read -r file; do
+          printf '%s\0icon\x1f%s/%s\n' "$file" "${dir}" "$file"
+        done < <(${eza}/bin/eza -1 "${dir}") \
+          | ${fuzzel}/bin/fuzzel --dmenu
+      ) || exit 0
+      [ -n "$choice" ] || exit 0
+
+      exec ${awww}/bin/awww img --outputs ${output} "${dir}/$choice"
+    '';
+
+  wdvi = wallpaperPicker "wdvi" "DVI-D-1" wallDir;
+  wdp = wallpaperPicker "wdp" "DP-1" wallDir;
+  whdmi = wallpaperPicker "whdmi" "HDMI-A-1" "${wallDir}";
+
+  # Ask which monitor, then run the matching picker
+  nwall = pkgs.writeShellScriptBin "nwall" ''
+    monitor=$(printf '%s\n' DVI-D-1 DP-1 HDMI-A-1 | ${fuzzel}/bin/fuzzel --dmenu -p "monitor: ") || exit 0
+
+    case "$monitor" in
+      DVI-D-1)  exec ${wdvi}/bin/wdvi ;;
+      DP-1)     exec ${wdp}/bin/wdp ;;
+      HDMI-A-1) exec ${whdmi}/bin/whdmi ;;
+    esac
+  '';
 
   # emacs = pkgs.emacs-gtk;
   # emacs = pkgs.emacs-pgtk.pkgs.withPackages (epkgs: [
@@ -76,6 +110,12 @@ in
     (writeShellScriptBin "dev-workspace" ''
       exec ${kitty}/bin/kitty --session ${kittySession}
     '')
+
+    # ===== WALLPAPER=====
+    wdvi
+    wdp
+    whdmi
+    nwall
 
     # ===== Scripts=====
     # Joplin

@@ -2,7 +2,7 @@
 
 let
   wallpaperPath = ../../wallpaper/cats_008.jpg;
-  wallpaperv2Path = ../../wallpaper/cats_007.jpg;
+  wallpaperv2Path = ../../wallpaper/cats_007_h.jpg;
   wallpaperv3Path = ../../wallpaper/evangelion_017.jpg;
 in
 {

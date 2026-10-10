@@ -65,8 +65,7 @@
   home.sessionVariables = {
     # EDITOR = "${pkgs.helix}/bin/hx";
     # VISUAL = "${pkgs.helix}/bin/hx";
-    # TMUX_PATHS_FILE = "/run/agenix/tmux-manager-paths";
-    # TEST: Check if krita runs using this code
+    # NOTE: hint Electron apps to use wayland
     QT_QPA_PLATFORM = "wayland";
     NIXOS_OZONE_WL = "1";
   };
